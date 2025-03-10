@@ -1,0 +1,118 @@
+.navbar-container {
+  /* position: relative; */
+  backdrop-filter: blur(10px);
+}
+
+.video-background {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.logo h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nav-items ul {
+  display: flex;
+}
+
+.nav-items ul li {
+  margin-right: 20px;
+}
+
+.nav-items ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-items ul li a:hover {
+  color: #ff6347;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.login-btn,
+.register-btn,
+.book-btn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  color: white;
+  border-radius: 5px;
+}
+
+.login-btn {
+  background-color: var(--clr-background);
+}
+
+.register-btn {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.book-btn {
+  /* background-color: #ff6347; */
+  background-color: #f9bf93;
+  /* color: rgba(0, 0, 0); */
+  /* } */
+}
+
+.login-btn:hover,
+.register-btn:hover,
+.book-btn:hover {
+  background-color: #ff6347;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-items ul {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .nav-items ul li {
+    margin-bottom: 10px;
+  }
+
+  .auth-buttons {
+    margin-top: 10px;
+  }
+}
