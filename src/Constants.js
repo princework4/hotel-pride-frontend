@@ -89,3 +89,42 @@ export const filterTabButtons = [
   "Category 4",
   "Category 5",
 ];
+
+export const guestsReviews = [
+  {
+    name: "John Doe",
+    avatar: "https://via.placeholder.com/100",
+    rating: 4.5,
+    text: "The hotel experience was wonderful! Amazing staff and great services. The amenities were top-notch and really made our stay special.",
+  },
+  {
+    name: "Jane Smith",
+    avatar: "https://via.placeholder.com/100",
+    rating: 5,
+    text: "I had an amazing stay! The location was perfect, and everything was top-notch. Highly recommend it for anyone visiting the city.",
+  },
+  {
+    name: "Chris Johnson",
+    avatar: "https://via.placeholder.com/100",
+    rating: 3.5,
+    text: "Good stay overall, but the room service could be improved. The staff was friendly, but there were a few hiccups with the services.",
+  },
+  {
+    name: "Anna Brown",
+    avatar: "https://via.placeholder.com/100",
+    rating: 4,
+    text: "Great experience, although a bit pricey. The view from the room was amazing, and the food in the restaurant was excellent.",
+  },
+  {
+    name: "Michael Lee",
+    avatar: "https://via.placeholder.com/100",
+    rating: 4.7,
+    text: "A lovely experience overall. The hotel was clean, well-maintained, and very cozy. I loved the vibe of the place.",
+  },
+  {
+    name: "Sophia White",
+    avatar: "https://via.placeholder.com/100",
+    rating: 5,
+    text: "I would definitely stay again! The staff went out of their way to make our stay enjoyable, and the hotel itself was gorgeous.",
+  },
+];

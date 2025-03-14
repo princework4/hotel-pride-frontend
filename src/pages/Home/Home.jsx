@@ -1,11 +1,16 @@
 import React from "react";
 import ImageSlider from "../../components/Slider";
+import Header from "../../components/Header/Header";
 import "./Home.css";
 import RoomCard from "../../components/RoomCard/RoomCard";
-import { roomTypes, roomDetails, galleryImgs } from "../../Constants";
+import { roomTypes, roomDetails, galleryImgs, guestsReviews } from "../../Constants";
+import Footer from "../../components/Footer/Footer";
+import Reviews from "../../components/Reviews/Reviews";
 
+console.log(guestsReviews, "guestsReviews")
 const Home = () => {
-  return (
+  return (<>
+    <Header />
     <main>
       <section className="room_types">
         <div className="wrapper">
@@ -38,6 +43,20 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <section className="reviews">
+        <div className="wrapper">
+          <div className="heading_container">
+            <hr />
+            <h2 data-text="reviews">What our Guest Say</h2>
+          </div>
+          <div className="reviews__container">
+            <Reviews guestsReviews={guestsReviews} />
+          </div>
+        </div>
+      </section>
+
+
       {/* <section className="reviews">
         <div className="wrapper">
           <ImageSlider
@@ -64,6 +83,8 @@ const Home = () => {
       <section className="reviews"></section>
       <section className="map_and_address"></section> */}
     </main>
+    <Footer />
+  </>
   );
 };
 
