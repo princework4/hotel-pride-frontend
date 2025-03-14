@@ -29,8 +29,8 @@ const ImageSlider = ({
           isBanner
             ? "banner imgslider"
             : isCarousel
-            ? "isCarousel imgslider"
-            : "imgSlider"
+              ? "isCarousel imgslider"
+              : "imgSlider"
         }
       >
         <Slider {...settings}>
