@@ -83,7 +83,11 @@ const Home = () => {
       <section className="reviews"></section>
       <section className="map_and_address"></section> */}
     </main>
-    <Footer />
+    <footer className="footer">
+      <div className="wrapper">
+        <Footer />
+      </div>
+    </footer>
   </>
   );
 };

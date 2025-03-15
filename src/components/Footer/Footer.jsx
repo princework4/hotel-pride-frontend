@@ -4,22 +4,22 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <div className='footer-container '>
-            <Box className="footer wrapper">
-                <Box>
-                    <Typography variant="h4" className="section-title">
+        <>
+            <div className='footer-container'>
+                <div>
+                    <h3 className="section-title">
                         Company Name
-                    </Typography>
+                    </h3>
                     <Typography variant="body1" sx={{ marginTop: 2 }}>
                         © 2025 All Rights Reserved
                     </Typography>
-                </Box>
+                </div>
 
-                <Box>
+                <div>
                     <Typography variant="h5" className="section-title">
                         Quick Links
                     </Typography>
-                    <Box>
+                    <div>
                         <Link href="#" className="footer-link">
                             Home
                         </Link>
@@ -32,10 +32,10 @@ const Footer = () => {
                         <Link href="#" className="footer-link">
                             Contact
                         </Link>
-                    </Box>
-                </Box>
+                    </div>
+                </div>
 
-                <Box>
+                <div>
                     <Typography variant="h5" className="section-title">
                         Follow Us
                     </Typography>
@@ -50,14 +50,14 @@ const Footer = () => {
                             Instagram
                         </Link>
                     </Box>
-                </Box>
-            </Box>
+
+                </div>
+            </div>
             <Box className="corporate-footer">
                 <h1></h1>
                 <p>© ABC 2025</p>
             </Box>
-        </div>
-
+        </>
     );
 };
 
