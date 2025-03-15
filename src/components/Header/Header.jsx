@@ -2,13 +2,16 @@ import React from "react";
 import Navbar from "../Navbar";
 import Search from "../Search";
 import "./Header.css";
-import "../../../src/typography.css";
 
 const Header = () => {
   return (
     <section className="header">
       <Navbar />
-      <Search />
+      <section className="search">
+        <div className="wrapper">
+          <Search />
+        </div>
+      </section>
     </section>
   );
 };

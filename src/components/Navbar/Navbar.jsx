@@ -1,10 +1,18 @@
-import React from "react";
-import { Box, Button, Modal } from "@mui/material";
-import CloseIconCircle from "../CloseIconCircle";
+import React, { useEffect, useState } from "react";
+import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const [showHam, setShowHam] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const [size, setSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -28,8 +36,33 @@ const Navbar = () => {
     // p: 4,
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [size.width]);
+
+  useEffect(() => {
+    if (size.width > 768) {
+      setShowHam(false);
+      setMenuOpen(false);
+    } else {
+      setShowHam(true);
+    }
+  }, [size.width]);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-    <div className="navbar-container">
+    <header className="nav-container">
       <div className="video-background">
         <video
           id="background-video"
@@ -46,10 +79,19 @@ const Navbar = () => {
         </video>
       </div>
       <div className="navbar wrapper">
-        <div className="logo">
-          <h1>MyLogo</h1>
-        </div>
-        <div className="nav-items">
+        <h1 className="logo">MyLogo</h1>
+
+        {showHam && (
+          <div
+            className={`hamburger ${menuOpen ? "open" : ""}`}
+            onClick={toggleMenu}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        )}
+        <nav className={`nav-items ${menuOpen ? "show" : ""}`}>
           <ul>
             <li>
               <a href="#home">Home</a>
@@ -66,35 +108,29 @@ const Navbar = () => {
             <li>
               <a href="#contact">Offers</a>
             </li>
+            <li>
+              <button className="login-btn" onClick={handleOpen}>
+                Login / Register
+              </button>
+            </li>
           </ul>
-        </div>
-        <div className="auth-buttons">
-          <button className="login-btn" onClick={handleOpen}>
-            Login
-          </button>
-          <button className="register-btn">Register</button>
-          <button className="book-btn">BOOK YOUR STAY</button>
-        </div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-          className="login_signup"
-        >
-          <Box sx={style}>
-            {/* <Box className="close_icon_wrapper">
+        </nav>
+      </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        className="login_signup"
+      >
+        <Box sx={style}>
+          {/* <Box className="close_icon_wrapper">
               <CloseIconCircle handleClose={handleClose} />
             </Box> */}
-            <AuthForms handleClose={handleClose} />
-          </Box>
-        </Modal>
-
-        {/* <div className="mobile-nav-toggle">
-                    <button className='hamburger'>Menu</button>
-                </div> */}
-      </div>
-    </div>
+          <AuthForms handleClose={handleClose} />
+        </Box>
+      </Modal>
+    </header>
   );
 };
 
