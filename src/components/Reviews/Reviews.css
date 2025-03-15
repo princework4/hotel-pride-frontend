@@ -66,9 +66,10 @@
   line-height: 1.6;
 }
 
-.slick-dots li button:before {
+.reviews .slick-dots li button:before {
   color: var(--burnt-rose);
   margin-top: 15px;
+  font-size: 10px;
 }
 
 @media (max-width: 768px) {
