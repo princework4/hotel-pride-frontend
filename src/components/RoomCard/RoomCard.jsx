@@ -1,7 +1,7 @@
-import Chip from "../Chip/Chip";
+import Chip from "../Chip";
 import ImageSlider from "../Slider";
-import "./RoomCard.css";
 import { roomImages } from "../../Constants";
+import "./RoomCard.css";
 
 import React from "react";
 

@@ -1,0 +1,19 @@
+/* Importing Common CSS File */
+@import url("../../common.css");
+
+.signup_btn {
+  /* border: 1px solid transparent; */
+  border-radius: 50px !important;
+  margin: 20px 5px !important;
+}
+
+.signup label + div {
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.new_account {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  margin-left: 5px !important;
+}

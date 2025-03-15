@@ -1,17 +1,46 @@
 import React from "react";
-import ImageSlider from "../../components/Slider";
-import "./Home.css";
-import RoomCard from "../../components/RoomCard/RoomCard";
+import RoomCard from "../../components/RoomCard";
 import { roomTypes, roomDetails, galleryImgs } from "../../Constants";
+import { useNavigate } from "react-router-dom";
+import "./Home.css";
+import BottomToTop from "../../components/BottomToTop";
 
 const Home = () => {
+  let navigate = useNavigate();
+  const routeChange = (path) => {
+    navigate(path);
+  };
+
   return (
     <main>
+      <section className="about">
+        <div className="wrapper">
+          <div className="left_right_showcase">
+            <div>
+              <p>Who we are ?</p>
+              <h2>hotel pride</h2>
+              <p className="about__subheading">come live with us</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Explicabo ea pariatur vel, debitis in enim voluptatum. Aut
+                reiciendis dolorem voluptas?
+              </p>
+              <button onClick={() => routeChange("about")}>learn more</button>
+            </div>
+            <figure>
+              <img
+                src="https://www.conradpune.com/wp-content/uploads/2022/07/2-4.png"
+                alt=""
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
       <section className="room_types">
         <div className="wrapper">
           <div className="heading_container">
             <hr />
-            <h2 data-text="room types">room types</h2>
+            <h2>room types</h2>
           </div>
           <div className="room_types__container">
             {roomTypes?.map((type, i) => (
@@ -24,7 +53,7 @@ const Home = () => {
         <div className="wrapper">
           <div className="heading_container">
             <hr />
-            <h2 data-text="gallery">gallery</h2>
+            <h2>gallery</h2>
           </div>
           <div className="gallery__container">
             {galleryImgs?.slice(0, 6)?.map((item, i) => (
@@ -34,7 +63,7 @@ const Home = () => {
             ))}
           </div>
           <div className="see_more__container">
-            <button>See More</button>
+            <button onClick={() => routeChange("gallery")}>see more</button>
           </div>
         </div>
       </section>
@@ -63,6 +92,7 @@ const Home = () => {
       {/* <section className="awards"></section>
       <section className="reviews"></section>
       <section className="map_and_address"></section> */}
+      <BottomToTop />
     </main>
   );
 };

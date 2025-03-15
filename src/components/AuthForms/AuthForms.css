@@ -1,0 +1,37 @@
+.preferred_date button,
+.preferred_time button {
+  margin: 0 !important;
+}
+
+.log_in_tab,
+.sign_up_tab {
+  padding: 1.5em !important;
+  border-top-right-radius: 20px !important;
+  border-top-left-radius: 20px !important;
+  margin: 0 !important;
+  background-color: #fff !important;
+  transition: all ease-in-out 0.3s !important;
+}
+
+.log_in_tab {
+  border-bottom-right-radius: 20px !important;
+}
+
+.sign_up_tab {
+  border-bottom-left-radius: 20px !important;
+}
+
+.log_in_tab:hover,
+.sign_up_tab:hover {
+  border: none;
+  color: #000;
+}
+
+.Mui-selected {
+  background-color: var(--burnt_rose) !important;
+  color: #fff !important;
+}
+
+.MuiTabs-indicator {
+  display: none !important;
+}
