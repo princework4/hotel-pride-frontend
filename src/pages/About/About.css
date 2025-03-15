@@ -146,7 +146,11 @@
   width: 0;
   height: 2px;
   background: var(--burnt_rose);
-  transition: width 0.3s;
+  transition: width 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out;
 }
 
 .address_container ul li a:hover::after {

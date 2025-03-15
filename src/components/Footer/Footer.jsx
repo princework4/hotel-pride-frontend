@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
@@ -20,17 +21,17 @@ const Footer = () => {
                 Quick Links
               </Typography>
               <div>
-                <Link href="#" className="footer-link">
+                <Link to="/" className="footer-link">
                   Home
                 </Link>
-                <Link href="#" className="footer-link">
+                <Link to="/about" className="footer-link">
                   About
                 </Link>
-                <Link href="#" className="footer-link">
-                  Services
+                <Link to="/gallery" className="footer-link">
+                  Gallery
                 </Link>
-                <Link href="#" className="footer-link">
-                  Contact
+                <Link to="/offers" className="footer-link">
+                  Offers
                 </Link>
               </div>
             </div>

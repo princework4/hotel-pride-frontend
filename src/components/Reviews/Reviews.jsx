@@ -19,7 +19,7 @@ const settings = {
 const Reviews = ({ guestsReviews }) => {
   // console.log(guestsReviews);
   return (
-    <Slider {...settings}>
+    <Slider {...settings} className="reviews">
       {guestsReviews.map((review, index) => (
         <div key={index} className="review-card">
           <div className="review-content">
