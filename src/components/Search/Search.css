@@ -87,6 +87,16 @@ form .sign:hover {
   font-size: 14px;
 }
 
+.guest-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 425px) {
+  .guestInputs {
+    flex-direction: column;
+  }
+}
 /* .icon {
   font-weight: 400;
   font-family: icomoon !important;

@@ -37,19 +37,27 @@ const Search = () => {
             <div className="form-group">
                 <label>Guests and Rooms</label>
                 <div className='guestInputs'>
-                    <span>Adults</span>
-                    <div className="counter-buttons">
-                        <button className={`sign ${adultCount == 0 ? "isDisabled" : ""}`} onClick={() => setAdultCount(c => c - 1)}>-</button>
-                        <input value={adultCount} />
-                        <button className='sign' onClick={() => setAdultCount(c => c + 1)}>+</button>
+
+                    <div className='guest-group'>
+                        <span>Adults</span>
+                        <div className="counter-buttons">
+                            <button className={`sign ${adultCount == 0 ? "isDisabled" : ""}`} onClick={() => setAdultCount(c => c - 1)}>-</button>
+                            <input value={adultCount} />
+                            <button className='sign' onClick={() => setAdultCount(c => c + 1)}>+</button>
+                        </div>
                     </div>
+
                     <span>|</span>
-                    <div>
+
+                    <div className='guest-group'>
                         <span>Children</span>
-                        <button className={`sign ${childCount == 0 ? "isDisabled" : ""}`} onClick={() => setChildCount(c => c - 1)}>-</button>
-                        <input value={childCount} />
-                        <button className='sign' onClick={() => setChildCount(c => c + 1)}>+</button>
+                        <div className='counter-button'>
+                            <button className={`sign ${childCount == 0 ? "isDisabled" : ""}`} onClick={() => setChildCount(c => c - 1)}>-</button>
+                            <input value={childCount} />
+                            <button className='sign' onClick={() => setChildCount(c => c + 1)}>+</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
             <button className="search-btn">Search</button>
