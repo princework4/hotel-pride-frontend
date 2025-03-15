@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const location = useLocation();
   const [showHam, setShowHam] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -14,6 +15,8 @@ const Navbar = () => {
   });
 
   const [open, setOpen] = React.useState(false);
+  const [colorChange, setColorchange] = React.useState(false);
+  const [revertHeader, setRevertHeader] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -61,87 +64,106 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
-  return (
-    <header className="nav-container">
-      <div className="video-background">
-        <video
-          id="background-video"
-          autoPlay
-          playsInline
-          muted
-          loop
-          preload="auto"
-        >
-          <source
-            src="https://assets-cug1-825v2.tajhotels.com/video/TAJ%20WEBSITE%20FILM_1920%20X%20930_148mb.mp4?Impolicy=Medium_High"
-            type="video/mp4"
-          />
-        </video>
-      </div>
-      <div className="navbar wrapper">
-        <h1 className="logo">
-          <Link to="/">MyLogo</Link>
-        </h1>
+  const changeNavbarColor = () => {
+    if (
+      window.location.pathname === "/" ||
+      window.location.pathname === "/about"
+    ) {
+      if (window.scrollY >= 80) {
+        setColorchange(true);
+      } else {
+        setColorchange(false);
+      }
+    }
+  };
 
-        {showHam && (
-          <div
-            className={`hamburger ${menuOpen ? "open" : ""}`}
-            onClick={toggleMenu}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        )}
-        <nav className={`nav-items ${menuOpen ? "show" : ""}`}>
-          <ul>
-            <li>
-              <NavLink to="/" activeclassname="active">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" activeclassname="active">
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/gallery" activeclassname="active">
-                Gallery
-              </NavLink>
-            </li>
-            {/* <li>
-              <NavLink to="/contact" activeclassname="active">
-                Contact
-              </NavLink>
-            </li> */}
-            <li>
-              <NavLink to="/offers" activeclassname="active">
-                Offers
-              </NavLink>
-            </li>
-            <li>
-              <button className="login-btn" onClick={handleOpen}>
-                Login / Register
-              </button>
-            </li>
-          </ul>
-        </nav>
+  React.useEffect(() => {
+    if (location.pathname === "/" || location.pathname === "/about") {
+      window.addEventListener("scroll", changeNavbarColor);
+      setRevertHeader(false);
+    } else {
+      setRevertHeader(true);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", () => changeNavbarColor);
+    };
+  }, [location]);
+
+  return (
+    <header
+      className={
+        revertHeader || colorChange
+          ? "updated_header nav-container"
+          : "nav-container"
+      }
+    >
+      <div className="wrapper">
+        <div className="navbar">
+          <h1 className="logo">
+            <Link to="/">MyLogo</Link>
+          </h1>
+
+          {showHam && (
+            <div
+              className={`hamburger ${menuOpen ? "open" : ""}`}
+              onClick={toggleMenu}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          )}
+          <nav className={`nav-items ${menuOpen ? "show" : ""}`}>
+            <ul>
+              <li>
+                <NavLink to="/" activeclassname="active">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/about" activeclassname="active">
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/gallery" activeclassname="active">
+                  Gallery
+                </NavLink>
+              </li>
+              {/* <li>
+                <NavLink to="/contact" activeclassname="active">
+                  Contact
+                </NavLink>
+              </li> */}
+              <li>
+                <NavLink to="/offers" activeclassname="active">
+                  Offers
+                </NavLink>
+              </li>
+              <li>
+                <button className="login-btn" onClick={handleOpen}>
+                  Login / Register
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          className="login_signup"
+        >
+          <Box sx={style}>
+            {/* <Box className="close_icon_wrapper">
+                <CloseIconCircle handleClose={handleClose} />
+              </Box> */}
+            <AuthForms handleClose={handleClose} />
+          </Box>
+        </Modal>
       </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        className="login_signup"
-      >
-        <Box sx={style}>
-          {/* <Box className="close_icon_wrapper">
-              <CloseIconCircle handleClose={handleClose} />
-            </Box> */}
-          <AuthForms handleClose={handleClose} />
-        </Box>
-      </Modal>
     </header>
   );
 };
