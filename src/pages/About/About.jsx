@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { showcaseImgs } from "../../Constants";
 import ImageSlider from "../../components/Slider";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import "./About.css";
 
 const About = () => {
+  useEffect(() => window.scrollTo(0, 0), []);
+
   return (
     <>
+      <Header />
       <section className="showcase">
         <div className="wrapper">
           <ImageSlider
@@ -141,6 +146,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

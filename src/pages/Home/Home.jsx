@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RoomCard from "../../components/RoomCard";
 import {
   roomTypes,
@@ -7,11 +7,11 @@ import {
   guestsReviews,
 } from "../../Constants";
 import { useNavigate } from "react-router-dom";
-import BottomToTop from "../../components/BottomToTop";
-import Header from "../../components/Header/Header";
-import "./Home.css";
-import Footer from "../../components/Footer/Footer";
 import Reviews from "../../components/Reviews/Reviews";
+import Banner from "../../components/Banner";
+import Search from "../../components/Search";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import "./Home.css";
 
 const Home = () => {
@@ -20,10 +20,18 @@ const Home = () => {
     navigate(path);
   };
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <main>
+        <Banner />
+        <section className="search">
+          <div className="wrapper">
+            <Search />
+          </div>
+        </section>
         <section className="about">
           <div className="wrapper">
             <div className="left_right_showcase">
@@ -82,7 +90,6 @@ const Home = () => {
             </div>
           </div>
         </section>
-
         <section className="reviews">
           <div className="wrapper">
             <div className="heading_container">
@@ -120,8 +127,8 @@ const Home = () => {
         {/* <section className="awards"></section>
       <section className="reviews"></section>
       <section className="map_and_address"></section> */}
-        <BottomToTop />
       </main>
+      <Footer />
     </>
   );
 };

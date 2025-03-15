@@ -5,14 +5,9 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <section className="header">
-      <Navbar />
-      <section className="search">
-        <div className="wrapper">
-          <Search />
-        </div>
-      </section>
-    </section>
+    // <section className="header">
+    <Navbar />
+    // </section>
   );
 };
 export default Header;

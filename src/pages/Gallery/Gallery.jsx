@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { filterTabButtons, galleryImgs } from "../../Constants";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import "./Gallery.css";
 
 const Gallery = () => {
   const [galleryImages, setGalleryImages] = useState(galleryImgs);
   const [trackActiveButton, setTrackActiveButton] = useState(0);
+
+  useEffect(() => window.scrollTo(0, 0), []);
 
   const handleClick = (selectedCategory) => {
     setTrackActiveButton(Number(selectedCategory));
@@ -21,35 +25,39 @@ const Gallery = () => {
   };
 
   return (
-    <section className="gallery">
-      <div className="wrapper">
-        <div className="heading_container">
-          <hr />
-          <h2>gallery</h2>
+    <>
+      <Header />
+      <section className="gallery">
+        <div className="wrapper">
+          <div className="heading_container">
+            <hr />
+            <h2>gallery</h2>
+          </div>
+          <div className="filter_buttons">
+            {filterTabButtons?.map((buttonText, i) => (
+              <button
+                className={`${
+                  i == trackActiveButton ? "is_active button" : "button"
+                }`}
+                onClick={() => handleClick(i)}
+                key={i}
+              >
+                {buttonText}
+              </button>
+            ))}
+          </div>
+          <ul className="grid">
+            {galleryImages?.map((item, i) => (
+              <li key={i}>
+                {/* <div className="overlay"></div> */}
+                <img src={item[0]} alt={i} />
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="filter_buttons">
-          {filterTabButtons?.map((buttonText, i) => (
-            <button
-              className={`${
-                i == trackActiveButton ? "is_active button" : "button"
-              }`}
-              onClick={() => handleClick(i)}
-              key={i}
-            >
-              {buttonText}
-            </button>
-          ))}
-        </div>
-        <ul className="grid">
-          {galleryImages?.map((item, i) => (
-            <li key={i}>
-              {/* <div className="overlay"></div> */}
-              <img src={item[0]} alt={i} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+      </section>
+      <Footer />
+    </>
   );
 };
 
