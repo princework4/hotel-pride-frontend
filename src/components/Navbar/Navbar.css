@@ -15,6 +15,10 @@
   font-weight: bold;
 }
 
+.logo a {
+  color: inherit;
+}
+
 #background-video {
   width: 100%;
   height: 100%;
@@ -48,8 +52,21 @@
   transition: color 0.3s ease;
 }
 
-.nav-items ul li a:hover {
-  color: #ff6347;
+.nav-items ul li a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--burnt_rose);
+  transition: width 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out;
+  -ms-transition: width 0.3s ease-in-out;
+}
+
+.nav-items ul li a.active {
+  color: var(--burnt_rose);
 }
 
 .login-btn {
@@ -88,6 +105,15 @@
 
 .hamburger.open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Hover Effects */
+.nav-items ul li a:hover {
+  color: #ff6347;
+}
+
+.nav-items ul li a:hover::after {
+  width: 100%;
 }
 
 @media (max-width: 768px) {

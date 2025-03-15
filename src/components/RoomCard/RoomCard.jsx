@@ -19,8 +19,8 @@ const RoomCard = ({ roomType, roomDetails }) => {
       <div className="room_card_description">
         <h3>{roomType}</h3>
         <ul className="room_details_chips">
-          {roomDetails?.map((item) => (
-            <li>
+          {roomDetails?.map((item, i) => (
+            <li key={i}>
               <Chip content={item} />
             </li>
           ))}

@@ -67,7 +67,7 @@ const Navbar = () => {
         <video
           id="background-video"
           autoPlay
-          playsinline
+          playsInline
           muted
           loop
           preload="auto"
@@ -79,7 +79,9 @@ const Navbar = () => {
         </video>
       </div>
       <div className="navbar wrapper">
-        <h1 className="logo">MyLogo</h1>
+        <h1 className="logo">
+          <Link to="/">MyLogo</Link>
+        </h1>
 
         {showHam && (
           <div
@@ -94,19 +96,29 @@ const Navbar = () => {
         <nav className={`nav-items ${menuOpen ? "show" : ""}`}>
           <ul>
             <li>
-              <a href="#home">Home</a>
+              <NavLink to="/" activeclassname="active">
+                Home
+              </NavLink>
             </li>
             <li>
-              <a href="#about">About</a>
+              <NavLink to="/about" activeclassname="active">
+                About
+              </NavLink>
             </li>
             <li>
-              <a href="#services">Services</a>
+              <NavLink to="/gallery" activeclassname="active">
+                Gallery
+              </NavLink>
             </li>
+            {/* <li>
+              <NavLink to="/contact" activeclassname="active">
+                Contact
+              </NavLink>
+            </li> */}
             <li>
-              <a href="#contact">Contact</a>
-            </li>
-            <li>
-              <a href="#contact">Offers</a>
+              <NavLink to="/offers" activeclassname="active">
+                Offers
+              </NavLink>
             </li>
             <li>
               <button className="login-btn" onClick={handleOpen}>

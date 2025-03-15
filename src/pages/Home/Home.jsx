@@ -72,7 +72,7 @@ const Home = () => {
             </div>
             <div className="gallery__container">
               {galleryImgs?.slice(0, 6)?.map((item, i) => (
-                <figure>
+                <figure key={i}>
                   <img src={item[0]} alt={i} />
                 </figure>
               ))}
