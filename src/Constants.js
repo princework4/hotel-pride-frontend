@@ -89,3 +89,5 @@ export const filterTabButtons = [
   "Category 4",
   "Category 5",
 ];
+
+export const TOP = 50;

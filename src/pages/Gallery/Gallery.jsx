@@ -25,7 +25,7 @@ const Gallery = () => {
       <div className="wrapper">
         <div className="heading_container">
           <hr />
-          <h2 data-text="gallery">gallery</h2>
+          <h2>gallery</h2>
         </div>
         <div className="filter_buttons">
           {filterTabButtons?.map((buttonText, i) => (

@@ -22,8 +22,7 @@ const About = () => {
         <div className="wrapper">
           <div className="left_right_showcase__first">
             <div>
-              <p>Who we are ?</p>
-              <h2 data-text="hotel pride">hotel pride</h2>
+              <h2>hotel pride</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Adipisci commodi distinctio vitae dolor culpa. Vitae, tempore
@@ -55,7 +54,7 @@ const About = () => {
               />
             </figure>
             <div>
-              <h2 data-text="more about us">more about us</h2>
+              <h2>more about us</h2>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
                 ipsa velit quas sint nostrum praesentium error aspernatur
@@ -89,7 +88,7 @@ const About = () => {
               ></iframe>
             </div>
             <div className="address_container">
-              <h2 data-text="hotel pride">hotel pride</h2>
+              <h2>hotel pride</h2>
               <ul>
                 <li>
                   <span className="address_container__heading">Address</span>
