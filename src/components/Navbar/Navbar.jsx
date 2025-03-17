@@ -137,11 +137,6 @@ const Navbar = () => {
                 </NavLink>
               </li> */}
               <li>
-                <NavLink to="/offers" activeclassname="active">
-                  Offers
-                </NavLink>
-              </li>
-              <li>
                 <button className="login-btn" onClick={handleOpen}>
                   Login / Register
                 </button>
