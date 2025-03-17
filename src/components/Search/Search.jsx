@@ -45,7 +45,8 @@ const Search = () => {
         {/* Guests and Rooms */}
         <div className="form-group">
           <div className="guest_rooms__container">
-            <label>Guests and Rooms</label>
+            <label>Guests</label>
+            {/* <label>Guests and Rooms</label> */}
             <div className="guestInputs">
               <div className="guest-group">
                 <span>Adults</span>
@@ -66,7 +67,7 @@ const Search = () => {
                 </div>
               </div>
 
-              <span>|</span>
+              <span className="guestInputs__separator">|</span>
 
               <div className="guest-group">
                 <span>Children</span>

@@ -20,6 +20,7 @@ const ImageSlider = ({
     autoplay: autoplay,
     autoplaySpeed: 2000,
     arrows: true,
+    pauseOnHover: false,
   };
 
   return (
@@ -29,8 +30,8 @@ const ImageSlider = ({
           isBanner
             ? "banner imgslider"
             : isCarousel
-              ? "isCarousel imgslider"
-              : "imgSlider"
+            ? "isCarousel imgslider"
+            : "imgSlider"
         }
       >
         <Slider {...settings}>
