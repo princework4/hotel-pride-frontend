@@ -29,13 +29,14 @@ body {
 }
 
 .not_found_error > p {
+  position: relative;
+  left: 100%;
+  color: #9294ae;
   font-family: "Lato", sans-serif;
   font-weight: 300;
   font-size: 24px;
   letter-spacing: 5px;
-  color: #9294ae;
-  position: relative;
-  left: 100%;
+  line-height: 30px;
   transition: all 0.5s;
   transition-delay: 0.5s;
   -webkit-transition: all 0.5s;

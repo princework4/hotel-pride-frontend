@@ -20,7 +20,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  /* flex: 1; */
   gap: 10px;
 }
 
@@ -166,6 +166,11 @@ form .sign:hover {
 .guestInputs input {
   width: 40px;
 }
+
+.guestInputs .guestInputs__separator {
+  margin: 0 10px;
+}
+
 .sign.isDisabled {
   border: #dadadd;
   pointer-events: none;
