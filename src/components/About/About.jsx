@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import { showcaseImgs } from "../../Constants";
-import ImageSlider from "../../components/Slider";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import ImageSlider from "../Slider";
+import Header from "../Header";
+import Footer from "../Footer";
 import "./About.css";
 
 const About = () => {
-  useEffect(() => window.scrollTo(0, 0), []);
+  const [readMore, setReadMore] = React.useState(false);
 
   return (
     <>
-      <Header />
-      <section className="showcase">
+      {/* <section className="showcase">
         <div className="wrapper">
           <ImageSlider
             slidesToShow={1}
@@ -22,26 +21,28 @@ const About = () => {
             isBanner={true}
           />
         </div>
-      </section>
+      </section> */}
       <section className="left_right_showcase">
         <div className="wrapper">
           <div className="left_right_showcase__first">
             <div>
+              <p>Who we are ?</p>
               <h2>hotel pride</h2>
+              <p className="about__subheading">come live with us</p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Adipisci commodi distinctio vitae dolor culpa. Vitae, tempore
-                nesciunt. Eum dolorem vero quibusdam voluptatum tempore
-                molestias doloribus cumque nostrum dolores praesentium
-                laudantium deleniti molestiae commodi odit nesciunt, suscipit
-                ratione quaerat quos ab non modi sapiente sequi quod! Ex
-                assumenda at dolorem? Neque sapiente aliquam, animi accusantium
-                fugiat pariatur quam, natus ut eum commodi voluptatibus porro
-                impedit est asperiores iure corporis error minus soluta eveniet
-                amet modi perspiciatis ea nobis? Voluptates aspernatur, voluptas
-                nam rem explicabo qui assumenda natus tenetur repellat error
-                laboriosam ab accusamus voluptatum hic dicta fugiat illo a
-                perspiciatis doloribus?
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore
+                soluta nam deleniti fuga, omnis at, laborum ad ipsa iure, cum
+                suscipit possimus odit exercitationem consectetur dolore
+                architecto voluptates. Enim in reprehenderit ea quas laudantium
+                vero delectus doloribus debitis fugit suscipit. Distinctio sunt
+                dolor veritatis quos! Reprehenderit dignissimos molestias
+                architecto. Aperiam error dolores sapiente tempora in illo sed
+                ipsa. Quo ea placeat unde, sequi, deleniti dolorem atque quidem
+                ipsam ipsa, quasi eaque officiis! Facilis cupiditate beatae
+                eius, molestias maiores nihil voluptatem, voluptate distinctio
+                quod obcaecati dolores vel provident sequi illum dolor
+                voluptates eligendi, error voluptatibus consequuntur dolorum
+                enim illo modi. Hic.
               </p>
             </div>
             <figure>
@@ -51,35 +52,42 @@ const About = () => {
               />
             </figure>
           </div>
-          <div className="left_right_showcase__second">
-            <figure>
-              <img
-                src="https://www.conradpune.com/wp-content/uploads/2022/07/1-4.png"
-                alt=""
-              />
-            </figure>
-            <div>
-              <h2>more about us</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-                ipsa velit quas sint nostrum praesentium error aspernatur
-                adipisci iste expedita, unde officiis, illo id ullam aperiam
-                quis, quasi ducimus asperiores soluta quisquam natus deleniti
-                ut. Beatae quod maiores magni dolores repudiandae culpa itaque
-                quibusdam dolorum, delectus consequatur iste reiciendis
-                expedita? Velit officiis placeat atque accusamus ratione! Nam
-                dolorum qui ex quaerat culpa exercitationem libero aut atque
-                modi enim. Ullam deleniti sed excepturi debitis accusantium
-                dolor fuga tenetur cumque, magnam quaerat nesciunt vero libero
-                aut optio laudantium consectetur, recusandae consequuntur
-                veniam, modi laboriosam eum inventore officia cum quasi.
-                Accusantium, hic saepe?
-              </p>
+          {readMore && (
+            <div className="left_right_showcase__second">
+              <figure>
+                <img
+                  src="https://www.conradpune.com/wp-content/uploads/2022/07/1-4.png"
+                  alt=""
+                />
+              </figure>
+              <div>
+                <h2>more about us</h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Commodi ipsa velit quas sint nostrum praesentium error
+                  aspernatur adipisci iste expedita, unde officiis, illo id
+                  ullam aperiam quis, quasi ducimus asperiores soluta quisquam
+                  natus deleniti ut. Beatae quod maiores magni dolores
+                  repudiandae culpa itaque quibusdam dolorum, delectus
+                  consequatur iste reiciendis expedita? Velit officiis placeat
+                  atque accusamus ratione! Nam dolorum qui ex quaerat culpa
+                  exercitationem libero aut atque modi enim. Ullam deleniti sed
+                  excepturi debitis accusantium dolor fuga tenetur cumque,
+                  magnam quaerat nesciunt vero libero aut optio laudantium
+                  consectetur, recusandae consequuntur veniam, modi laboriosam
+                  eum inventore officia cum quasi. Accusantium, hic saepe?
+                </p>
+              </div>
             </div>
+          )}
+          <div className="read_more_button__container">
+            <button onClick={() => setReadMore(!readMore)}>
+              {!readMore ? "Read More" : "Read Less"}
+            </button>
           </div>
         </div>
       </section>
-      <section className="contact_us">
+      {/* <section className="contact_us">
         <div className="wrapper">
           <div className="contact_us__container">
             <div className="map_container">
@@ -119,18 +127,6 @@ const About = () => {
                   <span className="address__nearby-walk"></span>
                 </div>
                 <ul>
-                  {/* <li>
-                    <span>Nearest International Airport</span>&nbsp;11.9 km T2 -
-                    Chhatrapati Shivaji International Airport
-                  </li>
-                  <li>
-                    <span>Nearest Railway Station</span>&nbsp;1.1km Bhandup
-                    Railway Station
-                  </li>
-                  <li>
-                    <span>Nearest Tourist Attractions</span>&nbsp;6.5km Red
-                    Carpet Wax Museum
-                  </li> */}
                   <li>
                     <span>Nearest International Airport</span>&nbsp;11.9 km away
                   </li>
@@ -145,8 +141,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
-      <Footer />
+      </section> */}
     </>
   );
 };

@@ -90,7 +90,7 @@ export const filterTabButtons = [
   "Category 5",
 ];
 
-export const TOP = 50;
+export const TOP = 1000;
 
 export const guestsReviews = [
   {

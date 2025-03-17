@@ -12,6 +12,7 @@ import Banner from "../../components/Banner";
 import Search from "../../components/Search";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import About from "../../components/About";
 import "./Home.css";
 
 const Home = () => {
@@ -32,7 +33,8 @@ const Home = () => {
             <Search />
           </div>
         </section>
-        <section className="about">
+        <About />
+        {/* <section className="about">
           <div className="wrapper">
             <div className="left_right_showcase">
               <div>
@@ -54,7 +56,7 @@ const Home = () => {
               </figure>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className="room_types">
           <div className="wrapper">
             <div className="heading_container">

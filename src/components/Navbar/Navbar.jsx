@@ -122,11 +122,6 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/about" activeclassname="active">
-                  About
-                </NavLink>
-              </li>
-              <li>
                 <NavLink to="/gallery" activeclassname="active">
                   Gallery
                 </NavLink>
