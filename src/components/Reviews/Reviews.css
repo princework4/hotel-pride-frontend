@@ -37,6 +37,7 @@
   /* box-shadow: 0 0.125rem 0.375rem var(--pale-apricot); */
   border-radius: 15px;
   background-color: #fff;
+  min-height: 290px;
 }
 
 .review-avatar {
