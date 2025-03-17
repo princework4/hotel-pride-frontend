@@ -6,6 +6,8 @@ export const TextFieldStyle = {
     borderBottomColor: "#d9736d",
   },
   "& .MuiOutlinedInput-root": {
+    borderRadius: "30px",
+    backgroundColor: "#fff",
     "& fieldset": {
       borderColor: "rgba(0, 0, 0, 0.23)",
     },

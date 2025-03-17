@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import BottomToTop from "./components/BottomToTop";
+import RequestCallback from "./components/RequestCallback";
 
 const Routing = () => {
   return (
@@ -17,6 +18,7 @@ const Routing = () => {
         <Route path="gallery" element={<Gallery />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <RequestCallback />
       <BottomToTop />
     </>
   );
