@@ -14,6 +14,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import About from "../../components/About";
 import "./Home.css";
+import AmenityCard from "../../components/AmenityCard";
 
 const Home = () => {
   let navigate = useNavigate();
@@ -90,6 +91,15 @@ const Home = () => {
             <div className="see_more__container">
               <button onClick={() => routeChange("gallery")}>see more</button>
             </div>
+          </div>
+        </section>
+        <section className="services">
+          <div className="wrapper">
+            <div className="heading_container">
+              <hr />
+              <h2>services</h2>
+            </div>
+            <AmenityCard />
           </div>
         </section>
         <section className="reviews">
