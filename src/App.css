@@ -328,23 +328,24 @@ hr {
 h2 {
   position: relative;
   display: inline-block;
-  background: linear-gradient(var(--burnt_rose), var(--burnt_rose)) left
+  /* background: linear-gradient(var(--burnt_rose), var(--burnt_rose)) left
       no-repeat,
     #fff;
   background-size: 0% 100%;
-  background-clip: text;
+  background-clip: text; */
+  color: var(--burnt_rose);
   font-size: 40px;
   font-weight: bolder;
-  transition: 1s ease-in-out;
+  /* transition: 1s ease-in-out; */
   text-transform: uppercase;
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: var(--burnt_rose);
   -webkit-transition: 1s ease-in-out;
   -moz-transition: 1s ease-in-out;
   -o-transition: 1s ease-in-out;
-  -ms-transition: 1s ease-in-out;
+  -ms-transition: 1s ease-in-out; */
 }
 
 /* h2::before {
@@ -358,11 +359,11 @@ h2 {
   -webkit-text-fill-color: var(--burnt_rose);
 } */
 
-h2:hover {
+/* h2:hover {
   background-size: 100% 100%;
-  /* width: 100%;
-  -webkit-text-fill-color: var(--burnt_rose); */
-}
+  width: 100%;
+  -webkit-text-fill-color: var(--burnt_rose);
+} */
 
 button {
   padding: 10px 20px;
