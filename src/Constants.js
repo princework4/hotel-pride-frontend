@@ -1,3 +1,17 @@
+import {
+  Accessibility,
+  DinnerDining,
+  DryCleaning,
+  FreeBreakfast,
+  LocalLaundryService,
+  LockOpen,
+  LocalParking,
+  SmokingRooms,
+  SmokeFree,
+  RoomService,
+  Wifi,
+} from "@mui/icons-material";
+
 export const roomTypes = [
   "Superior Room",
   "Delux Room",
@@ -129,4 +143,18 @@ export const guestsReviews = [
     rating: 5,
     text: "I would definitely stay again! The staff went out of their way to make our stay enjoyable, and the hotel itself was gorgeous.",
   },
+];
+
+export const amenities = [
+  [<Accessibility />, "Accessibility"],
+  [<FreeBreakfast />, "Breakfast"],
+  [<DinnerDining />, "Dinning"],
+  [<DryCleaning />, "Dry Cleaning"],
+  [<Wifi />, "Free Wifi"],
+  [<LocalLaundryService />, "Laundry"],
+  [<SmokeFree />, "Non - Smoking Rooms"],
+  [<LocalParking />, "Parking"],
+  [<LockOpen />, "Safe Deposit"],
+  [<SmokingRooms />, "Smoking Rooms"],
+  [<RoomService />, "Room Service"],
 ];
