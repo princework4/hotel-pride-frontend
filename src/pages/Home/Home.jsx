@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Reviews from "../../components/Reviews/Reviews";
 import Banner from "../../components/Banner";
-import Search from "../../components/Search";
+import Search1 from "../../components/Search/Search1";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import About from "../../components/About";
@@ -31,7 +31,7 @@ const Home = () => {
         <Banner />
         <section className="search">
           <div className="wrapper">
-            <Search />
+            <Search1 type="list" />
           </div>
         </section>
         <About />

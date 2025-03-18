@@ -1,3 +1,3 @@
-import Search from "./Search";
+import Search1 from "./Search1";
 
-export default Search;
+export default Search1;
