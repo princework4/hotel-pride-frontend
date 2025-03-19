@@ -126,11 +126,11 @@ const Navbar = () => {
                   Gallery
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink to="/contact" activeclassname="active">
-                  Contact
+              <li>
+                <NavLink to="/location" activeclassname="active">
+                  Location
                 </NavLink>
-              </li> */}
+              </li>
               <li>
                 <button className="login-btn" onClick={handleOpen}>
                   Login / Register
