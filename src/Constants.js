@@ -1,3 +1,17 @@
+import {
+  Accessibility,
+  DinnerDining,
+  DryCleaning,
+  FreeBreakfast,
+  LocalLaundryService,
+  LockOpen,
+  LocalParking,
+  SmokingRooms,
+  SmokeFree,
+  RoomService,
+  Wifi,
+} from "@mui/icons-material";
+
 export const roomTypes = [
   "Superior Room",
   "Delux Room",
@@ -129,4 +143,18 @@ export const guestsReviews = [
     rating: 5,
     text: "I would definitely stay again! The staff went out of their way to make our stay enjoyable, and the hotel itself was gorgeous.",
   },
+];
+
+export const amenities = [
+  [<Accessibility sx={{ color: "#d9736d" }} />, "Accessibility"],
+  [<FreeBreakfast sx={{ color: "#d9736d" }} />, "Breakfast"],
+  [<DinnerDining sx={{ color: "#d9736d" }} />, "Dinning"],
+  [<DryCleaning sx={{ color: "#d9736d" }} />, "Dry Cleaning"],
+  [<Wifi sx={{ color: "#d9736d" }} />, "Free Wifi"],
+  [<LocalLaundryService sx={{ color: "#d9736d" }} />, "Laundry"],
+  [<SmokeFree sx={{ color: "#d9736d" }} />, "Non - Smoking Rooms"],
+  [<LocalParking sx={{ color: "#d9736d" }} />, "Parking"],
+  [<LockOpen sx={{ color: "#d9736d" }} />, "Safe Deposit"],
+  [<SmokingRooms sx={{ color: "#d9736d" }} />, "Smoking Rooms"],
+  [<RoomService sx={{ color: "#d9736d" }} />, "Room Service"],
 ];
