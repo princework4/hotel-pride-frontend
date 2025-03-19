@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 // import About from "./pages/About";
 import Gallery from "./pages/Gallery";
+import Location from "./pages/Location";
 import NotFound from "./pages/NotFound/NotFound";
 // import Header from "./components/Header";
 // import Footer from "./components/Footer";
@@ -16,6 +17,7 @@ const Routing = () => {
         <Route path="/" element={<Home />} />
         {/* <Route path="about" element={<About />} /> */}
         <Route path="gallery" element={<Gallery />} />
+        <Route path="location" element={<Location />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <RequestCallback />
