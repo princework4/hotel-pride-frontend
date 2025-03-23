@@ -1,0 +1,16 @@
+export const reducerMethods = {
+    setLoginData: "SET_LOGINDATA",
+    setLogInDataErr: "SET_LOGINDATA_ERR",
+    setSignUpData: "SET_SIGNUPDATA",
+    setSignUpdataErr: "SET_SIGNUPDATA_ERR",
+    setReqCallbackData: "SET_REQ_CALLBACK_DATA",
+    setReqCallbackDataErr: "SET_REQCALLBACK_DATAERR",
+    setShowHam: "SET_SHOWHAM",
+    setMenuOpen: "SET_MENU_OPEN",
+    setSize: "SET_SIZE",
+    setOpen: "SET_OPEN",
+    setColorchange: "SET_COLORCHANGE",
+    setRevertHeader: "SET_REVERT_HEADER",
+    setAdultCount: "SET_ADULTCOUNT",
+    setChildCount: "SET_CHILDCOUNT",
+};

@@ -1,27 +1,27 @@
 import * as React from "react";
-import { Box, Button, FormControl, TextField } from "@mui/material";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
+import { Box, Button, FormControl, TextField, FormHelperText } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
+import * as Validation from "../../validation/Validation";
 import "./Login.css";
 
 const LogInForm = () => {
-  //   const [logInData, setLogInData] = React.useState({
-  //     email: "",
-  //     password: "",
-  //   });
+  const { state, dispatch } = React.useContext(AppContext);
+  const { logInData, logInDataErr } = state;
+
   //   const [loginUser] = useLoginMutation();
   //   const dispatch = useDispatch();
 
-  //   const handleChange = (event) => {
-  //     const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    dispatch({ type: reducerMethods.setLoginData, payload: { [name]: value } });
+  };
 
-  //     setLogInData((preVal) => {
-  //       return {
-  //         ...preVal,
-  //         [name]: value,
-  //       };
-  //     });
-  //   };
+  const handleFormFieldsErr = (errField, message) => {
+    dispatch({ type: reducerMethods.setLogInDataErr, payload: { [errField]: message } });
+  };
 
   //   const handleSubmitForm = async () => {
   //     const data = await loginUser(logInData);
@@ -57,6 +57,21 @@ const LogInForm = () => {
   //     }
   //   };
 
+  const handleSubmitForm = () => {
+    handleFormFieldsErr("emailErr", Validation.validateEmail(logInData.email));
+    handleFormFieldsErr("passwordErr", Validation.validatePassword(logInData.password));
+
+    if (
+      logInData.email !== "" && logInData.password !== "" &&
+      logInDataErr.emailErr === "" && logInDataErr.passwordErr === ""
+    ) {
+      console.log("logInData success", logInData);
+    } else {
+
+      console.log("logInDataErr", logInDataErr);
+    }
+  }
+
   return (
     <>
       <Box className="login">
@@ -66,10 +81,13 @@ const LogInForm = () => {
             name="email"
             label="Email *"
             variant="outlined"
-            // value={logInData.email}
-            // onChange={handleChange}
+            value={logInData.email}
+            onChange={handleChange}
             sx={TextFieldStyle}
           />
+          {logInDataErr.emailErr ? (
+            <FormHelperText error>{logInDataErr.emailErr}</FormHelperText>
+          ) : null}
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
           <TextField
@@ -77,16 +95,19 @@ const LogInForm = () => {
             name="password"
             label="Password *"
             variant="outlined"
-            // value={logInData.password}
-            // onChange={handleChange}
+            value={logInData.password}
+            onChange={handleChange}
             sx={TextFieldStyle}
           />
+          {logInDataErr.passwordErr ? (
+            <FormHelperText error>{logInDataErr.passwordErr}</FormHelperText>
+          ) : null}
         </FormControl>
         <Button
           className="login_btn"
           variant="contained"
           fullWidth
-          //   onClick={handleSubmitForm}
+          onClick={handleSubmitForm}
           sx={ButtonStyle}
         >
           LogIn

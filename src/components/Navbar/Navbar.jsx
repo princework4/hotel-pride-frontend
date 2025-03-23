@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -6,20 +8,24 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const location = useLocation();
-  const [showHam, setShowHam] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { state, dispatch } = React.useContext(AppContext);
+  const { showHam, menuOpen, size, open, colorChange, revertHeader } = state;
+  // const [showHam, setShowHam] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
 
-  const [size, setSize] = useState({
-    width: undefined,
-    height: undefined,
-  });
+  // const [size, setSize] = useState({
+  //   width: undefined,
+  //   height: undefined,
+  // });
 
-  const [open, setOpen] = React.useState(false);
-  const [colorChange, setColorchange] = React.useState(false);
-  const [revertHeader, setRevertHeader] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
+  // const [colorChange, setColorchange] = React.useState(false);
+  // const [revertHeader, setRevertHeader] = React.useState(false);
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const handleOpen = () => setOpen(true);
+  const handleOpen = () => dispatch({ type: reducerMethods.setOpen, payload: true });
+  // const handleClose = () => setOpen(false);
+  const handleClose = () => dispatch({ type: reducerMethods.setOpen, payload: false });
 
   const style = {
     width: "400px",
@@ -41,10 +47,11 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+      dispatch({ type: reducerMethods.setSize, payload: { width: window.innerWidth, height: window.innerHeight } });
+      // setSize({
+      //   width: window.innerWidth,
+      //   height: window.innerHeight,
+      // });
     };
     window.addEventListener("resize", handleResize);
 
@@ -53,15 +60,19 @@ const Navbar = () => {
 
   useEffect(() => {
     if (size.width > 768) {
-      setShowHam(false);
-      setMenuOpen(false);
+      dispatch({ type: reducerMethods.showHam, payload: false });
+      dispatch({ type: reducerMethods.setMenuOpen, payload: false });
+      // setShowHam(false);
+      // setMenuOpen(false);
     } else {
-      setShowHam(true);
+      dispatch({ type: reducerMethods.setShowHam, payload: true });
+      // setShowHam(true);
     }
   }, [size.width]);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    dispatch({ type: reducerMethods.setMenuOpen, payload: !menuOpen });
+    // setMenuOpen(!menuOpen);
   };
 
   const changeNavbarColor = () => {
@@ -70,9 +81,11 @@ const Navbar = () => {
       window.location.pathname === "/about"
     ) {
       if (window.scrollY >= 80) {
-        setColorchange(true);
+        dispatch({ type: reducerMethods.setColorchange, payload: true });
+        // setColorchange(true);
       } else {
-        setColorchange(false);
+        dispatch({ type: reducerMethods.setColorchange, payload: false });
+        // setColorchange(false);
       }
     }
   };
@@ -80,9 +93,11 @@ const Navbar = () => {
   React.useEffect(() => {
     if (location.pathname === "/" || location.pathname === "/about") {
       window.addEventListener("scroll", changeNavbarColor);
-      setRevertHeader(false);
+      dispatch({ type: reducerMethods.setRevertHeader, payload: false });
+      // setRevertHeader(false);
     } else {
-      setRevertHeader(true);
+      dispatch({ type: reducerMethods.setRevertHeader, payload: true });
+      // setRevertHeader(true);
     }
 
     return () => {
