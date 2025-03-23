@@ -12,49 +12,32 @@ import {
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import "./Signup.css";
 import { ButtonStyle } from "../../MUIStyle/Button";
+import * as Validation from "../../validation/Validation";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
+
 
 const SignUpForm = (props) => {
-  // const [signUpdata, setSignUpData] = React.useState({
-  //   username: "",
-  //   name: "",
-  //   email: "",
-  //   mobile: "",
-  //   password: "",
-  //   cpassword: "",
-  // });
-  // const [signUpdataErr, setSignUpdataErr] = React.useState({
-  //   usernameErr: "",
-  //   nameErr: "",
-  //   emailErr: "",
-  //   mobileErr: "",
-  //   passwordErr: "",
-  //   cpasswordErr: "",
-  // });
+  const { state, dispatch } = React.useContext(AppContext);
+  const { signUpData, signUpDataErr } = state;
+
+
   // const [registerNewUser] = useRegisterMutation();
   // const dispatch = useDispatch();
 
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    dispatch({ type: reducerMethods.setSignUpData, payload: { [name]: value } })
+  };
 
-  //   setSignUpData((preVal) => {
-  //     return {
-  //       ...preVal,
-  //       [name]: value,
-  //     };
-  //   });
-  // };
+  const handleFormFieldsErr = (errField, message) => {
+    dispatch({ type: reducerMethods.setSignUpdataErr, payload: { [errField]: message } })
+  };
 
-  // const handleFormFieldsErr = (errField, message) => {
-  //   setSignUpdataErr((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       [errField]: message,
-  //     };
-  //   });
-  // };
+  const submitForm = () => console.log("submited successully -signUpData", signUpData);
+  // const submitForm = () => {
 
-  // const submitForm = async () => {
-  //   const data = await registerNewUser(signUpdata);
+  //   const data = await registerNewUser(signUpData);
 
   //   if (data?.data?.success) {
   //     dispatch(setCredentials({ token: data?.data?.success }));
@@ -90,51 +73,50 @@ const SignUpForm = (props) => {
   //   }
   // };
 
-  // const handleSubmitForm = () => {
-  //   handleFormFieldsErr(
-  //     "usernameErr",
-  //     Validation.validateUsername(signUpdata.username)
-  //   );
-  //   handleFormFieldsErr(
-  //     "nameErr",
-  //     Validation.validateFullName(signUpdata.name)
-  //   );
-  //   handleFormFieldsErr("emailErr", Validation.validateEmail(signUpdata.email));
-  //   handleFormFieldsErr(
-  //     "mobileErr",
-  //     Validation.validateMobileNumber(signUpdata.mobile)
-  //   );
-  //   handleFormFieldsErr(
-  //     "passwordErr",
-  //     Validation.validatePassword(signUpdata.password)
-  //   );
-  //   handleFormFieldsErr(
-  //     "cpasswordErr",
-  //     Validation.validateConfirmPassword(
-  //       signUpdata.password,
-  //       signUpdata.cpassword
-  //     )
-  //   );
 
-  //   if (
-  //     signUpdata.username !== "" &&
-  //     signUpdata.name !== "" &&
-  //     signUpdata.email !== "" &&
-  //     signUpdata.mobile !== "" &&
-  //     signUpdata.password !== "" &&
-  //     signUpdata.cpassword !== ""
+  const handleSubmitForm = () => {
+    handleFormFieldsErr(
+      "nameErr",
+      Validation.validateFullName(signUpData.name)
+    );
+    handleFormFieldsErr("emailErr", Validation.validateEmail(signUpData.email));
+    handleFormFieldsErr(
+      "mobileErr",
+      Validation.validateMobileNumber(signUpData.mobile)
+    );
+    handleFormFieldsErr(
+      "passwordErr",
+      Validation.validatePassword(signUpData.password)
+    );
+    handleFormFieldsErr(
+      "cpasswordErr",
+      Validation.validateConfirmPassword(
+        signUpData.password,
+        signUpData.cpassword
+      )
+    );
 
-  //     // check functionality after making an error
-  //     // signUpdataErr.usernameErr === "" &&
-  //     // signUpdataErr.nameErr === "" &&
-  //     // signUpdataErr.emailErr === "" &&
-  //     // signUpdataErr.mobileErr === "" &&
-  //     // signUpdataErr.passwordErr === "" &&
-  //     // signUpdataErr.cpasswordErr === ""
-  //   ) {
-  //     submitForm();
-  //   }
-  // };
+    if (
+      // signUpData.username !== "" &&
+      signUpData.name !== "" &&
+      signUpData.email !== "" &&
+      signUpData.mobile !== "" &&
+      signUpData.password !== "" &&
+      signUpData.cpassword !== "" &&
+
+      // check functionality after making an error
+      // signUpDataErr.usernameErr === "" &&
+      signUpDataErr.nameErr === "" &&
+      signUpDataErr.emailErr === "" &&
+      signUpDataErr.mobileErr === "" &&
+      signUpDataErr.passwordErr === "" &&
+      signUpDataErr.cpasswordErr === ""
+    ) {
+      submitForm();
+    } else {
+      console.log("signUpDataErr", signUpDataErr)
+    }
+  };
 
   return (
     <>
@@ -157,11 +139,11 @@ const SignUpForm = (props) => {
             name="username"
             label="Username *"
             variant="outlined"
-            value={signUpdata.username}
+            value={signUpData.username}
             onChange={handleChange}
           />
-          {signUpdataErr.usernameErr ? (
-            <FormHelperText error>{signUpdataErr.usernameErr}</FormHelperText>
+          {signUpDataErr.usernameErr ? (
+            <FormHelperText error>{signUpDataErr.usernameErr}</FormHelperText>
           ) : null}
         </FormControl> */}
         <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
@@ -170,13 +152,13 @@ const SignUpForm = (props) => {
             name="name"
             label="Full Name *"
             variant="outlined"
-            // value={signUpdata.name}
-            // onChange={handleChange}
+            value={signUpData.name}
+            onChange={handleChange}
             sx={TextFieldStyle}
           />
-          {/* {signUpdataErr.nameErr ? (
-            <FormHelperText error>{signUpdataErr.nameErr}</FormHelperText>
-          ) : null} */}
+          {signUpDataErr.nameErr ? (
+            <FormHelperText error>{signUpDataErr.nameErr}</FormHelperText>
+          ) : null}
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
           <TextField
@@ -184,13 +166,13 @@ const SignUpForm = (props) => {
             name="email"
             label="Email *"
             variant="outlined"
-            // value={signUpdata.email}
-            // onChange={handleChange}
+            value={signUpData.email}
+            onChange={handleChange}
             sx={TextFieldStyle}
           />
-          {/* {signUpdataErr.emailErr ? (
-            <FormHelperText error>{signUpdataErr.emailErr}</FormHelperText>
-          ) : null} */}
+          {signUpDataErr.emailErr ? (
+            <FormHelperText error>{signUpDataErr.emailErr}</FormHelperText>
+          ) : null}
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
           <TextField
@@ -198,13 +180,13 @@ const SignUpForm = (props) => {
             name="mobile"
             label="Mobile Number *"
             variant="outlined"
-            // value={signUpdata.mobile}
-            // onChange={handleChange}
+            value={signUpData.mobile}
+            onChange={handleChange}
             sx={TextFieldStyle}
           />
-          {/* {signUpdataErr.mobileErr ? (
-            <FormHelperText error>{signUpdataErr.mobileErr}</FormHelperText>
-          ) : null} */}
+          {signUpDataErr.mobileErr ? (
+            <FormHelperText error>{signUpDataErr.mobileErr}</FormHelperText>
+          ) : null}
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
           <TextField
@@ -212,13 +194,13 @@ const SignUpForm = (props) => {
             name="password"
             label="Password *"
             variant="outlined"
-            // value={signUpdata.password}
-            // onChange={handleChange}
+            value={signUpData.password}
+            onChange={handleChange}
             sx={TextFieldStyle}
           />
-          {/* {signUpdataErr.passwordErr ? (
-            <FormHelperText error>{signUpdataErr.passwordErr}</FormHelperText>
-          ) : null} */}
+          {signUpDataErr.passwordErr ? (
+            <FormHelperText error>{signUpDataErr.passwordErr}</FormHelperText>
+          ) : null}
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
           <TextField
@@ -226,19 +208,19 @@ const SignUpForm = (props) => {
             name="cpassword"
             label="Confirm Password *"
             variant="outlined"
-            // value={signUpdata.cpassword}
-            // onChange={handleChange}
+            value={signUpData.cpassword}
+            onChange={handleChange}
             sx={TextFieldStyle}
           />
-          {/* {signUpdataErr.cpasswordErr ? (
-            <FormHelperText error>{signUpdataErr.cpasswordErr}</FormHelperText>
-          ) : null} */}
+          {signUpDataErr.cpasswordErr ? (
+            <FormHelperText error>{signUpDataErr.cpasswordErr}</FormHelperText>
+          ) : null}
         </FormControl>
         <Button
           className="signup_btn"
           variant="contained"
           fullWidth
-          // onClick={handleSubmitForm}
+          onClick={handleSubmitForm}
           sx={ButtonStyle}
         >
           Sign Up
