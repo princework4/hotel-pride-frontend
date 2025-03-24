@@ -10,6 +10,7 @@
 .amenity_card .grid > li {
   width: calc(100% / 5 - 10px);
   padding: 20px 10px;
+  border: 1px solid var(--burnt_rose);
   border-radius: 15px;
   margin: 0px 15px;
   margin-bottom: 30px;
@@ -17,7 +18,24 @@
   background-color: #fff;
   cursor: pointer;
   overflow: hidden;
+  transition: 0.3s ease-in-out;
   text-align: center;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+}
+
+.amenity_card .grid > li p {
+  color: var(--burnt_rose);
+}
+
+/* Hover Effects */
+.amenity_card .grid > li:hover {
+  transform: scale(1.1);
+  -webkit-box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
+  -moz-box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
+  box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
 }
 
 @media (max-width: 1024px) {

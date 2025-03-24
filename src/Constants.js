@@ -146,15 +146,15 @@ export const guestsReviews = [
 ];
 
 export const amenities = [
-  [<Accessibility />, "Accessibility"],
-  [<FreeBreakfast />, "Breakfast"],
-  [<DinnerDining />, "Dinning"],
-  [<DryCleaning />, "Dry Cleaning"],
-  [<Wifi />, "Free Wifi"],
-  [<LocalLaundryService />, "Laundry"],
-  [<SmokeFree />, "Non - Smoking Rooms"],
-  [<LocalParking />, "Parking"],
-  [<LockOpen />, "Safe Deposit"],
-  [<SmokingRooms />, "Smoking Rooms"],
-  [<RoomService />, "Room Service"],
+  [<Accessibility sx={{ color: "#d9736d" }} />, "Accessibility"],
+  [<FreeBreakfast sx={{ color: "#d9736d" }} />, "Breakfast"],
+  [<DinnerDining sx={{ color: "#d9736d" }} />, "Dinning"],
+  [<DryCleaning sx={{ color: "#d9736d" }} />, "Dry Cleaning"],
+  [<Wifi sx={{ color: "#d9736d" }} />, "Free Wifi"],
+  [<LocalLaundryService sx={{ color: "#d9736d" }} />, "Laundry"],
+  [<SmokeFree sx={{ color: "#d9736d" }} />, "Non - Smoking Rooms"],
+  [<LocalParking sx={{ color: "#d9736d" }} />, "Parking"],
+  [<LockOpen sx={{ color: "#d9736d" }} />, "Safe Deposit"],
+  [<SmokingRooms sx={{ color: "#d9736d" }} />, "Smoking Rooms"],
+  [<RoomService sx={{ color: "#d9736d" }} />, "Room Service"],
 ];
