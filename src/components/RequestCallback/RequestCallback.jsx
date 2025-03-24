@@ -5,25 +5,29 @@ import {
   Button,
   Box,
   FormControl,
-  FormControlLabel,
   FormHelperText,
-  FormLabel,
-  InputLabel,
-  MenuItem,
   Modal,
-  Radio,
-  RadioGroup,
-  Select,
   TextField,
 } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import ChatIcon from "../../assets/comment-solid.svg";
 import { TOP } from "../../Constants";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
+import * as Validation from "../../validation/Validation";
+
 import "./RequestCallback.css";
+
+// requestCallbackData: { name: "", email: "", mobile: "", guests: 1, rooms: 1 },
+// requestCallbackDataErr: { nameErr: "", emailErr: "", mobileErr: "", guestsErr: "", roomsErr: "" },
 
 const RequestCallback = () => {
   const [changePosition, setChangePosition] = React.useState(false);
+  const { state, dispatch } = React.useContext(AppContext);
+  const { requestCallbackData, requestCallbackDataErr } = state;
+  console.log(requestCallbackData, requestCallbackDataErr);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,6 +40,69 @@ const RequestCallback = () => {
     document.addEventListener("scroll", onScroll);
     return () => document.removeEventListener("scroll", onScroll);
   }, [TOP]);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    dispatch({
+      type: reducerMethods.setReqCallbackData,
+      payload: { ...requestCallbackData, [name]: value },
+    });
+  };
+
+  const handleFormFieldsErr = (errField, message) => {
+    dispatch({
+      type: reducerMethods.setReqCallbackDataErr,
+      payload: { [errField]: message },
+    });
+  };
+
+  const submitForm = () =>
+    console.log(
+      "submited successully -requestCallbackData",
+      requestCallbackData
+    );
+
+  const handleSubmitForm = () => {
+    handleFormFieldsErr(
+      "nameErr",
+      Validation.validateFullName(requestCallbackData.name)
+    );
+    handleFormFieldsErr(
+      "emailErr",
+      Validation.validateEmail(requestCallbackData.email)
+    );
+    handleFormFieldsErr(
+      "mobileErr",
+      Validation.validateMobileNumber(requestCallbackData.mobile)
+    );
+    handleFormFieldsErr(
+      "guestsCountErr",
+      Validation.validateCount(requestCallbackData.guests, "guests")
+    );
+    handleFormFieldsErr(
+      "roomsCountErr",
+      Validation.validateCount(requestCallbackData.rooms, "rooms")
+    );
+
+    if (
+      // signUpData.username !== "" &&
+      requestCallbackData.name !== "" &&
+      requestCallbackData.email !== "" &&
+      requestCallbackData.mobile !== "" &&
+      requestCallbackData.guests !== "" &&
+      requestCallbackData.rooms !== "" &&
+      // check functionality after making an error
+      // signUpDataErr.usernameErr === "" &&
+      requestCallbackDataErr.nameErr === "" &&
+      requestCallbackDataErr.emailErr === "" &&
+      requestCallbackDataErr.mobileErr === "" &&
+      requestCallbackDataErr.guestsErr === "" &&
+      requestCallbackDataErr.roomsErr === ""
+    ) {
+      submitForm();
+    } else {
+      console.log("requestCallbackDataErr", requestCallbackDataErr);
+    }
+  };
 
   const style = {
     width: "400px",
@@ -76,13 +143,18 @@ const RequestCallback = () => {
           <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
             <TextField
               type="text"
-              name="fullName"
+              name="name"
               label="Full Name *"
               variant="outlined"
-              // value={logInData.email}
-              // onChange={handleChange}
+              value={requestCallbackData.name}
+              onChange={handleChange}
               sx={TextFieldStyle}
             />
+            {requestCallbackDataErr.nameErr ? (
+              <FormHelperText error>
+                {requestCallbackDataErr.nameErr}
+              </FormHelperText>
+            ) : null}
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
             <TextField
@@ -90,10 +162,15 @@ const RequestCallback = () => {
               name="email"
               label="Email *"
               variant="outlined"
-              // value={logInData.email}
-              // onChange={handleChange}
+              value={requestCallbackData.email}
+              onChange={handleChange}
               sx={TextFieldStyle}
             />
+            {requestCallbackDataErr.emailErr ? (
+              <FormHelperText error>
+                {requestCallbackDataErr.emailErr}
+              </FormHelperText>
+            ) : null}
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
             <TextField
@@ -101,13 +178,15 @@ const RequestCallback = () => {
               name="mobile"
               label="Mobile Number *"
               variant="outlined"
-              // value={signUpdata.mobile}
-              // onChange={handleChange}
+              value={requestCallbackData.mobile}
+              onChange={handleChange}
               sx={TextFieldStyle}
             />
-            {/* {signUpdataErr.mobileErr ? (
-            <FormHelperText error>{signUpdataErr.mobileErr}</FormHelperText>
-          ) : null} */}
+            {requestCallbackDataErr.mobileErr ? (
+              <FormHelperText error>
+                {requestCallbackDataErr.mobileErr}
+              </FormHelperText>
+            ) : null}
           </FormControl>
           <div className="request_callback__guest_room_container">
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
@@ -116,13 +195,15 @@ const RequestCallback = () => {
                 name="guests"
                 label="Number of Guest *"
                 variant="outlined"
-                // value={signUpdata.mobile}
-                // onChange={handleChange}
+                value={requestCallbackData.guests}
+                onChange={handleChange}
                 sx={TextFieldStyle}
               />
-              {/* {signUpdataErr.mobileErr ? (
-            <FormHelperText error>{signUpdataErr.mobileErr}</FormHelperText>
-          ) : null} */}
+              {requestCallbackDataErr.guestsErr ? (
+                <FormHelperText error>
+                  {requestCallbackDataErr.guestsErr}
+                </FormHelperText>
+              ) : null}
             </FormControl>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
               <TextField
@@ -130,20 +211,22 @@ const RequestCallback = () => {
                 name="rooms"
                 label="Number of Rooms *"
                 variant="outlined"
-                // value={signUpdata.mobile}
-                // onChange={handleChange}
+                value={requestCallbackData.rooms}
+                onChange={handleChange}
                 sx={TextFieldStyle}
               />
-              {/* {signUpdataErr.mobileErr ? (
-            <FormHelperText error>{signUpdataErr.mobileErr}</FormHelperText>
-          ) : null} */}
+              {requestCallbackDataErr.roomsErr ? (
+                <FormHelperText error>
+                  {requestCallbackDataErr.roomsErr}
+                </FormHelperText>
+              ) : null}
             </FormControl>
           </div>
           <Button
             className="request_callback_btn"
             variant="contained"
             fullWidth
-            //   onClick={handleSubmitForm}
+            onClick={handleSubmitForm}
             sx={ButtonStyle}
           >
             Request Callback
