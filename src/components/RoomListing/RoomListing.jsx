@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ImageSlider from "../Slider/Slider";
 import { roomDetails, roomImages, roomTypes } from "../../Constants";
 import Chip from "../Chip";
@@ -12,8 +12,12 @@ import Wifi from "../../assets/wifi-solid.svg";
 import PopupRoomDetails from "../PopupRoomDetails";
 import PopupRateDetails from "../PopupRateDetails/PopupRateDetails";
 import "./RoomListing.css";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 
-const RoomListing = ({ selectedRoom, setSelectedRoom, roomNumber }) => {
+const RoomListing = ({ roomNumber }) => {
+  const { state, dispatch } = useContext(AppContext);
+  const [selectedRoom, setSelectedRoom] = useState(state.userObj.selectedRooms);
   const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
   const [openRoomDetails, setOpenRoomDetails] = React.useState(false);
   const [openRateDetails, setOpenRateDetails] = React.useState({
@@ -34,24 +38,22 @@ const RoomListing = ({ selectedRoom, setSelectedRoom, roomNumber }) => {
   const handleRateDetailsClose = () => setOpenRoomDetails(false);
 
   function handleChange(roomType, isBreakfastIncluded, price, selectedRoomNo) {
-    if (selectedRoom[roomNumber]) {
-      const temp = [...selectedRoom];
+    const temp = state.userObj.selectedRooms;
+    if (temp?.[roomNumber]) {
       temp[roomNumber].roomType = roomType;
       temp[roomNumber].isBreakfastIncluded = isBreakfastIncluded;
       temp[roomNumber].price = price;
       temp[roomNumber].selectedRoomNo = selectedRoomNo;
-      setSelectedRoom(temp);
     } else {
-      setSelectedRoom((preVal) => [
-        ...preVal,
-        {
-          roomType: roomType,
-          isBreakfastIncluded: isBreakfastIncluded,
-          price: price,
-          selectedRoomNo: selectedRoomNo,
-        },
-      ]);
+      temp.push({
+        roomType: roomType,
+        isBreakfastIncluded: isBreakfastIncluded,
+        price: price,
+        selectedRoomNo: selectedRoomNo,
+      });
     }
+
+    dispatch({ type: reducerMethods.setSelectedRooms, payload: temp });
   }
 
   return (
