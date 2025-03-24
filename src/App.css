@@ -289,8 +289,9 @@ h6 {
 }
 
 body {
-  font-family: sans-serif;
   background-color: #ffe5d4;
+  font-family: sans-serif;
+  overflow: hidden;
 }
 
 body p {
@@ -468,6 +469,8 @@ button:hover {
 
 @media (max-width: 997px) {
   .wrapper {
+    max-width: 95%;
+    width: 100%;
     padding: 25px 0;
   }
   h2 {
@@ -477,6 +480,7 @@ button:hover {
 
 @media (max-width: 834px) {
   .wrapper {
+    max-width: 95%;
     width: 100%;
     margin: 0 auto;
   }
@@ -484,6 +488,7 @@ button:hover {
 
 @media (max-width: 768px) {
   .wrapper {
+    max-width: 95%;
     width: 100%;
     margin: 0 auto;
   }
@@ -491,6 +496,7 @@ button:hover {
 
 @media (max-width: 451px) {
   .wrapper {
+    max-width: 95%;
     width: 100%;
     margin: 0 auto;
   }
@@ -498,6 +504,7 @@ button:hover {
 
 @media (max-width: 375px) {
   .wrapper {
+    max-width: 95%;
     width: 100%;
     margin: 0 auto;
   }
