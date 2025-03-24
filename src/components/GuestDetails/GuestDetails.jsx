@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Button,
@@ -14,8 +14,10 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HotelIcon from "@mui/icons-material/Hotel";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import "./GuestDetails.css";
+import { AppContext } from "../../context/AppContext";
 
-const GuestDetails = ({ user, activeStep, setActiveStep }) => {
+const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
+  const { state, dispatch } = useContext(AppContext);
   const boxContainerStyle = {
     marginTop: "40px",
     display: "grid",
@@ -130,12 +132,13 @@ const GuestDetails = ({ user, activeStep, setActiveStep }) => {
             <h4 className="payment_summary__room_details">
               <HotelIcon />
               <span>
-                {user?.selectedRoom?.length}{" "}
-                {user?.selectedRoom?.length > 1 ? "rooms" : "room"}, 5 adults
+                {state.userObj.selectedRooms?.length}{" "}
+                {state.userObj.selectedRooms?.length > 1 ? "rooms" : "room"}, 5
+                adults
               </span>
             </h4>
             <ul className="payment_summary__selected_rooms_details">
-              {user?.selectedRoom?.map((room, index) => (
+              {state.userObj.selectedRooms?.map((room, index) => (
                 <li>
                   <h4>{`Room ${index + 1}`}</h4>
                   <span>{room?.roomType}</span>
@@ -154,7 +157,7 @@ const GuestDetails = ({ user, activeStep, setActiveStep }) => {
             <ul className="payment_summary__total_price">
               <li>
                 <span>Sub Total</span>
-                <span>&#8377; {user?.totalPrice}</span>
+                <span>&#8377; {totalPrice}</span>
               </li>
               <li>
                 <span>Taxes</span>

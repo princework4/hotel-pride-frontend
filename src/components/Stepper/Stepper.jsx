@@ -12,6 +12,8 @@ import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import GuestDetails from "../GuestDetails";
 import { TabsStyle } from "../../MUIStyle/Tabs";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 
 const steps = ["Select Room", "Personal Details", "Payment"];
 
@@ -45,11 +47,14 @@ function a11yProps(index) {
 }
 
 export default function CustomStepper() {
+  const { state, dispatch } = React.useContext(AppContext);
   const [activeStep, setActiveStep] = React.useState(0);
-  const [roomsCount, setRoomsCount] = React.useState(4);
   const [value, setValue] = React.useState(0);
-  const [user, setUser] = React.useState({ selectedRoom: [], totalPrice: 0 });
-  const [selectedRoom, setSelectedRoom] = React.useState([]);
+  const [totalPrice, setTotalPrice] = React.useState(0);
+  // const [user, setUser] = React.useState({ selectedRoom: [], totalPrice: 0 });
+  // const [selectedRoom, setSelectedRoom] = React.useState(
+  // state.userObj.selectedRooms
+  // );
   const theme = useTheme();
 
   const handleChange = (event, newValue) => {
@@ -58,20 +63,19 @@ export default function CustomStepper() {
   };
 
   React.useEffect(() => {
-    for (let i = 0; i < roomsCount; i++) {
-      if (selectedRoom?.length == i) setValue(i);
+    for (let i = 0; i < state.roomsCount; i++) {
+      if (state.userObj.selectedRooms?.length == i) setValue(i);
     }
-    if (selectedRoom?.length == roomsCount) {
-      const totalPrice = selectedRoom?.reduce(
+    if (state.userObj.selectedRooms?.length == state.roomsCount) {
+      const total = state.userObj.selectedRooms?.reduce(
         (acc, item) => (acc += item.price),
         0
       );
-      setUser({ ...user, selectedRoom: selectedRoom, totalPrice: totalPrice });
-      setActiveStep(activeStep + 1);
+      setTotalPrice(total);
+      if (activeStep == 0) setActiveStep(activeStep + 1);
     }
     window.scrollTo(0, 0);
-    console.log("selectedRoom :- ", selectedRoom);
-  }, [selectedRoom]);
+  }, [state.userObj]);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -113,7 +117,7 @@ export default function CustomStepper() {
             className="rooms_tab"
             sx={TabsStyle}
           >
-            {[...Array(roomsCount)]?.map((_, index) => {
+            {[...Array(state.roomsCount)]?.map((_, index) => {
               if (index == 0) {
                 return (
                   <Tab
@@ -135,19 +139,16 @@ export default function CustomStepper() {
               );
             })}
           </Tabs>
-          {[...Array(roomsCount)]?.map((_, index) => (
+          {[...Array(state.roomsCount)]?.map((_, index) => (
             <TabPanel value={value} index={index} dir={theme.direction}>
-              <RoomListing
-                selectedRoom={selectedRoom}
-                setSelectedRoom={setSelectedRoom}
-                roomNumber={index}
-              />
+              <RoomListing roomNumber={index} />
             </TabPanel>
           ))}
         </>
       ) : activeStep == 1 ? (
         <GuestDetails
-          user={user}
+          // user={user}
+          totalPrice={totalPrice}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
         />
