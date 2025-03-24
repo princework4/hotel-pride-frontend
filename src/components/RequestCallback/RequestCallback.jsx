@@ -19,12 +19,23 @@ import {
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import ChatIcon from "../../assets/comment-solid.svg";
+import { TOP } from "../../Constants";
 import "./RequestCallback.css";
 
 const RequestCallback = () => {
+  const [changePosition, setChangePosition] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  React.useEffect(() => {
+    function onScroll() {
+      setChangePosition(document.documentElement.scrollTop >= TOP);
+    }
+    onScroll();
+    document.addEventListener("scroll", onScroll);
+    return () => document.removeEventListener("scroll", onScroll);
+  }, [TOP]);
 
   const style = {
     width: "400px",
@@ -46,9 +57,14 @@ const RequestCallback = () => {
 
   return (
     <>
-      <button id="request_callback_button" onClick={handleOpen}>
+      <button
+        id="request_callback_button"
+        onClick={handleOpen}
+        style={{ bottom: changePosition ? "100px" : "30px" }}
+      >
         <img src={ChatIcon} alt="request callback" />
       </button>
+
       <Modal
         open={open}
         onClose={handleClose}

@@ -126,9 +126,14 @@ const Navbar = () => {
                   Gallery
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/location" activeclassname="active">
+                  Location
+                </NavLink>
+              </li>
               {/* <li>
-                <NavLink to="/contact" activeclassname="active">
-                  Contact
+                <NavLink to="/rooms" activeclassname="active">
+                  Rooms
                 </NavLink>
               </li> */}
               <li>
