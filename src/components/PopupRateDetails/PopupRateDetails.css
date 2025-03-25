@@ -11,7 +11,7 @@
 }
 
 .popup_rate_details h4 {
-  margin: 15px 0 10px;
+  margin: 20px 0 5px;
   color: var(--burnt_rose);
   font-size: 20px;
   font-weight: 600;
@@ -31,6 +31,7 @@
 }
 
 .popup_rate_details ul li {
+  height: 15px;
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -38,4 +39,5 @@
 
 .popup_rate_details ul li span {
   margin-left: 5px;
+  font-size: 13px;
 }

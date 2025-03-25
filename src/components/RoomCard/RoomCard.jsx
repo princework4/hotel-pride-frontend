@@ -1,6 +1,12 @@
 import Chip from "../Chip";
 import ImageSlider from "../Slider";
 import { roomImages } from "../../Constants";
+import Breakfast from "../../assets/utensils-solid.svg";
+import TV from "../../assets/tv-solid.svg";
+import Tea from "../../assets/mug-hot-solid.svg";
+import Vault from "../../assets/vault-solid.svg";
+import WaterBottle from "../../assets/bottle-water-solid.svg";
+import Wifi from "../../assets/wifi-solid.svg";
 import "./RoomCard.css";
 
 import React from "react";
@@ -27,7 +33,7 @@ const RoomCard = ({ roomType, roomDetails }) => {
         </ul>
         <p>Basic Amenities</p>
         <ul className="basic_amenities">
-          <li>
+          {/* <li>
             <i className="flat_screen_tv"></i>
           </li>
           <li>
@@ -44,6 +50,24 @@ const RoomCard = ({ roomType, roomDetails }) => {
           </li>
           <li>
             <i className="bottled_water"></i>
+          </li> */}
+          <li>
+            <img src={TV} />
+          </li>
+          <li>
+            <img src={Wifi} />
+          </li>
+          <li>
+            <img src={Vault} />
+          </li>
+          <li>
+            <img src={Tea} />
+          </li>
+          <li>
+            <img src={Breakfast} />
+          </li>
+          <li>
+            <img src={WaterBottle} />
           </li>
         </ul>
         <button>BOOK NOW</button>

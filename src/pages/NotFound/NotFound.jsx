@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NotFound.css";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 
 const NotFound = () => {
+  const { state, dispatch } = useContext(AppContext);
+  useEffect(() => {
+    dispatch({ type: reducerMethods.setShouldShowCallback, payload: false });
+  }, []);
+
   return (
     <div className="not_found_container">
       <div className="not_found_error">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 // import About from "./pages/About";
@@ -10,8 +10,11 @@ import NotFound from "./pages/NotFound/NotFound";
 import BottomToTop from "./components/BottomToTop";
 import RequestCallback from "./components/RequestCallback";
 import Rooms from "./pages/Rooms/Rooms";
+import { AppContext } from "./context/AppContext";
 
 const Routing = () => {
+  const { state, dispatch } = useContext(AppContext);
+
   return (
     <>
       <Routes>
@@ -22,7 +25,7 @@ const Routing = () => {
         <Route path="rooms" element={<Rooms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <RequestCallback />
+      {state.shouldShowCallback && <RequestCallback />}
       <BottomToTop />
     </>
   );

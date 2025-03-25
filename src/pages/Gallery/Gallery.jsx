@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { filterTabButtons, galleryImgs } from "../../Constants";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./Gallery.css";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 
 const Gallery = () => {
+  const { state, dispatch } = useContext(AppContext);
   const [galleryImages, setGalleryImages] = useState(galleryImgs);
   const [trackActiveButton, setTrackActiveButton] = useState(0);
 
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
+  }, []);
 
   const handleClick = (selectedCategory) => {
     setTrackActiveButton(Number(selectedCategory));

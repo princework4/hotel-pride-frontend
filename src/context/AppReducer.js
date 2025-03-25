@@ -91,6 +91,13 @@ export const AppReducer = (state, action) => {
           totalPrice: action.payload,
         },
       };
+
+    case reducerMethods.setShouldShowCallback:
+      return {
+        ...state,
+        shouldShowCallback: action.payload,
+      };
+
     default:
       return state;
   }
