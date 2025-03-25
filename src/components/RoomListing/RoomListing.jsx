@@ -19,23 +19,44 @@ const RoomListing = ({ roomNumber }) => {
   const { state, dispatch } = useContext(AppContext);
   const [selectedRoom, setSelectedRoom] = useState(state.userObj.selectedRooms);
   const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
-  const [openRoomDetails, setOpenRoomDetails] = React.useState(false);
+  const [openRoomDetails, setOpenRoomDetails] = React.useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
   const [openRateDetails, setOpenRateDetails] = React.useState({
-    withBreakfast: false,
-    withoutBreakfast: false,
+    withBreakfast: [false, false, false, false],
+    withoutBreakfast: [false, false, false, false],
   });
 
   const handleRoomDetailsOpen = (idx) => {
+    const temp = [...openRoomDetails];
+    temp[idx] = true;
     setActiveRoomNoIndex(idx);
-    setOpenRoomDetails(true);
+    setOpenRoomDetails(temp);
   };
-  const handleRoomDetailsClose = () => setOpenRoomDetails(false);
 
-  const handleRateDetailsOpen = (idx) => {
+  const handleRoomDetailsClose = () =>
+    setOpenRoomDetails([false, false, false, false]);
+
+  const handleRateDetailsOpen = (idx, isBreakfastIncluded) => {
+    const temp = { ...openRateDetails };
     setActiveRoomNoIndex(idx);
-    setOpenRateDetails(true);
+    if (isBreakfastIncluded) {
+      temp["withBreakfast"][idx] = true;
+    } else {
+      temp["withoutBreakfast"][idx] = true;
+    }
+    setOpenRateDetails(temp);
   };
-  const handleRateDetailsClose = () => setOpenRoomDetails(false);
+
+  const handleRateDetailsClose = () => {
+    setOpenRateDetails({
+      withBreakfast: [false, false, false, false],
+      withoutBreakfast: [false, false, false, false],
+    });
+  };
 
   function handleChange(roomType, isBreakfastIncluded, price, selectedRoomNo) {
     const temp = state.userObj.selectedRooms;
@@ -54,6 +75,12 @@ const RoomListing = ({ roomNumber }) => {
     }
 
     dispatch({ type: reducerMethods.setSelectedRooms, payload: temp });
+  }
+
+  function calculateOfferedPrice(price, index) {
+    return Math.round(
+      Number(price.replaceAll(",", "")) * ((100 - state.offers[index]) / 100)
+    );
   }
 
   return (
@@ -109,13 +136,14 @@ const RoomListing = ({ roomNumber }) => {
               room details
             </button>
             <PopupRoomDetails
-              open={openRoomDetails}
+              open={openRoomDetails[index]}
               handleClose={handleRoomDetailsClose}
               index={activeRoomNoIndex}
+              key={index}
             />
           </div>
           <div className="room_price">
-            <h3>{roomType}</h3>
+            <h3>{roomType[0]}</h3>
             <div className="room_price__container">
               <div className="room_price__with_breakfast">
                 <div className="room_price__with_breakfast-left">
@@ -145,20 +173,48 @@ const RoomListing = ({ roomNumber }) => {
                   </ul>
                   <button
                     className="rate_details__popup-button"
-                    onClick={() => handleRateDetailsOpen(index)}
+                    onClick={() => handleRateDetailsOpen(index, true)}
                   >
                     rate details
                   </button>
-                  {/* <PopupRateDetails
-                    open={openRateDetails}
+                  <PopupRateDetails
+                    isBreakfastIncluded={true}
+                    open={openRateDetails["withBreakfast"][index]}
                     handleClose={handleRateDetailsClose}
                     index={activeRoomNoIndex}
-                  /> */}
+                  />
                 </div>
                 <div className="room_price__with_breakfast-right">
-                  <span className="price">&#8377; 10,000</span>
+                  <div>
+                    <span
+                      className={
+                        state.isOfferAvailable ? "cancelled_price" : "price"
+                      }
+                    >
+                      &#8377; {roomType[2]}
+                    </span>
+                    {state.isOfferAvailable && (
+                      <span className="offer_percent">
+                        ({state.offers[index]}% off)
+                      </span>
+                    )}
+                  </div>
+                  {state.isOfferAvailable && (
+                    <span className="offered_price">
+                      &#8377; {calculateOfferedPrice(roomType[2], index)}
+                    </span>
+                  )}
                   <button
-                    onClick={() => handleChange(roomType, true, 10000, index)}
+                    onClick={() =>
+                      handleChange(
+                        roomType[0],
+                        true,
+                        state.isOfferAvailable
+                          ? calculateOfferedPrice(roomType[2], index)
+                          : Number(roomType[2].replaceAll(",", "")),
+                        index
+                      )
+                    }
                   >
                     select
                   </button>
@@ -192,20 +248,48 @@ const RoomListing = ({ roomNumber }) => {
                   </ul>
                   <button
                     className="rate_details__popup-button"
-                    onClick={() => handleRateDetailsOpen(index)}
+                    onClick={() => handleRateDetailsOpen(index, false)}
                   >
                     rate details
                   </button>
-                  {/* <PopupRateDetails
-                    open={openRateDetails}
+                  <PopupRateDetails
+                    isBreakfastIncluded={false}
+                    open={openRateDetails["withoutBreakfast"][index]}
                     handleClose={handleRateDetailsClose}
                     index={activeRoomNoIndex}
-                  /> */}
+                  />
                 </div>
                 <div className="room_price__with_breakfast-right">
-                  <span className="price">&#8377; 5,000</span>
+                  <div>
+                    <span
+                      className={
+                        state.isOfferAvailable ? "cancelled_price" : "price"
+                      }
+                    >
+                      &#8377; {roomType[1]}
+                    </span>
+                    {state.isOfferAvailable && (
+                      <span className="offer_percent">
+                        ({state.offers[index]}% off)
+                      </span>
+                    )}
+                  </div>
+                  {state.isOfferAvailable && (
+                    <span className="offered_price">
+                      &#8377; {calculateOfferedPrice(roomType[1], index)}
+                    </span>
+                  )}
                   <button
-                    onClick={() => handleChange(roomType, false, 5000, index)}
+                    onClick={() =>
+                      handleChange(
+                        roomType[0],
+                        false,
+                        state.isOfferAvailable
+                          ? calculateOfferedPrice(roomType[1], index)
+                          : Number(roomType[1].replaceAll(",", "")),
+                        index
+                      )
+                    }
                   >
                     select
                   </button>

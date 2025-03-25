@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./Location.css";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 
 const Location = () => {
+  const { state, dispatch } = useContext(AppContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
   }, []);
 
   return (

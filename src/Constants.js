@@ -13,11 +13,12 @@ import {
 } from "@mui/icons-material";
 
 export const roomTypes = [
-  "Superior Room",
-  "Delux Room",
-  "Standard Room",
-  "Suite",
+  ["Superior Room", "6,000", "6,500"],
+  ["Delux Room", "8,000", "8,500"],
+  ["Standard Room", "5,000", "5,500"],
+  ["Suite", "10,000", "10,500"],
 ];
+
 export const roomDetails = [
   ["270 ft²", "1 Queen / 2 Twin"],
   ["478 ft²", "1 Queen"],

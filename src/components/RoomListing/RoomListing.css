@@ -66,12 +66,14 @@
 }
 
 .room_listing h3 {
+  color: var(--burnt_rose);
   font-size: 24px;
   font-weight: bold;
 }
 
 .room_listing .room_price h4 {
   display: inline-block;
+  color: var(--burnt_rose);
   font-size: 15px;
   font-weight: 600;
 }
@@ -120,6 +122,35 @@
   display: flex;
   flex-flow: column;
   align-items: center;
+}
+
+.room_listing .room_price__with_breakfast-right .cancelled_price,
+.room_listing .room_price__without_breakfast-right .cancelled_price {
+  text-decoration: line-through;
+}
+
+.room_listing .room_price__with_breakfast-right .price,
+.room_listing .room_price__with_breakfast-right .offered_price,
+.room_listing .room_price__without_breakfast-right .price,
+.room_listing .room_price__without_breakfast-right .offered_price {
+  margin-top: 5px;
+  color: var(--burnt_rose);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.room_listing .room_price__with_breakfast-right > div,
+.room_listing .room_price__without_breakfast-right > div {
+  display: flex;
+  align-items: center;
+}
+
+.room_listing .room_price__with_breakfast-right .offer_percent,
+.room_listing .room_price__without_breakfast-right .offer_percent {
+  margin-left: 5px;
+  color: var(--burnt_rose);
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .room_listing .room_price__with_breakfast-right button,

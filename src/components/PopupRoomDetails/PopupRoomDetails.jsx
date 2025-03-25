@@ -46,7 +46,7 @@ const PopupRoomDetails = ({ open, handleClose, index }) => {
       className="popup_room_details"
     >
       <Box sx={style}>
-        <h3>{roomTypes[index]}</h3>
+        <h3>{roomTypes[index][0]}</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
           unde quam repellat quasi qui error mollitia alias corrupti adipisci

@@ -16,4 +16,5 @@ export const reducerMethods = {
   setRoomsCount: "SET_ROOMS_COUNT",
   setSelectedRooms: "SET_SELECTED_ROOMS",
   setTotalPrice: "SET_TOTAL_PRICE",
+  setShouldShowCallback: "SET_SHOULD_SHOW_CALLBACK",
 };
