@@ -67,10 +67,13 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
 
   return (
     <>
-      <Box sx={boxContainerStyle}>
+      <Box sx={boxContainerStyle} className="guest_details_container">
         <Box className="guest_details" sx={guestDetailsStyle}>
           <h3>guest details</h3>
-          <FormControl sx={{ m: 1, minWidth: 120, width: "47%" }}>
+          <FormControl
+            className="form_field"
+            sx={{ m: 1, minWidth: 120, width: "47%" }}
+          >
             <TextField
               type="text"
               name="name"
@@ -79,7 +82,10 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
               sx={TextFieldStyle}
             />
           </FormControl>
-          <FormControl sx={{ m: 1, minWidth: 120, width: "47%" }}>
+          <FormControl
+            className="form_field"
+            sx={{ m: 1, minWidth: 120, width: "47%" }}
+          >
             <TextField
               type="text"
               name="name"
@@ -88,7 +94,10 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
               sx={TextFieldStyle}
             />
           </FormControl>
-          <FormControl sx={{ m: 1, minWidth: 120, width: "47%" }}>
+          <FormControl
+            className="form_field"
+            sx={{ m: 1, minWidth: 120, width: "47%" }}
+          >
             <TextField
               type="email"
               name="email"
@@ -97,7 +106,10 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
               sx={TextFieldStyle}
             />
           </FormControl>
-          <FormControl sx={{ m: 1, minWidth: 120, width: "47%" }}>
+          <FormControl
+            className="form_field"
+            sx={{ m: 1, minWidth: 120, width: "47%" }}
+          >
             <TextField
               type="number"
               name="mobile"
@@ -106,7 +118,10 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
               sx={TextFieldStyle}
             />
           </FormControl>
-          <FormControl sx={{ m: 1, minWidth: 120, width: "97%" }}>
+          <FormControl
+            className="special_form_field"
+            sx={{ m: 1, minWidth: 120, width: "97%" }}
+          >
             <TextField
               type="text"
               name="specialRequest"
@@ -166,11 +181,12 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
             </ul>
             <div className="payment_summary__summed_total_price">
               <span>Total Price</span>
-              <span>&#8377; 42000</span>
+              <span>&#8377; {totalPrice + 2000}</span>
             </div>
           </div>
         </Box>
         <div
+          className="payment_button"
           style={{ marginTop: "-150px", gridRowStart: 2, textAlign: "center" }}
         >
           <button onClick={() => setActiveStep(activeStep + 1)}>

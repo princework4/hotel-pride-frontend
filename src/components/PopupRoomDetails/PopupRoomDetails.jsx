@@ -20,9 +20,18 @@ import "./PopupRoomDetails.css";
 
 const PopupRoomDetails = ({ open, handleClose, index }) => {
   const style = {
-    width: "550px",
-    height: "300px",
-    padding: "20px",
+    width: {
+      xs: "300px",
+      sm: "550px",
+    },
+    height: {
+      xs: "315px",
+      sm: "300px",
+    },
+    padding: {
+      xs: "20px 15px",
+      sm: "20px",
+    },
     border: "none",
     borderRadius: "20px",
     position: "absolute",
@@ -46,7 +55,7 @@ const PopupRoomDetails = ({ open, handleClose, index }) => {
       className="popup_room_details"
     >
       <Box sx={style}>
-        <h3>{roomTypes[index]}</h3>
+        <h3>{roomTypes[index][0]}</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
           unde quam repellat quasi qui error mollitia alias corrupti adipisci

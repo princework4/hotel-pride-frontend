@@ -18,11 +18,26 @@ import SquareIcon from "@mui/icons-material/Square";
 import { roomTypes } from "../../Constants";
 import "./PopupRateDetails.css";
 
-const PopupRateDetails = ({ open, handleClose, index }) => {
+const PopupRateDetails = ({
+  isBreakfastIncluded,
+  open,
+  handleClose,
+  index,
+}) => {
   const style = {
-    width: "550px",
-    height: "300px",
-    padding: "20px",
+    width: {
+      xs: "300px",
+      sm: "400px",
+      md: "550px",
+    },
+    height: {
+      xs: "315px",
+      sm: "300px",
+    },
+    padding: {
+      xs: "20px 15px",
+      sm: "20px",
+    },
     border: "none",
     borderRadius: "20px",
     position: "absolute",
@@ -45,39 +60,46 @@ const PopupRateDetails = ({ open, handleClose, index }) => {
       className="popup_rate_details"
     >
       <Box sx={style}>
-        <h3>{roomTypes[index]}</h3>
+        <h3>
+          {isBreakfastIncluded ? "Breakfast Included" : "Without Breakfast"}
+        </h3>
         <div>
           <h4>rate description</h4>
           <ul>
             <li>
               {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-              <span>Minibar</span>
+              <SquareIcon
+                sx={{
+                  width: "10px",
+                  height: { xs: "13px", md: "1em" },
+                  color: "#d9736d",
+                }}
+              />
+              <span>
+                Inclusive of buffet breakfast at a designated dining venue
+              </span>
             </li>
             <li>
               {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-              <span>Electronic safe​</span>
+              <SquareIcon
+                sx={{
+                  width: "10px",
+                  height: { xs: "13px", md: "1em" },
+                  color: "#d9736d",
+                }}
+              />
+              <span>Inclusive of standard Wi-Fi</span>
             </li>
             <li>
               {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-              <span>Flat-screen TV​</span>
-            </li>
-            <li>
-              {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-              <span>Bathtub</span>
-            </li>
-            <li>
-              {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-              <span>Wi-fi</span>
-            </li>
-            <li>
-              {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-              <span>24-hour in-room dining</span>
+              <SquareIcon
+                sx={{
+                  width: "10px",
+                  height: { xs: "13px", md: "1em" },
+                  color: "#d9736d",
+                }}
+              />
+              <span>Applicable taxes extra</span>
             </li>
           </ul>
         </div>
@@ -85,8 +107,8 @@ const PopupRateDetails = ({ open, handleClose, index }) => {
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, itaque.
         </p>
-        <h4>guarentee policy</h4>
-        <p>
+        <h4>guarantee policy</h4>
+        <p style={{ paddingBottom: "20px", borderBottom: "1px solid #d9736d" }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,
           inventore?
         </p>

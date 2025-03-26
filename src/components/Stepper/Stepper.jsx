@@ -85,6 +85,12 @@ export default function CustomStepper() {
           ".MuiStepConnector-root span": {
             borderColor: "#d9736d",
           },
+          ".MuiStepLabel-label": {
+            fontSize: {
+              xs: "0.7rem",
+              sm: "0.875rem",
+            },
+          },
         }}
       >
         {steps.map((label) => {
@@ -125,6 +131,7 @@ export default function CustomStepper() {
                     label={`Room ${index + 1}`}
                     {...a11yProps(index)}
                     className={value > index ? "already_selected" : ""}
+                    key={index}
                   />
                 );
               }
@@ -135,12 +142,18 @@ export default function CustomStepper() {
                   {...a11yProps(index)}
                   // disabled={selectedRoom?.length < index + 1}
                   className={value > index ? "already_selected" : ""}
+                  key={index}
                 />
               );
             })}
           </Tabs>
           {[...Array(state.roomsCount)]?.map((_, index) => (
-            <TabPanel value={value} index={index} dir={theme.direction}>
+            <TabPanel
+              value={value}
+              index={index}
+              dir={theme.direction}
+              key={index}
+            >
               <RoomListing roomNumber={index} />
             </TabPanel>
           ))}
