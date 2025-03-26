@@ -91,3 +91,20 @@
     margin: 0 auto;
   }
 }
+
+
+
+/* Room Search Modal Styling............................................ */
+.roomSearch .search-container {
+  margin: 10px;
+}
+
+.roomSearch .search-container form {
+  flex-direction: column;
+  align-items: stretch;
+  /* padding: 10px; */
+}
+
+.roomSearch .search-container .form-group {
+  flex-direction: column;
+}
