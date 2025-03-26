@@ -25,9 +25,19 @@ const PopupRateDetails = ({
   index,
 }) => {
   const style = {
-    width: "550px",
-    height: "300px",
-    padding: "20px",
+    width: {
+      xs: "300px",
+      sm: "400px",
+      md: "550px",
+    },
+    height: {
+      xs: "315px",
+      sm: "300px",
+    },
+    padding: {
+      xs: "20px 15px",
+      sm: "20px",
+    },
     border: "none",
     borderRadius: "20px",
     position: "absolute",
@@ -58,19 +68,37 @@ const PopupRateDetails = ({
           <ul>
             <li>
               {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+              <SquareIcon
+                sx={{
+                  width: "10px",
+                  height: { xs: "13px", md: "1em" },
+                  color: "#d9736d",
+                }}
+              />
               <span>
                 Inclusive of buffet breakfast at a designated dining venue
               </span>
             </li>
             <li>
               {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+              <SquareIcon
+                sx={{
+                  width: "10px",
+                  height: { xs: "13px", md: "1em" },
+                  color: "#d9736d",
+                }}
+              />
               <span>Inclusive of standard Wi-Fi</span>
             </li>
             <li>
               {" "}
-              <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+              <SquareIcon
+                sx={{
+                  width: "10px",
+                  height: { xs: "13px", md: "1em" },
+                  color: "#d9736d",
+                }}
+              />
               <span>Applicable taxes extra</span>
             </li>
           </ul>

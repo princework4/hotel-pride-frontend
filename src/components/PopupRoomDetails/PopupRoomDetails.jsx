@@ -20,9 +20,18 @@ import "./PopupRoomDetails.css";
 
 const PopupRoomDetails = ({ open, handleClose, index }) => {
   const style = {
-    width: "550px",
-    height: "300px",
-    padding: "20px",
+    width: {
+      xs: "300px",
+      sm: "550px",
+    },
+    height: {
+      xs: "315px",
+      sm: "300px",
+    },
+    padding: {
+      xs: "20px 15px",
+      sm: "20px",
+    },
     border: "none",
     borderRadius: "20px",
     position: "absolute",

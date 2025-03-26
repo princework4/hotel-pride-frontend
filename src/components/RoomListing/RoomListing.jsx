@@ -58,7 +58,12 @@ const RoomListing = ({ roomNumber }) => {
     });
   };
 
-  function handleChange(roomType, isBreakfastIncluded, price, selectedRoomNo) {
+  function handleButtonClick(
+    roomType,
+    isBreakfastIncluded,
+    price,
+    selectedRoomNo
+  ) {
     const temp = state.userObj.selectedRooms;
     if (temp?.[roomNumber]) {
       temp[roomNumber].roomType = roomType;
@@ -75,6 +80,8 @@ const RoomListing = ({ roomNumber }) => {
     }
 
     dispatch({ type: reducerMethods.setSelectedRooms, payload: temp });
+
+    console.log("state --> ", state);
   }
 
   function calculateOfferedPrice(price, index) {
@@ -88,7 +95,7 @@ const RoomListing = ({ roomNumber }) => {
       {roomTypes?.map((roomType, index) => (
         <div
           className={
-            selectedRoom[roomNumber]?.selectedRoomNo == index
+            state.userObj.selectedRooms?.[roomNumber]?.selectedRoomNo == index
               ? "selected_room room"
               : "room"
           }
@@ -151,24 +158,15 @@ const RoomListing = ({ roomNumber }) => {
                   <ul>
                     <li>
                       <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit.
-                      </p>
+                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
                       <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit.
-                      </p>
+                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
                       <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit.
-                      </p>
+                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                   </ul>
                   <button
@@ -191,7 +189,7 @@ const RoomListing = ({ roomNumber }) => {
                         state.isOfferAvailable ? "cancelled_price" : "price"
                       }
                     >
-                      &#8377; {roomType[2]}
+                      &#8377;{roomType[2]}
                     </span>
                     {state.isOfferAvailable && (
                       <span className="offer_percent">
@@ -201,12 +199,20 @@ const RoomListing = ({ roomNumber }) => {
                   </div>
                   {state.isOfferAvailable && (
                     <span className="offered_price">
-                      &#8377; {calculateOfferedPrice(roomType[2], index)}
+                      &#8377;{calculateOfferedPrice(roomType[2], index)}
                     </span>
                   )}
                   <button
+                    className={
+                      state.userObj.selectedRooms?.[roomNumber]
+                        ?.selectedRoomNo == index && "selected_room_button"
+                    }
+                    disabled={
+                      state.userObj.selectedRooms?.[roomNumber]
+                        ?.selectedRoomNo == index
+                    }
                     onClick={() =>
-                      handleChange(
+                      handleButtonClick(
                         roomType[0],
                         true,
                         state.isOfferAvailable
@@ -216,7 +222,10 @@ const RoomListing = ({ roomNumber }) => {
                       )
                     }
                   >
-                    select
+                    {state.userObj.selectedRooms?.[roomNumber]
+                      ?.selectedRoomNo == index
+                      ? "selected"
+                      : "select"}
                   </button>
                 </div>
               </div>
@@ -226,24 +235,15 @@ const RoomListing = ({ roomNumber }) => {
                   <ul>
                     <li>
                       <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit.
-                      </p>
+                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
                       <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit.
-                      </p>
+                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
                       <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit.
-                      </p>
+                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                   </ul>
                   <button
@@ -266,7 +266,7 @@ const RoomListing = ({ roomNumber }) => {
                         state.isOfferAvailable ? "cancelled_price" : "price"
                       }
                     >
-                      &#8377; {roomType[1]}
+                      &#8377;{roomType[1]}
                     </span>
                     {state.isOfferAvailable && (
                       <span className="offer_percent">
@@ -276,12 +276,20 @@ const RoomListing = ({ roomNumber }) => {
                   </div>
                   {state.isOfferAvailable && (
                     <span className="offered_price">
-                      &#8377; {calculateOfferedPrice(roomType[1], index)}
+                      &#8377;{calculateOfferedPrice(roomType[1], index)}
                     </span>
                   )}
                   <button
+                    className={
+                      state.userObj.selectedRooms?.[roomNumber]
+                        ?.selectedRoomNo == index && "selected_room_button"
+                    }
+                    disabled={
+                      state.userObj.selectedRooms?.[roomNumber]
+                        ?.selectedRoomNo == index
+                    }
                     onClick={() =>
-                      handleChange(
+                      handleButtonClick(
                         roomType[0],
                         false,
                         state.isOfferAvailable
@@ -291,7 +299,10 @@ const RoomListing = ({ roomNumber }) => {
                       )
                     }
                   >
-                    select
+                    {state.userObj.selectedRooms?.[roomNumber]
+                      ?.selectedRoomNo == index
+                      ? "selected"
+                      : "select"}
                   </button>
                 </div>
               </div>
