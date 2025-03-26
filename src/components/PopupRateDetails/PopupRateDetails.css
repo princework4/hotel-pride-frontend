@@ -41,3 +41,24 @@
   margin-left: 5px;
   font-size: 13px;
 }
+
+/* Media Queries */
+@media (max-width: 600px) {
+  .popup_rate_details h3 {
+    font-size: 20px;
+  }
+
+  .popup_rate_details h4 {
+    font-size: 18px;
+  }
+
+  .popup_rate_details ul li {
+    height: unset;
+    align-items: flex-start;
+  }
+
+  .popup_rate_details ul li span,
+  .popup_rate_details p {
+    font-size: 12px;
+  }
+}

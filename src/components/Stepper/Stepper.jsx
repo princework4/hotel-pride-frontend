@@ -85,6 +85,12 @@ export default function CustomStepper() {
           ".MuiStepConnector-root span": {
             borderColor: "#d9736d",
           },
+          ".MuiStepLabel-label": {
+            fontSize: {
+              xs: "0.7rem",
+              sm: "0.875rem",
+            },
+          },
         }}
       >
         {steps.map((label) => {

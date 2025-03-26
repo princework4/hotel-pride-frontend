@@ -28,7 +28,7 @@ const initialState = {
   revertHeader: false,
   adultCount: 0,
   childCount: 0,
-  roomsCount: 4,
+  roomsCount: 1,
   userObj: {
     selectedRooms: [],
     totalPrice: 0,

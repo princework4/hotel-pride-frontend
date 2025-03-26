@@ -1,3 +1,7 @@
+.guest_details h3 {
+  margin-left: 8px;
+}
+
 .guest_details h3,
 .payment_summary h3 {
   margin-bottom: 10px;
@@ -49,7 +53,10 @@
 .payment_summary
   .payment_summary__container
   .payment_summary__selected_rooms_details {
-  height: 200px;
+  min-height: 95px;
+  max-height: 200px;
+  height: 100%;
+  /* height: 200px; */
   overflow-y: auto;
 }
 
@@ -111,4 +118,76 @@
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .guest_details_container {
+    grid-template-columns: 65% 30% !important;
+  }
+
+  .guest_details {
+    padding: 25px 20px !important;
+  }
+
+  .guest_details .form_field {
+    width: 45%;
+  }
+
+  .guest_details .special_form_field {
+    width: 93%;
+  }
+}
+
+@media (max-width: 900px) {
+  .guest_details_container {
+    grid-template-columns: 60% 35% !important;
+  }
+
+  .guest_details .special_form_field {
+    width: 94%;
+  }
+
+  .guest_details h3,
+  .payment_summary h3 {
+    font-size: 20px;
+  }
+
+  .payment_summary .payment_summary__container h4 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .guest_details .form_field,
+  .guest_details .special_form_field {
+    width: 95%;
+  }
+
+  .payment_button {
+    margin-top: -50px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .guest_details_container {
+    grid-template-columns: 90% !important;
+    justify-content: center !important;
+  }
+
+  .guest_details_container .payment_summary {
+    order: 1;
+  }
+
+  .guest_details_container .guest_details {
+    padding: 25px 10px !important;
+    margin-top: 20px;
+    order: 2;
+  }
+
+  .payment_button {
+    margin-top: 20px !important;
+    grid-row-start: unset !important;
+    order: 3;
+  }
 }

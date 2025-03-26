@@ -39,3 +39,19 @@
 .popup_room_details ul li span {
   margin-left: 5px;
 }
+
+/* Media Queries */
+@media (max-width: 500px) {
+  .popup_room_details h3 {
+    font-size: 20px;
+  }
+
+  .popup_room_details p,
+  .popup_room_details ul li span {
+    font-size: 12px;
+  }
+
+  .popup_room_details h4 {
+    font-size: 18px;
+  }
+}
