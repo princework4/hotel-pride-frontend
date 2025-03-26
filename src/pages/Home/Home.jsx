@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RoomCard from "../../components/RoomCard";
 import {
   roomTypes,
@@ -15,14 +15,20 @@ import Footer from "../../components/Footer";
 import About from "../../components/About";
 import "./Home.css";
 import AmenityCard from "../../components/AmenityCard";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 
 const Home = () => {
+  const { state, dispatch } = useContext(AppContext);
   let navigate = useNavigate();
   const routeChange = (path) => {
     navigate(path);
   };
 
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
+  }, []);
 
   return (
     <>
@@ -68,11 +74,20 @@ const Home = () => {
               {roomTypes?.map((type, i) => (
                 <RoomCard
                   key={i}
-                  roomType={type}
+                  roomType={type[0]}
                   roomDetails={roomDetails[i]}
                 />
               ))}
             </div>
+          </div>
+        </section>
+        <section className="services">
+          <div className="wrapper">
+            <div className="heading_container">
+              <hr />
+              <h2>amenities</h2>
+            </div>
+            <AmenityCard />
           </div>
         </section>
         <section className="gallery">
@@ -91,15 +106,6 @@ const Home = () => {
             <div className="see_more__container">
               <button onClick={() => routeChange("gallery")}>see more</button>
             </div>
-          </div>
-        </section>
-        <section className="services">
-          <div className="wrapper">
-            <div className="heading_container">
-              <hr />
-              <h2>services</h2>
-            </div>
-            <AmenityCard />
           </div>
         </section>
         <section className="reviews">

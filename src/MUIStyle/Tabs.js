@@ -2,16 +2,35 @@ export const TabsStyle = {
   marginTop: "30px",
   "& .MuiTabs-list": {
     justifyContent: "flex-start",
+    flexWrap: "wrap",
     "& button": {
+      minWidth: {
+        xs: "80px",
+      },
+      minHeight: {
+        xs: "30px",
+      },
+      padding: {
+        xs: "10px",
+      },
       border: "1px solid transparent",
       borderRadius: "25px",
       "&:hover": {
         border: "1px solid #d9736d",
       },
+      margin: "0px 15px 5px",
+      fontSize: {
+        xs: "0.7rem",
+        // md: "0.875rem",
+      },
     },
-    "& button:not(:first-of-type)": {
-      marginLeft: "10px",
-    },
+    // "& button:not(:first-of-type)": {
+    // "& button:not(:nth-child(4n + 1))": {
+    //   marginLeft: "10px",
+    // },
+    // "& button:nth-child(n + 5)": {
+    //   marginTop: "10px",
+    // },
     "& .Mui-selected": {
       border: "1px solid #d9736d",
     },

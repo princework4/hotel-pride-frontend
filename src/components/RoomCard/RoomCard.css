@@ -54,7 +54,21 @@
   margin-left: 20px;
 }
 
-.flat_screen_tv::before {
+.basic_amenities {
+  margin-top: 10px;
+  display: flex;
+}
+
+.basic_amenities li {
+  width: 18px;
+  height: 18px;
+}
+
+.basic_amenities li:not(:first-child) {
+  margin-left: 20px;
+}
+
+/* .flat_screen_tv::before {
   content: url("../../assets/tv-solid.svg");
 }
 
@@ -76,7 +90,7 @@
 
 .bottled_water::before {
   content: url("../../assets/bottle-water-solid.svg");
-}
+} */
 
 /* Media queries */
 @media (max-width: 997px) {

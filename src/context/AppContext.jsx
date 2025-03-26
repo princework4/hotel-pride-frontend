@@ -28,11 +28,19 @@ const initialState = {
   revertHeader: false,
   adultCount: 0,
   childCount: 0,
-  roomsCount: 4,
+  roomsCount: 1,
   userObj: {
     selectedRooms: [],
     totalPrice: 0,
   },
+  isOfferAvailable: false,
+  offers: {
+    0: 10,
+    1: 15,
+    2: 20,
+    3: 30,
+  },
+  shouldShowCallback: false,
 };
 
 export const AppContext = createContext(initialState);
