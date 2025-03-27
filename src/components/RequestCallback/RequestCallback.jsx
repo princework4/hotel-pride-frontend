@@ -13,97 +13,13 @@ import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import ChatIcon from "../../assets/comment-solid.svg";
 import { TOP } from "../../Constants";
+import * as Validation from "../../validation/Validation";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
-import * as Validation from "../../validation/Validation";
 
 import "./RequestCallback.css";
 
-// requestCallbackData: { name: "", email: "", mobile: "", guests: 1, rooms: 1 },
-// requestCallbackDataErr: { nameErr: "", emailErr: "", mobileErr: "", guestsErr: "", roomsErr: "" },
-
 const RequestCallback = () => {
-  const [changePosition, setChangePosition] = React.useState(false);
-  const { state, dispatch } = React.useContext(AppContext);
-  const { requestCallbackData, requestCallbackDataErr } = state;
-  console.log(requestCallbackData, requestCallbackDataErr);
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  React.useEffect(() => {
-    function onScroll() {
-      setChangePosition(document.documentElement.scrollTop >= TOP);
-    }
-    onScroll();
-    document.addEventListener("scroll", onScroll);
-    return () => document.removeEventListener("scroll", onScroll);
-  }, [TOP]);
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    dispatch({
-      type: reducerMethods.setReqCallbackData,
-      payload: { ...requestCallbackData, [name]: value },
-    });
-  };
-
-  const handleFormFieldsErr = (errField, message) => {
-    dispatch({
-      type: reducerMethods.setReqCallbackDataErr,
-      payload: { [errField]: message },
-    });
-  };
-
-  const submitForm = () =>
-    console.log(
-      "submited successully -requestCallbackData",
-      requestCallbackData
-    );
-
-  const handleSubmitForm = () => {
-    handleFormFieldsErr(
-      "nameErr",
-      Validation.validateFullName(requestCallbackData.name)
-    );
-    handleFormFieldsErr(
-      "emailErr",
-      Validation.validateEmail(requestCallbackData.email)
-    );
-    handleFormFieldsErr(
-      "mobileErr",
-      Validation.validateMobileNumber(requestCallbackData.mobile)
-    );
-    handleFormFieldsErr(
-      "guestsCountErr",
-      Validation.validateCount(requestCallbackData.guests, "guests")
-    );
-    handleFormFieldsErr(
-      "roomsCountErr",
-      Validation.validateCount(requestCallbackData.rooms, "rooms")
-    );
-
-    if (
-      // signUpData.username !== "" &&
-      requestCallbackData.name !== "" &&
-      requestCallbackData.email !== "" &&
-      requestCallbackData.mobile !== "" &&
-      requestCallbackData.guests !== "" &&
-      requestCallbackData.rooms !== "" &&
-      // check functionality after making an error
-      // signUpDataErr.usernameErr === "" &&
-      requestCallbackDataErr.nameErr === "" &&
-      requestCallbackDataErr.emailErr === "" &&
-      requestCallbackDataErr.mobileErr === "" &&
-      requestCallbackDataErr.guestsErr === "" &&
-      requestCallbackDataErr.roomsErr === ""
-    ) {
-      submitForm();
-    } else {
-      console.log("requestCallbackDataErr", requestCallbackDataErr);
-    }
-  };
-
   const style = {
     width: "400px",
     height: "auto",
@@ -120,6 +36,117 @@ const RequestCallback = () => {
     // maxWidth: 400,
     // minWidth: 300,
     // p: 4,
+  };
+
+
+  const [changePosition, setChangePosition] = React.useState(false);
+  const [enableSubmitButton, setEnableSubmitButton] = React.useState(false);
+  const { state, dispatch } = React.useContext(AppContext);
+  const { requestCallbackData, requestCallbackDataErr } = state;
+  // console.log(requestCallbackData, requestCallbackDataErr);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  React.useEffect(() => {
+    function onScroll() {
+      setChangePosition(document.documentElement.scrollTop >= TOP);
+    }
+    onScroll();
+    document.addEventListener("scroll", onScroll);
+    return () => document.removeEventListener("scroll", onScroll);
+  }, [TOP]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    dispatch({ type: reducerMethods.setReqCallbackData, payload: { [name]: value } })
+  };
+
+  const handleFormFieldsErr = (errField, message) => {
+    dispatch({ type: reducerMethods.setReqCallbackDataErr, payload: { [errField]: message } })
+  };
+
+  function allValidationSuccessful() {
+    if (
+      requestCallbackData.name !== "" &&
+      requestCallbackData.email !== "" &&
+      requestCallbackData.mobile !== "" &&
+      requestCallbackData.guests !== "" &&
+      requestCallbackData.rooms !== "" &&
+      // check functionality after making an error
+      requestCallbackDataErr.nameErr === "" &&
+      requestCallbackDataErr.emailErr === "" &&
+      requestCallbackDataErr.mobileErr === "" &&
+      requestCallbackDataErr.guestsErr === "" &&
+      requestCallbackDataErr.roomsErr === ""
+    ) {
+      return true;
+    }
+    else {
+      handleValidation();
+    }
+  }
+
+  function handleValidation(event) {
+    if (!event) {
+      handleFormFieldsErr(
+        "nameErr",
+        Validation.validateFullName(requestCallbackData.name)
+      );
+      handleFormFieldsErr(
+        "emailErr",
+        Validation.validateEmail(requestCallbackData.email)
+      );
+      handleFormFieldsErr(
+        "mobileErr",
+        Validation.validateMobileNumber(requestCallbackData.mobile)
+      );
+      handleFormFieldsErr(
+        "guestsErr",
+        Validation.validateCount(requestCallbackData.guests, "guests")
+      );
+      handleFormFieldsErr(
+        "roomsErr",
+        Validation.validateCount(requestCallbackData.rooms, "rooms")
+      );
+    } else {
+      const { name } = event.target;
+      if (name == "name") {
+        handleFormFieldsErr(
+          "nameErr",
+          Validation.validateFullName(requestCallbackData.name)
+        );
+      } else if (name == "email") {
+        handleFormFieldsErr(
+          "emailErr",
+          Validation.validateEmail(requestCallbackData.email)
+        );
+      } else if (name == "mobile") {
+        handleFormFieldsErr(
+          "mobileErr",
+          Validation.validateMobileNumber(requestCallbackData.mobile)
+        );
+      } else if (name == "guests") {
+        handleFormFieldsErr(
+          "guestsErr",
+          Validation.validateCount(requestCallbackData.guests, "guests")
+        );
+      } else {
+        handleFormFieldsErr(
+          "roomsErr",
+          Validation.validateCount(requestCallbackData.rooms, "rooms")
+        );
+      }
+    }
+    setEnableSubmitButton(true);
+  }
+
+  const handleSubmitForm = () => {
+    if (allValidationSuccessful()) {
+      console.log("requestCallbackData :- ", requestCallbackData);
+    }
+    console.log("requestCallbackDataErr :- ", requestCallbackDataErr);
   };
 
   return (
@@ -148,6 +175,7 @@ const RequestCallback = () => {
               variant="outlined"
               value={requestCallbackData.name}
               onChange={handleChange}
+              onBlur={handleValidation}
               sx={TextFieldStyle}
             />
             {requestCallbackDataErr.nameErr ? (
@@ -164,6 +192,7 @@ const RequestCallback = () => {
               variant="outlined"
               value={requestCallbackData.email}
               onChange={handleChange}
+              onBlur={handleValidation}
               sx={TextFieldStyle}
             />
             {requestCallbackDataErr.emailErr ? (
@@ -180,6 +209,7 @@ const RequestCallback = () => {
               variant="outlined"
               value={requestCallbackData.mobile}
               onChange={handleChange}
+              onBlur={handleValidation}
               sx={TextFieldStyle}
             />
             {requestCallbackDataErr.mobileErr ? (
@@ -197,6 +227,7 @@ const RequestCallback = () => {
                 variant="outlined"
                 value={requestCallbackData.guests}
                 onChange={handleChange}
+                onBlur={handleValidation}
                 sx={TextFieldStyle}
               />
               {requestCallbackDataErr.guestsErr ? (
@@ -213,6 +244,7 @@ const RequestCallback = () => {
                 variant="outlined"
                 value={requestCallbackData.rooms}
                 onChange={handleChange}
+                onBlur={handleValidation}
                 sx={TextFieldStyle}
               />
               {requestCallbackDataErr.roomsErr ? (
@@ -226,6 +258,7 @@ const RequestCallback = () => {
             className="request_callback_btn"
             variant="contained"
             fullWidth
+            disabled={!enableSubmitButton}
             onClick={handleSubmitForm}
             sx={ButtonStyle}
           >
