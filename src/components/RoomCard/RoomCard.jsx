@@ -1,5 +1,7 @@
 import Chip from "../Chip";
 import ImageSlider from "../Slider";
+import Search from "../Search";
+import { Modal, Box } from '@mui/material';
 import { roomImages } from "../../Constants";
 import Breakfast from "../../assets/utensils-solid.svg";
 import TV from "../../assets/tv-solid.svg";
@@ -12,6 +14,31 @@ import "./RoomCard.css";
 import React from "react";
 
 const RoomCard = ({ roomType, roomDetails }) => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const style = {
+    width: "400px",
+    height: "auto",
+    padding: "0",
+    border: "none",
+    borderRadius: "20px",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    overflow: "auto",
+    transform: "translate(-50%, -50%)",
+    // maxWidth: 400,
+    // minWidth: 300,
+    // p: 4,
+  };
   return (
     <div className="room_card">
       <div className="room_card_media">
@@ -70,8 +97,22 @@ const RoomCard = ({ roomType, roomDetails }) => {
             <img src={WaterBottle} />
           </li>
         </ul>
-        <button>BOOK NOW</button>
+        <button onClick={handleOpen}>BOOK NOW</button>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        className="roomSearch"
+      >
+        <Box sx={style}>
+          {/* <Box className="close_icon_wrapper">
+                      <CloseIconCircle handleClose={handleClose} />
+                    </Box> */}
+          <Search handleClose={handleClose} />
+        </Box>
+      </Modal>
     </div>
   );
 };
