@@ -10,6 +10,7 @@ import "./Login.css";
 const LogInForm = () => {
   const { state, dispatch } = React.useContext(AppContext);
   const { logInData, logInDataErr } = state;
+  const [enableSubmitButton, setEnableSubmitButton] = React.useState(false);
 
   //   const [loginUser] = useLoginMutation();
   //   const dispatch = useDispatch();
@@ -57,20 +58,54 @@ const LogInForm = () => {
   //     }
   //   };
 
-  const handleSubmitForm = () => {
-    handleFormFieldsErr("emailErr", Validation.validateEmail(logInData.email));
-    handleFormFieldsErr("passwordErr", Validation.validatePassword(logInData.password));
-
+  function allValidationSuccessful() {
     if (
-      logInData.email !== "" && logInData.password !== "" &&
-      logInDataErr.emailErr === "" && logInDataErr.passwordErr === ""
+      logInData.email !== "" &&
+      logInData.password !== "" &&
+      // check functionality after making an error
+      logInDataErr.emailErr === "" &&
+      logInDataErr.passwordErr === ""
     ) {
-      console.log("logInData success", logInData);
-    } else {
-
-      console.log("logInDataErr", logInDataErr);
+      return true;
+    }
+    else {
+      handleValidation();
     }
   }
+
+  function handleValidation(event) {
+    if (!event) {
+      handleFormFieldsErr(
+        "emailErr",
+        Validation.validateEmail(logInData.email)
+      );
+      handleFormFieldsErr(
+        "passwordErr",
+        Validation.validatePassword(logInData.password)
+      );
+    } else {
+      const { name } = event.target;
+      if (name == "email") {
+        handleFormFieldsErr(
+          "emailErr",
+          Validation.validateEmail(logInData.email)
+        );
+      } else if (name == "password") {
+        handleFormFieldsErr(
+          "passwordErr",
+          Validation.validatePassword(logInData.password)
+        );
+      }
+    }
+    setEnableSubmitButton(true);
+  }
+
+  const handleSubmitForm = () => {
+    if (allValidationSuccessful()) {
+      console.log("logInData :- ", logInData);
+    }
+    console.log("logInDataErr :- ", logInDataErr);
+  };
 
   return (
     <>
@@ -83,6 +118,7 @@ const LogInForm = () => {
             variant="outlined"
             value={logInData.email}
             onChange={handleChange}
+            onBlur={handleValidation}
             sx={TextFieldStyle}
           />
           {logInDataErr.emailErr ? (
@@ -97,6 +133,7 @@ const LogInForm = () => {
             variant="outlined"
             value={logInData.password}
             onChange={handleChange}
+            onBlur={handleValidation}
             sx={TextFieldStyle}
           />
           {logInDataErr.passwordErr ? (
@@ -106,6 +143,7 @@ const LogInForm = () => {
         <Button
           className="login_btn"
           variant="contained"
+          disabled={!enableSubmitButton}
           fullWidth
           onClick={handleSubmitForm}
           sx={ButtonStyle}

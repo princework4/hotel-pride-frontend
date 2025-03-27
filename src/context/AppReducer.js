@@ -26,6 +26,18 @@ export const AppReducer = (state, action) => {
         signUpDataErr: { ...state.signUpDataErr, ...action.payload },
       };
 
+    case reducerMethods.setReqCallbackData:
+      return {
+        ...state,
+        requestCallbackData: { ...state.requestCallbackData, ...action.payload },
+      };
+
+    case reducerMethods.setReqCallbackDataErr:
+      return {
+        ...state,
+        requestCallbackDataErr: { ...state.requestCallbackDataErr, ...action.payload },
+      };
+
     case reducerMethods.setShowHam:
       return { ...state, showHam: action.payload };
 

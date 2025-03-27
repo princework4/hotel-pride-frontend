@@ -49,6 +49,7 @@ const Search = () => {
             label="Check-In Date"
             value={checkInDate}
             onChange={(newValue) => setCheckInDate(newValue)}
+            disablePast={true}
           />
         </LocalizationProvider>
 
@@ -57,6 +58,7 @@ const Search = () => {
             label="Check-Out Date"
             value={checkOutDate}
             onChange={(newValue) => setCheckOutDate(newValue)}
+            disablePast={true}
           />
         </LocalizationProvider>
       </div>
@@ -154,7 +156,12 @@ const Search = () => {
         </Popover>
       </div>
 
-      <Button className="search-btn" onClick={handleSearch}>Search</Button>
+      <Button
+        className="search-btn"
+        disabled={!checkInDate || !checkOutDate}
+        onClick={handleSearch}>
+        Search
+      </Button>
     </form>
   </div>
 }
