@@ -9,7 +9,7 @@
   display: inline-block;
   background-color: var(--burnt_rose);
   text-align: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
 #request_callback_button img {

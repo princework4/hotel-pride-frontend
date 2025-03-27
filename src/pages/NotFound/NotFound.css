@@ -64,7 +64,7 @@ body {
   background-color: var(--burnt_rose);
   box-shadow: 0px 0px 60px 10px rgba(217, 115, 109, 0.5),
     0px 0px 20px 0px rgba(0, 0, 0, 0.1);
-  z-index: 5;
+  z-index: 1;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
 }
