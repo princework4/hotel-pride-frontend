@@ -9,7 +9,7 @@
   display: inline-block;
   background-color: var(--burnt_rose);
   text-align: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
 #bottom_to_top img {
