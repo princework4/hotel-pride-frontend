@@ -20,7 +20,7 @@ import { reducerMethods } from "../../context/reducerMethods";
 const SignUpForm = (props) => {
   const { state, dispatch } = React.useContext(AppContext);
   const { signUpData, signUpDataErr } = state;
-
+  const [enableSubmitButton, setEnableSubmitButton] = React.useState(false);
 
   // const [registerNewUser] = useRegisterMutation();
   // const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const SignUpForm = (props) => {
     dispatch({ type: reducerMethods.setSignUpdataErr, payload: { [errField]: message } })
   };
 
-  const submitForm = () => console.log("submited successully -signUpData", signUpData);
+
   // const submitForm = () => {
 
   //   const data = await registerNewUser(signUpData);
@@ -73,49 +73,92 @@ const SignUpForm = (props) => {
   //   }
   // };
 
-
-  const handleSubmitForm = () => {
-    handleFormFieldsErr(
-      "nameErr",
-      Validation.validateFullName(signUpData.name)
-    );
-    handleFormFieldsErr("emailErr", Validation.validateEmail(signUpData.email));
-    handleFormFieldsErr(
-      "mobileErr",
-      Validation.validateMobileNumber(signUpData.mobile)
-    );
-    handleFormFieldsErr(
-      "passwordErr",
-      Validation.validatePassword(signUpData.password)
-    );
-    handleFormFieldsErr(
-      "cpasswordErr",
-      Validation.validateConfirmPassword(
-        signUpData.password,
-        signUpData.cpassword
-      )
-    );
-
+  function allValidationSuccessful() {
     if (
-      // signUpData.username !== "" &&
       signUpData.name !== "" &&
       signUpData.email !== "" &&
       signUpData.mobile !== "" &&
       signUpData.password !== "" &&
       signUpData.cpassword !== "" &&
-
       // check functionality after making an error
-      // signUpDataErr.usernameErr === "" &&
       signUpDataErr.nameErr === "" &&
       signUpDataErr.emailErr === "" &&
       signUpDataErr.mobileErr === "" &&
       signUpDataErr.passwordErr === "" &&
       signUpDataErr.cpasswordErr === ""
     ) {
-      submitForm();
-    } else {
-      console.log("signUpDataErr", signUpDataErr)
+      return true;
     }
+    else {
+      handleValidation();
+    }
+  }
+
+  function handleValidation(event) {
+    if (!event) {
+      handleFormFieldsErr(
+        "nameErr",
+        Validation.validateFullName(signUpData.name)
+      );
+      handleFormFieldsErr(
+        "emailErr",
+        Validation.validateEmail(signUpData.email)
+      );
+      handleFormFieldsErr(
+        "mobileErr",
+        Validation.validateMobileNumber(signUpData.mobile)
+      );
+      handleFormFieldsErr(
+        "passwordErr",
+        Validation.validatePassword(signUpData.password)
+      );
+      handleFormFieldsErr(
+        "cpasswordErr",
+        Validation.validateConfirmPassword(
+          signUpData.password,
+          signUpData.cpassword
+        )
+      );
+    } else {
+      const { name } = event.target;
+      if (name == "name") {
+        handleFormFieldsErr(
+          "nameErr",
+          Validation.validateFullName(signUpData.name)
+        );
+      } else if (name == "email") {
+        handleFormFieldsErr(
+          "emailErr",
+          Validation.validateEmail(signUpData.email)
+        );
+      } else if (name == "mobile") {
+        handleFormFieldsErr(
+          "mobileErr",
+          Validation.validateMobileNumber(signUpData.mobile)
+        );
+      } else if (name == "password") {
+        handleFormFieldsErr(
+          "passwordErr",
+          Validation.validatePassword(signUpData.password)
+        );
+      } else {
+        handleFormFieldsErr(
+          "cpasswordErr",
+          Validation.validateConfirmPassword(
+            signUpData.password,
+            signUpData.cpassword
+          )
+        );
+      }
+    }
+    setEnableSubmitButton(true);
+  }
+
+  const handleSubmitForm = () => {
+    if (allValidationSuccessful()) {
+      console.log("signUpdata :- ", signUpData);
+    }
+    console.log("signUpdataErr :- ", signUpDataErr);
   };
 
   return (
@@ -133,19 +176,6 @@ const SignUpForm = (props) => {
       /> */}
       <Box className="signup">
         {/* <Typography className="new_account">Create new account</Typography> */}
-        {/* <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
-          <TextField
-            type="text"
-            name="username"
-            label="Username *"
-            variant="outlined"
-            value={signUpData.username}
-            onChange={handleChange}
-          />
-          {signUpDataErr.usernameErr ? (
-            <FormHelperText error>{signUpDataErr.usernameErr}</FormHelperText>
-          ) : null}
-        </FormControl> */}
         <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
           <TextField
             type="text"
@@ -154,6 +184,7 @@ const SignUpForm = (props) => {
             variant="outlined"
             value={signUpData.name}
             onChange={handleChange}
+            onBlur={handleValidation}
             sx={TextFieldStyle}
           />
           {signUpDataErr.nameErr ? (
@@ -168,6 +199,7 @@ const SignUpForm = (props) => {
             variant="outlined"
             value={signUpData.email}
             onChange={handleChange}
+            onBlur={handleValidation}
             sx={TextFieldStyle}
           />
           {signUpDataErr.emailErr ? (
@@ -182,6 +214,7 @@ const SignUpForm = (props) => {
             variant="outlined"
             value={signUpData.mobile}
             onChange={handleChange}
+            onBlur={handleValidation}
             sx={TextFieldStyle}
           />
           {signUpDataErr.mobileErr ? (
@@ -196,6 +229,7 @@ const SignUpForm = (props) => {
             variant="outlined"
             value={signUpData.password}
             onChange={handleChange}
+            onBlur={handleValidation}
             sx={TextFieldStyle}
           />
           {signUpDataErr.passwordErr ? (
@@ -210,6 +244,7 @@ const SignUpForm = (props) => {
             variant="outlined"
             value={signUpData.cpassword}
             onChange={handleChange}
+            onBlur={handleValidation}
             sx={TextFieldStyle}
           />
           {signUpDataErr.cpasswordErr ? (
@@ -219,6 +254,7 @@ const SignUpForm = (props) => {
         <Button
           className="signup_btn"
           variant="contained"
+          disabled={!enableSubmitButton}
           fullWidth
           onClick={handleSubmitForm}
           sx={ButtonStyle}
