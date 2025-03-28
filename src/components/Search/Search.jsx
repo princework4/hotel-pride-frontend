@@ -6,12 +6,16 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
+import { reducerMethods } from "../../context/reducerMethods";
 
 
 const Search = () => {
-  const [guestOptions, setguestOptions] = useState({ adult: 1, children: 0, room: 1 });
-  const [checkInDate, setCheckInDate] = useState(null);
-  const [checkOutDate, setCheckOutDate] = useState(null);
+  const { state, dispatch } = React.useContext(AppContext);
+  const { guestOptions, checkInDate, checkOutDate, isHomePage } = state;
+  // const [guestOptions, setguestOptions] = useState({ adults: 1, children: 0, room: 1 });
+  // const [checkInDate, setCheckInDate] = useState(null);
+  // const [checkOutDate, setCheckOutDate] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const navigate = useNavigate();
@@ -30,17 +34,28 @@ const Search = () => {
 
 
   const handleOption = (name, operation) => {
-    setguestOptions({
-      ...guestOptions,
-      [name]: operation === "i" ? guestOptions[name] + 1 : guestOptions[name] - 1,
-    });
+    dispatch({ type: reducerMethods.setGuestOptions, payload: { [name]: operation === "i" ? guestOptions[name] + 1 : guestOptions[name] - 1 } });
+
+    // setguestOptions({
+    //   ...guestOptions,
+    //   [name]: operation === "i" ? guestOptions[name] + 1 : guestOptions[name] - 1,
+    // });
   };
+
+  React.useEffect(() => {
+    if (window.location.pathname === "/") {
+      dispatch({ type: reducerMethods.setIsHomePage, payload: true })
+    }
+    else {
+      dispatch({ type: reducerMethods.setIsHomePage, payload: false })
+    }
+  })
 
   const handleSearch = () => {
     navigate("/rooms");
   };
 
-  return <div className="search-container">
+  return <div className={`search-container ${isHomePage ? "homePageSearch" : ""}`}>
     <form id="checkAvailability-form" >
 
       <div className="form-group">
@@ -48,7 +63,8 @@ const Search = () => {
           <DatePicker
             label="Check-In Date"
             value={checkInDate}
-            onChange={(newValue) => setCheckInDate(newValue)}
+            // onChange={(newValue) => setCheckInDate(newValue)}
+            onChange={(newValue) => dispatch({ type: reducerMethods.setCheckInDate, payload: newValue })}
             disablePast={true}
           />
         </LocalizationProvider>
@@ -57,7 +73,8 @@ const Search = () => {
           <DatePicker
             label="Check-Out Date"
             value={checkOutDate}
-            onChange={(newValue) => setCheckOutDate(newValue)}
+            // onChange={(newValue) => setCheckOutDate(newValue)}
+            onChange={(newValue) => dispatch({ type: reducerMethods.setCheckOutDate, payload: newValue })}
             disablePast={true}
           />
         </LocalizationProvider>
@@ -72,7 +89,7 @@ const Search = () => {
           variant="contained"
           fullWidth
           onClick={handleClick}
-          value={`${guestOptions.adult} Adult(s)  -  ${guestOptions.children} Child(ren)  -  ${guestOptions.room} Room(s)`} />
+          value={`${guestOptions.adults} adult(s)  -  ${guestOptions.children} Child(ren)  -  ${guestOptions.rooms} Room(s)`} />
         <Popover
           id={popOverId}
           open={open}
@@ -90,20 +107,20 @@ const Search = () => {
 
           <div className='guestInputs'>
             <div className="guest-group">
-              <span className="optionText"><strong>Adult(s)</strong></span>
+              <span className="optionText"><strong>adult(s)</strong></span>
               <div className="counter-buttons">
                 <button
-                  disabled={guestOptions.adult <= 1}
+                  disabled={guestOptions.adults <= 1}
                   className="counter__minus"
-                  onClick={() => handleOption("adult", "d")}
+                  onClick={() => handleOption("adults", "d")}
                 >
                   -
                 </button>
-                <input value={guestOptions.adult} />
+                <input value={guestOptions.adults} />
                 <button
-                  disabled={guestOptions.adult >= 9 - guestOptions.children}
+                  disabled={guestOptions.adults >= 9 - guestOptions.children}
                   className="counter__plus"
-                  onClick={() => handleOption("adult", "i")}
+                  onClick={() => handleOption("adults", "i")}
                 >
                   +
                 </button>
@@ -123,7 +140,7 @@ const Search = () => {
                 <input value={guestOptions.children} />
                 <button
                   className="counter__plus"
-                  disabled={guestOptions.children >= 9 - guestOptions.adult}
+                  disabled={guestOptions.children >= 9 - guestOptions.adults}
                   onClick={() => handleOption("children", "i")}
                 >
                   +
@@ -136,18 +153,18 @@ const Search = () => {
               <div className="counter-buttons">
                 <button
                   className="counter__minus"
-                  disabled={guestOptions.room <= 1}
-                  onClick={() => handleOption("room", "d")}
+                  disabled={guestOptions.rooms <= 1}
+                  onClick={() => handleOption("rooms", "d")}
                 >
                   -
                 </button>
                 <input
-                  value={guestOptions.room}
+                  value={guestOptions.rooms}
                 />
                 <button
                   className="counter__plus"
-                  disabled={guestOptions.room >= 7}
-                  onClick={() => handleOption("room", "i")}>
+                  disabled={guestOptions.rooms >= 7}
+                  onClick={() => handleOption("rooms", "i")}>
                   +
                 </button>
               </div>
