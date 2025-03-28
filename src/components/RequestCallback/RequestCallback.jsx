@@ -21,7 +21,10 @@ import "./RequestCallback.css";
 
 const RequestCallback = () => {
   const style = {
-    width: "400px",
+    width: {
+      xs: "315px",
+      sm: "400px",
+    },
     height: "auto",
     padding: "20px 20px 10px 20px",
     border: "none",
@@ -37,7 +40,6 @@ const RequestCallback = () => {
     // minWidth: 300,
     // p: 4,
   };
-
 
   const [changePosition, setChangePosition] = React.useState(false);
   const [enableSubmitButton, setEnableSubmitButton] = React.useState(false);
@@ -60,11 +62,17 @@ const RequestCallback = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    dispatch({ type: reducerMethods.setReqCallbackData, payload: { [name]: value } })
+    dispatch({
+      type: reducerMethods.setReqCallbackData,
+      payload: { [name]: value },
+    });
   };
 
   const handleFormFieldsErr = (errField, message) => {
-    dispatch({ type: reducerMethods.setReqCallbackDataErr, payload: { [errField]: message } })
+    dispatch({
+      type: reducerMethods.setReqCallbackDataErr,
+      payload: { [errField]: message },
+    });
   };
 
   function allValidationSuccessful() {
@@ -82,8 +90,7 @@ const RequestCallback = () => {
       requestCallbackDataErr.roomsErr === ""
     ) {
       return true;
-    }
-    else {
+    } else {
       handleValidation();
     }
   }

@@ -1,7 +1,7 @@
 import Chip from "../Chip";
 import ImageSlider from "../Slider";
 import Search from "../Search";
-import { Modal, Box } from '@mui/material';
+import { Modal, Box } from "@mui/material";
 import { roomImages } from "../../Constants";
 import Breakfast from "../../assets/utensils-solid.svg";
 import TV from "../../assets/tv-solid.svg";
@@ -23,7 +23,10 @@ const RoomCard = ({ roomType, roomDetails }) => {
   };
 
   const style = {
-    width: "400px",
+    width: {
+      xs: "335px",
+      sm: "400px",
+    },
     height: "auto",
     padding: "0",
     border: "none",
