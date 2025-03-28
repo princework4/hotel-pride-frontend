@@ -38,6 +38,25 @@ export const AppReducer = (state, action) => {
         requestCallbackDataErr: { ...state.requestCallbackDataErr, ...action.payload },
       };
 
+    case reducerMethods.setGuestOptions: {
+      return {
+        ...state,
+        guestOptions: { ...state.guestOptions, ...action.payload },
+      }
+    }
+
+    case reducerMethods.setCheckInDate: {
+      return { ...state, checkInDate: action.payload }
+    }
+
+    case reducerMethods.setCheckOutDate: {
+      return { ...state, checkOutDate: action.payload }
+    }
+
+    case reducerMethods.setIsHomePage: {
+      return { ...state, isHomePage: action.payload }
+    }
+
     case reducerMethods.setShowHam:
       return { ...state, showHam: action.payload };
 
