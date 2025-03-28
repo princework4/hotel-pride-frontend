@@ -30,7 +30,10 @@ const Navbar = () => {
   //   dispatch({ type: reducerMethods.setOpen, payload: false });
 
   const style = {
-    width: "400px",
+    width: {
+      xs: "315px",
+      sm: "400px",
+    },
     height: "auto",
     padding: "0",
     border: "none",

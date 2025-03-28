@@ -108,7 +108,12 @@ const PopupRateDetails = ({
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, itaque.
         </p>
         <h4>guarantee policy</h4>
-        <p style={{ paddingBottom: "20px", borderBottom: "1px solid #d9736d" }}>
+        <p
+          style={{
+            paddingBottom: "20px",
+            // borderBottom: "1px solid #d9736d"
+          }}
+        >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,
           inventore?
         </p>
