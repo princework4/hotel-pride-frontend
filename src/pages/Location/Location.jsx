@@ -23,20 +23,20 @@ const Location = () => {
             <h2>location and transportation</h2>
           </div>
           <p className="location__first_para">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum
-            accusantium minus quidem nulla, officia obcaecati enim? Aspernatur
-            dicta similique ipsa itaque culpa tempora maxime rerum nam officia,
-            eius, iusto corporis doloribus fugit! Itaque, harum, dolores
-            doloribus ex nihil assumenda delectus tempora adipisci non
-            voluptatem ipsam temporibus vitae recusandae nostrum provident.
+            Located in <strong>LBS Road</strong> in{" "}
+            <strong>Bhandup, Hotel Pride</strong> offers direct access to
+            Mumbai's business and travel hubs. With <strong>Powai</strong> just{" "}
+            <strong>10 minutes</strong> away and both airports within a{" "}
+            <strong>20-minute drive,</strong> commuting is quick and easy. The
+            nearby <strong>Eastern Express Highway</strong> and{" "}
+            <strong>Bhandup Railway Station</strong> make exploring the city
+            effortless.
           </p>
           <p className="location__second_para">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum
-            accusantium minus quidem nulla, officia obcaecati enim? Aspernatur
-            dicta similique ipsa itaque culpa tempora maxime rerum nam officia,
-            eius, iusto corporis doloribus fugit! Itaque, harum, dolores
-            doloribus ex nihil assumenda delectus tempora adipisci non
-            voluptatem ipsam temporibus vitae recusandae nostrum provident.
+            Explore the best of Mumbai with nearby attractions like{" "}
+            <strong>Powai Lake, R City Mall</strong> and{" "}
+            <strong>Hiranandani Gardens.</strong> Whether you're travelling for
+            business or pleasure, you'll find everything you need close by.
           </p>
           <div className="location__map_contact-container">
             <div>
@@ -111,16 +111,16 @@ const Location = () => {
                     nearby
                   </span>
                 </li>
-                <li>
+                {/* <li>
                   <span className="location__subdetails-heading">covered</span>
                   <span>:</span>
                   <span className="location__subdetails-description">
                     available
                   </span>
-                </li>
+                </li> */}
               </ul>
             </li>
-            <li>
+            {/* <li>
               <h3>transportation</h3>
               <ul className="location__subdetails">
                 <li>
@@ -153,30 +153,37 @@ const Location = () => {
                   </span>
                 </li>
               </ul>
-            </li>
+            </li> */}
             <li>
               <h3>what's nearby</h3>
               <ul className="location__subdetails">
                 <li>
-                  <span className="location__subdetails-heading">
-                    city center
-                  </span>
+                  <span className="location__subdetails-heading">powai</span>
                   <span>:</span>
-                  <span className="location__subdetails-description">1 km</span>
+                  <span className="location__subdetails-description">6 km</span>
+                </li>
+                <li>
+                  <span className="location__subdetails-heading">BKC</span>
+                  <span>:</span>
+                  <span className="location__subdetails-description">
+                    17 km
+                  </span>
+                </li>
+                <li>
+                  <span className="location__subdetails-heading">thane</span>
+                  <span>:</span>
+                  <span className="location__subdetails-description">
+                    10 km
+                  </span>
                 </li>
                 <li>
                   <span className="location__subdetails-heading">
-                    aga khan palace
+                    domestic airport
                   </span>
                   <span>:</span>
-                  <span className="location__subdetails-description">4 km</span>
-                </li>
-                <li>
-                  <span className="location__subdetails-heading">
-                    shaniwar wada
+                  <span className="location__subdetails-description">
+                    15 km
                   </span>
-                  <span>:</span>
-                  <span className="location__subdetails-description">4 km</span>
                 </li>
               </ul>
             </li>

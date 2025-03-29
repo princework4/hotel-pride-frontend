@@ -44,6 +44,11 @@
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 } */
 
+.room_types .heading_container + p {
+  margin: 15px 0 30px 80px;
+  color: grey;
+}
+
 .room_types__container {
   margin-top: 15px;
   display: flex;

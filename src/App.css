@@ -313,6 +313,10 @@ body p {
 }
 
 /* common styling */
+strong {
+  color: var(--burnt_rose);
+}
+
 .heading_container {
   display: flex;
   align-items: center;

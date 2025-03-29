@@ -26,23 +26,36 @@ const About = () => {
         <div className="wrapper">
           <div className="left_right_showcase__first">
             <div>
-              <p>Who we are ?</p>
+              {/* <p>Who we are ?</p> */}
               <h2>hotel pride</h2>
-              <p className="about__subheading">come live with us</p>
+              {/* <p className="about__subheading">come live with us</p> */}
+              <p className="about__subheading">
+                comfort and convenience in mumbai's thriving business hub
+              </p>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore
-                soluta nam deleniti fuga, omnis at, laborum ad ipsa iure, cum
-                suscipit possimus odit exercitationem consectetur dolore
-                architecto voluptates. Enim in reprehenderit ea quas laudantium
-                vero delectus doloribus debitis fugit suscipit. Distinctio sunt
-                dolor veritatis quos! Reprehenderit dignissimos molestias
-                architecto. Aperiam error dolores sapiente tempora in illo sed
-                ipsa. Quo ea placeat unde, sequi, deleniti dolorem atque quidem
-                ipsam ipsa, quasi eaque officiis! Facilis cupiditate beatae
-                eius, molestias maiores nihil voluptatem, voluptate distinctio
-                quod obcaecati dolores vel provident sequi illum dolor
-                voluptates eligendi, error voluptatibus consequuntur dolorum
-                enim illo modi. Hic.
+                <strong>A trusted name in hospitality for over 20 years</strong>{" "}
+                - Hotel Pride combines the warmth of a family-run business with
+                the efficiency of a business hotel. Nestled in the heart of{" "}
+                <strong>Bhandup,</strong> we offer{" "}
+                <strong>33 well-appointed rooms</strong> designed for both
+                business and leisure travelers.
+              </p>
+              <p>
+                Just <strong>10 minutes</strong> from the business district of{" "}
+                <strong>Powai</strong> and a <strong>20-minute drive</strong>{" "}
+                from both domestic and international airports, our location
+                ensures seamless connectivity. We're within{" "}
+                <strong>walking distance</strong> of the{" "}
+                <strong>Bhandup Railway Station</strong> and just{" "}
+                <strong>a kilometer</strong>
+                from the <strong>Eastern Express Highway</strong> - making it
+                easy to get around the city.{" "}
+              </p>
+              <p>
+                We've built a reputation for friendly service, thoughtful
+                amenities, and a welcoming environment. Whether you're visiting
+                for business or a family trip, <strong>Hotel Pride</strong> is
+                your go-to destination for affordable comfort in Mumbai.
               </p>
             </div>
             <figure>
@@ -61,21 +74,36 @@ const About = () => {
                 />
               </figure>
               <div>
-                <h2>more about us</h2>
+                <h2>why stay with us ?</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Commodi ipsa velit quas sint nostrum praesentium error
-                  aspernatur adipisci iste expedita, unde officiis, illo id
-                  ullam aperiam quis, quasi ducimus asperiores soluta quisquam
-                  natus deleniti ut. Beatae quod maiores magni dolores
-                  repudiandae culpa itaque quibusdam dolorum, delectus
-                  consequatur iste reiciendis expedita? Velit officiis placeat
-                  atque accusamus ratione! Nam dolorum qui ex quaerat culpa
-                  exercitationem libero aut atque modi enim. Ullam deleniti sed
-                  excepturi debitis accusantium dolor fuga tenetur cumque,
-                  magnam quaerat nesciunt vero libero aut optio laudantium
-                  consectetur, recusandae consequuntur veniam, modi laboriosam
-                  eum inventore officia cum quasi. Accusantium, hic saepe?
+                  Here's why <strong>Hotel Pride</strong> is the smart choice
+                  for your next stay:
+                </p>
+                <br />
+                <p>
+                  <strong>Budget-Friendly Comfort - </strong> Enjoy a
+                  comfortable and well-equipped stay without the high price tag
+                  - perfect for business and leisure travelers alike.
+                </p>
+                <p>
+                  <strong>Centrally Located - </strong> Just{" "}
+                  <strong>10 minutes</strong> from Powai's business district, a{" "}
+                  <strong>20-minute drive</strong> from the airports, and within
+                  <strong>walking distance</strong> of Bhandup Railway Station,
+                  ensuring easy access to Mumbai's key hubs.
+                </p>
+                <p>
+                  <strong>Friendly, Attentive Service - </strong> Our staff is
+                  dedicated to making your stay smooth and enjoyable - from
+                  quick check-ins to helpful local recommendations. Perfect for
+                  Business and Family Stays - Whether you're traveling solo or
+                  with family, our versatile room options and thoughtful
+                  amenities cater to every need.{" "}
+                </p>
+                <p>
+                  <strong>Unbeatable Value - </strong> Clean, secure, and
+                  well-maintained - experience comfort and convenience without
+                  stretching your budget.
                 </p>
               </div>
             </div>
