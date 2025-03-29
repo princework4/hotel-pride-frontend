@@ -1,10 +1,13 @@
 .search-container {
   position: relative;
-  margin-top: -6rem;
   padding: 15px;
   border-radius: 10px;
   background-color: #fff;
   margin-bottom: 40px;
+}
+
+.search-container.homePageSearch {
+  margin-top: -6rem;
 }
 
 .search-container form {

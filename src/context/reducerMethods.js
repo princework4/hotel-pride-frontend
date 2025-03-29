@@ -17,4 +17,8 @@ export const reducerMethods = {
   setSelectedRooms: "SET_SELECTED_ROOMS",
   setTotalPrice: "SET_TOTAL_PRICE",
   setShouldShowCallback: "SET_SHOULD_SHOW_CALLBACK",
+  setGuestOptions: "SET_GUEST_OPTIONS", // sets adults,children and rooms count
+  setCheckInDate: "SET_CHECK_IN_DATE",
+  setCheckOutDate: "SET_CHECK_OUT_DATE",
+  setIsHomePage: "SET_IS_HOME_PAGE",
 };

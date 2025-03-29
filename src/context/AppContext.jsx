@@ -26,9 +26,16 @@ const initialState = {
   open: false,
   colorChange: false,
   revertHeader: false,
-  adultCount: 0,
-  childCount: 0,
-  roomsCount: 1,
+  guestOptions: {
+    adults: 1,
+    children: 0,
+    rooms: 1,
+  },
+  checkInDate: null,
+  checkOutDate: null,
+  // adultCount: 0,
+  // childCount: 0,
+  // roomsCount: 1,
   userObj: {
     selectedRooms: [],
     totalPrice: 0,
@@ -41,6 +48,7 @@ const initialState = {
     3: 30,
   },
   shouldShowCallback: false,
+  isHomePage: true
 };
 
 export const AppContext = createContext(initialState);
