@@ -27,6 +27,7 @@
 }
 
 .amenity_card .grid > li p {
+  margin-top: 5px;
   color: var(--burnt_rose);
 }
 
@@ -36,6 +37,11 @@
   -webkit-box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
   -moz-box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
   box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
+}
+
+.amenity_card .grid > li img {
+  width: 35px;
+  height: 40px;
 }
 
 @media (max-width: 1024px) {

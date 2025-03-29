@@ -1,16 +1,28 @@
-import {
-  Accessibility,
-  DinnerDining,
-  DryCleaning,
-  FreeBreakfast,
-  LocalLaundryService,
-  LockOpen,
-  LocalParking,
-  SmokingRooms,
-  SmokeFree,
-  RoomService,
-  Wifi,
-} from "@mui/icons-material";
+import // Wc,
+// DinnerDining,
+// DryCleaning,
+// FreeBreakfast,
+// LocalLaundryService,
+// LockOpen,
+// LocalParking,
+// SmokingRooms,
+// SmokeFree,
+// RoomService,
+// Wifi,
+"@mui/icons-material";
+import AirConditioner from "./assets/air-conditioner.png";
+import AttachedWashroom from "./assets/bathroom.png";
+import CCTV from "./assets/cctv-camera.png";
+import HouseKeeping from "./assets/cleaner.png";
+import WorkDesk from "./assets/desk.png";
+import PowerBackup from "./assets/generator.png";
+import KitchenFacilities from "./assets/kitchen-appliances.png";
+import LaundryService from "./assets/laundry-machine.png";
+import LuggageStorage from "./assets/luggage.png";
+import Security from "./assets/policeman.png";
+import Smoking from "./assets/smoking.png";
+import NoSmoking from "./assets/no-smoking.png";
+import Wifi from "./assets/wifi.png";
 
 export const roomTypes = [
   ["Superior Room", "6,000", "6,500"],
@@ -147,15 +159,17 @@ export const guestsReviews = [
 ];
 
 export const amenities = [
-  [<Accessibility sx={{ color: "#d9736d" }} />, "Accessibility"],
-  [<FreeBreakfast sx={{ color: "#d9736d" }} />, "Breakfast"],
-  [<DinnerDining sx={{ color: "#d9736d" }} />, "Dinning"],
-  [<DryCleaning sx={{ color: "#d9736d" }} />, "Dry Cleaning"],
-  [<Wifi sx={{ color: "#d9736d" }} />, "Free Wifi"],
-  [<LocalLaundryService sx={{ color: "#d9736d" }} />, "Laundry"],
-  [<SmokeFree sx={{ color: "#d9736d" }} />, "Non - Smoking Rooms"],
-  [<LocalParking sx={{ color: "#d9736d" }} />, "Parking"],
-  [<LockOpen sx={{ color: "#d9736d" }} />, "Safe Deposit"],
-  [<SmokingRooms sx={{ color: "#d9736d" }} />, "Smoking Rooms"],
-  [<RoomService sx={{ color: "#d9736d" }} />, "Room Service"],
+  [AirConditioner, "Air Conditioning"],
+  [AttachedWashroom, "Attached Washroom"],
+  [CCTV, "CCTV Surveillance"],
+  [HouseKeeping, "Daily Housekeeping"],
+  [Wifi, "High Speed Wifi"],
+  [KitchenFacilities, "Kitchen Facilities"],
+  [LaundryService, "Laundry Service"],
+  [LuggageStorage, "Luggage Storage"],
+  [NoSmoking, "Non - Smoking Rooms"],
+  [PowerBackup, "Power Backup"],
+  [Smoking, "Smoking Rooms Available"],
+  [WorkDesk, "Work Desk"],
+  [Security, "24/7 On-Site Security"],
 ];

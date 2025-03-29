@@ -8,7 +8,8 @@ const AmenityCard = () => {
       <ul className="grid">
         {amenities?.map((amenity, i) => (
           <li key={i}>
-            {amenity[0]}
+            <img src={amenity[0]} alt={amenity[1]} />
+            {/* {amenity[0]} */}
             <p>{amenity[1]}</p>
           </li>
         ))}

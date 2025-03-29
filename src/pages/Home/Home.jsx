@@ -70,6 +70,12 @@ const Home = () => {
               <hr />
               <h2>room types</h2>
             </div>
+            <p>
+              Experience comfort and functionality with our well-appointed
+              rooms, thoughtfully designed to make your stay productive and
+              relaxing. Whether you're traveling for business or leisure, our
+              range of room options ensures a comfortable and hassle free stay.
+            </p>
             <div className="room_types__container">
               {roomTypes?.map((type, i) => (
                 <RoomCard

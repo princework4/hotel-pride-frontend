@@ -102,7 +102,7 @@
 
 .location .location__details {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-wrap: wrap;
 }
 
@@ -112,6 +112,10 @@
   border-radius: 20px;
   background-color: #fff;
   color: var(--burnt_rose);
+}
+
+.location .location__details > li:last-child {
+  margin-left: 50px;
 }
 
 .location .location__details li h3 {

@@ -1,4 +1,4 @@
-.filter_buttons {
+.gallery .filter_buttons {
   margin-top: 40px;
   display: flex;
   display: -webkit-flex;
@@ -6,7 +6,7 @@
   justify-content: center;
 }
 
-.filter_buttons .button {
+.gallery .filter_buttons .button {
   padding: 10px 25px;
   border: 1px solid transparent;
   border-radius: 15px;
@@ -26,7 +26,7 @@
   transition: 0.3s ease-in-out;
 }
 
-.grid {
+.gallery .grid {
   max-width: 1200px;
   padding: 0;
   margin: 40px auto;
@@ -35,7 +35,7 @@
   flex-wrap: wrap;
 }
 
-.grid > li {
+.gallery .grid > li {
   width: calc(100% / 3 - 30px);
   margin: 0px 15px;
   margin-bottom: 30px;
@@ -45,7 +45,7 @@
   overflow: hidden;
 }
 
-.grid > li img {
+.gallery .grid > li img {
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
   -o-transition: 0.3s ease-in-out;
@@ -53,7 +53,7 @@
   transition: 0.3s ease-in-out;
 }
 
-.filter_buttons .is_active {
+.gallery .filter_buttons .is_active {
   border-color: var(--burnt_rose);
   background-color: #fff;
   color: var(--burnt_rose);
@@ -76,13 +76,13 @@
 } */
 
 /* Hover Effects */
-.filter_buttons .button:hover {
+.gallery .filter_buttons .button:hover {
   border-color: var(--burnt_rose);
   background-color: #fff;
   color: var(--burnt_rose);
 }
 
-.grid > li img:hover {
+.gallery .grid > li img:hover {
   transform: scale(1.15);
 }
 
@@ -93,21 +93,22 @@
 
 /* Media Queries */
 @media (max-width: 845px) {
-  .filter_buttons {
+  .gallery .filter_buttons {
     gap: 10px;
   }
 }
 
 @media (max-width: 768px) {
-  .filter_buttons {
+  .gallery .filter_buttons {
     gap: 0;
   }
-  .filter_buttons .button {
+
+  .gallery .filter_buttons .button {
     padding: 5px 10px;
     margin: 5px;
   }
 
-  .grid > li {
+  .gallery .grid > li {
     width: calc(100% - 30px);
   }
 }
