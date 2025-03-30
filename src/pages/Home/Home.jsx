@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import RoomCard from "../../components/RoomCard";
 import {
-  roomTypes,
+  allRoomTypes,
   roomDetails,
   galleryImgs,
   guestsReviews,
 } from "../../Constants";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import Reviews from "../../components/Reviews/Reviews";
 import Banner from "../../components/Banner";
 import Search from "../../components/Search";
@@ -21,6 +21,8 @@ import { reducerMethods } from "../../context/reducerMethods";
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);
   let navigate = useNavigate();
+  const location = useLocation();
+  const navigation = useNavigationType();
   const routeChange = (path) => {
     navigate(path);
   };
@@ -29,6 +31,22 @@ const Home = () => {
     window.scrollTo(0, 0);
     dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
   }, []);
+
+  React.useEffect(() => {
+    if (navigation == "POP" && location.pathname == "/") {
+      dispatch({
+        type: reducerMethods.setGuestOptions,
+        payload: {
+          adults: 1,
+          children: 0,
+          rooms: 1,
+        },
+      });
+      dispatch({ type: reducerMethods.setCheckInDate, payload: null });
+      dispatch({ type: reducerMethods.setCheckOutDate, payload: null });
+      dispatch({ type: reducerMethods.setSelectedRooms, payload: [] });
+    }
+  }, [location]);
 
   return (
     <>
@@ -77,11 +95,12 @@ const Home = () => {
               range of room options ensures a comfortable and hassle free stay.
             </p>
             <div className="room_types__container">
-              {roomTypes?.map((type, i) => (
+              {allRoomTypes?.map((type, i) => (
                 <RoomCard
                   key={i}
                   roomType={type[0]}
                   roomDetails={roomDetails[i]}
+                  roomNo={i}
                 />
               ))}
             </div>

@@ -13,7 +13,7 @@ import "./RoomCard.css";
 
 import React from "react";
 
-const RoomCard = ({ roomType, roomDetails }) => {
+const RoomCard = ({ roomType, roomDetails, roomNo }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -113,7 +113,11 @@ const RoomCard = ({ roomType, roomDetails }) => {
           {/* <Box className="close_icon_wrapper">
                       <CloseIconCircle handleClose={handleClose} />
                     </Box> */}
-          <Search handleClose={handleClose} />
+          <Search
+            handleClose={handleClose}
+            callFromRoomCard={true}
+            selectedRoomTypeNo={roomNo}
+          />
         </Box>
       </Modal>
     </div>

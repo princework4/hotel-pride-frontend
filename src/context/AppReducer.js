@@ -29,32 +29,38 @@ export const AppReducer = (state, action) => {
     case reducerMethods.setReqCallbackData:
       return {
         ...state,
-        requestCallbackData: { ...state.requestCallbackData, ...action.payload },
+        requestCallbackData: {
+          ...state.requestCallbackData,
+          ...action.payload,
+        },
       };
 
     case reducerMethods.setReqCallbackDataErr:
       return {
         ...state,
-        requestCallbackDataErr: { ...state.requestCallbackDataErr, ...action.payload },
+        requestCallbackDataErr: {
+          ...state.requestCallbackDataErr,
+          ...action.payload,
+        },
       };
 
     case reducerMethods.setGuestOptions: {
       return {
         ...state,
         guestOptions: { ...state.guestOptions, ...action.payload },
-      }
+      };
     }
 
     case reducerMethods.setCheckInDate: {
-      return { ...state, checkInDate: action.payload }
+      return { ...state, checkInDate: action.payload };
     }
 
     case reducerMethods.setCheckOutDate: {
-      return { ...state, checkOutDate: action.payload }
+      return { ...state, checkOutDate: action.payload };
     }
 
     case reducerMethods.setIsHomePage: {
-      return { ...state, isHomePage: action.payload }
+      return { ...state, isHomePage: action.payload };
     }
 
     case reducerMethods.setShowHam:
@@ -108,25 +114,34 @@ export const AppReducer = (state, action) => {
     case reducerMethods.setSelectedRooms:
       return {
         ...state,
-        userObj: {
-          ...state.userObj,
-          selectedRooms: action.payload,
-        },
+        selectedRooms: action.payload,
       };
 
-    case reducerMethods.setTotalPrice:
-      return {
-        ...state,
-        userObj: {
-          ...state.userObj,
-          totalPrice: action.payload,
-        },
-      };
+    // case reducerMethods.setTotalPrice:
+    //   return {
+    //     ...state,
+    //     userObj: {
+    //       ...state.userObj,
+    //       totalPrice: action.payload,
+    //     },
+    //   };
 
     case reducerMethods.setShouldShowCallback:
       return {
         ...state,
         shouldShowCallback: action.payload,
+      };
+
+    case reducerMethods.setSelectedRoomType:
+      return {
+        ...state,
+        selectedRoomType: action.payload,
+      };
+
+    case reducerMethods.setSteppersActiveStep:
+      return {
+        ...state,
+        steppersActiveStep: action.payload,
       };
 
     default:
