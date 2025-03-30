@@ -99,6 +99,13 @@
   }
 } */
 
+@media (max-width: 997px) {
+  .room_types .heading_container + p {
+    margin-left: 20px;
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 768px) {
   /* .about .left_right_showcase figure {
     width: 90%;
@@ -117,9 +124,7 @@
   .gallery__container figure {
     width: calc(100% / 2 - 40px);
   }
-}
 
-@media (max-width: 768px) {
   .room_types__container .slick-slide img,
   .room_types__container .imgslider {
     height: 100%;

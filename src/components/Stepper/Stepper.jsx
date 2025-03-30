@@ -48,12 +48,13 @@ function a11yProps(index) {
 
 export default function CustomStepper() {
   const { state, dispatch } = React.useContext(AppContext);
+  const { guestOptions, selectedRooms } = state;
   const [activeStep, setActiveStep] = React.useState(0);
   const [value, setValue] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
   // const [user, setUser] = React.useState({ selectedRoom: [], totalPrice: 0 });
   // const [selectedRoom, setSelectedRoom] = React.useState(
-  // state.userObj.selectedRooms
+  // selectedRooms
   // );
   const theme = useTheme();
 
@@ -63,19 +64,27 @@ export default function CustomStepper() {
   };
 
   React.useEffect(() => {
-    for (let i = 0; i < state.roomsCount; i++) {
-      if (state.userObj.selectedRooms?.length == i) setValue(i);
+    console.log("selectedRooms :- ", selectedRooms);
+    for (let i = 0; i < guestOptions.rooms; i++) {
+      if (selectedRooms?.length == i) setValue(i);
     }
-    if (state.userObj.selectedRooms?.length == state.roomsCount) {
-      const total = state.userObj.selectedRooms?.reduce(
+    if (selectedRooms?.length == guestOptions.rooms) {
+      const total = selectedRooms?.reduce(
         (acc, item) => (acc += item.price),
         0
       );
       setTotalPrice(total);
-      if (activeStep == 0) setActiveStep(activeStep + 1);
+      if (activeStep == 0) {
+        setActiveStep(activeStep + 1);
+        dispatch({
+          type: reducerMethods.setSteppersActiveStep,
+          payload: 2,
+        });
+      }
     }
+
     window.scrollTo(0, 0);
-  }, [state.userObj]);
+  }, [selectedRooms.length]);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -123,7 +132,7 @@ export default function CustomStepper() {
             className="rooms_tab"
             sx={TabsStyle}
           >
-            {[...Array(state.roomsCount)]?.map((_, index) => {
+            {[...Array(guestOptions.rooms)]?.map((_, index) => {
               if (index == 0) {
                 return (
                   <Tab
@@ -147,7 +156,7 @@ export default function CustomStepper() {
               );
             })}
           </Tabs>
-          {[...Array(state.roomsCount)]?.map((_, index) => (
+          {[...Array(guestOptions.rooms)]?.map((_, index) => (
             <TabPanel
               value={value}
               index={index}

@@ -24,7 +24,7 @@ import Smoking from "./assets/smoking.png";
 import NoSmoking from "./assets/no-smoking.png";
 import Wifi from "./assets/wifi.png";
 
-export const roomTypes = [
+export const allRoomTypes = [
   ["Superior Room", "6,000", "6,500"],
   ["Delux Room", "8,000", "8,500"],
   ["Standard Room", "5,000", "5,500"],

@@ -15,7 +15,7 @@ import {
   TextField,
 } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
-import { roomTypes } from "../../Constants";
+import { allRoomTypes } from "../../Constants";
 import "./PopupRoomDetails.css";
 
 const PopupRoomDetails = ({ open, handleClose, index }) => {
@@ -55,7 +55,7 @@ const PopupRoomDetails = ({ open, handleClose, index }) => {
       className="popup_room_details"
     >
       <Box sx={style}>
-        <h3>{roomTypes[index][0]}</h3>
+        <h3>{allRoomTypes[index][0]}</h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
           unde quam repellat quasi qui error mollitia alias corrupti adipisci

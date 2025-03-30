@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
 
-const Search = () => {
+const Search = ({ callFromRoomCard = false, selectedRoomTypeNo }) => {
   const { state, dispatch } = React.useContext(AppContext);
   const { guestOptions, checkInDate, checkOutDate, isHomePage } = state;
   // const [guestOptions, setguestOptions] = useState({ adults: 1, children: 0, room: 1 });
@@ -51,9 +51,15 @@ const Search = () => {
     } else {
       dispatch({ type: reducerMethods.setIsHomePage, payload: false });
     }
-  });
+  }, []);
 
   const handleSearch = () => {
+    if (callFromRoomCard) {
+      dispatch({
+        type: reducerMethods.setSelectedRoomType,
+        payload: selectedRoomTypeNo,
+      });
+    }
     navigate("/rooms");
   };
 
@@ -228,6 +234,12 @@ const Search = () => {
           className="search-btn"
           disabled={!checkInDate || !checkOutDate}
           onClick={handleSearch}
+          sx={{
+            ".Mui-disabled": {
+              backgroundColor: "rgba(0, 0, 0, 0.12)",
+              color: "rgba(0, 0, 0, 0.26)",
+            },
+          }}
         >
           Search
         </Button>

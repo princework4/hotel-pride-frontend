@@ -13,11 +13,14 @@ import {
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HotelIcon from "@mui/icons-material/Hotel";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
-import "./GuestDetails.css";
 import { AppContext } from "../../context/AppContext";
+import dayjs from "dayjs";
+import "./GuestDetails.css";
+import { reducerMethods } from "../../context/reducerMethods";
 
 const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   const { state, dispatch } = useContext(AppContext);
+  const { checkInDate, checkOutDate, guestOptions, selectedRooms } = state;
   const boxContainerStyle = {
     marginTop: "40px",
     display: "grid",
@@ -63,6 +66,14 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     // maxWidth: 400,
     // minWidth: 300,
     // p: 4,
+  };
+
+  const handleClick = () => {
+    setActiveStep(activeStep + 1);
+    dispatch({
+      type: reducerMethods.setSteppersActiveStep,
+      payload: 3,
+    });
   };
 
   return (
@@ -142,19 +153,35 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
           <div className="payment_summary__container">
             <h4>
               <CalendarMonthIcon />
-              <span>from and to</span>
+              {/* <span>{new Date(checkInDate?.$d)}</span>
+              <span>{new Date(checkOutDate?.$d)}</span> */}
+              <span>
+                {dayjs(checkInDate).format("DD")}{" "}
+                {dayjs(checkInDate).format("MMMM")}{" "}
+                {/* {dayjs(checkInDate).format("YY")} */}
+              </span>
+              <span>to</span>
+              <span>
+                {dayjs(checkOutDate).format("DD")}{" "}
+                {dayjs(checkOutDate).format("MMMM")}{" "}
+                {/* {dayjs(checkOutDate).format("YY")} */}
+              </span>
             </h4>
             <h4 className="payment_summary__room_details">
               <HotelIcon />
               <span>
-                {state.userObj.selectedRooms?.length}{" "}
-                {state.userObj.selectedRooms?.length > 1 ? "rooms" : "room"}, 5
-                adults
+                {selectedRooms?.length}{" "}
+                {selectedRooms?.length > 1 ? "rooms" : "room"},{" "}
+                {guestOptions.adults}{" "}
+                {guestOptions.adults == 1 ? "adult" : "adults"}
+                {guestOptions.children > 0 && guestOptions.children}
+                {guestOptions.children > 0 &&
+                  (guestOptions.children == 1 ? "child" : "children")}
               </span>
             </h4>
             <ul className="payment_summary__selected_rooms_details">
-              {state.userObj.selectedRooms?.map((room, index) => (
-                <li>
+              {selectedRooms?.map((room, index) => (
+                <li key={index}>
                   <h4>{`Room ${index + 1}`}</h4>
                   <span>{room?.roomType}</span>
                   <span>
@@ -187,11 +214,9 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
         </Box>
         <div
           className="payment_button"
-          style={{ marginTop: "-150px", gridRowStart: 2, textAlign: "center" }}
+          style={{ marginTop: "-50px", gridRowStart: 2, textAlign: "center" }}
         >
-          <button onClick={() => setActiveStep(activeStep + 1)}>
-            Proceed For Payment
-          </button>
+          <button onClick={handleClick}>Proceed For Payment</button>
         </div>
       </Box>
     </>

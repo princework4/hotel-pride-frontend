@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ImageSlider from "../Slider/Slider";
-import { roomDetails, roomImages, roomTypes } from "../../Constants";
+import { roomDetails, roomImages, allRoomTypes } from "../../Constants";
 import Chip from "../Chip";
 import SquareIcon from "@mui/icons-material/Square";
 import Breakfast from "../../assets/utensils-solid.svg";
@@ -14,10 +14,20 @@ import PopupRateDetails from "../PopupRateDetails/PopupRateDetails";
 import "./RoomListing.css";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
+import { useNavigate } from "react-router-dom";
 
 const RoomListing = ({ roomNumber }) => {
   const { state, dispatch } = useContext(AppContext);
-  const [selectedRoom, setSelectedRoom] = useState(state.userObj.selectedRooms);
+  const {
+    checkInDate,
+    checkOutDate,
+    isOfferAvailable,
+    offers,
+    selectedRoomType,
+    selectedRooms,
+  } = state;
+  const [roomTypes, setRoomTypes] = useState(allRoomTypes);
+  const [selectedRoom, setSelectedRoom] = useState(selectedRooms);
   const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
   const [openRoomDetails, setOpenRoomDetails] = React.useState([
     false,
@@ -29,6 +39,19 @@ const RoomListing = ({ roomNumber }) => {
     withBreakfast: [false, false, false, false],
     withoutBreakfast: [false, false, false, false],
   });
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedRoomType != null) {
+      const filteredRoomType = roomTypes.filter(
+        (_, i) => i == selectedRoomType
+      );
+      setRoomTypes(filteredRoomType);
+    }
+    if (!checkInDate || !checkOutDate) {
+      navigate("/");
+    }
+  }, []);
 
   const handleRoomDetailsOpen = (idx) => {
     const temp = [...openRoomDetails];
@@ -64,7 +87,7 @@ const RoomListing = ({ roomNumber }) => {
     price,
     selectedRoomNo
   ) {
-    const temp = state.userObj.selectedRooms;
+    const temp = selectedRooms;
     if (temp?.[roomNumber]) {
       temp[roomNumber].roomType = roomType;
       temp[roomNumber].isBreakfastIncluded = isBreakfastIncluded;
@@ -86,7 +109,7 @@ const RoomListing = ({ roomNumber }) => {
 
   function calculateOfferedPrice(price, index) {
     return Math.round(
-      Number(price.replaceAll(",", "")) * ((100 - state.offers[index]) / 100)
+      Number(price.replaceAll(",", "")) * ((100 - offers[index]) / 100)
     );
   }
 
@@ -95,7 +118,7 @@ const RoomListing = ({ roomNumber }) => {
       {roomTypes?.map((roomType, index) => (
         <div
           className={
-            state.userObj.selectedRooms?.[roomNumber]?.selectedRoomNo == index
+            selectedRooms?.[roomNumber]?.selectedRoomNo == index
               ? "selected_room room"
               : "room"
           }
@@ -185,45 +208,41 @@ const RoomListing = ({ roomNumber }) => {
                 <div className="room_price__with_breakfast-right">
                   <div>
                     <span
-                      className={
-                        state.isOfferAvailable ? "cancelled_price" : "price"
-                      }
+                      className={isOfferAvailable ? "cancelled_price" : "price"}
                     >
                       &#8377;{roomType[2]}
                     </span>
-                    {state.isOfferAvailable && (
+                    {isOfferAvailable && (
                       <span className="offer_percent">
-                        ({state.offers[index]}% off)
+                        ({offers[index]}% off)
                       </span>
                     )}
                   </div>
-                  {state.isOfferAvailable && (
+                  {isOfferAvailable && (
                     <span className="offered_price">
                       &#8377;{calculateOfferedPrice(roomType[2], index)}
                     </span>
                   )}
                   <button
                     className={
-                      state.userObj.selectedRooms?.[roomNumber]
-                        ?.selectedRoomNo == index && "selected_room_button"
+                      selectedRooms?.[roomNumber]?.selectedRoomNo == index &&
+                      "selected_room_button"
                     }
                     disabled={
-                      state.userObj.selectedRooms?.[roomNumber]
-                        ?.selectedRoomNo == index
+                      selectedRooms?.[roomNumber]?.selectedRoomNo == index
                     }
                     onClick={() =>
                       handleButtonClick(
                         roomType[0],
                         true,
-                        state.isOfferAvailable
+                        isOfferAvailable
                           ? calculateOfferedPrice(roomType[2], index)
                           : Number(roomType[2].replaceAll(",", "")),
                         index
                       )
                     }
                   >
-                    {state.userObj.selectedRooms?.[roomNumber]
-                      ?.selectedRoomNo == index
+                    {selectedRooms?.[roomNumber]?.selectedRoomNo == index
                       ? "selected"
                       : "select"}
                   </button>
@@ -262,45 +281,41 @@ const RoomListing = ({ roomNumber }) => {
                 <div className="room_price__with_breakfast-right">
                   <div>
                     <span
-                      className={
-                        state.isOfferAvailable ? "cancelled_price" : "price"
-                      }
+                      className={isOfferAvailable ? "cancelled_price" : "price"}
                     >
                       &#8377;{roomType[1]}
                     </span>
-                    {state.isOfferAvailable && (
+                    {isOfferAvailable && (
                       <span className="offer_percent">
-                        ({state.offers[index]}% off)
+                        ({offers[index]}% off)
                       </span>
                     )}
                   </div>
-                  {state.isOfferAvailable && (
+                  {isOfferAvailable && (
                     <span className="offered_price">
                       &#8377;{calculateOfferedPrice(roomType[1], index)}
                     </span>
                   )}
                   <button
                     className={
-                      state.userObj.selectedRooms?.[roomNumber]
-                        ?.selectedRoomNo == index && "selected_room_button"
+                      selectedRooms?.[roomNumber]?.selectedRoomNo == index &&
+                      "selected_room_button"
                     }
                     disabled={
-                      state.userObj.selectedRooms?.[roomNumber]
-                        ?.selectedRoomNo == index
+                      selectedRooms?.[roomNumber]?.selectedRoomNo == index
                     }
                     onClick={() =>
                       handleButtonClick(
                         roomType[0],
                         false,
-                        state.isOfferAvailable
+                        isOfferAvailable
                           ? calculateOfferedPrice(roomType[1], index)
                           : Number(roomType[1].replaceAll(",", "")),
                         index
                       )
                     }
                   >
-                    {state.userObj.selectedRooms?.[roomNumber]
-                      ?.selectedRoomNo == index
+                    {selectedRooms?.[roomNumber]?.selectedRoomNo == index
                       ? "selected"
                       : "select"}
                   </button>
