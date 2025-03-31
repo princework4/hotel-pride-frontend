@@ -8,7 +8,7 @@ const Rooms = () => {
   return (
     <section>
       <div className="wrapper">
-        {state.steppersActiveStep === 1 && <Search />}
+        {/* {state.steppersActiveStep === 1 && <Search />} */}
         <CustomStepper />
       </div>
     </section>

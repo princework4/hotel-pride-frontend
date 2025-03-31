@@ -21,6 +21,7 @@ export const reducerMethods = {
   setCheckInDate: "SET_CHECK_IN_DATE",
   setCheckOutDate: "SET_CHECK_OUT_DATE",
   setIsHomePage: "SET_IS_HOME_PAGE",
-  setSelectedRoomType: "SET_SELECTED_ROOM_TYPE",
+  setSelectedRoomTypeId: "SET_SELECTED_ROOM_TYPE_ID",
   setSteppersActiveStep: "SET_STEPPERS_ACTIVE_STEP",
+  setAllRoomTypes: "SET_ALL_ROOM_TYPES",
 };

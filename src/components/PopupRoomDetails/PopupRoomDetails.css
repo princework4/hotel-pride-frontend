@@ -7,11 +7,11 @@
 }
 
 .popup_room_details p {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .popup_room_details h4 {
-  margin: 15px 0 10px;
+  margin: 15px 0;
   color: var(--burnt_rose);
   font-size: 20px;
   font-weight: 600;

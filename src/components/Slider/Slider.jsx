@@ -35,9 +35,9 @@ const ImageSlider = ({
         }
       >
         <Slider {...settings}>
-          {images.map((item, index) => (
-            <div className="slider_div" key={index}>
-              <img src={item[0]} alt={item[1]} />
+          {images.map((item) => (
+            <div className="slider_div" key={item.id}>
+              <img src={item.assetUrl} alt={item.assetThumbUrl} />
             </div>
           ))}
         </Slider>
