@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
 
-const Search = ({ callFromRoomCard = false, selectedRoomTypeNo }) => {
+const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
   const { state, dispatch } = React.useContext(AppContext);
   const { guestOptions, checkInDate, checkOutDate, isHomePage } = state;
   // const [guestOptions, setguestOptions] = useState({ adults: 1, children: 0, room: 1 });
@@ -56,8 +56,8 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeNo }) => {
   const handleSearch = () => {
     if (callFromRoomCard) {
       dispatch({
-        type: reducerMethods.setSelectedRoomType,
-        payload: selectedRoomTypeNo,
+        type: reducerMethods.setSelectedRoomTypeId,
+        payload: selectedRoomTypeId,
       });
     }
     navigate("/rooms");

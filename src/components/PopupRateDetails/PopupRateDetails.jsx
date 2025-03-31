@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Box,
@@ -15,15 +15,19 @@ import {
   TextField,
 } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
-import { roomTypes } from "../../Constants";
+import { allRoomTypes } from "../../Constants";
 import "./PopupRateDetails.css";
+import { AppContext } from "../../context/AppContext";
 
-const PopupRateDetails = ({
-  isBreakfastIncluded,
-  open,
-  handleClose,
-  index,
-}) => {
+const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
+  const { state, dispatch } = useContext(AppContext);
+  const [rooms, setRooms] = useState(state.allRoomTypes);
+
+  useEffect(() => {
+    const filteredRoom = rooms.filter((item) => item.id === id);
+    setRooms(filteredRoom);
+  }, []);
+
   const style = {
     width: {
       xs: "300px",

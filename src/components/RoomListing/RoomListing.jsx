@@ -19,32 +19,59 @@ import { useNavigate } from "react-router-dom";
 const RoomListing = ({ roomNumber }) => {
   const { state, dispatch } = useContext(AppContext);
   const {
+    allRoomTypes,
+    breakfastPrice,
     checkInDate,
     checkOutDate,
     isOfferAvailable,
     offers,
-    selectedRoomType,
     selectedRooms,
+    selectedRoomTypeId,
   } = state;
   const [roomTypes, setRoomTypes] = useState(allRoomTypes);
-  const [selectedRoom, setSelectedRoom] = useState(selectedRooms);
-  const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
-  const [openRoomDetails, setOpenRoomDetails] = React.useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
+  // const [selectedRoom, setSelectedRoom] = useState(selectedRooms);
+  // const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
+  // const [openRoomDetails, setOpenRoomDetails] = React.useState([
+  //   false,
+  //   false,
+  //   false,
+  // ]);
+  const [openRoomDetails, setOpenRoomDetails] = React.useState({});
   const [openRateDetails, setOpenRateDetails] = React.useState({
-    withBreakfast: [false, false, false, false],
-    withoutBreakfast: [false, false, false, false],
+    withBreakfast: {},
+    withoutBreakfast: {},
   });
   let navigate = useNavigate();
 
+  function initializePopupState(isRoomDetails) {
+    if (isRoomDetails) {
+      const obj = {};
+      for (let i = 0; i < allRoomTypes?.length; i++) {
+        obj[allRoomTypes[i]["id"]] = false;
+      }
+      return obj;
+    } else {
+      const withBreakfast = {};
+      const withoutBreakfast = {};
+      for (let i = 0; i < allRoomTypes?.length; i++) {
+        withBreakfast[allRoomTypes[i]["id"]] = false;
+        withoutBreakfast[allRoomTypes[i]["id"]] = false;
+      }
+      return {
+        withBreakfast: withBreakfast,
+        withoutBreakfast: withoutBreakfast,
+      };
+    }
+  }
   useEffect(() => {
-    if (selectedRoomType != null) {
+    setOpenRoomDetails(initializePopupState(true));
+    setOpenRateDetails(initializePopupState(false));
+  }, []);
+
+  useEffect(() => {
+    if (selectedRoomTypeId != null) {
       const filteredRoomType = roomTypes.filter(
-        (_, i) => i == selectedRoomType
+        (item) => item.id == selectedRoomTypeId
       );
       setRoomTypes(filteredRoomType);
     }
@@ -54,18 +81,20 @@ const RoomListing = ({ roomNumber }) => {
   }, []);
 
   const handleRoomDetailsOpen = (idx) => {
-    const temp = [...openRoomDetails];
+    const temp = { ...openRoomDetails };
     temp[idx] = true;
-    setActiveRoomNoIndex(idx);
+    // setActiveRoomNoIndex(idx);
     setOpenRoomDetails(temp);
   };
 
+  // const handleRoomDetailsClose = () =>
+  //   setOpenRoomDetails([false, false, false]);
   const handleRoomDetailsClose = () =>
-    setOpenRoomDetails([false, false, false, false]);
+    setOpenRoomDetails(initializePopupState(true));
 
   const handleRateDetailsOpen = (idx, isBreakfastIncluded) => {
     const temp = { ...openRateDetails };
-    setActiveRoomNoIndex(idx);
+    // setActiveRoomNoIndex(idx);
     if (isBreakfastIncluded) {
       temp["withBreakfast"][idx] = true;
     } else {
@@ -75,30 +104,27 @@ const RoomListing = ({ roomNumber }) => {
   };
 
   const handleRateDetailsClose = () => {
-    setOpenRateDetails({
-      withBreakfast: [false, false, false, false],
-      withoutBreakfast: [false, false, false, false],
-    });
+    setOpenRateDetails(initializePopupState(false));
   };
 
   function handleButtonClick(
     roomType,
     isBreakfastIncluded,
     price,
-    selectedRoomNo
+    selectedRoomId
   ) {
     const temp = selectedRooms;
     if (temp?.[roomNumber]) {
       temp[roomNumber].roomType = roomType;
       temp[roomNumber].isBreakfastIncluded = isBreakfastIncluded;
       temp[roomNumber].price = price;
-      temp[roomNumber].selectedRoomNo = selectedRoomNo;
+      temp[roomNumber].selectedRoomId = selectedRoomId;
     } else {
       temp.push({
         roomType: roomType,
         isBreakfastIncluded: isBreakfastIncluded,
         price: price,
-        selectedRoomNo: selectedRoomNo,
+        selectedRoomId: selectedRoomId,
       });
     }
 
@@ -107,10 +133,8 @@ const RoomListing = ({ roomNumber }) => {
     console.log("state --> ", state);
   }
 
-  function calculateOfferedPrice(price, index) {
-    return Math.round(
-      Number(price.replaceAll(",", "")) * ((100 - offers[index]) / 100)
-    );
+  function calculateOfferedPrice(price, id) {
+    return Math.round(Number(price * ((100 - offers[id]) / 100)));
   }
 
   return (
@@ -118,26 +142,26 @@ const RoomListing = ({ roomNumber }) => {
       {roomTypes?.map((roomType, index) => (
         <div
           className={
-            selectedRooms?.[roomNumber]?.selectedRoomNo == index
+            selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
               ? "selected_room room"
               : "room"
           }
-          key={index}
+          key={roomType.id}
         >
           <div className="room_details">
             <ImageSlider
               slidesToShow={1}
               slidesToScroll={1}
-              images={roomImages}
+              images={roomType.assets}
               isCarousel={false}
             />
             <ul className="room_details__chips">
               <li key={Math.random()}>
-                <Chip content={roomDetails[index][0]} />
+                <Chip content={[roomType.roomSizeInSquareFeet + " ft²"]} />
               </li>
-              <li key={Math.random()}>
+              {/* <li key={Math.random()}>
                 <Chip content={roomDetails[index][1]} />
-              </li>
+              </li> */}
             </ul>
             <ul className="room_basic_amenities">
               <li>
@@ -161,19 +185,19 @@ const RoomListing = ({ roomNumber }) => {
             </ul>
             <button
               className="room_details__popup-button"
-              onClick={() => handleRoomDetailsOpen(index)}
+              onClick={() => handleRoomDetailsOpen(roomType.id)}
             >
               room details
             </button>
             <PopupRoomDetails
-              open={openRoomDetails[index]}
+              open={openRoomDetails[roomType.id]}
               handleClose={handleRoomDetailsClose}
-              index={activeRoomNoIndex}
-              key={index}
+              id={roomType.id}
+              key={roomType.id}
             />
           </div>
           <div className="room_price">
-            <h3>{roomType[0]}</h3>
+            <h3>{roomType.typeName}</h3>
             <div className="room_price__container">
               <div className="room_price__with_breakfast">
                 <div className="room_price__with_breakfast-left">
@@ -194,15 +218,15 @@ const RoomListing = ({ roomNumber }) => {
                   </ul>
                   <button
                     className="rate_details__popup-button"
-                    onClick={() => handleRateDetailsOpen(index, true)}
+                    onClick={() => handleRateDetailsOpen(roomType.id, true)}
                   >
                     rate details
                   </button>
                   <PopupRateDetails
                     isBreakfastIncluded={true}
-                    open={openRateDetails["withBreakfast"][index]}
+                    open={openRateDetails["withBreakfast"][roomType.id]}
                     handleClose={handleRateDetailsClose}
-                    index={activeRoomNoIndex}
+                    id={roomType.id}
                   />
                 </div>
                 <div className="room_price__with_breakfast-right">
@@ -210,39 +234,47 @@ const RoomListing = ({ roomNumber }) => {
                     <span
                       className={isOfferAvailable ? "cancelled_price" : "price"}
                     >
-                      &#8377;{roomType[2]}
+                      &#8377;{roomType.pricePerNight + breakfastPrice}
                     </span>
                     {isOfferAvailable && (
                       <span className="offer_percent">
-                        ({offers[index]}% off)
+                        ({offers[roomType.id]}% off)
                       </span>
                     )}
                   </div>
                   {isOfferAvailable && (
                     <span className="offered_price">
-                      &#8377;{calculateOfferedPrice(roomType[2], index)}
+                      &#8377;
+                      {calculateOfferedPrice(
+                        roomType.pricePerNight + breakfastPrice,
+                        roomType.id
+                      )}
                     </span>
                   )}
                   <button
                     className={
-                      selectedRooms?.[roomNumber]?.selectedRoomNo == index &&
-                      "selected_room_button"
+                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                        ? "selected_room_button"
+                        : ""
                     }
                     disabled={
-                      selectedRooms?.[roomNumber]?.selectedRoomNo == index
+                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
                     }
                     onClick={() =>
                       handleButtonClick(
-                        roomType[0],
+                        roomType.typeName,
                         true,
                         isOfferAvailable
-                          ? calculateOfferedPrice(roomType[2], index)
-                          : Number(roomType[2].replaceAll(",", "")),
-                        index
+                          ? calculateOfferedPrice(
+                              roomType.pricePerNight + breakfastPrice,
+                              roomType.id
+                            )
+                          : Number(roomType.pricePerNight + breakfastPrice),
+                        roomType.id
                       )
                     }
                   >
-                    {selectedRooms?.[roomNumber]?.selectedRoomNo == index
+                    {selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
                       ? "selected"
                       : "select"}
                   </button>
@@ -267,15 +299,15 @@ const RoomListing = ({ roomNumber }) => {
                   </ul>
                   <button
                     className="rate_details__popup-button"
-                    onClick={() => handleRateDetailsOpen(index, false)}
+                    onClick={() => handleRateDetailsOpen(roomType.id, false)}
                   >
                     rate details
                   </button>
                   <PopupRateDetails
                     isBreakfastIncluded={false}
-                    open={openRateDetails["withoutBreakfast"][index]}
+                    open={openRateDetails["withoutBreakfast"][roomType.id]}
                     handleClose={handleRateDetailsClose}
-                    index={activeRoomNoIndex}
+                    id={roomType.id}
                   />
                 </div>
                 <div className="room_price__with_breakfast-right">
@@ -283,39 +315,47 @@ const RoomListing = ({ roomNumber }) => {
                     <span
                       className={isOfferAvailable ? "cancelled_price" : "price"}
                     >
-                      &#8377;{roomType[1]}
+                      &#8377;{roomType.pricePerNight}
                     </span>
                     {isOfferAvailable && (
                       <span className="offer_percent">
-                        ({offers[index]}% off)
+                        ({offers[roomType.id]}% off)
                       </span>
                     )}
                   </div>
                   {isOfferAvailable && (
                     <span className="offered_price">
-                      &#8377;{calculateOfferedPrice(roomType[1], index)}
+                      &#8377;
+                      {calculateOfferedPrice(
+                        roomType.pricePerNight,
+                        roomType.id
+                      )}
                     </span>
                   )}
                   <button
                     className={
-                      selectedRooms?.[roomNumber]?.selectedRoomNo == index &&
-                      "selected_room_button"
+                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                        ? "selected_room_button"
+                        : ""
                     }
                     disabled={
-                      selectedRooms?.[roomNumber]?.selectedRoomNo == index
+                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
                     }
                     onClick={() =>
                       handleButtonClick(
-                        roomType[0],
+                        roomType.typeName,
                         false,
                         isOfferAvailable
-                          ? calculateOfferedPrice(roomType[1], index)
-                          : Number(roomType[1].replaceAll(",", "")),
-                        index
+                          ? calculateOfferedPrice(
+                              roomType.pricePerNight,
+                              roomType.id
+                            )
+                          : Number(roomType.pricePerNight),
+                        roomType.id
                       )
                     }
                   >
-                    {selectedRooms?.[roomNumber]?.selectedRoomNo == index
+                    {selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
                       ? "selected"
                       : "select"}
                   </button>

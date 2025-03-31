@@ -132,16 +132,22 @@ export const AppReducer = (state, action) => {
         shouldShowCallback: action.payload,
       };
 
-    case reducerMethods.setSelectedRoomType:
+    case reducerMethods.setSelectedRoomTypeId:
       return {
         ...state,
-        selectedRoomType: action.payload,
+        selectedRoomTypeId: action.payload,
       };
 
     case reducerMethods.setSteppersActiveStep:
       return {
         ...state,
         steppersActiveStep: action.payload,
+      };
+
+    case reducerMethods.setAllRoomTypes:
+      return {
+        ...state,
+        allRoomTypes: action.payload,
       };
 
     default:

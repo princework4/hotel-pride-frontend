@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Box,
@@ -16,9 +16,19 @@ import {
 } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
 import { allRoomTypes } from "../../Constants";
+import { AppContext } from "../../context/AppContext";
 import "./PopupRoomDetails.css";
 
-const PopupRoomDetails = ({ open, handleClose, index }) => {
+const PopupRoomDetails = ({ open, handleClose, id }) => {
+  const { state, dispatch } = useContext(AppContext);
+  const [rooms, setRooms] = useState(state.allRoomTypes);
+
+  useEffect(() => {
+    const filteredRoom = rooms.filter((item) => item.id === id);
+    setRooms(filteredRoom);
+    console.log("rooms :- ", rooms);
+  }, []);
+
   const style = {
     width: {
       xs: "300px",
@@ -55,17 +65,22 @@ const PopupRoomDetails = ({ open, handleClose, index }) => {
       className="popup_room_details"
     >
       <Box sx={style}>
-        <h3>{allRoomTypes[index][0]}</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-          unde quam repellat quasi qui error mollitia alias corrupti adipisci
-          rerum?
-        </p>
+        <h3>{rooms[0].typeName}</h3>
+        <p>{rooms[0].description}</p>
         <div>
-          <h4>services & amenities</h4>
+          <h4>amenities</h4>
           <div className="popup_room_details__amenities_container">
             <ul>
-              <li>
+              {rooms[0].amenities.slice(0, 6)?.map((amenity) => {
+                return (
+                  <li key={amenity.id}>
+                    {" "}
+                    <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                    <span>{amenity.amenityName}</span>
+                  </li>
+                );
+              })}
+              {/* <li>
                 {" "}
                 <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
                 <span>Minibar</span>
@@ -94,40 +109,53 @@ const PopupRoomDetails = ({ open, handleClose, index }) => {
                 {" "}
                 <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
                 <span>24-hour in-room dining</span>
-              </li>
+              </li> */}
             </ul>
-            <ul>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                <span>Iron & board</span>​
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                <span>Yoga kit</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                <span>Newspapers</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                <span>24-hour laundry service</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                <span>Rollaway beds</span>​
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
-                <span>Separate shower cubicle</span>​
-              </li>
-            </ul>
+            {rooms[0].amenities?.length > 6 && (
+              <ul>
+                {rooms[0].amenities
+                  .slice(6, rooms[0].amenities.length)
+                  .map((amenity) => {
+                    return (
+                      <li key={amenity.id}>
+                        {" "}
+                        <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                        <span>{amenity.amenityName}</span>​
+                      </li>
+                    );
+                  })}
+                {/* <li>
+                  {" "}
+                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <span>Iron & board</span>​
+                </li>
+                <li>
+                  {" "}
+                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <span>Yoga kit</span>
+                </li>
+                <li>
+                  {" "}
+                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <span>Newspapers</span>
+                </li>
+                <li>
+                  {" "}
+                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <span>24-hour laundry service</span>
+                </li>
+                <li>
+                  {" "}
+                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <span>Rollaway beds</span>​
+                </li>
+                <li>
+                  {" "}
+                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <span>Separate shower cubicle</span>​
+                </li> */}
+              </ul>
+            )}
           </div>
         </div>
       </Box>

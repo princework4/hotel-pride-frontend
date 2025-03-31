@@ -13,7 +13,7 @@ import "./RoomCard.css";
 
 import React from "react";
 
-const RoomCard = ({ roomType, roomDetails, roomNo }) => {
+const RoomCard = ({ roomType, roomDetails, roomId, assets }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -48,7 +48,7 @@ const RoomCard = ({ roomType, roomDetails, roomNo }) => {
         <ImageSlider
           slidesToShow={1}
           slidesToScroll={1}
-          images={roomImages}
+          images={assets}
           isCarousel={false}
         />
       </div>
@@ -116,7 +116,7 @@ const RoomCard = ({ roomType, roomDetails, roomNo }) => {
           <Search
             handleClose={handleClose}
             callFromRoomCard={true}
-            selectedRoomTypeNo={roomNo}
+            selectedRoomTypeId={roomId}
           />
         </Box>
       </Modal>
