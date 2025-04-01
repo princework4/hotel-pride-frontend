@@ -19,6 +19,8 @@ import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "./RequestCallback.css";
+import { requestCallback } from "../../services/Rooms";
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -78,7 +80,14 @@ const RequestCallback = () => {
 
   function handleFormSubmit(values, { resetForm }) {
     console.log(values);
-    // registerUser(...values);
+    const response = requestCallback(values);
+    // if (success) {
+    //   toast.success(
+    //     "Details has been send successfully. We will shortly get back to you."
+    //   );
+    // } else {
+    //   toast.error("Unable to send the details. Please try again later.");
+    // }
     resetForm();
   }
 

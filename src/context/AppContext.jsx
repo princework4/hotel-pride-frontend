@@ -44,6 +44,8 @@ const initialState = {
   isHomePage: true,
   selectedRoomTypeId: null,
   steppersActiveStep: 1,
+  isUserLoggedIn: true,
+  loggedInUser: {},
   allRoomTypes: [
     {
       id: 0,

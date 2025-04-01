@@ -17,7 +17,7 @@ import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { registerUser } from "../../Services";
+import { registerUser } from "../../services/Auth";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -40,8 +40,13 @@ const SignUpForm = () => {
   const { state, dispatch } = React.useContext(AppContext);
 
   function handleFormSubmit(values, { resetForm }) {
+    const response = registerUser(values);
+    // if (success) {
+    //   toast.success("User registered successfully.");
+    // } else {
+    //   toast.error("Unable to register. Please try again later.");
+    // }
     console.log(values);
-    registerUser(values);
     resetForm();
   }
 

@@ -5,6 +5,7 @@ import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const location = useLocation();
@@ -28,6 +29,14 @@ const Navbar = () => {
   const handleClose = () => setOpen(false);
   // const handleClose = () =>
   //   dispatch({ type: reducerMethods.setOpen, payload: false });
+
+  function handleLogout() {
+    dispatch({
+      type: reducerMethods.setIsUserLoggedIn,
+      payload: false,
+    });
+    toast.success("Logged Out Successfully");
+  }
 
   const style = {
     width: {
@@ -157,9 +166,18 @@ const Navbar = () => {
                 </NavLink>
               </li> */}
               <li>
-                <button className="login-btn" onClick={handleOpen}>
+                {state.isUserLoggedIn ? (
+                  <button className="login-btn" onClick={handleLogout}>
+                    Logout
+                  </button>
+                ) : (
+                  <button className="login-btn" onClick={handleOpen}>
+                    Login / Register
+                  </button>
+                )}
+                {/* <button className="login-btn" onClick={handleOpen}>
                   Login / Register
-                </button>
+                </button> */}
               </li>
             </ul>
           </nav>

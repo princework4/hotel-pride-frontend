@@ -1,6 +1,7 @@
 import Routing from "./Routing";
 import { BrowserRouter } from "react-router-dom";
 import { AppStore } from "./context/AppContext";
+import Toast from "./components/Toast/Toast";
 import "./App.css";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <BrowserRouter>
         <Routing />
       </BrowserRouter>
+      <Toast />
     </AppStore>
   );
 }

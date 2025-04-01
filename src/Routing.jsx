@@ -11,6 +11,8 @@ import BottomToTop from "./components/BottomToTop";
 import RequestCallback from "./components/RequestCallback";
 import Rooms from "./pages/Rooms/Rooms";
 import { AppContext } from "./context/AppContext";
+import PaymentSuccessful from "./components/Payment/PaymentSuccessful";
+import PaymentFailed from "./components/Payment/PaymentFailed";
 
 const Routing = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -23,6 +25,8 @@ const Routing = () => {
         <Route path="gallery" element={<Gallery />} />
         <Route path="location" element={<Location />} />
         <Route path="rooms" element={<Rooms />} />
+        <Route path="payment-successful" element={<PaymentSuccessful />} />
+        <Route path="payment-failed" element={<PaymentFailed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {state.shouldShowCallback && <RequestCallback />}
