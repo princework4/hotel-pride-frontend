@@ -126,6 +126,18 @@ export const AppReducer = (state, action) => {
     //     },
     //   };
 
+    case reducerMethods.setIsOfferAvailable:
+      return {
+        ...state,
+        isOfferAvailable: action.payload,
+      };
+
+    case reducerMethods.setOffers:
+      return {
+        ...state,
+        offers: action.payload,
+      };
+
     case reducerMethods.setShouldShowCallback:
       return {
         ...state,
@@ -142,6 +154,18 @@ export const AppReducer = (state, action) => {
       return {
         ...state,
         steppersActiveStep: action.payload,
+      };
+
+    case reducerMethods.setIsUserLoggedIn:
+      return {
+        ...state,
+        isUserLoggedIn: action.payload,
+      };
+
+    case reducerMethods.setLoggedInUser:
+      return {
+        ...state,
+        loggedInUser: action.payload,
       };
 
     case reducerMethods.setAllRoomTypes:

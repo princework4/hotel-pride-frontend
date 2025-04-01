@@ -16,6 +16,8 @@ export const reducerMethods = {
   setRoomsCount: "SET_ROOMS_COUNT",
   setSelectedRooms: "SET_SELECTED_ROOMS",
   setTotalPrice: "SET_TOTAL_PRICE",
+  setIsOfferAvailable: "SET_IS_OFFER_AVAILABLE",
+  setOffers: "SET_OFFERS",
   setShouldShowCallback: "SET_SHOULD_SHOW_CALLBACK",
   setGuestOptions: "SET_GUEST_OPTIONS", // sets adults,children and rooms count
   setCheckInDate: "SET_CHECK_IN_DATE",
@@ -23,5 +25,7 @@ export const reducerMethods = {
   setIsHomePage: "SET_IS_HOME_PAGE",
   setSelectedRoomTypeId: "SET_SELECTED_ROOM_TYPE_ID",
   setSteppersActiveStep: "SET_STEPPERS_ACTIVE_STEP",
+  setIsUserLoggedIn: "SET_IS_USER_LOGGED_IN",
+  setLoggedInUser: "SET_LOGGED_IN_USER",
   setAllRoomTypes: "SET_ALL_ROOM_TYPES",
 };

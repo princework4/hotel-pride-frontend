@@ -7,14 +7,16 @@ import {
   FormControl,
   TextField,
   FormHelperText,
+  Typography,
 } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import * as Validation from "../../validation/Validation";
+import { toast } from "react-toastify";
 import "./Login.css";
-import { loginUser } from "../../Services";
+import { loginUser } from "../../services/Auth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -22,9 +24,21 @@ const validationSchema = Yup.object().shape({
 });
 
 const LogInForm = () => {
+  const { state, dispatch } = React.useContext(AppContext);
+  const [error, setError] = React.useState("");
+
   function handleFormSubmit(values, { resetForm }) {
     console.log(values);
-    // loginUser(values);
+    const response = loginUser(values);
+    // if (success) {
+    //   setError("");
+    //   dispatch({ type: reducerMethods.setLoggedInUser, payload: response });
+    //   dispatch({ type: reducerMethods.setIsUserLoggedIn, payload: true });
+    //   toast.success("Logged In Successfully");
+    // } else {
+    //   setError("error message");
+    // }
+    // successToast("Logged in successfully.");
     resetForm();
   }
 
@@ -72,6 +86,7 @@ const LogInForm = () => {
                 sx={TextFieldStyle}
               />
             </FormControl>
+            {error && <Typography>{error}</Typography>}
             <Button
               type="submit"
               className="login_btn"

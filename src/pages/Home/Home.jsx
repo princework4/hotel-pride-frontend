@@ -17,7 +17,6 @@ import "./Home.css";
 import AmenityCard from "../../components/AmenityCard";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
-import { fetchAllRoomTypes } from "../../Services";
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -27,15 +26,6 @@ const Home = () => {
   const routeChange = (path) => {
     navigate(path);
   };
-
-  async function getAllRoomTypes() {
-    const response = fetchAllRoomTypes();
-    dispatch({ type: reducerMethods.setAllRoomTypes, payload: response });
-  }
-
-  useEffect(() => {
-    // getAllRoomTypes();
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
