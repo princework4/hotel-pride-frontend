@@ -76,7 +76,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
                 sx={{
                   width: "10px",
                   height: { xs: "13px", md: "1em" },
-                  color: "#d9736d",
+                  color: "#b85042",
                 }}
               />
               <span>
@@ -89,7 +89,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
                 sx={{
                   width: "10px",
                   height: { xs: "13px", md: "1em" },
-                  color: "#d9736d",
+                  color: "#b85042",
                 }}
               />
               <span>Inclusive of standard Wi-Fi</span>
@@ -100,7 +100,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
                 sx={{
                   width: "10px",
                   height: { xs: "13px", md: "1em" },
-                  color: "#d9736d",
+                  color: "#b85042",
                 }}
               />
               <span>Applicable taxes extra</span>
@@ -115,7 +115,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
         <p
           style={{
             paddingBottom: "20px",
-            // borderBottom: "1px solid #d9736d"
+            // borderBottom: "1px solid #b85042"
           }}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,

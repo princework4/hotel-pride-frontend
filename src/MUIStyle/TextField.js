@@ -1,9 +1,9 @@
 export const TextFieldStyle = {
   "& label.Mui-focused": {
-    color: "#d9736d",
+    color: "#b85042",
   },
   "& .MuiInput-underline:after": {
-    borderBottomColor: "#d9736d",
+    borderBottomColor: "#b85042",
   },
   "& .MuiOutlinedInput-root": {
     borderRadius: "30px",
@@ -12,10 +12,10 @@ export const TextFieldStyle = {
       borderColor: "rgba(0, 0, 0, 0.23)",
     },
     "&:hover fieldset": {
-      borderColor: "#d9736d",
+      borderColor: "#b85042",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#d9736d",
+      borderColor: "#b85042",
     },
   },
 };

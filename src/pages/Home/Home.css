@@ -15,7 +15,7 @@
 
 .about .left_right_showcase .about__subheading {
   margin: 20px 0 25px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 20px;
   font-weight: bolder;
   text-transform: uppercase;
@@ -46,7 +46,7 @@
 
 .room_types .heading_container + p {
   margin: 15px 0 30px 80px;
-  color: grey;
+  /* color: grey; */
 }
 
 .room_types__container {

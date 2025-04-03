@@ -13,7 +13,7 @@ import "./RoomCard.css";
 
 import React from "react";
 
-const RoomCard = ({ roomType, roomDetails, roomId, assets }) => {
+const RoomCard = ({ roomType, roomDetails, roomId, assets, amenities }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -81,6 +81,34 @@ const RoomCard = ({ roomType, roomDetails, roomId, assets }) => {
           <li>
             <i className="bottled_water"></i>
           </li> */}
+
+          {/* <li>
+            <img src={TV} />
+          </li>
+          <li>
+            <img src={Wifi} />
+          </li>
+          <li>
+            <img src={Vault} />
+          </li>
+          <li>
+            <img src={Tea} />
+          </li>
+          <li>
+            <img src={Breakfast} />
+          </li>
+          <li>
+            <img src={WaterBottle} />
+          </li> */}
+
+          {/* Use below code */}
+          {/* {amenities?.map((amenity) => {
+            <li>
+              <img src={amenity.amenityIconUrl} alt={amenity.amenityName} />
+            </li>;
+          })} */}
+
+          {/* Don't use this code */}
           <li>
             <img src={TV} />
           </li>

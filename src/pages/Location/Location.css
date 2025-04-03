@@ -37,7 +37,7 @@
   height: 450px;
   padding: 0 30px;
   background-color: #fff;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .location__map_contact-container h2 {
@@ -80,7 +80,7 @@
 
 .location__map_contact-container ul li a {
   margin-left: 20px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .location__map_contact-container ul li a::after {
@@ -88,7 +88,7 @@
   display: block;
   width: 0;
   height: 2px;
-  background: var(--burnt_rose);
+  background: var(--terra-cotta);
   transition: width 0.3s ease-in-out;
   -webkit-transition: width 0.3s ease-in-out;
   -moz-transition: width 0.3s ease-in-out;
@@ -111,7 +111,7 @@
   padding: 20px;
   border-radius: 20px;
   background-color: #fff;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .location .location__details > li:last-child {
@@ -232,6 +232,10 @@
 
   .location .location__details > li {
     width: calc(100% - 50px);
+  }
+
+  .location .location__details > li:last-child {
+    margin-left: 0;
   }
 }
 

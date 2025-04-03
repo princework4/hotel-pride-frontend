@@ -110,6 +110,7 @@ const Home = () => {
                   roomDetails={[type.roomSizeInSquareFeet + " ft²"]}
                   roomId={type.id}
                   assets={type.assets}
+                  amenities={type.amenities}
                 />
               ))}
             </div>

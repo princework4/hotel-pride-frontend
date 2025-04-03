@@ -12,7 +12,7 @@
   border-radius: 15px;
   margin: 0px 5px;
   position: relative;
-  background-color: var(--burnt_rose);
+  background-color: var(--terra-cotta);
   color: #fff;
   cursor: pointer;
   font-size: 16px;
@@ -54,9 +54,9 @@
 }
 
 .gallery .filter_buttons .is_active {
-  border-color: var(--burnt_rose);
+  border-color: var(--terra-cotta);
   background-color: #fff;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 /* .grid .overlay {
@@ -77,9 +77,9 @@
 
 /* Hover Effects */
 .gallery .filter_buttons .button:hover {
-  border-color: var(--burnt_rose);
+  border-color: var(--terra-cotta);
   background-color: #fff;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .gallery .grid > li img:hover {

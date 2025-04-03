@@ -34,9 +34,11 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
       xs: "300px",
       sm: "550px",
     },
-    height: {
-      xs: "315px",
-      sm: "300px",
+    minHeight: {
+      xs: "200px",
+    },
+    maxHeight: {
+      xs: "300px",
     },
     padding: {
       xs: "20px 15px",
@@ -75,39 +77,41 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
                 return (
                   <li key={amenity.id}>
                     {" "}
-                    <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                    <SquareIcon
+                      sx={{ width: "10px", height: "13px", color: "#b85042" }}
+                    />
                     <span>{amenity.amenityName}</span>
                   </li>
                 );
               })}
               {/* <li>
                 {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                 <span>Minibar</span>
               </li>
               <li>
                 {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                 <span>Electronic safe​</span>
               </li>
               <li>
                 {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                 <span>Flat-screen TV​</span>
               </li>
               <li>
                 {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                 <span>Bathtub</span>
               </li>
               <li>
                 {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                 <span>Wi-fi</span>
               </li>
               <li>
                 {" "}
-                <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                 <span>24-hour in-room dining</span>
               </li> */}
             </ul>
@@ -119,39 +123,39 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
                     return (
                       <li key={amenity.id}>
                         {" "}
-                        <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                        <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                         <span>{amenity.amenityName}</span>​
                       </li>
                     );
                   })}
                 {/* <li>
                   {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                   <span>Iron & board</span>​
                 </li>
                 <li>
                   {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                   <span>Yoga kit</span>
                 </li>
                 <li>
                   {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                   <span>Newspapers</span>
                 </li>
                 <li>
                   {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                   <span>24-hour laundry service</span>
                 </li>
                 <li>
                   {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                   <span>Rollaway beds</span>​
                 </li>
                 <li>
                   {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                   <span>Separate shower cubicle</span>​
                 </li> */}
               </ul>

@@ -1,7 +1,13 @@
 import { useState } from "react";
 import "./Search.css";
 import * as React from "react";
-import { Button, OutlinedInput, Popover } from "@mui/material";
+import {
+  Button,
+  OutlinedInput,
+  MenuItem,
+  Popover,
+  Select,
+} from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -79,15 +85,16 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 })
               }
               disablePast={true}
+              format="DD/MM/YYYY"
               sx={{
                 "& fieldset": {
-                  borderColor: "#d9736d !important",
+                  borderColor: "#b85042 !important",
                 },
                 "& label": {
-                  color: "#d9736d !important",
+                  color: "#b85042 !important",
                 },
                 "& .MuiButtonBase-root": {
-                  // color: "#d9736d !important",
+                  // color: "#b85042 !important",
                   "&:hover": {
                     border: "none !important",
                     backgroundColor: "transparent !important",
@@ -109,15 +116,16 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 })
               }
               disablePast={true}
+              format="DD/MM/YYYY"
               sx={{
                 "& fieldset": {
-                  borderColor: "#d9736d !important",
+                  borderColor: "#b85042 !important",
                 },
                 "& label": {
-                  color: "#d9736d !important",
+                  color: "#b85042 !important",
                 },
                 "& .MuiButtonBase-root": {
-                  // color: "#d9736d !important",
+                  // color: "#b85042 !important",
                   "&:hover": {
                     border: "none !important",
                     backgroundColor: "transparent !important",
@@ -139,7 +147,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
             value={`${guestOptions.adults} adult(s)  -  ${guestOptions.children} Child(ren)  -  ${guestOptions.rooms} Room(s)`}
             sx={{
               "& fieldset": {
-                borderColor: "#d9736d !important",
+                borderColor: "#b85042 !important",
               },
             }}
           />
@@ -156,11 +164,12 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
               vertical: "bottom",
               horizontal: "left",
             }}
+            // disableScrollLock={true}
           >
             <div className="guestInputs">
               <div className="guest-group">
                 <span className="optionText">
-                  <strong>adult(s)</strong>
+                  <strong>Adult(s)</strong>
                 </span>
                 <div className="counter-buttons">
                   <button
@@ -231,15 +240,19 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
         </div>
 
         <Button
-          className="search-btn"
-          disabled={!checkInDate || !checkOutDate}
+          className={
+            !checkInDate ||
+            !checkOutDate ||
+            (guestOptions.adults == 0 && guestOptions.rooms == 0)
+              ? "disabled-search-btn"
+              : "search-btn"
+          }
+          disabled={
+            !checkInDate ||
+            !checkOutDate ||
+            (guestOptions.adults == 0 && guestOptions.rooms == 0)
+          }
           onClick={handleSearch}
-          sx={{
-            ".Mui-disabled": {
-              backgroundColor: "rgba(0, 0, 0, 0.12)",
-              color: "rgba(0, 0, 0, 0.26)",
-            },
-          }}
         >
           Search
         </Button>

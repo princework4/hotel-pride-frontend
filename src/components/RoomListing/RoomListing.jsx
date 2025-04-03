@@ -204,15 +204,15 @@ const RoomListing = ({ roomNumber }) => {
                   <h4>With Breakfast</h4>
                   <ul>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                      <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                       <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                      <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                       <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                      <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                       <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                   </ul>
@@ -285,15 +285,15 @@ const RoomListing = ({ roomNumber }) => {
                   <h4>Without Breakfast</h4>
                   <ul>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                      <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                       <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                      <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                       <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#d9736d" }} />
+                      <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
                       <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
                     </li>
                   </ul>

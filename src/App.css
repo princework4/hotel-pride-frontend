@@ -302,7 +302,7 @@ h6 {
 }
 
 body {
-  background-color: #ffe5d4;
+  background-color: #e7e8d1;
   font-family: sans-serif;
   overflow: hidden;
 }
@@ -313,8 +313,8 @@ body p {
 
 /* common color variables */
 :root {
-  --burnt_rose: #d9736d;
-  --pale_apricot: #ffe5d4;
+  --terra-cotta: #b85042;
+  --light-beige: #e7e8d1;
 }
 
 /* wrapper styling */
@@ -327,7 +327,7 @@ body p {
 
 /* common styling */
 strong {
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .heading_container {
@@ -339,19 +339,19 @@ strong {
 hr {
   width: 4vw;
   height: 2px;
-  border-color: var(--burnt_rose);
+  border-color: var(--terra-cotta);
   margin: 0;
 }
 
 h2 {
   position: relative;
   display: inline-block;
-  /* background: linear-gradient(var(--burnt_rose), var(--burnt_rose)) left
+  /* background: linear-gradient(var(--terra-cotta), var(--terra-cotta)) left
       no-repeat,
     #fff;
   background-size: 0% 100%;
   background-clip: text; */
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 40px;
   font-weight: bolder;
   /* transition: 1s ease-in-out; */
@@ -359,7 +359,7 @@ h2 {
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--burnt_rose);
+  -webkit-text-stroke-color: var(--terra-cotta);
   -webkit-transition: 1s ease-in-out;
   -moz-transition: 1s ease-in-out;
   -o-transition: 1s ease-in-out;
@@ -374,20 +374,20 @@ h2 {
   left: 0;
   overflow: hidden;
   transition: 1s;
-  -webkit-text-fill-color: var(--burnt_rose);
+  -webkit-text-fill-color: var(--terra-cotta);
 } */
 
 /* h2:hover {
   background-size: 100% 100%;
   width: 100%;
-  -webkit-text-fill-color: var(--burnt_rose);
+  -webkit-text-fill-color: var(--terra-cotta);
 } */
 
 button {
   padding: 10px 20px;
   border: 1px solid transparent;
   border-radius: 20px;
-  background-color: var(--burnt_rose);
+  background-color: var(--terra-cotta);
   color: #fff;
   font-size: 16px;
   line-height: 20px;
@@ -401,8 +401,8 @@ button {
 
 button:hover {
   background-color: #fff;
-  color: var(--burnt_rose);
-  border: 1px solid var(--burnt_rose);
+  color: var(--terra-cotta);
+  border: 1px solid var(--terra-cotta);
 }
 
 .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {

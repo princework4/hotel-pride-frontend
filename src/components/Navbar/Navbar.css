@@ -55,7 +55,7 @@
   display: block;
   width: 0;
   height: 2px;
-  background: var(--burnt_rose);
+  background: var(--terra-cotta);
   transition: width 0.3s ease-in-out;
   -webkit-transition: width 0.3s ease-in-out;
   -moz-transition: width 0.3s ease-in-out;
@@ -64,12 +64,12 @@
 }
 
 .nav-items li a.active {
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .login-btn {
-  background-color: var(--burnt-rose);
-  color: #ffe5d4;
+  background-color: var(--terra-cotta);
+  color: #e7e8d1;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -116,15 +116,15 @@
 }
 
 .updated_header .logo {
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .updated_header .nav-items li a {
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .updated_header .nav-items li a.active {
-  background-color: var(--burnt_rose);
+  background-color: var(--terra-cotta);
   color: #fff;
 }
 
@@ -158,12 +158,12 @@
 
 .nav-items.show ul li:last-child button {
   background-color: #fff;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 /* Hover Effects */
 .nav-items ul li a:hover {
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .nav-items ul li a:hover::after {
@@ -191,7 +191,7 @@
     left: 0;
     display: none;
     flex-direction: column;
-    background-color: var(--burnt_rose);
+    background-color: var(--terra-cotta);
     text-align: left;
     z-index: 5;
     transform-origin: 0% 0%;
@@ -226,6 +226,6 @@
   }
 
   .updated_header .hamburger span {
-    background-color: var(--burnt_rose);
+    background-color: var(--terra-cotta);
   }
 }

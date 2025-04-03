@@ -19,6 +19,7 @@ import "./GuestDetails.css";
 import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import { ButtonStyle } from "../../MUIStyle/Button";
 
 const validationSchema = Yup.object().shape({
   fname: Yup.string()
@@ -49,6 +50,7 @@ const initialValues = {
 const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   const { state, dispatch } = useContext(AppContext);
   const { isUserLoggedIn, loggedInUser } = state;
+  const [isDisabled, setIsDisabled] = useState(true);
   // const [initialValues, setInitialValues] = useState({
   //   fname: "",
   //   lname: "",
@@ -71,6 +73,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   // }, [isUserLoggedIn]);
 
   function handleFormSubmit(values, { resetForm }) {
+    setIsDisabled(false);
     resetForm();
   }
 
@@ -238,7 +241,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                       name="termsAndConditions"
                       checked={values.termsAndConditions}
                       style={{
-                        color: "#d9736d",
+                        color: "#b85042",
                       }}
                     />
                   }
@@ -335,7 +338,15 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 textAlign: "center",
               }}
             >
-              <button type="submit">Proceed For Payment</button>
+              <Button
+                className={isDisabled ? "disabled-payment-btn" : ""}
+                type="submit"
+                disabled={isDisabled}
+                sx={ButtonStyle}
+              >
+                Proceed For Payment
+              </Button>
+              {/* <button type="submit" >Proceed For Payment</button> */}
             </div>
           </Box>
         </Form>
