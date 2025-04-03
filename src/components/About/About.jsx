@@ -33,6 +33,17 @@ const About = () => {
                 comfort and convenience in mumbai's thriving business hub
               </p>
               <p>
+                <strong>At Hotel Pride,</strong> we offer a seamless stay with{" "}
+                <strong>33 well-appointed rooms,</strong> modern amenities, and
+                warm hospitality. Designed for business and leisure travelers
+                alike, our hotel provides everything you need for a productive
+                and relaxing experience. Enjoy thoughtfully designed spaces,
+                reliable service, and a hassle-free stay with amenities that
+                cater to your comfort. Whether it's a short visit or an extended
+                trip, <strong>Hotel Pride</strong> ensures a smooth and
+                comfortable experience at an affordable price.
+              </p>
+              {/* <p>
                 <strong>A trusted name in hospitality for over 20 years</strong>{" "}
                 - Hotel Pride combines the warmth of a family-run business with
                 the efficiency of a business hotel. Nestled in the heart of{" "}
@@ -56,7 +67,7 @@ const About = () => {
                 amenities, and a welcoming environment. Whether you're visiting
                 for business or a family trip, <strong>Hotel Pride</strong> is
                 your go-to destination for affordable comfort in Mumbai.
-              </p>
+              </p> */}
             </div>
             <figure>
               <img
@@ -88,17 +99,19 @@ const About = () => {
                 <p>
                   <strong>Centrally Located - </strong> Just{" "}
                   <strong>10 minutes</strong> from Powai's business district, a{" "}
-                  <strong>20-minute drive</strong> from the airports, and within
+                  <strong>20-minute drive</strong> from the airports, and within{" "}
                   <strong>walking distance</strong> of Bhandup Railway Station,
                   ensuring easy access to Mumbai's key hubs.
                 </p>
                 <p>
                   <strong>Friendly, Attentive Service - </strong> Our staff is
                   dedicated to making your stay smooth and enjoyable - from
-                  quick check-ins to helpful local recommendations. Perfect for
-                  Business and Family Stays - Whether you're traveling solo or
-                  with family, our versatile room options and thoughtful
-                  amenities cater to every need.{" "}
+                  quick check-ins to helpful local recommendations.
+                </p>
+                <p>
+                  <strong>Perfect for Business and Family Stays - </strong>
+                  Whether you're traveling solo or with family, our versatile
+                  room options and thoughtful amenities cater to every need.{" "}
                 </p>
                 <p>
                   <strong>Unbeatable Value - </strong> Clean, secure, and

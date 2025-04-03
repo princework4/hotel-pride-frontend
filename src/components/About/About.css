@@ -6,13 +6,13 @@
   max-width: 100%;
 }
 
-.left_right_showcase p {
+/* .left_right_showcase p {
   color: grey;
-}
+} */
 
 .left_right_showcase .about__subheading {
   margin: 10px 0 25px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 20px;
   font-weight: bolder;
   text-transform: capitalize;
@@ -113,7 +113,7 @@
   /* width: 45%; */
   padding: 0 30px;
   background-color: #fff;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .address_container h2 {
@@ -155,7 +155,7 @@
 
 .address_container ul li a {
   margin-left: 20px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .address_container ul li a::after {
@@ -163,7 +163,7 @@
   display: block;
   width: 0;
   height: 2px;
-  background: var(--burnt_rose);
+  background: var(--terra-cotta);
   transition: width 0.3s ease-in-out;
   -webkit-transition: width 0.3s ease-in-out;
   -moz-transition: width 0.3s ease-in-out;
@@ -194,11 +194,11 @@
 .address__nearby .address__nearby-walk-container {
   width: 35px;
   height: 35px;
-  border: 1px solid var(--burnt_rose);
+  border: 1px solid var(--terra-cotta);
   border-radius: 50%;
   position: relative;
   display: inline-block;
-  background-color: var(--burnt_rose);
+  background-color: var(--terra-cotta);
 }
 
 .address__nearby .address__nearby-walk {

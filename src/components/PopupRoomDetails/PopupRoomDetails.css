@@ -1,6 +1,6 @@
 .popup_room_details h3 {
   margin-bottom: 10px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 25px;
   font-weight: 600;
   text-align: center;
@@ -12,7 +12,7 @@
 
 .popup_room_details h4 {
   margin: 15px 0;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 20px;
   font-weight: 600;
 }
@@ -23,6 +23,7 @@
 }
 
 .popup_room_details ul {
+  width: 48%;
   display: flex;
   align-content: flex-start;
   flex-flow: column;
@@ -32,8 +33,12 @@
 
 .popup_room_details ul li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: 14px;
+}
+
+.popup_room_details ul li:not(:first-child) {
+  margin-top: 5px;
 }
 
 .popup_room_details ul li span {

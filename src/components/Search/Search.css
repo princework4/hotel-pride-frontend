@@ -38,8 +38,16 @@
 }
 
 form .search-btn {
-  background-color: var(--burnt-rose);
-  color: #ffe5d4;
+  background-color: var(--terra-cotta);
+  color: #e7e8d1;
+  padding: 7px 16px;
+  transition: background-color 0.3s ease-in-out;
+  border: 1px solid transparent;
+}
+
+form .disabled-search-btn {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
   padding: 7px 16px;
   transition: background-color 0.3s ease-in-out;
   border: 1px solid transparent;
@@ -48,7 +56,7 @@ form .search-btn {
 .search-container label {
   width: 100%;
   margin-left: 2px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;

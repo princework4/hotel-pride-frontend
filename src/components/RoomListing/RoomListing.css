@@ -12,7 +12,7 @@
 }
 
 .room_listing .selected_room {
-  border: 5px solid var(--burnt_rose);
+  border: 5px solid var(--terra-cotta);
   background-color: rgb(245, 245, 245);
 }
 
@@ -21,9 +21,9 @@
 }
 
 .room_listing .selected_room .selected_room_button {
-  border: 1px solid var(--burnt_rose);
+  border: 1px solid var(--terra-cotta);
   background-color: #fff;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 .room_listing .room:not(:first-child) {
@@ -45,7 +45,7 @@
   border: 1px solid transparent;
   margin-top: 5px;
   background: transparent;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 13px;
   text-decoration: underline;
 }
@@ -77,14 +77,14 @@
 }
 
 .room_listing h3 {
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 24px;
   font-weight: bold;
 }
 
 .room_listing .room_price h4 {
   display: inline-block;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 15px;
   font-weight: 600;
 }
@@ -112,7 +112,7 @@
 .room_listing .room_price__with_breakfast,
 .room_listing .room_price__without_breakfast {
   padding: 12px;
-  border: 1px solid var(--burnt_rose);
+  border: 1px solid var(--terra-cotta);
   display: flex;
   align-items: center;
 }
@@ -124,7 +124,7 @@
 .room_listing .room_price__with_breakfast-left,
 .room_listing .room_price__without_breakfast-left {
   width: 75%;
-  border-right: 1px solid var(--burnt_rose);
+  border-right: 1px solid var(--terra-cotta);
 }
 
 .room_listing .room_price__with_breakfast-right,
@@ -145,7 +145,7 @@
 .room_listing .room_price__without_breakfast-right .price,
 .room_listing .room_price__without_breakfast-right .offered_price {
   margin-top: 5px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 20px;
   font-weight: 600;
 }
@@ -159,7 +159,7 @@
 .room_listing .room_price__with_breakfast-right .offer_percent,
 .room_listing .room_price__without_breakfast-right .offer_percent {
   margin-left: 5px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
   font-size: 11px;
   font-weight: 600;
 }
@@ -217,7 +217,7 @@
     width: 100%;
     padding-bottom: 20px;
     border-right: none;
-    border-bottom: 1px solid var(--burnt_rose);
+    border-bottom: 1px solid var(--terra-cotta);
   }
 
   .room_listing .room_price__with_breakfast-right,

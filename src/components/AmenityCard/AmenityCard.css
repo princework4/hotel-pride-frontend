@@ -10,7 +10,7 @@
 .amenity_card .grid > li {
   width: calc(100% / 5 - 10px);
   padding: 20px 10px;
-  border: 1px solid var(--burnt_rose);
+  border: 1px solid var(--terra-cotta);
   border-radius: 15px;
   margin: 0px 15px;
   margin-bottom: 30px;
@@ -28,7 +28,7 @@
 
 .amenity_card .grid > li p {
   margin-top: 5px;
-  color: var(--burnt_rose);
+  color: var(--terra-cotta);
 }
 
 /* Hover Effects */

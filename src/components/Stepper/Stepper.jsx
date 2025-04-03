@@ -92,7 +92,7 @@ export default function CustomStepper() {
         activeStep={activeStep}
         sx={{
           ".MuiStepConnector-root span": {
-            borderColor: "#d9736d",
+            borderColor: "#b85042",
           },
           ".MuiStepLabel-label": {
             fontSize: {
@@ -108,10 +108,10 @@ export default function CustomStepper() {
               key={Math.random()}
               sx={{
                 "& .MuiStepLabel-root .Mui-completed": {
-                  color: "#d9736d",
+                  color: "#b85042",
                 },
                 "& .MuiStepLabel-root .Mui-active": {
-                  color: "#d9736d",
+                  color: "#b85042",
                 },
                 "& .MuiStepLabel-root .Mui-active .MuiStepIcon-text": {
                   fill: "#fff",
