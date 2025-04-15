@@ -188,6 +188,7 @@ const Navbar = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
           className="login_signup"
+          disableScrollLock={true}
         >
           <Box sx={style}>
             {/* <Box className="close_icon_wrapper">

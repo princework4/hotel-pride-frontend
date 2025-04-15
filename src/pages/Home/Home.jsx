@@ -5,6 +5,7 @@ import {
   roomDetails,
   galleryImgs,
   guestsReviews,
+  allTabDetail,
 } from "../../Constants";
 import { useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import Reviews from "../../components/Reviews/Reviews";
@@ -17,9 +18,23 @@ import "./Home.css";
 import AmenityCard from "../../components/AmenityCard";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
+import { fetchAllRoomTypes } from "../../services/Rooms";
+
+import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
+import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2.jpeg";
+import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3.jpeg";
+import deluxeImage1 from "../../assets//Deluxe/deluxe_room_1.jpeg";
+import deluxeImage2 from "../../assets//Deluxe/deluxe_room_2.jpeg";
+import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3.jpeg";
+import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4.jpeg";
+import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
+import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
+import executiveImage3 from "../../assets//Executive/executive_room_3.jpeg";
+import executiveImage4 from "../../assets//Executive/executive_room_4.jpeg";
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);
+  const { allRoomTypes, allRoomTypes1, allAssetsImages } = state;
   let navigate = useNavigate();
   const location = useLocation();
   const navigation = useNavigationType();
@@ -47,6 +62,38 @@ const Home = () => {
       dispatch({ type: reducerMethods.setSelectedRooms, payload: [] });
     }
   }, [location]);
+
+  async function getAllRoomTypes() {
+    const data = await fetchAllRoomTypes();
+    dispatch({ type: reducerMethods.setAllRoomTypes, payload: data });
+
+    const images = [];
+    const roomTypeNames = [allTabDetail];
+    for (let i = 0; i < data.length; i++) {
+      roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
+      for (let j = 0; j < data[i].assets.length; j++) {
+        images.push([data[i].assets[j].assetUrl, `cat${data[i].id}`]);
+      }
+    }
+
+    dispatch({
+      type: reducerMethods.setAllRoomTypesName,
+      payload: roomTypeNames,
+    });
+    dispatch({ type: reducerMethods.setAllAssetsImages, payload: images });
+  }
+
+  useEffect(() => {
+    if (allRoomTypes?.length === 0) {
+      getAllRoomTypes();
+    }
+  }, []);
+
+  const allAssets = {
+    1: [nonAcImage1, nonAcImage2, nonAcImage3],
+    2: [deluxeImage1, deluxeImage2, deluxeImage3, deluxeImage4],
+    3: [executiveImage1, executiveImage2, executiveImage3, executiveImage4],
+  };
 
   return (
     <>
@@ -85,7 +132,7 @@ const Home = () => {
         <section className="room_types">
           <div className="wrapper">
             <div className="heading_container">
-              <hr />
+              {/* <hr /> */}
               <h2>room types</h2>
             </div>
             <p>
@@ -103,15 +150,23 @@ const Home = () => {
                   roomNo={i}
                 />
               ))} */}
-              {state.allRoomTypes?.map((type) => (
-                <RoomCard
-                  key={type.id}
-                  roomType={type.typeName}
-                  roomDetails={[type.roomSizeInSquareFeet + " ft²"]}
-                  roomId={type.id}
-                  assets={type.assets}
-                  amenities={type.amenities}
-                />
+              {allRoomTypes?.map((type, index) => (
+                <>
+                  <RoomCard
+                    key={type.id}
+                    roomType={type.typeName}
+                    // roomDetails={[type.roomSizeInSquareFeet + " ft²"]}
+                    roomDetails={[
+                      allRoomTypes1[index].roomSizeInSquareFeet + " ft²",
+                    ]}
+                    roomId={type.id}
+                    assets={type.assets}
+                    // assets={allRoomTypes1[index].assets}
+                    // assets={allAssets[index + 1]}
+                    // amenities={type.amenities}
+                    amenities={allRoomTypes1[index].amenities}
+                  />
+                </>
               ))}
             </div>
           </div>
@@ -119,7 +174,7 @@ const Home = () => {
         <section className="services">
           <div className="wrapper">
             <div className="heading_container">
-              <hr />
+              {/* <hr /> */}
               <h2>amenities</h2>
             </div>
             <AmenityCard />
@@ -128,11 +183,12 @@ const Home = () => {
         <section className="gallery">
           <div className="wrapper">
             <div className="heading_container">
-              <hr />
+              {/* <hr /> */}
               <h2>gallery</h2>
             </div>
             <div className="gallery__container">
               {galleryImgs?.slice(0, 6)?.map((item, i) => (
+                // {allAssetsImages?.slice(0, 6)?.map((item, i) => (
                 <figure key={i}>
                   <img src={item[0]} alt={i} />
                 </figure>
@@ -146,7 +202,7 @@ const Home = () => {
         <section className="reviews">
           <div className="wrapper">
             <div className="heading_container">
-              <hr />
+              {/* <hr /> */}
               <h2 data-text="reviews">What our Guest Say</h2>
             </div>
             <div className="reviews__container">

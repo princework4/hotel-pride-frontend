@@ -2,49 +2,51 @@ import axios from "axios";
 
 export async function loginUser({ email, password }) {
   try {
-    const { data } = await axios.post(`${BASE_URL}/${API_VERSION}/auth/login`, {
-      email,
-      password,
-    });
-    console.log(data);
-    // return response.body;
+    const response = await axios.post(
+      `${process.env.BASE_URL}/${process.env.API_VERSION}/auth/login`,
+      {
+        email,
+        password,
+      }
+    );
+    return response;
   } catch (error) {
     if (error.response) {
       console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
+      return error.response.data;
     } else if (error.request) {
       console.log(error.request);
+      return error.request;
     } else {
       console.log("Error", error.message);
+      return error.message;
     }
-    console.log(error.config);
   }
 }
 
 export async function registerUser({ name, email, mobile, password }) {
   try {
-    const { data } = await axios.post(
-      `${BASE_URL}/${API_VERSION}/auth/register`,
+    const response = await axios.post(
+      `${process.env.BASE_URL}/${process.env.API_VERSION}/auth/register`,
       {
         name,
         email,
         contactNumber: mobile,
         password,
+        role: "USER",
       }
     );
-    console.log(data);
-    // return response.body;
+    return response;
   } catch (error) {
     if (error.response) {
       console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
+      return error.response.data;
     } else if (error.request) {
       console.log(error.request);
+      return error.request;
     } else {
       console.log("Error", error.message);
+      return error.message;
     }
-    console.log(error.config);
   }
 }

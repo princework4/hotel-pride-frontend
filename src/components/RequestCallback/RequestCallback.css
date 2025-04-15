@@ -26,6 +26,7 @@
 }
 
 .request_callback__form_container .request_callback__guest_room_container {
+  margin: 8px 0 0;
   display: flex;
   justify-content: space-between;
   gap: 20px;
@@ -34,5 +35,5 @@
 .request_callback__form_container
   .request_callback__guest_room_container
   > div {
-  margin: 8px 0;
+  margin: 0;
 }

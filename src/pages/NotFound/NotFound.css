@@ -199,3 +199,30 @@ body {
     transform: rotate(-20deg);
   }
 }
+
+@media (max-width: 768px) {
+  .not_found_error {
+    margin-top: -200px;
+  }
+  .not_found_error > h1 {
+    font-size: 100px;
+  }
+
+  .not_found_error > p {
+    font-size: 20px;
+  }
+
+  .not_found_design_1 {
+    right: -220px;
+  }
+
+  .not_found_design_2 {
+    bottom: -260px;
+  }
+}
+
+@media (max-width: 450px) {
+  .not_found_design_1 {
+    right: -250px;
+  }
+}

@@ -174,6 +174,30 @@ export const AppReducer = (state, action) => {
         allRoomTypes: action.payload,
       };
 
+    case reducerMethods.setFilteredAllRoomTypes:
+      return {
+        ...state,
+        filteredAllRoomTypes: action.payload,
+      };
+
+    case reducerMethods.setUserDetailsForPayment:
+      return {
+        ...state,
+        userDetailsForPayment: action.payload,
+      };
+
+    case reducerMethods.setAllRoomTypesName:
+      return {
+        ...state,
+        allRoomTypesName: action.payload,
+      };
+
+    case reducerMethods.setAllAssetsImages:
+      return {
+        ...state,
+        allAssetsImages: action.payload,
+      };
+
     default:
       return state;
   }

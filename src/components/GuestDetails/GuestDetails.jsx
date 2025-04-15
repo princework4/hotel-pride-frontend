@@ -20,6 +20,11 @@ import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { ButtonStyle } from "../../MUIStyle/Button";
+import Payment from "../Payment/Payment";
+import { generateRoomBookingListData } from "../../utils";
+import { bookingConfirmation } from "../../services/Booking";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   fname: Yup.string()
@@ -49,7 +54,8 @@ const initialValues = {
 
 const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   const { state, dispatch } = useContext(AppContext);
-  const { isUserLoggedIn, loggedInUser } = state;
+  const navigate = useNavigate();
+  // const { ,  } = state;
   const [isDisabled, setIsDisabled] = useState(true);
   // const [initialValues, setInitialValues] = useState({
   //   fname: "",
@@ -58,23 +64,72 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   //   mobile: "",
   //   termsAndConditions: false,
   // });
-  const { checkInDate, checkOutDate, guestOptions, selectedRooms } = state;
+  const {
+    checkInDate,
+    checkOutDate,
+    guestOptions,
+    isUserLoggedIn,
+    loggedInUser,
+    selectedRooms,
+    tax,
+  } = state;
 
   // useEffect(() => {
   //   if (isUserLoggedIn) {
-  //     const val = {
-  //       fname: loggedInUser?.name?.split(" ")[0],
-  //       lname: loggedInUser?.name?.split(" ")[1],
-  //       email: loggedInUser?.email,
-  //       mobile: loggedInUser?.mobile,
-  //     };
-  //     setInitialValues(val);
+  //     // const val = {
+  //     // fname: loggedInUser?.name?.split(" ")[0],
+  //     // lname: loggedInUser?.name?.split(" ")[1],
+  //     // email: loggedInUser?.email,
+  //     // mobile: loggedInUser?.mobile,
+  //     // };
+  //     // setInitialValues(val);
+  //     console.log("here");
+  //     console.log("isUserLoggedIn");
+  //     initialValues.fname = loggedInUser?.name?.split(" ")[0];
+  //     initialValues.lname = loggedInUser?.name?.split(" ")[1];
+  //     initialValues.email = loggedInUser?.email;
+  //     initialValues.mobile = loggedInUser?.contactNumber;
+  //     console.log("initialValues", initialValues);
   //   }
-  // }, [isUserLoggedIn]);
+  // }, []);
+
+  // only for testing
+  async function proceedWithBookingConfirmation(values) {
+    const finalBookingDetailsObj = {
+      // userId: isUserLoggedIn ? loggedInUser.email : values.email,
+      userId: 1,
+      hotelId: 1,
+      couponCode: "",
+      checkInDate,
+      checkOutDate,
+      paymentType: "PREPAID",
+      roomBookingList: generateRoomBookingListData(selectedRooms),
+    };
+    console.log("finalBookingDetailsObj :- ", finalBookingDetailsObj);
+    const response = await bookingConfirmation(finalBookingDetailsObj);
+    if (response.status === 200) {
+      // will check
+      toast.success("Booking successful. You'll get confirmation on email.");
+      navigate("/");
+    }
+  }
 
   function handleFormSubmit(values, { resetForm }) {
-    setIsDisabled(false);
+    // setIsDisabled(false);
+    dispatch({
+      type: reducerMethods.setUserDetailsForPayment,
+      payload: values,
+    });
     resetForm();
+    setActiveStep(activeStep + 1);
+    dispatch({
+      type: reducerMethods.setSteppersActiveStep,
+      payload: 3,
+    });
+    // <Payment totalPrice={totalPrice} tax={tax} values={values} />;
+
+    // only for testing
+    proceedWithBookingConfirmation(values);
   }
 
   const handleClick = () => {
@@ -134,9 +189,15 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        fname: isUserLoggedIn ? loggedInUser?.name?.split(" ")[0] : "",
+        lname: isUserLoggedIn ? loggedInUser?.name?.split(" ")[1] : "",
+        email: isUserLoggedIn ? loggedInUser?.email : "",
+        mobile: isUserLoggedIn ? loggedInUser?.contactNumber : "",
+      }}
       onSubmit={handleFormSubmit}
       validationSchema={validationSchema}
+      enableReinitialize={true}
     >
       {({
         values,
@@ -146,6 +207,9 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
         handleChange,
         handleBlur,
         setFieldValue,
+        isSubmitting,
+        isValid,
+        dirty,
       }) => (
         <Form onSubmit={handleSubmit}>
           <Box sx={boxContainerStyle} className="guest_details_container">
@@ -321,12 +385,12 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                   </li>
                   <li>
                     <span>Taxes</span>
-                    <span>&#8377; 2000</span>
+                    <span>&#8377; {tax}</span>
                   </li>
                 </ul>
                 <div className="payment_summary__summed_total_price">
                   <span>Total Price</span>
-                  <span>&#8377; {totalPrice + 2000}</span>
+                  <span>&#8377; {totalPrice + tax}</span>
                 </div>
               </div>
             </Box>
@@ -339,9 +403,10 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
               }}
             >
               <Button
-                className={isDisabled ? "disabled-payment-btn" : ""}
+                // className={isDisabled ? "disabled-payment-btn" : ""}
                 type="submit"
-                disabled={isDisabled}
+                // disabled={isDisabled}
+                // disabled={isSubmitting}
                 sx={ButtonStyle}
               >
                 Proceed For Payment

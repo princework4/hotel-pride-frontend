@@ -16,10 +16,24 @@ import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
 import { useNavigate } from "react-router-dom";
 
+import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
+import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2.jpeg";
+import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3.jpeg";
+import deluxeImage1 from "../../assets//Deluxe/deluxe_room_1.jpeg";
+import deluxeImage2 from "../../assets//Deluxe/deluxe_room_2.jpeg";
+import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3.jpeg";
+import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4.jpeg";
+import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
+import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
+import executiveImage3 from "../../assets//Executive/executive_room_3.jpeg";
+import executiveImage4 from "../../assets//Executive/executive_room_4.jpeg";
+
 const RoomListing = ({ roomNumber }) => {
   const { state, dispatch } = useContext(AppContext);
   const {
+    filteredAllRoomTypes,
     allRoomTypes,
+    allRoomTypes1,
     breakfastPrice,
     checkInDate,
     checkOutDate,
@@ -28,7 +42,7 @@ const RoomListing = ({ roomNumber }) => {
     selectedRooms,
     selectedRoomTypeId,
   } = state;
-  const [roomTypes, setRoomTypes] = useState(allRoomTypes);
+  const [roomTypes, setRoomTypes] = useState(filteredAllRoomTypes);
   // const [selectedRoom, setSelectedRoom] = useState(selectedRooms);
   // const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
   // const [openRoomDetails, setOpenRoomDetails] = React.useState([
@@ -46,16 +60,16 @@ const RoomListing = ({ roomNumber }) => {
   function initializePopupState(isRoomDetails) {
     if (isRoomDetails) {
       const obj = {};
-      for (let i = 0; i < allRoomTypes?.length; i++) {
-        obj[allRoomTypes[i]["id"]] = false;
+      for (let i = 0; i < filteredAllRoomTypes?.length; i++) {
+        obj[filteredAllRoomTypes[i]["id"]] = false;
       }
       return obj;
     } else {
       const withBreakfast = {};
       const withoutBreakfast = {};
-      for (let i = 0; i < allRoomTypes?.length; i++) {
-        withBreakfast[allRoomTypes[i]["id"]] = false;
-        withoutBreakfast[allRoomTypes[i]["id"]] = false;
+      for (let i = 0; i < filteredAllRoomTypes?.length; i++) {
+        withBreakfast[filteredAllRoomTypes[i]["id"]] = false;
+        withoutBreakfast[filteredAllRoomTypes[i]["id"]] = false;
       }
       return {
         withBreakfast: withBreakfast,
@@ -137,9 +151,15 @@ const RoomListing = ({ roomNumber }) => {
     return Math.round(Number(price * ((100 - offers[id]) / 100)));
   }
 
+  const allAssets = {
+    1: [nonAcImage1, nonAcImage2, nonAcImage3],
+    2: [deluxeImage1, deluxeImage2, deluxeImage3, deluxeImage4],
+    3: [executiveImage1, executiveImage2, executiveImage3, executiveImage4],
+  };
+
   return (
     <div className="room_listing">
-      {roomTypes?.map((roomType, index) => (
+      {filteredAllRoomTypes?.map((roomType, index) => (
         <div
           className={
             selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
@@ -153,11 +173,16 @@ const RoomListing = ({ roomNumber }) => {
               slidesToShow={1}
               slidesToScroll={1}
               images={roomType.assets}
+              // images={allRoomTypes1[index].assets}
+              // images={allAssets[index + 1]}
               isCarousel={false}
             />
             <ul className="room_details__chips">
               <li key={Math.random()}>
-                <Chip content={[roomType.roomSizeInSquareFeet + " ft²"]} />
+                {/* <Chip content={[roomType.roomSizeInSquareFeet + " ft²"]} /> */}
+                <Chip
+                  content={[allRoomTypes1[index].roomSizeInSquareFeet + " ft²"]}
+                />
               </li>
               {/* <li key={Math.random()}>
                 <Chip content={roomDetails[index][1]} />

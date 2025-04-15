@@ -72,8 +72,13 @@
 
 .reviews .slick-dots li button:before {
   color: var(--terra-cotta);
-  margin-top: 15px;
+  /* margin-top: 15px; */
   font-size: 10px;
+}
+
+.reviews .slick-dots {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media (max-width: 768px) {
