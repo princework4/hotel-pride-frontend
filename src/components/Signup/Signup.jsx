@@ -18,6 +18,8 @@ import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { registerUser } from "../../services/Auth";
+import { toast } from "react-toastify";
+import { encryptPassword } from "../../utils";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -36,17 +38,36 @@ const validationSchema = Yup.object().shape({
     .required("Password is required"),
 });
 
-const SignUpForm = () => {
+const SignUpForm = ({ handleClose }) => {
   const { state, dispatch } = React.useContext(AppContext);
+  const [error, setError] = React.useState("");
 
-  function handleFormSubmit(values, { resetForm }) {
-    const response = registerUser(values);
-    // if (success) {
-    //   toast.success("User registered successfully.");
-    // } else {
-    //   toast.error("Unable to register. Please try again later.");
-    // }
+  async function handleFormSubmit(values, { resetForm }) {
     console.log(values);
+    values.mobile = `${values.mobile}`;
+    // const updatedValues = {
+    //   name: values.name,
+    //   email: values.email,
+    //   mobile: values.mobile,
+    //   password: encryptPassword(values.password),
+    // };
+    // console.log(updatedValues);
+    const response = await registerUser(values);
+    if (response?.status === 200) {
+      setError("");
+      toast.success("User registered successfully.");
+      handleClose();
+    } else if (response?.statusCode === 400) {
+      setError(response?.message);
+    }
+    // else if (response?.statusCode === 409) {
+    //   setError("");
+    //   toast.warning(response?.message || response?.error);
+    // }
+    else {
+      setError("");
+      toast.error(response?.message || response?.error);
+    }
     resetForm();
   }
 
@@ -154,6 +175,11 @@ const SignUpForm = () => {
               </FormHelperText>
             ) : null}
           </FormControl> */}
+            {error && (
+              <Typography color="error" sx={{ fontSize: "12px" }}>
+                {error}
+              </Typography>
+            )}
             <Button
               type="submit"
               className="signup_btn"

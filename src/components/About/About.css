@@ -329,3 +329,9 @@
     width: 72%;
   }
 }
+
+@media (max-width: 450px) {
+  .left_right_showcase .about__subheading {
+    font-size: 17px;
+  }
+}

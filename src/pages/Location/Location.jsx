@@ -19,7 +19,7 @@ const Location = () => {
       <section className="location">
         <div className="wrapper">
           <div className="heading_container">
-            <hr />
+            {/* <hr /> */}
             <h2>location and transportation</h2>
           </div>
           <p className="location__first_para">

@@ -28,4 +28,8 @@ export const reducerMethods = {
   setIsUserLoggedIn: "SET_IS_USER_LOGGED_IN",
   setLoggedInUser: "SET_LOGGED_IN_USER",
   setAllRoomTypes: "SET_ALL_ROOM_TYPES",
+  setFilteredAllRoomTypes: "SET_FILTERED_ALL_ROOM_TYPES",
+  setUserDetailsForPayment: "SET_USER_DETAILS_FOR_PAYMENT",
+  setAllRoomTypesName: "SET_ALL_ROOM_TYPES_NAMES",
+  setAllAssetsImages: "SET_ALL_ASSETS_IMAGES",
 };

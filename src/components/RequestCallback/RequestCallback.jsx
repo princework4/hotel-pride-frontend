@@ -19,7 +19,7 @@ import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "./RequestCallback.css";
-import { requestCallback } from "../../services/Rooms";
+import { requestCallback } from "../../services/Booking";
 import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
@@ -78,16 +78,18 @@ const RequestCallback = () => {
     return () => document.removeEventListener("scroll", onScroll);
   }, [TOP]);
 
-  function handleFormSubmit(values, { resetForm }) {
+  async function handleFormSubmit(values, { resetForm }) {
     console.log(values);
-    const response = requestCallback(values);
-    // if (success) {
-    //   toast.success(
-    //     "Details has been send successfully. We will shortly get back to you."
-    //   );
-    // } else {
-    //   toast.error("Unable to send the details. Please try again later.");
-    // }
+    const response = await requestCallback(values);
+    console.log("response --> ", response);
+    if (response?.status === 200) {
+      toast.success(
+        "Your query has been send successfully. We will shortly get back to you."
+      );
+      handleClose();
+    } else {
+      toast.error(response?.message || response?.error);
+    }
     resetForm();
   }
 
@@ -107,6 +109,7 @@ const RequestCallback = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="request_callback_form"
+        disableScrollLock={true}
       >
         <Formik
           initialValues={{

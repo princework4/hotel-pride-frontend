@@ -34,19 +34,20 @@ const initialState = {
   checkInDate: null,
   checkOutDate: null,
   selectedRooms: [],
-  isOfferAvailable: false,
+  isOfferAvailable: true,
   offers: {
-    0: 10,
-    1: 15,
-    2: 30,
+    1: 10,
+    2: 15,
+    3: 30,
   },
   shouldShowCallback: false,
   isHomePage: true,
   selectedRoomTypeId: null,
   steppersActiveStep: 1,
-  isUserLoggedIn: true,
+  isUserLoggedIn: false,
   loggedInUser: {},
-  allRoomTypes: [
+  allRoomTypes: [],
+  allRoomTypes1: [
     {
       id: 0,
       typeName: "Non - AC Room",
@@ -272,7 +273,12 @@ const initialState = {
       ],
     },
   ],
+  filteredAllRoomTypes: [],
   breakfastPrice: 500,
+  userDetailsForPayment: {},
+  tax: 2000,
+  allRoomTypesName: [],
+  allAssetsImages: [],
 };
 
 export const AppContext = createContext(initialState);

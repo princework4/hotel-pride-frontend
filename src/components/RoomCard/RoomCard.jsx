@@ -13,6 +13,22 @@ import "./RoomCard.css";
 
 import React from "react";
 
+// import Bathroom from "../../assets/bathroom.png"
+// import Luggage from "../../assets/luggage.png"
+// // import Luggage from "../../assets/luggage.png"
+// import AirConditioner from "../../assets/air-conditioner.png"
+// import Desk from "../../assets/desk.png"
+// import WaterBottle from "../../assets/bottle-water.png"
+// // import Luggage from "../../assets/luggage.png"
+// import Luggage from "../../assets/luggage.png"
+// import Luggage from "../../assets/luggage.png"
+
+// const allAmenities = {
+//   1: [],
+//   2: [],
+//   3: [],
+// };
+
 const RoomCard = ({ roomType, roomDetails, roomId, assets, amenities }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -115,9 +131,9 @@ const RoomCard = ({ roomType, roomDetails, roomId, assets, amenities }) => {
           <li>
             <img src={Wifi} />
           </li>
-          <li>
+          {/* <li>
             <img src={Vault} />
-          </li>
+          </li> */}
           <li>
             <img src={Tea} />
           </li>

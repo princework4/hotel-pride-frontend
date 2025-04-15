@@ -14,6 +14,7 @@ import GuestDetails from "../GuestDetails";
 import { TabsStyle } from "../../MUIStyle/Tabs";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
+import Payment from "../Payment/Payment";
 
 const steps = ["Select Room", "Personal Details", "Payment"];
 
@@ -175,7 +176,8 @@ export default function CustomStepper() {
           setActiveStep={setActiveStep}
         />
       ) : (
-        <div>Payment Page</div>
+        <div>Payment gateway</div>
+        // <Payment totalPrice={totalPrice} />
       )}
     </Box>
   );

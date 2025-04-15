@@ -37,7 +37,8 @@ const ImageSlider = ({
         <Slider {...settings}>
           {images.map((item) => (
             <div className="slider_div" key={item.id}>
-              <img src={item.assetUrl} alt={item.assetThumbUrl} />
+              {/* {item} */}
+              <img src={`..${item}`} alt={item.assetThumbUrl} />
             </div>
           ))}
         </Slider>

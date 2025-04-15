@@ -14,14 +14,26 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
+import { getRoomsAvailability } from "../../services/Booking";
+import { toast } from "react-toastify";
+import { TOP } from "../../Constants";
 
 const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
   const { state, dispatch } = React.useContext(AppContext);
-  const { guestOptions, checkInDate, checkOutDate, isHomePage } = state;
+  const {
+    guestOptions,
+    checkInDate,
+    checkOutDate,
+    isHomePage,
+    filteredAllRoomTypes,
+  } = state;
   // const [guestOptions, setguestOptions] = useState({ adults: 1, children: 0, room: 1 });
   // const [checkInDate, setCheckInDate] = useState(null);
   // const [checkOutDate, setCheckOutDate] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [searchedAvailableRoomTypes, setSearchedAvailableRoomTypes] = useState(
+    []
+  );
 
   const navigate = useNavigate();
 
@@ -59,14 +71,59 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
     }
   }, []);
 
-  const handleSearch = () => {
+  async function checkRoomAvailability() {
+    const response = await getRoomsAvailability(checkInDate, checkOutDate);
+    console.log(response.data);
+    setSearchedAvailableRoomTypes(response.data);
+    dispatch({
+      type: reducerMethods.setFilteredAllRoomTypes,
+      payload: response?.data,
+    });
+    console.log("filteredAllRoomTypes :- ", filteredAllRoomTypes);
+  }
+
+  const handleSearch = async () => {
+    // checkRoomAvailability();
+
+    const response = await getRoomsAvailability(checkInDate, checkOutDate);
+    console.log(response.data);
+    setSearchedAvailableRoomTypes(response.data);
+    dispatch({
+      type: reducerMethods.setFilteredAllRoomTypes,
+      payload: response?.data,
+    });
+
     if (callFromRoomCard) {
-      dispatch({
-        type: reducerMethods.setSelectedRoomTypeId,
-        payload: selectedRoomTypeId,
-      });
+      let roomTypeFound = false;
+      for (let i = 0; i < filteredAllRoomTypes.length; i++) {
+        if (filteredAllRoomTypes[i]?.id == selectedRoomTypeId) {
+          roomTypeFound = true;
+          break;
+        }
+      }
+
+      if (!roomTypeFound) {
+        toast.error("No Rooms found for the selected configurations 1.");
+        return;
+      } else {
+        dispatch({
+          type: reducerMethods.setSelectedRoomTypeId,
+          payload: selectedRoomTypeId,
+        });
+        navigate("/rooms");
+      }
     }
-    navigate("/rooms");
+
+    console.log(
+      "filteredAllRoomTypes :- ",
+      filteredAllRoomTypes,
+      filteredAllRoomTypes.length
+    );
+    if (response?.data?.length > 0) {
+      navigate("/rooms");
+    } else {
+      toast.error("No Rooms found for the selected configurations 2.");
+    }
   };
 
   return (
@@ -85,7 +142,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 })
               }
               disablePast={true}
-              format="DD/MM/YYYY"
+              format="DD-MM-YYYY"
               sx={{
                 "& fieldset": {
                   borderColor: "#b85042 !important",
@@ -116,7 +173,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 })
               }
               disablePast={true}
-              format="DD/MM/YYYY"
+              format="DD-MM-YYYY"
               sx={{
                 "& fieldset": {
                   borderColor: "#b85042 !important",
@@ -138,7 +195,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
 
         {/* Guests and Rooms */}
 
-        <div className="form-group">
+        <div className="form-group" style={{ position: "relative" }}>
           <OutlinedInput
             aria-describedby={popOverId}
             variant="contained"
@@ -156,15 +213,23 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
             open={open}
             anchorEl={anchorEl}
             onClose={handleClose}
+            // anchorOrigin={{
+            //   vertical: "top",
+            //   horizontal: "left",
+            // }}
+            // transformOrigin={{
+            //   vertical: "bottom",
+            //   horizontal: "left",
+            // }}
+            // sx={{
+            //   position: "absolute",
+            //   top: document.documentElement.scrollTop >= 100 ? "40%" : "-1%",
+            // }}
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            transformOrigin={{
               vertical: "bottom",
               horizontal: "left",
             }}
-            // disableScrollLock={true}
+            disableScrollLock={true}
           >
             <div className="guestInputs">
               <div className="guest-group">

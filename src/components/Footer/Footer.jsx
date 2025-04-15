@@ -27,6 +27,9 @@ const Footer = () => {
                 <Link to="/gallery" className="footer-link">
                   Gallery
                 </Link>
+                <Link to="/location" className="footer-link">
+                  Location
+                </Link>
               </div>
             </div>
 
