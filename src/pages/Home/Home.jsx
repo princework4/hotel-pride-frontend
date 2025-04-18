@@ -71,29 +71,49 @@ const Home = () => {
     const roomTypeNames = [allTabDetail];
     for (let i = 0; i < data.length; i++) {
       roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
-      for (let j = 0; j < data[i].assets.length; j++) {
-        images.push([data[i].assets[j].assetUrl, `cat${data[i].id}`]);
-      }
+      // for (let j = 0; j < data[i].assets.length; j++) {
+      //   images.push([
+      //     process.env.BASE_URL + data[i].assets[j].assetUrl,
+      //     `cat${data[i].id}`,
+      //   ]);
+      // }
     }
 
     dispatch({
       type: reducerMethods.setAllRoomTypesName,
       payload: roomTypeNames,
     });
-    dispatch({ type: reducerMethods.setAllAssetsImages, payload: images });
+    // dispatch({ type: reducerMethods.setAllAssetsImages, payload: images });
   }
 
   useEffect(() => {
     if (allRoomTypes?.length === 0) {
       getAllRoomTypes();
     }
+
+    if (localStorage.getItem("userObj")) {
+      const obj = JSON.parse(localStorage.getItem("userObj"));
+      dispatch({
+        type: reducerMethods.setLoggedInUser,
+        payload: {
+          id: obj.id,
+          name: obj.name,
+          email: obj.email,
+          contactNumber: obj.contactNumber,
+        },
+      });
+      dispatch({
+        type: reducerMethods.setIsUserLoggedIn,
+        payload: obj.isLoggedIn,
+      });
+    }
   }, []);
 
-  const allAssets = {
-    1: [nonAcImage1, nonAcImage2, nonAcImage3],
-    2: [deluxeImage1, deluxeImage2, deluxeImage3, deluxeImage4],
-    3: [executiveImage1, executiveImage2, executiveImage3, executiveImage4],
-  };
+  // const allAssets = {
+  //   1: [nonAcImage1, nonAcImage2, nonAcImage3],
+  //   2: [deluxeImage1, deluxeImage2, deluxeImage3, deluxeImage4],
+  //   3: [executiveImage1, executiveImage2, executiveImage3, executiveImage4],
+  // };
 
   return (
     <>
@@ -203,7 +223,7 @@ const Home = () => {
           <div className="wrapper">
             <div className="heading_container">
               {/* <hr /> */}
-              <h2 data-text="reviews">What our Guest Say</h2>
+              <h2 data-text="reviews">What our Guests Say</h2>
             </div>
             <div className="reviews__container">
               <Reviews guestsReviews={guestsReviews} />

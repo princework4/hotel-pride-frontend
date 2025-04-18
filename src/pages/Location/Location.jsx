@@ -11,6 +11,23 @@ const Location = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
+
+    if (localStorage.getItem("userObj")) {
+      const obj = JSON.parse(localStorage.getItem("userObj"));
+      dispatch({
+        type: reducerMethods.setLoggedInUser,
+        payload: {
+          id: obj.id,
+          name: obj.name,
+          email: obj.email,
+          contactNumber: obj.contactNumber,
+        },
+      });
+      dispatch({
+        type: reducerMethods.setIsUserLoggedIn,
+        payload: obj.isLoggedIn,
+      });
+    }
   }, []);
 
   return (

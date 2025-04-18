@@ -3,6 +3,7 @@ import { showcaseImgs } from "../../Constants";
 import ImageSlider from "../Slider";
 import Header from "../Header";
 import Footer from "../Footer";
+import HotelBuilding from "../../assets/Gallery/building.jpeg";
 import "./About.css";
 
 const About = () => {
@@ -71,8 +72,9 @@ const About = () => {
             </div>
             <figure>
               <img
-                src="https://www.conradpune.com/wp-content/uploads/2022/07/2-4.png"
-                alt=""
+                // src="https://www.conradpune.com/wp-content/uploads/2022/07/2-4.png"
+                src={HotelBuilding}
+                alt="Hotel Building"
               />
             </figure>
           </div>
@@ -80,8 +82,9 @@ const About = () => {
             <div className="left_right_showcase__second">
               <figure>
                 <img
-                  src="https://www.conradpune.com/wp-content/uploads/2022/07/1-4.png"
-                  alt=""
+                  // src="https://www.conradpune.com/wp-content/uploads/2022/07/1-4.png"
+                  src={HotelBuilding}
+                  alt="Reception"
                 />
               </figure>
               <div>

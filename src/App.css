@@ -493,6 +493,11 @@ button:hover {
   h2 {
     font-size: 25px;
   }
+  button:hover {
+    background-color: var(--terra-cotta);
+    color: #fff;
+    border: 1px solid transparent;
+  }
 }
 
 @media (max-width: 834px) {

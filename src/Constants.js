@@ -133,40 +133,64 @@ export const TOP = 1000;
 
 export const guestsReviews = [
   {
-    name: "John Doe",
-    avatar: "https://via.placeholder.com/100",
-    rating: 4.5,
-    text: "The hotel experience was wonderful! Amazing staff and great services. The amenities were top-notch and really made our stay special.",
-  },
-  {
-    name: "Jane Smith",
+    name: "Geeta Passi",
     avatar: "https://via.placeholder.com/100",
     rating: 5,
-    text: "I had an amazing stay! The location was perfect, and everything was top-notch. Highly recommend it for anyone visiting the city.",
+    text: "Very nice staff and a nice place. Tea lovers must try the tea. Good food and quick services.",
   },
   {
-    name: "Chris Johnson",
+    name: "Prathmesh K",
     avatar: "https://via.placeholder.com/100",
-    rating: 3.5,
-    text: "Good stay overall, but the room service could be improved. The staff was friendly, but there were a few hiccups with the services.",
+    rating: 5,
+    text: "One of the best hospitality provided by the hotel staff. Clean rooms. Easily accessible near to rao travels bus stop. Good for family...",
   },
   {
-    name: "Anna Brown",
+    name: "Kishanta Pradhan",
+    avatar: "https://via.placeholder.com/100",
+    rating: 5,
+    text: "Recently I visited Mumbai and stayed at this hotel.. The ambience was good as well as the hotel staff. During checkout I forgot to take my t-shirt but the hotel staff sent my t-shirt immediately after I requested them.. Very happy by the gesture 👍👍",
+  },
+  // {
+  //   name: "Chris Johnson",
+  //   avatar: "https://via.placeholder.com/100",
+  //   rating: 5,
+  //   text: "Clean and nice place such a amazing service. The rooms were clean and spacious. The staff is extremely helpful and treat you like a god and it is near to metro station and easy to reach. The hotel has all the required amenities and will make you feel lavish with there service. The location is good as per Mumbai area.",
+  // },
+  {
+    name: "Deepu Singh",
+    avatar: "https://via.placeholder.com/100",
+    rating: 5,
+    text: "Have been using Pride Hotel for the last few visits to Mumbai.. staff is super friendly and the hotel is worth considering the 3 star billing. Located on the highway so easy access to public transport as well. Plus a very amiable staff at the front desk..recommended",
+  },
+  {
+    name: "Jaideep Kadam",
     avatar: "https://via.placeholder.com/100",
     rating: 4,
-    text: "Great experience, although a bit pricey. The view from the room was amazing, and the food in the restaurant was excellent.",
+    text: "Pride Hotel in Bhandup is a great stay option to consider! Clean, modern rooms (newly renovated), perfect for solo travelers, Couples, Families looking for a perfect stay Book in advance though, it fills up fast! Food could be better, but overall a good experience.",
   },
   {
-    name: "Michael Lee",
-    avatar: "https://via.placeholder.com/100",
-    rating: 4.7,
-    text: "A lovely experience overall. The hotel was clean, well-maintained, and very cozy. I loved the vibe of the place.",
-  },
-  {
-    name: "Sophia White",
+    name: "M Shah",
     avatar: "https://via.placeholder.com/100",
     rating: 5,
-    text: "I would definitely stay again! The staff went out of their way to make our stay enjoyable, and the hotel itself was gorgeous.",
+    text: "We booked 10 rooms for the wedding and had amazing service experience. Thank you staff for making our ground work reliable.",
+  },
+  {
+    name: "Aishvarya VenkataSeetharaman",
+    avatar: "https://via.placeholder.com/100",
+    rating: 5,
+    text: "As a solo woman traveller on this trip, I felt safe and reassured by the courteousness and politeness of the staff and the place altogether. Area is well connected by the road and busy through the day making if safe always. Rooms are quite spacious and well maintained but noise from the traffic can be bit disturbing. But definitely worth the penny for the tariff rates in the area. Explored late evening shopping without a hesitation which is rare in other cities.",
+  },
+  {
+    name: "Niharika",
+    avatar: "https://via.placeholder.com/100",
+    rating: 5,
+    text: "Hotel Pride is a spacious and clean hotel, staying at the hotel was truly a mesmerizing experience. Everything was systematic and organized. The staff was friendly.",
+  },
+  {
+    name: "Ankit Shrivastava",
+    avatar: "https://via.placeholder.com/100",
+    rating: 5,
+    text: "Good hotel for a decent price. It's so difficult to find good hotels anywhere nowadays without paying upwards of 4k per night. Glad to visit a hotel with decent rooms at a cheaper price. The room and bathroom were clean. There was enough room to put down my suitcase flat open and still have enough room for walking (this is becoming a rarity in Mumbai at this price point). Although I only ever ordered coffee, the service was quick.",
   },
 ];
 

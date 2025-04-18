@@ -129,7 +129,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     // <Payment totalPrice={totalPrice} tax={tax} values={values} />;
 
     // only for testing
-    proceedWithBookingConfirmation(values);
+    // proceedWithBookingConfirmation(values);
   }
 
   const handleClick = () => {

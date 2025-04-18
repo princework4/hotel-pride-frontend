@@ -34,7 +34,7 @@ const initialState = {
   checkInDate: null,
   checkOutDate: null,
   selectedRooms: [],
-  isOfferAvailable: true,
+  isOfferAvailable: false,
   offers: {
     1: 10,
     2: 15,

@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <Typography variant="h5" className="section-title">
                 Follow Us
               </Typography>
@@ -48,12 +48,12 @@ const Footer = () => {
                   Instagram
                 </Link>
               </Box>
-            </div>
+            </div> */}
           </div>
-          <Box className="corporate-footer">
+          {/* <Box className="corporate-footer">
             <h1></h1>
             <p>© ABC 2025</p>
-          </Box>
+          </Box> */}
         </div>
       </footer>
     </>

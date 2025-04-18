@@ -1,28 +1,93 @@
 import React, { useContext, useEffect, useState } from "react";
-import { filterTabButtons, galleryImgs } from "../../Constants";
+import { allTabDetail } from "../../Constants";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import "./Gallery.css";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
+import { fetchAllRoomTypes } from "../../services/Rooms";
+
+import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
+import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2.jpeg";
+import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3.jpeg";
+import deluxeImage1 from "../../assets//Deluxe/deluxe_room_1.jpeg";
+import deluxeImage2 from "../../assets//Deluxe/deluxe_room_2.jpeg";
+import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3.jpeg";
+import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4.jpeg";
+import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
+import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
+import executiveImage3 from "../../assets//Executive/executive_room_3.jpeg";
+import executiveImage4 from "../../assets//Executive/executive_room_4.jpeg";
+
+import "./Gallery.css";
+
+const allAssetsImages = [
+  [nonAcImage1, "cat1"],
+  [nonAcImage2, "cat1"],
+  [nonAcImage3, "cat1"],
+  [deluxeImage1, "cat2"],
+  [deluxeImage2, "cat2"],
+  [deluxeImage3, "cat2"],
+  [deluxeImage4, "cat2"],
+  [executiveImage1, "cat3"],
+  [executiveImage2, "cat3"],
+  [executiveImage3, "cat3"],
+  [executiveImage4, "cat3"],
+];
 
 const Gallery = () => {
   const { state, dispatch } = useContext(AppContext);
-  const [galleryImages, setGalleryImages] = useState(galleryImgs);
-  const [trackActiveButton, setTrackActiveButton] = useState(0);
+  const { allRoomTypesName } = state;
+  // const [galleryImages, setGalleryImages] = useState(state.allAssetsImages);
+  const [galleryImages, setGalleryImages] = useState(allAssetsImages);
+  const [trackActiveButton, setTrackActiveButton] = useState("cat-1");
+
+  async function getAllRoomTypes() {
+    const data = await fetchAllRoomTypes();
+    const roomTypeNames = [allTabDetail];
+    for (let i = 0; i < data.length; i++) {
+      roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
+    }
+
+    dispatch({
+      type: reducerMethods.setAllRoomTypesName,
+      payload: roomTypeNames,
+    });
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
+
+    if (allRoomTypesName?.length === 0) {
+      getAllRoomTypes();
+    }
+
+    if (localStorage.getItem("userObj")) {
+      const obj = JSON.parse(localStorage.getItem("userObj"));
+      dispatch({
+        type: reducerMethods.setLoggedInUser,
+        payload: {
+          id: obj.id,
+          name: obj.name,
+          email: obj.email,
+          contactNumber: obj.contactNumber,
+        },
+      });
+      dispatch({
+        type: reducerMethods.setIsUserLoggedIn,
+        payload: obj.isLoggedIn,
+      });
+    }
   }, []);
 
   const handleClick = (selectedCategory) => {
-    setTrackActiveButton(Number(selectedCategory));
-    selectedCategory = "cat" + selectedCategory;
-    if (selectedCategory == "cat0") {
-      setGalleryImages(galleryImgs);
+    setTrackActiveButton(selectedCategory);
+    console.log(selectedCategory);
+    // selectedCategory = "cat" + selectedCategory;
+    if (selectedCategory == "cat-1") {
+      setGalleryImages(allAssetsImages);
     } else {
-      const allImages = JSON.parse(JSON.stringify(galleryImgs));
+      const allImages = JSON.parse(JSON.stringify(allAssetsImages));
       console.log(allImages);
       const temp = allImages.filter((items) => items[1] === selectedCategory);
       console.log(temp);
@@ -40,22 +105,24 @@ const Gallery = () => {
             <h2>gallery</h2>
           </div>
           <div className="filter_buttons">
-            {filterTabButtons?.map((buttonText, i) => (
+            {/* {filterTabButtons?.map((buttonText, i) => ( */}
+            {state.allRoomTypesName?.map((buttonText, i) => (
               <button
                 className={`${
-                  i == trackActiveButton ? "is_active button" : "button"
+                  buttonText[1] == trackActiveButton
+                    ? "is_active button"
+                    : "button"
                 }`}
-                onClick={() => handleClick(i)}
+                onClick={() => handleClick(buttonText[1])}
                 key={i}
               >
-                {buttonText}
+                {buttonText[0]}
               </button>
             ))}
           </div>
           <ul className="grid">
             {galleryImages?.map((item, i) => (
               <li key={i}>
-                {/* <div className="overlay"></div> */}
                 <img src={item[0]} alt={i} />
               </li>
             ))}

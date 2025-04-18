@@ -176,8 +176,8 @@ export default function CustomStepper() {
           setActiveStep={setActiveStep}
         />
       ) : (
-        <div>Payment gateway</div>
-        // <Payment totalPrice={totalPrice} />
+        // <div>Payment gateway</div>
+        <Payment totalPrice={totalPrice} />
       )}
     </Box>
   );

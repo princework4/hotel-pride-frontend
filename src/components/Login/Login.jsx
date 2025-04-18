@@ -57,6 +57,16 @@ const LogInForm = ({ handleClose }) => {
       });
       dispatch({ type: reducerMethods.setIsUserLoggedIn, payload: true });
       toast.success("Logged In Successfully");
+      localStorage.setItem(
+        "userObj",
+        JSON.stringify({
+          id: response.data.id,
+          name: response.data.name,
+          email: response.data.email,
+          contactNumber: response.data.contactNumber,
+          isLoggedIn: true,
+        })
+      );
       handleClose();
     } else if (response?.statusCode === 400 || response?.statusCode === 404) {
       setError(response?.message);
