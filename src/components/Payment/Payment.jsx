@@ -46,6 +46,7 @@ const Payment = ({ totalPrice }) => {
 
   async function createPaymentHandler() {
     const data = await createPayment(totalPrice + tax);
+    console.log("payment data :- ", data);
 
     const options = {
       key: process.env.PAYMENT_KEY,
@@ -57,6 +58,7 @@ const Payment = ({ totalPrice }) => {
       order_id: data.id,
       //   callback_url: `${process.env.BASE_URL}/${process.env.API_VERSION}/payments/verify`,
       handler: function (response) {
+        console.log("payment success response :- ", response);
         const paymentDetails = {
           paymentId: response.razorpay_payment_id,
           orderId: response.razorpay_order_id,

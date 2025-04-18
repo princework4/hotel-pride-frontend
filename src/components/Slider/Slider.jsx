@@ -13,7 +13,7 @@ const ImageSlider = ({
 }) => {
   const settings = {
     infinite: true,
-    dots: true,
+    dots: false,
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll,
     lazyLoad: true,
@@ -37,8 +37,10 @@ const ImageSlider = ({
         <Slider {...settings}>
           {images.map((item) => (
             <div className="slider_div" key={item.id}>
-              {/* {item} */}
-              <img src={`..${item}`} alt={item.assetThumbUrl} />
+              <img
+                src={`${process.env.BASE_URL}${item.assetUrl}`}
+                alt={item.assetThumbUrl}
+              />
             </div>
           ))}
         </Slider>

@@ -30,12 +30,32 @@ const Navbar = () => {
   // const handleClose = () =>
   //   dispatch({ type: reducerMethods.setOpen, payload: false });
 
+  useEffect(() => {
+    if (localStorage.getItem("userObj")) {
+      const obj = JSON.parse(localStorage.getItem("userObj"));
+      dispatch({
+        type: reducerMethods.setLoggedInUser,
+        payload: {
+          id: obj.id,
+          name: obj.name,
+          email: obj.email,
+          contactNumber: obj.contactNumber,
+        },
+      });
+      dispatch({
+        type: reducerMethods.setIsUserLoggedIn,
+        payload: obj.isLoggedIn,
+      });
+    }
+  }, []);
+
   function handleLogout() {
     dispatch({
       type: reducerMethods.setIsUserLoggedIn,
       payload: false,
     });
     toast.success("Logged Out Successfully");
+    localStorage.removeItem("userObj");
   }
 
   const style = {
