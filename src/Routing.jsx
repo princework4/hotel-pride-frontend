@@ -24,7 +24,7 @@ const Routing = () => {
         {/* <Route path="about" element={<About />} /> */}
         <Route path="gallery" element={<Gallery />} />
         <Route path="location" element={<Location />} />
-        <Route path="rooms" element={<Rooms />} />
+        <Route path="rooms/:id" element={<Rooms />} />
         <Route path="payment-successful" element={<PaymentSuccessful />} />
         <Route path="payment-failed" element={<PaymentFailed />} />
         <Route path="*" element={<NotFound />} />

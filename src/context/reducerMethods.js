@@ -20,6 +20,7 @@ export const reducerMethods = {
   setOffers: "SET_OFFERS",
   setShouldShowCallback: "SET_SHOULD_SHOW_CALLBACK",
   setGuestOptions: "SET_GUEST_OPTIONS", // sets adults,children and rooms count
+  setGuestDetails: "SET_GUEST_DETAILS",
   setCheckInDate: "SET_CHECK_IN_DATE",
   setCheckOutDate: "SET_CHECK_OUT_DATE",
   setIsHomePage: "SET_IS_HOME_PAGE",

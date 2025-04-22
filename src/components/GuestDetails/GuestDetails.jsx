@@ -22,7 +22,10 @@ import * as Yup from "yup";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import Payment from "../Payment/Payment";
 import { generateRoomBookingListData } from "../../utils";
-import { bookingConfirmation } from "../../services/Booking";
+import {
+  bookingConfirmation,
+  guestBookingConfirmation,
+} from "../../services/Booking";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -94,28 +97,67 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   // }, []);
 
   // only for testing
-  async function proceedWithBookingConfirmation(values) {
-    const finalBookingDetailsObj = {
-      // userId: isUserLoggedIn ? loggedInUser.email : values.email,
-      userId: 1,
-      hotelId: 1,
-      couponCode: "",
-      checkInDate,
-      checkOutDate,
-      paymentType: "PREPAID",
-      roomBookingList: generateRoomBookingListData(selectedRooms),
-    };
-    console.log("finalBookingDetailsObj :- ", finalBookingDetailsObj);
-    const response = await bookingConfirmation(finalBookingDetailsObj);
-    if (response.status === 200) {
-      // will check
-      toast.success("Booking successful. You'll get confirmation on email.");
-      navigate("/");
+  async function proceedWithBookingConfirmation() {
+    if (isUserLoggedIn) {
+      const finalLoggedInBookingDetailsObj = {
+        userId: loggedInUser.id,
+        hotelId: 1,
+        couponCode: "",
+        noOfAdults: guestOptions.adults,
+        noOfChildrens: guestOptions.children,
+        checkInDate,
+        checkOutDate,
+        paymentType: "PREPAID",
+        totalAmount: totalPrice,
+        payableAmount: totalPrice,
+        roomBookingList: generateRoomBookingListData(selectedRooms),
+      };
+
+      const response = await bookingConfirmation(
+        finalLoggedInBookingDetailsObj
+      );
+      if (response.status === 200) {
+        // will check
+      }
+    } else {
+      const guestDetails = {
+        email: "test@gmail.com",
+        fname: "test",
+        lname: "test",
+        mobile: 1234567888,
+        termsAndConditions: true,
+      };
+      const finalLoggedInBookingDetailsObj = {
+        email: guestDetails.email,
+        phone: `${guestDetails.mobile}`,
+        fullName: guestDetails.fname + " " + guestDetails.lname,
+        hotelId: 1,
+        couponCode: "",
+        noOfAdults: guestOptions.adults,
+        noOfChildrens: guestOptions.children,
+        checkInDate,
+        checkOutDate,
+        paymentType: "PREPAID",
+        totalAmount: totalPrice,
+        payableAmount: totalPrice,
+        roomBookingList: generateRoomBookingListData(selectedRooms),
+      };
+
+      const response = await guestBookingConfirmation(
+        finalLoggedInBookingDetailsObj
+      );
+      if (response.status === 200) {
+        // will check
+      }
     }
   }
 
   function handleFormSubmit(values, { resetForm }) {
     // setIsDisabled(false);
+    dispatch({
+      type: reducerMethods.setGuestDetails,
+      payload: values,
+    });
     dispatch({
       type: reducerMethods.setUserDetailsForPayment,
       payload: values,
@@ -129,7 +171,8 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     // <Payment totalPrice={totalPrice} tax={tax} values={values} />;
 
     // only for testing
-    // proceedWithBookingConfirmation(values);
+    // console.log("state :- ", state);
+    // proceedWithBookingConfirmation();
   }
 
   const handleClick = () => {

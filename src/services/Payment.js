@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export async function createPayment(amount) {
+export async function createPayment(bookingNumber) {
   try {
     const response = await axios.post(
       `${process.env.BASE_URL}/${process.env.API_VERSION}/payments/create`,
       {
-        amount: amount,
+        bookingNumber,
       }
     );
     // console.log(data);

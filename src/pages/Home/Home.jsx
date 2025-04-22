@@ -69,6 +69,7 @@ const Home = () => {
 
     const images = [];
     const roomTypeNames = [allTabDetail];
+    const offersObj = {};
     for (let i = 0; i < data.length; i++) {
       roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
       // for (let j = 0; j < data[i].assets.length; j++) {
@@ -77,7 +78,13 @@ const Home = () => {
       //     `cat${data[i].id}`,
       //   ]);
       // }
+      offersObj[data[i].id] = data[i].offerDiscountPercentage;
     }
+
+    dispatch({
+      type: reducerMethods.setOffers,
+      payload: offersObj,
+    });
 
     dispatch({
       type: reducerMethods.setAllRoomTypesName,

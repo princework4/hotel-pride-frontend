@@ -6,7 +6,9 @@ const PaymentSuccessful = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
+  console.log("payment success state :- ", state);
   useEffect(() => {
+    console.log("payment success state :- ", state);
     if (!state) {
       navigate("/", { replace: true });
       return;
