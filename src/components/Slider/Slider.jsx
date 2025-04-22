@@ -34,16 +34,26 @@ const ImageSlider = ({
             : "imgSlider"
         }
       >
-        <Slider {...settings}>
-          {images.map((item) => (
-            <div className="slider_div" key={item.id}>
-              <img
-                src={`${process.env.BASE_URL}${item.assetUrl}`}
-                alt={item.assetThumbUrl}
-              />
-            </div>
-          ))}
-        </Slider>
+        {!isBanner ? (
+          <Slider {...settings}>
+            {images.map((item) => (
+              <div className="slider_div" key={item.id}>
+                <img
+                  src={`${process.env.BASE_URL}${item.assetUrl}`}
+                  alt={`room_type_${item.id}`}
+                />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <Slider {...settings}>
+            {images.map((item, index) => (
+              <div className="slider_div" key={index}>
+                <img src={item} alt={`banner_img_${index}`} />
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
     </>
   );

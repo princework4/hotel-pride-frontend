@@ -86,43 +86,47 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
     // checkRoomAvailability();
 
     const response = await getRoomsAvailability(checkInDate, checkOutDate);
-    console.log(response.data);
-    setSearchedAvailableRoomTypes(response.data);
-    dispatch({
-      type: reducerMethods.setFilteredAllRoomTypes,
-      payload: response?.data,
-    });
+    if (response.status == 200) {
+      console.log(response.data);
+      setSearchedAvailableRoomTypes(response.data);
+      // dispatch({
+      //   type: reducerMethods.setFilteredAllRoomTypes,
+      //   payload: response?.data,
+      // });
 
-    if (callFromRoomCard) {
-      let roomTypeFound = false;
-      for (let i = 0; i < filteredAllRoomTypes.length; i++) {
-        if (filteredAllRoomTypes[i]?.id == selectedRoomTypeId) {
-          roomTypeFound = true;
-          break;
+      if (callFromRoomCard && response.data.length > 0) {
+        let roomTypeFound = false;
+        for (let i = 0; i < response.data?.length; i++) {
+          if (response.data[i].id == selectedRoomTypeId) {
+            roomTypeFound = true;
+            break;
+          }
+        }
+
+        if (!roomTypeFound) {
+          toast.error("No Rooms found for the selected configurations 1.");
+          return;
+        } else {
+          dispatch({
+            type: reducerMethods.setSelectedRoomTypeId,
+            payload: selectedRoomTypeId,
+          });
+          navigate(`/rooms/${selectedRoomTypeId}`);
+        }
+      } else {
+        console.log(
+          "filteredAllRoomTypes :- ",
+          filteredAllRoomTypes,
+          filteredAllRoomTypes.length
+        );
+        if (response.data.length > 0) {
+          navigate("/rooms/all");
+        } else {
+          toast.error("No Rooms found for the selected configurations 2.");
         }
       }
-
-      if (!roomTypeFound) {
-        toast.error("No Rooms found for the selected configurations 1.");
-        return;
-      } else {
-        dispatch({
-          type: reducerMethods.setSelectedRoomTypeId,
-          payload: selectedRoomTypeId,
-        });
-        navigate("/rooms");
-      }
-    }
-
-    console.log(
-      "filteredAllRoomTypes :- ",
-      filteredAllRoomTypes,
-      filteredAllRoomTypes.length
-    );
-    if (response?.data?.length > 0) {
-      navigate("/rooms");
     } else {
-      toast.error("No Rooms found for the selected configurations 2.");
+      toast.error(response?.message || response?.error);
     }
   };
 

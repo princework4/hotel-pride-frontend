@@ -14,7 +14,7 @@ import PopupRateDetails from "../PopupRateDetails/PopupRateDetails";
 import "./RoomListing.css";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
 import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2.jpeg";
@@ -27,11 +27,12 @@ import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
 import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
 import executiveImage3 from "../../assets//Executive/executive_room_3.jpeg";
 import executiveImage4 from "../../assets//Executive/executive_room_4.jpeg";
+import { fetchSingleRoomTypes } from "../../services/Rooms";
 
 const RoomListing = ({ roomNumber }) => {
   const { state, dispatch } = useContext(AppContext);
   const {
-    filteredAllRoomTypes,
+    // roomTypes,
     allRoomTypes,
     allRoomTypes1,
     breakfastPrice,
@@ -42,7 +43,7 @@ const RoomListing = ({ roomNumber }) => {
     selectedRooms,
     selectedRoomTypeId,
   } = state;
-  const [roomTypes, setRoomTypes] = useState(filteredAllRoomTypes);
+  const [roomTypes, setRoomTypes] = useState(allRoomTypes);
   // const [selectedRoom, setSelectedRoom] = useState(selectedRooms);
   // const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
   // const [openRoomDetails, setOpenRoomDetails] = React.useState([
@@ -55,21 +56,22 @@ const RoomListing = ({ roomNumber }) => {
     withBreakfast: {},
     withoutBreakfast: {},
   });
+  const { id } = useParams();
   let navigate = useNavigate();
 
   function initializePopupState(isRoomDetails) {
     if (isRoomDetails) {
       const obj = {};
-      for (let i = 0; i < filteredAllRoomTypes?.length; i++) {
-        obj[filteredAllRoomTypes[i]["id"]] = false;
+      for (let i = 0; i < roomTypes?.length; i++) {
+        obj[roomTypes[i]["id"]] = false;
       }
       return obj;
     } else {
       const withBreakfast = {};
       const withoutBreakfast = {};
-      for (let i = 0; i < filteredAllRoomTypes?.length; i++) {
-        withBreakfast[filteredAllRoomTypes[i]["id"]] = false;
-        withoutBreakfast[filteredAllRoomTypes[i]["id"]] = false;
+      for (let i = 0; i < roomTypes?.length; i++) {
+        withBreakfast[roomTypes[i]["id"]] = false;
+        withoutBreakfast[roomTypes[i]["id"]] = false;
       }
       return {
         withBreakfast: withBreakfast,
@@ -77,22 +79,38 @@ const RoomListing = ({ roomNumber }) => {
       };
     }
   }
+
+  async function getSingleRoomType() {
+    const data = await fetchSingleRoomTypes(id);
+    setRoomTypes([data]);
+  }
+
   useEffect(() => {
     setOpenRoomDetails(initializePopupState(true));
     setOpenRateDetails(initializePopupState(false));
-  }, []);
 
-  useEffect(() => {
-    if (selectedRoomTypeId != null) {
-      const filteredRoomType = roomTypes.filter(
-        (item) => item.id == selectedRoomTypeId
-      );
-      setRoomTypes(filteredRoomType);
+    if (id != "all") {
+      getSingleRoomType();
     }
+
     if (!checkInDate || !checkOutDate) {
       navigate("/");
     }
   }, []);
+
+  // useEffect(() => {
+  //   console.log("selectedRoomTypeId, roomTypes", selectedRoomTypeId, roomTypes);
+  //   if (selectedRoomTypeId != null) {
+  //     const filteredRoomType = roomTypes.filter(
+  //       (item) => item.id == selectedRoomTypeId
+  //     );
+  //     console.log("filteredRoomType :- ", filteredRoomType);
+  //     setRoomTypes(filteredRoomType);
+  //   }
+  //   if (!checkInDate || !checkOutDate) {
+  //     navigate("/");
+  //   }
+  // }, [selectedRoomTypeId]);
 
   const handleRoomDetailsOpen = (idx) => {
     const temp = { ...openRoomDetails };
@@ -159,7 +177,7 @@ const RoomListing = ({ roomNumber }) => {
 
   return (
     <div className="room_listing">
-      {filteredAllRoomTypes?.map((roomType, index) => (
+      {roomTypes?.map((roomType, index) => (
         <div
           className={
             selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id

@@ -51,6 +51,13 @@ export const AppReducer = (state, action) => {
       };
     }
 
+    case reducerMethods.setGuestDetails: {
+      return {
+        ...state,
+        guestDetails: action.payload,
+      };
+    }
+
     case reducerMethods.setCheckInDate: {
       return { ...state, checkInDate: action.payload };
     }

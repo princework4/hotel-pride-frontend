@@ -31,6 +31,7 @@ const initialState = {
     children: 0,
     rooms: 1,
   },
+  guestDetails: {},
   checkInDate: null,
   checkOutDate: null,
   selectedRooms: [],
