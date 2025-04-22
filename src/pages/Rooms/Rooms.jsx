@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import CustomStepper from "../../components/Stepper/Stepper";
-import Search from "../../components/Search";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
 
@@ -29,7 +28,6 @@ const Rooms = () => {
   return (
     <section>
       <div className="wrapper">
-        {/* {state.steppersActiveStep === 1 && <Search />} */}
         <CustomStepper />
       </div>
     </section>

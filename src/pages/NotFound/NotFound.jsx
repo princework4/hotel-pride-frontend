@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./NotFound.css";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
+import "./NotFound.css";
 
 const NotFound = () => {
   const { state, dispatch } = useContext(AppContext);

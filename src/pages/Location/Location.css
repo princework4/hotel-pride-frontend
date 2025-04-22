@@ -4,7 +4,6 @@
 
 .location__first_para,
 .location__second_para {
-  /* width: 80%; */
   margin: 0;
   font-size: 15px;
   text-align: justify;
@@ -102,7 +101,6 @@
 
 .location .location__details {
   display: flex;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
   gap: 50px;
 }
@@ -113,10 +111,6 @@
   border-radius: 20px;
   background-color: #fff;
   color: var(--terra-cotta);
-}
-
-.location .location__details > li:last-child {
-  /* margin-left: 50px; */
 }
 
 .location .location__details li h3 {
@@ -185,11 +179,6 @@
 
   .location__map_contact-container {
     flex-flow: column;
-  }
-
-  .location__map_contact-container div:first-child,
-  .location__map_contact-container div:last-child {
-    /* width: 95%; */
   }
 
   .location__map_contact-container div:last-child {
