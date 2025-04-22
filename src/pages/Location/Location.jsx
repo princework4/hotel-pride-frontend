@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import "./Location.css";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
+import "./Location.css";
 
 const Location = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -128,49 +128,8 @@ const Location = () => {
                     nearby
                   </span>
                 </li>
-                {/* <li>
-                  <span className="location__subdetails-heading">covered</span>
-                  <span>:</span>
-                  <span className="location__subdetails-description">
-                    available
-                  </span>
-                </li> */}
               </ul>
             </li>
-            {/* <li>
-              <h3>transportation</h3>
-              <ul className="location__subdetails">
-                <li>
-                  <span className="location__subdetails-heading">
-                    airport transport
-                  </span>
-                  <span>:</span>
-                  <span className="location__subdetails-description">
-                    available
-                  </span>
-                </li>
-                <li>
-                  <span className="location__subdetails-heading">
-                    nearest railway <br />
-                    station
-                  </span>
-                  <span>:</span>
-                  <span className="location__subdetails-description">
-                    1.1 km
-                  </span>
-                </li>
-                <li>
-                  <span className="location__subdetails-heading">
-                    chhatrapati shivaji
-                    <br /> international airport
-                  </span>
-                  <span>:</span>
-                  <span className="location__subdetails-description">
-                    11.9 km
-                  </span>
-                </li>
-              </ul>
-            </li> */}
             <li>
               <h3>what's nearby</h3>
               <ul className="location__subdetails">
