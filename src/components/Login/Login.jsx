@@ -1,28 +1,12 @@
 import * as React from "react";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
-import {
-  Box,
-  Button,
-  FormControl,
-  TextField,
-  FormHelperText,
-  Typography,
-} from "@mui/material";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
-import * as Validation from "../../validation/Validation";
 import { toast } from "react-toastify";
-import "./Login.css";
 import { loginUser } from "../../services/Auth";
-import { encryptPassword } from "../../utils";
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required"),
-});
+import "./Login.css";
 
 const LogInForm = ({ handleClose }) => {
   const { state, dispatch } = React.useContext(AppContext);
@@ -43,11 +27,6 @@ const LogInForm = ({ handleClose }) => {
   }
 
   async function handleClick() {
-    // const updatedValues = {
-    //   email: values.email,
-    //   password: encryptPassword(values.password),
-    // };
-    // console.log(updatedValues);
     const response = await loginUser(loginDetails);
     if (response?.status === 200) {
       setError("");
@@ -81,20 +60,6 @@ const LogInForm = ({ handleClose }) => {
   }
 
   return (
-    // <Formik
-    //   initialValues={{ email: "", password: "" }}
-    //   validationSchema={validationSchema}
-    //   onSubmit={handleFormSubmit}
-    // >
-    //   {({
-    //     values,
-    //     handleSubmit,
-    //     touched,
-    //     errors,
-    //     handleChange,
-    //     handleBlur,
-    //   }) => (
-    //     <Form onSubmit={handleSubmit}>
     <Box className="login">
       <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
         <TextField
@@ -104,9 +69,6 @@ const LogInForm = ({ handleClose }) => {
           variant="outlined"
           value={loginDetails.email}
           onChange={handleChange}
-          // onBlur={handleBlur}
-          // error={Boolean(touched.email && errors.email)}
-          // helperText={touched.email && errors.email}
           sx={TextFieldStyle}
         />
       </FormControl>
@@ -118,9 +80,6 @@ const LogInForm = ({ handleClose }) => {
           variant="outlined"
           value={loginDetails.password}
           onChange={handleChange}
-          // onBlur={handleBlur}
-          // error={Boolean(touched.password && errors.password)}
-          // helperText={touched.password && errors.password}
           sx={TextFieldStyle}
         />
       </FormControl>
@@ -133,7 +92,6 @@ const LogInForm = ({ handleClose }) => {
         type="submit"
         className="login_btn"
         variant="contained"
-        // disabled={!enableSubmitButton}
         fullWidth
         sx={ButtonStyle}
         onClick={handleClick}
@@ -141,9 +99,6 @@ const LogInForm = ({ handleClose }) => {
         Login
       </Button>
     </Box>
-    //     </Form>
-    //   )}
-    // </Formik>
   );
 };
 

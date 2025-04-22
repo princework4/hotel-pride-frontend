@@ -1,13 +1,6 @@
 import { useState } from "react";
-import "./Search.css";
 import * as React from "react";
-import {
-  Button,
-  OutlinedInput,
-  MenuItem,
-  Popover,
-  Select,
-} from "@mui/material";
+import { Button, OutlinedInput, Popover } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -16,7 +9,7 @@ import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
 import { getRoomsAvailability } from "../../services/Booking";
 import { toast } from "react-toastify";
-import { TOP } from "../../Constants";
+import "./Search.css";
 
 const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
   const { state, dispatch } = React.useContext(AppContext);
@@ -27,13 +20,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
     isHomePage,
     filteredAllRoomTypes,
   } = state;
-  // const [guestOptions, setguestOptions] = useState({ adults: 1, children: 0, room: 1 });
-  // const [checkInDate, setCheckInDate] = useState(null);
-  // const [checkOutDate, setCheckOutDate] = useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [searchedAvailableRoomTypes, setSearchedAvailableRoomTypes] = useState(
-    []
-  );
 
   const navigate = useNavigate();
 
@@ -56,11 +43,6 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
           operation === "i" ? guestOptions[name] + 1 : guestOptions[name] - 1,
       },
     });
-
-    // setguestOptions({
-    //   ...guestOptions,
-    //   [name]: operation === "i" ? guestOptions[name] + 1 : guestOptions[name] - 1,
-    // });
   };
 
   React.useEffect(() => {
@@ -71,28 +53,10 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
     }
   }, []);
 
-  async function checkRoomAvailability() {
-    const response = await getRoomsAvailability(checkInDate, checkOutDate);
-    console.log(response.data);
-    setSearchedAvailableRoomTypes(response.data);
-    dispatch({
-      type: reducerMethods.setFilteredAllRoomTypes,
-      payload: response?.data,
-    });
-    console.log("filteredAllRoomTypes :- ", filteredAllRoomTypes);
-  }
-
   const handleSearch = async () => {
-    // checkRoomAvailability();
-
     const response = await getRoomsAvailability(checkInDate, checkOutDate);
     if (response.status == 200) {
-      console.log(response.data);
       setSearchedAvailableRoomTypes(response.data);
-      // dispatch({
-      //   type: reducerMethods.setFilteredAllRoomTypes,
-      //   payload: response?.data,
-      // });
 
       if (callFromRoomCard && response.data.length > 0) {
         let roomTypeFound = false;
@@ -114,11 +78,6 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
           navigate(`/rooms/${selectedRoomTypeId}`);
         }
       } else {
-        console.log(
-          "filteredAllRoomTypes :- ",
-          filteredAllRoomTypes,
-          filteredAllRoomTypes.length
-        );
         if (response.data.length > 0) {
           navigate("/rooms/all");
         } else {
@@ -138,7 +97,6 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
             <DatePicker
               label="Check-In Date"
               value={checkInDate}
-              // onChange={(newValue) => setCheckInDate(newValue)}
               onChange={(newValue) =>
                 dispatch({
                   type: reducerMethods.setCheckInDate,
@@ -155,7 +113,6 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                   color: "#b85042 !important",
                 },
                 "& .MuiButtonBase-root": {
-                  // color: "#b85042 !important",
                   "&:hover": {
                     border: "none !important",
                     backgroundColor: "transparent !important",
@@ -169,7 +126,6 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
             <DatePicker
               label="Check-Out Date"
               value={checkOutDate}
-              // onChange={(newValue) => setCheckOutDate(newValue)}
               onChange={(newValue) =>
                 dispatch({
                   type: reducerMethods.setCheckOutDate,
@@ -186,7 +142,6 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                   color: "#b85042 !important",
                 },
                 "& .MuiButtonBase-root": {
-                  // color: "#b85042 !important",
                   "&:hover": {
                     border: "none !important",
                     backgroundColor: "transparent !important",
@@ -217,18 +172,6 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
             open={open}
             anchorEl={anchorEl}
             onClose={handleClose}
-            // anchorOrigin={{
-            //   vertical: "top",
-            //   horizontal: "left",
-            // }}
-            // transformOrigin={{
-            //   vertical: "bottom",
-            //   horizontal: "left",
-            // }}
-            // sx={{
-            //   position: "absolute",
-            //   top: document.documentElement.scrollTop >= 100 ? "40%" : "-1%",
-            // }}
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "left",

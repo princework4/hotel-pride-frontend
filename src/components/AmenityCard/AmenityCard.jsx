@@ -9,7 +9,6 @@ const AmenityCard = () => {
         {amenities?.map((amenity, i) => (
           <li key={i}>
             <img src={amenity[0]} alt={amenity[1]} />
-            {/* {amenity[0]} */}
             <p>{amenity[1]}</p>
           </li>
         ))}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./Banner.css";
 import Slider from "../Slider";
+import "./Banner.css";
 
 import BannerImg1 from "../../assets/Gallery/building_backside.jpeg";
 import BannerImg2 from "../../assets/Gallery/hotel_img_1.jpeg";

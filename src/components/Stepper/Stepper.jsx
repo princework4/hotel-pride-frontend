@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import RoomListing from "../RoomListing/RoomListing";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -53,10 +51,6 @@ export default function CustomStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [value, setValue] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
-  // const [user, setUser] = React.useState({ selectedRoom: [], totalPrice: 0 });
-  // const [selectedRoom, setSelectedRoom] = React.useState(
-  // selectedRooms
-  // );
   const theme = useTheme();
 
   const handleChange = (event, newValue) => {
@@ -65,7 +59,6 @@ export default function CustomStepper() {
   };
 
   React.useEffect(() => {
-    console.log("selectedRooms :- ", selectedRooms);
     for (let i = 0; i < guestOptions.rooms; i++) {
       if (selectedRooms?.length == i) setValue(i);
     }
@@ -150,7 +143,6 @@ export default function CustomStepper() {
                   value={index}
                   label={`Room ${index + 1}`}
                   {...a11yProps(index)}
-                  // disabled={selectedRoom?.length < index + 1}
                   className={value > index ? "already_selected" : ""}
                   key={index}
                 />
@@ -170,13 +162,11 @@ export default function CustomStepper() {
         </>
       ) : activeStep == 1 ? (
         <GuestDetails
-          // user={user}
           totalPrice={totalPrice}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
         />
       ) : (
-        // <div>Payment gateway</div>
         <Payment totalPrice={totalPrice} />
       )}
     </Box>
