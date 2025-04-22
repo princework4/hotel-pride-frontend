@@ -82,15 +82,11 @@ const Gallery = () => {
 
   const handleClick = (selectedCategory) => {
     setTrackActiveButton(selectedCategory);
-    console.log(selectedCategory);
-    // selectedCategory = "cat" + selectedCategory;
     if (selectedCategory == "cat-1") {
       setGalleryImages(allAssetsImages);
     } else {
       const allImages = JSON.parse(JSON.stringify(allAssetsImages));
-      console.log(allImages);
       const temp = allImages.filter((items) => items[1] === selectedCategory);
-      console.log(temp);
       setGalleryImages(temp);
     }
   };

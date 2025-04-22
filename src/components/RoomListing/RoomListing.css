@@ -1,7 +1,3 @@
-.room_listing {
-  /* margin-top: 50px; */
-}
-
 .room_listing .room {
   padding: 15px;
   border: 5px solid transparent;
@@ -231,9 +227,7 @@
 
   .room_listing .room_price__with_breakfast-right button,
   .room_listing .room_price__without_breakfast-right button,
-  /* .room_listing .room_price__with_breakfast-right .price, */
   .room_listing .room_price__with_breakfast-right .offered_price,
-  /* .room_listing .room_price__without_breakfast-right .price, */
   .room_listing .room_price__without_breakfast-right .offered_price {
     margin-left: 15px;
   }

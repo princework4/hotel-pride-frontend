@@ -4,13 +4,12 @@ import { reducerMethods } from "../../context/reducerMethods";
 import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import "./Navbar.css";
 import { toast } from "react-toastify";
+import "./Navbar.css";
 
 const Navbar = () => {
   const location = useLocation();
   const { state, dispatch } = React.useContext(AppContext);
-  // const { showHam, menuOpen, size, open, colorChange, revertHeader } = state;
   const [showHam, setShowHam] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -24,11 +23,7 @@ const Navbar = () => {
   const [revertHeader, setRevertHeader] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
-  // const handleOpen = () =>
-  // dispatch({ type: reducerMethods.setOpen, payload: true });
   const handleClose = () => setOpen(false);
-  // const handleClose = () =>
-  //   dispatch({ type: reducerMethods.setOpen, payload: false });
 
   useEffect(() => {
     if (localStorage.getItem("userObj")) {
@@ -74,17 +69,10 @@ const Navbar = () => {
     boxShadow: 24,
     overflow: "auto",
     transform: "translate(-50%, -50%)",
-    // maxWidth: 400,
-    // minWidth: 300,
-    // p: 4,
   };
 
   useEffect(() => {
     const handleResize = () => {
-      // dispatch({
-      //   type: reducerMethods.setSize,
-      //   payload: { width: window.innerWidth, height: window.innerHeight },
-      // });
       setSize({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -97,28 +85,22 @@ const Navbar = () => {
 
   useEffect(() => {
     if (size.width > 768) {
-      // dispatch({ type: reducerMethods.showHam, payload: false });
-      // dispatch({ type: reducerMethods.setMenuOpen, payload: false });
       setShowHam(false);
       setMenuOpen(false);
     } else {
-      // dispatch({ type: reducerMethods.setShowHam, payload: true });
       setShowHam(true);
     }
   }, [size.width]);
 
   const toggleMenu = () => {
-    // dispatch({ type: reducerMethods.setMenuOpen, payload: !menuOpen });
     setMenuOpen(!menuOpen);
   };
 
   const changeNavbarColor = () => {
     if (window.location.pathname === "/") {
       if (window.scrollY >= 80) {
-        // dispatch({ type: reducerMethods.setColorchange, payload: true });
         setColorchange(true);
       } else {
-        // dispatch({ type: reducerMethods.setColorchange, payload: false });
         setColorchange(false);
       }
     }
@@ -127,10 +109,8 @@ const Navbar = () => {
   React.useEffect(() => {
     if (location.pathname === "/" || location.pathname === "/about") {
       window.addEventListener("scroll", changeNavbarColor);
-      // dispatch({ type: reducerMethods.setRevertHeader, payload: false });
       setRevertHeader(false);
     } else {
-      // dispatch({ type: reducerMethods.setRevertHeader, payload: true });
       setRevertHeader(true);
     }
 
@@ -180,11 +160,6 @@ const Navbar = () => {
                   Location
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink to="/rooms" activeclassname="active">
-                  Rooms
-                </NavLink>
-              </li> */}
               <li>
                 {state.isUserLoggedIn ? (
                   <button className="login-btn" onClick={handleLogout}>
@@ -195,9 +170,6 @@ const Navbar = () => {
                     Login / Register
                   </button>
                 )}
-                {/* <button className="login-btn" onClick={handleOpen}>
-                  Login / Register
-                </button> */}
               </li>
             </ul>
           </nav>
@@ -211,9 +183,6 @@ const Navbar = () => {
           disableScrollLock={true}
         >
           <Box sx={style}>
-            {/* <Box className="close_icon_wrapper">
-                <CloseIconCircle handleClose={handleClose} />
-              </Box> */}
             <AuthForms handleClose={handleClose} />
           </Box>
         </Modal>

@@ -1,23 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  Box,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  FormLabel,
-  InputLabel,
-  MenuItem,
-  Modal,
-  Radio,
-  RadioGroup,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
-import { allRoomTypes } from "../../Constants";
-import "./PopupRateDetails.css";
 import { AppContext } from "../../context/AppContext";
+import "./PopupRateDetails.css";
 
 const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
   const { state, dispatch } = useContext(AppContext);
@@ -49,11 +34,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
     left: "50%",
     bgcolor: "background.paper",
     boxShadow: 24,
-    // overflow: "auto",
     transform: "translate(-50%, -50%)",
-    // maxWidth: 400,
-    // minWidth: 300,
-    // p: 4,
   };
   return (
     <Modal
@@ -115,7 +96,6 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
         <p
           style={{
             paddingBottom: "20px",
-            // borderBottom: "1px solid #b85042"
           }}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,

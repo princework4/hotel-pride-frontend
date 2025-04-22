@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { createPayment, verifyPayment } from "../../services/Payment";
+import { verifyPayment } from "../../services/Payment";
 import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import {
@@ -21,9 +21,7 @@ const Payment = ({ totalPrice }) => {
     loggedInUser,
     selectedRooms,
     tax,
-    userDetailsForPayment,
   } = state;
-  const [paymentKey, setPaymentKey] = useState(process.env.PAYMENT_KEY);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -48,7 +46,6 @@ const Payment = ({ totalPrice }) => {
         finalLoggedInBookingDetailsObj
       );
       if (response.status === 201) {
-        // will check
         createPaymentHandler(response);
       }
     } else {
@@ -72,7 +69,6 @@ const Payment = ({ totalPrice }) => {
         finalLoggedInBookingDetailsObj
       );
       if (response.status === 201) {
-        // will check
         createPaymentHandler(response);
         setIsLoading(false);
       }
@@ -81,7 +77,6 @@ const Payment = ({ totalPrice }) => {
 
   async function proceedWithPaymentVerification(paymentDetails) {
     const response = await verifyPayment(paymentDetails);
-    console.log("verified payment :- ", response);
 
     dispatch({
       type: reducerMethods.setGuestOptions,
@@ -95,26 +90,9 @@ const Payment = ({ totalPrice }) => {
     dispatch({ type: reducerMethods.setCheckOutDate, payload: null });
     dispatch({ type: reducerMethods.setSelectedRooms, payload: [] });
     navigate("/");
-    // if (response.status === 200) {
-    //   navigate("/payment-successful");
-    //   // proceedWithBookingConfirmation();
-    // } else {
-    //   navigate("/payment-failed");
-    // }
   }
 
   async function createPaymentHandler(response) {
-    // const data = await createPayment(response.data.bookingNumber);
-    // console.log("state from payment :- ", state);
-    // // const data = await createPayment(totalPrice + tax);
-    // console.log("payment data :- ", data);
-
-    console.log(
-      "payment key :- ",
-      paymentKey,
-      process.env.PAYMENT_KEY,
-      `${process.env.PAYMENT_KEY}`
-    );
     const options = {
       // key: process.env.PAYMENT_KEY,
       key: "rzp_test_B9mzPUuuN7s5Ng",
@@ -124,8 +102,6 @@ const Payment = ({ totalPrice }) => {
       description: "Hotel Pride Room Booking Transaction",
       image: "https://dummyimage.com/100x100/000/fff",
       order_id: response.data.id,
-      // redirect: true,
-      // callback_url: `http://localhost:5173/payment-successful`,
       handler: function (response) {
         console.log("payment success response :- ", response);
         const paymentDetails = {
@@ -182,7 +158,6 @@ const Payment = ({ totalPrice }) => {
   }
 
   useEffect(() => {
-    // createPaymentHandler();
     proceedWithBookingConfirmation();
   }, []);
 

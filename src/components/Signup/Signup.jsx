@@ -1,25 +1,15 @@
 import * as React from "react";
 
 // MUI imports
-import {
-  Box,
-  Button,
-  FormControl,
-  FormHelperText,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
-import "./Signup.css";
 import { ButtonStyle } from "../../MUIStyle/Button";
-import * as Validation from "../../validation/Validation";
 import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { registerUser } from "../../services/Auth";
 import { toast } from "react-toastify";
-import { encryptPassword } from "../../utils";
+import "./Signup.css";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -39,19 +29,11 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignUpForm = ({ handleClose }) => {
-  const { state, dispatch } = React.useContext(AppContext);
   const [error, setError] = React.useState("");
 
   async function handleFormSubmit(values, { resetForm }) {
-    console.log(values);
     values.mobile = `${values.mobile}`;
-    // const updatedValues = {
-    //   name: values.name,
-    //   email: values.email,
-    //   mobile: values.mobile,
-    //   password: encryptPassword(values.password),
-    // };
-    // console.log(updatedValues);
+
     const response = await registerUser(values);
     if (response?.status === 200) {
       setError("");
@@ -59,12 +41,7 @@ const SignUpForm = ({ handleClose }) => {
       handleClose();
     } else if (response?.statusCode === 400) {
       setError(response?.message);
-    }
-    // else if (response?.statusCode === 409) {
-    //   setError("");
-    //   toast.warning(response?.message || response?.error);
-    // }
-    else {
+    } else {
       setError("");
       toast.error(response?.message || response?.error);
     }
@@ -87,7 +64,6 @@ const SignUpForm = ({ handleClose }) => {
       }) => (
         <Form onSubmit={handleSubmit}>
           <Box className="signup">
-            {/* <Typography className="new_account">Create new account</Typography> */}
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
               <TextField
                 type="text"
@@ -101,9 +77,6 @@ const SignUpForm = ({ handleClose }) => {
                 helperText={touched.name && errors.name}
                 sx={TextFieldStyle}
               />
-              {/* {signUpDataErr.nameErr ? (
-                <FormHelperText error>{signUpDataErr.nameErr}</FormHelperText>
-              ) : null} */}
             </FormControl>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
               <TextField
@@ -118,9 +91,6 @@ const SignUpForm = ({ handleClose }) => {
                 helperText={touched.email && errors.email}
                 sx={TextFieldStyle}
               />
-              {/* {signUpDataErr.emailErr ? (
-                <FormHelperText error>{signUpDataErr.emailErr}</FormHelperText>
-              ) : null} */}
             </FormControl>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
               <TextField
@@ -135,9 +105,6 @@ const SignUpForm = ({ handleClose }) => {
                 helperText={touched.mobile && errors.mobile}
                 sx={TextFieldStyle}
               />
-              {/* {signUpDataErr.mobileErr ? (
-                <FormHelperText error>{signUpDataErr.mobileErr}</FormHelperText>
-              ) : null} */}
             </FormControl>
             <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
               <TextField
@@ -152,29 +119,7 @@ const SignUpForm = ({ handleClose }) => {
                 helperText={touched.password && errors.password}
                 sx={TextFieldStyle}
               />
-              {/* {signUpDataErr.passwordErr ? (
-                <FormHelperText error>
-                  {signUpDataErr.passwordErr}
-                </FormHelperText>
-              ) : null} */}
             </FormControl>
-            {/* <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
-            <TextField
-              type="password"
-              name="cpassword"
-              label="Confirm Password *"
-              variant="outlined"
-              value={signUpData.cpassword}
-              onChange={handleChange}
-              onBlur={handleValidation}
-              sx={TextFieldStyle}
-            />
-            {signUpDataErr.cpasswordErr ? (
-              <FormHelperText error>
-                {signUpDataErr.cpasswordErr}
-              </FormHelperText>
-            ) : null}
-          </FormControl> */}
             {error && (
               <Typography color="error" sx={{ fontSize: "12px" }}>
                 {error}
@@ -184,7 +129,6 @@ const SignUpForm = ({ handleClose }) => {
               type="submit"
               className="signup_btn"
               variant="contained"
-              // disabled={!enableSubmitButton}
               fullWidth
               sx={ButtonStyle}
             >

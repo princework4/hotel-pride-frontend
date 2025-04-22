@@ -5,7 +5,6 @@
 
 .room_card_media {
   width: 100%;
-  /* height: 200px; */
 }
 
 .room_card_media img {
@@ -68,30 +67,6 @@
   margin-left: 20px;
 }
 
-/* .flat_screen_tv::before {
-  content: url("../../assets/tv-solid.svg");
-}
-
-.tea_coffee::before {
-  content: url("../../assets/mug-hot-solid.svg");
-}
-
-.breakfast::before {
-  content: url("../../assets/utensils-solid.svg");
-}
-
-.wifi::before {
-  content: url("../../assets/wifi-solid.svg");
-}
-
-.safe_deposit::before {
-  content: url("../../assets/vault-solid.svg");
-}
-
-.bottled_water::before {
-  content: url("../../assets/bottle-water-solid.svg");
-} */
-
 /* Media queries */
 @media (max-width: 997px) {
   .room_card {
@@ -114,7 +89,6 @@
 .roomSearch .search-container form {
   flex-direction: column;
   align-items: stretch;
-  /* padding: 10px; */
 }
 
 .roomSearch .search-container .form-group {

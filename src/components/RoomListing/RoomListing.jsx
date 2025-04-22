@@ -1,20 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import ImageSlider from "../Slider/Slider";
-import { roomDetails, roomImages, allRoomTypes } from "../../Constants";
 import Chip from "../Chip";
 import SquareIcon from "@mui/icons-material/Square";
 import Breakfast from "../../assets/utensils-solid.svg";
 import TV from "../../assets/tv-solid.svg";
 import Tea from "../../assets/mug-hot-solid.svg";
-import Vault from "../../assets/vault-solid.svg";
 import WaterBottle from "../../assets/bottle-water-solid.svg";
 import Wifi from "../../assets/wifi-solid.svg";
 import PopupRoomDetails from "../PopupRoomDetails";
 import PopupRateDetails from "../PopupRateDetails/PopupRateDetails";
-import "./RoomListing.css";
 import { AppContext } from "../../context/AppContext";
 import { reducerMethods } from "../../context/reducerMethods";
 import { useNavigate, useParams } from "react-router-dom";
+import "./RoomListing.css";
 
 import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
 import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2.jpeg";
@@ -32,7 +30,6 @@ import { fetchSingleRoomTypes } from "../../services/Rooms";
 const RoomListing = ({ roomNumber }) => {
   const { state, dispatch } = useContext(AppContext);
   const {
-    // roomTypes,
     allRoomTypes,
     allRoomTypes1,
     breakfastPrice,
@@ -41,16 +38,8 @@ const RoomListing = ({ roomNumber }) => {
     isOfferAvailable,
     offers,
     selectedRooms,
-    selectedRoomTypeId,
   } = state;
   const [roomTypes, setRoomTypes] = useState(allRoomTypes);
-  // const [selectedRoom, setSelectedRoom] = useState(selectedRooms);
-  // const [activeRoomNoIndex, setActiveRoomNoIndex] = useState(0);
-  // const [openRoomDetails, setOpenRoomDetails] = React.useState([
-  //   false,
-  //   false,
-  //   false,
-  // ]);
   const [openRoomDetails, setOpenRoomDetails] = React.useState({});
   const [openRateDetails, setOpenRateDetails] = React.useState({
     withBreakfast: {},
@@ -98,35 +87,17 @@ const RoomListing = ({ roomNumber }) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log("selectedRoomTypeId, roomTypes", selectedRoomTypeId, roomTypes);
-  //   if (selectedRoomTypeId != null) {
-  //     const filteredRoomType = roomTypes.filter(
-  //       (item) => item.id == selectedRoomTypeId
-  //     );
-  //     console.log("filteredRoomType :- ", filteredRoomType);
-  //     setRoomTypes(filteredRoomType);
-  //   }
-  //   if (!checkInDate || !checkOutDate) {
-  //     navigate("/");
-  //   }
-  // }, [selectedRoomTypeId]);
-
   const handleRoomDetailsOpen = (idx) => {
     const temp = { ...openRoomDetails };
     temp[idx] = true;
-    // setActiveRoomNoIndex(idx);
     setOpenRoomDetails(temp);
   };
 
-  // const handleRoomDetailsClose = () =>
-  //   setOpenRoomDetails([false, false, false]);
   const handleRoomDetailsClose = () =>
     setOpenRoomDetails(initializePopupState(true));
 
   const handleRateDetailsOpen = (idx, isBreakfastIncluded) => {
     const temp = { ...openRateDetails };
-    // setActiveRoomNoIndex(idx);
     if (isBreakfastIncluded) {
       temp["withBreakfast"][idx] = true;
     } else {
@@ -159,21 +130,12 @@ const RoomListing = ({ roomNumber }) => {
         selectedRoomId: selectedRoomId,
       });
     }
-
     dispatch({ type: reducerMethods.setSelectedRooms, payload: temp });
-
-    console.log("state --> ", state);
   }
 
   function calculateOfferedPrice(price, id) {
     return Math.round(Number(price * ((100 - offers[id]) / 100)));
   }
-
-  const allAssets = {
-    1: [nonAcImage1, nonAcImage2, nonAcImage3],
-    2: [deluxeImage1, deluxeImage2, deluxeImage3, deluxeImage4],
-    3: [executiveImage1, executiveImage2, executiveImage3, executiveImage4],
-  };
 
   return (
     <div className="room_listing">
@@ -191,20 +153,14 @@ const RoomListing = ({ roomNumber }) => {
               slidesToShow={1}
               slidesToScroll={1}
               images={roomType.assets}
-              // images={allRoomTypes1[index].assets}
-              // images={allAssets[index + 1]}
               isCarousel={false}
             />
             <ul className="room_details__chips">
               <li key={Math.random()}>
-                {/* <Chip content={[roomType.roomSizeInSquareFeet + " ft²"]} /> */}
                 <Chip
                   content={[allRoomTypes1[index].roomSizeInSquareFeet + " ft²"]}
                 />
               </li>
-              {/* <li key={Math.random()}>
-                <Chip content={roomDetails[index][1]} />
-              </li> */}
             </ul>
             <ul className="room_basic_amenities">
               <li>
@@ -212,9 +168,6 @@ const RoomListing = ({ roomNumber }) => {
               </li>
               <li>
                 <img src={Wifi} />
-              </li>
-              <li>
-                <img src={Vault} />
               </li>
               <li>
                 <img src={Tea} />

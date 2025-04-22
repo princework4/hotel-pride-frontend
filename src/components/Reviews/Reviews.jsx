@@ -32,7 +32,6 @@ const settings = {
 };
 
 const Reviews = ({ guestsReviews }) => {
-  // console.log(guestsReviews);
   return (
     <Slider {...settings} className="reviews">
       {guestsReviews.map((review, index) => (

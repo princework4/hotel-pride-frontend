@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Button,
@@ -6,28 +6,18 @@ import {
   FormControl,
   FormControlLabel,
   FormHelperText,
-  Paper,
   TextField,
-  Typography,
 } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HotelIcon from "@mui/icons-material/Hotel";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { AppContext } from "../../context/AppContext";
 import dayjs from "dayjs";
-import "./GuestDetails.css";
 import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { ButtonStyle } from "../../MUIStyle/Button";
-import Payment from "../Payment/Payment";
-import { generateRoomBookingListData } from "../../utils";
-import {
-  bookingConfirmation,
-  guestBookingConfirmation,
-} from "../../services/Booking";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import "./GuestDetails.css";
 
 const validationSchema = Yup.object().shape({
   fname: Yup.string()
@@ -47,26 +37,8 @@ const validationSchema = Yup.object().shape({
     .oneOf([true], "You must accept the Terms and Conditions to proceed."),
 });
 
-const initialValues = {
-  fname: "",
-  lname: "",
-  email: "",
-  mobile: "",
-  termsAndConditions: false,
-};
-
 const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   const { state, dispatch } = useContext(AppContext);
-  const navigate = useNavigate();
-  // const { ,  } = state;
-  const [isDisabled, setIsDisabled] = useState(true);
-  // const [initialValues, setInitialValues] = useState({
-  //   fname: "",
-  //   lname: "",
-  //   email: "",
-  //   mobile: "",
-  //   termsAndConditions: false,
-  // });
   const {
     checkInDate,
     checkOutDate,
@@ -77,83 +49,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     tax,
   } = state;
 
-  // useEffect(() => {
-  //   if (isUserLoggedIn) {
-  //     // const val = {
-  //     // fname: loggedInUser?.name?.split(" ")[0],
-  //     // lname: loggedInUser?.name?.split(" ")[1],
-  //     // email: loggedInUser?.email,
-  //     // mobile: loggedInUser?.mobile,
-  //     // };
-  //     // setInitialValues(val);
-  //     console.log("here");
-  //     console.log("isUserLoggedIn");
-  //     initialValues.fname = loggedInUser?.name?.split(" ")[0];
-  //     initialValues.lname = loggedInUser?.name?.split(" ")[1];
-  //     initialValues.email = loggedInUser?.email;
-  //     initialValues.mobile = loggedInUser?.contactNumber;
-  //     console.log("initialValues", initialValues);
-  //   }
-  // }, []);
-
-  // only for testing
-  async function proceedWithBookingConfirmation() {
-    if (isUserLoggedIn) {
-      const finalLoggedInBookingDetailsObj = {
-        userId: loggedInUser.id,
-        hotelId: 1,
-        couponCode: "",
-        noOfAdults: guestOptions.adults,
-        noOfChildrens: guestOptions.children,
-        checkInDate,
-        checkOutDate,
-        paymentType: "PREPAID",
-        totalAmount: totalPrice,
-        payableAmount: totalPrice,
-        roomBookingList: generateRoomBookingListData(selectedRooms),
-      };
-
-      const response = await bookingConfirmation(
-        finalLoggedInBookingDetailsObj
-      );
-      if (response.status === 200) {
-        // will check
-      }
-    } else {
-      const guestDetails = {
-        email: "test@gmail.com",
-        fname: "test",
-        lname: "test",
-        mobile: 1234567888,
-        termsAndConditions: true,
-      };
-      const finalLoggedInBookingDetailsObj = {
-        email: guestDetails.email,
-        phone: `${guestDetails.mobile}`,
-        fullName: guestDetails.fname + " " + guestDetails.lname,
-        hotelId: 1,
-        couponCode: "",
-        noOfAdults: guestOptions.adults,
-        noOfChildrens: guestOptions.children,
-        checkInDate,
-        checkOutDate,
-        paymentType: "PREPAID",
-        totalAmount: totalPrice,
-        payableAmount: totalPrice,
-        roomBookingList: generateRoomBookingListData(selectedRooms),
-      };
-
-      const response = await guestBookingConfirmation(
-        finalLoggedInBookingDetailsObj
-      );
-      if (response.status === 200) {
-        // will check
-      }
-    }
-  }
-
   function handleFormSubmit(values, { resetForm }) {
-    // setIsDisabled(false);
     dispatch({
       type: reducerMethods.setGuestDetails,
       payload: values,
@@ -168,66 +64,28 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
       type: reducerMethods.setSteppersActiveStep,
       payload: 3,
     });
-    // <Payment totalPrice={totalPrice} tax={tax} values={values} />;
-
-    // only for testing
-    // console.log("state :- ", state);
-    // proceedWithBookingConfirmation();
   }
-
-  const handleClick = () => {
-    setActiveStep(activeStep + 1);
-    dispatch({
-      type: reducerMethods.setSteppersActiveStep,
-      payload: 3,
-    });
-  };
 
   const boxContainerStyle = {
     marginTop: "40px",
     display: "grid",
     gridTemplateColumns: "60% 30%",
-    // gap: "40px",
     alignItems: "start",
     justifyContent: "space-between",
   };
 
   const guestDetailsStyle = {
-    // width: "55%",
-    // height: "auto",
     padding: "25px 25px 15px 25px",
-    // border: "none",
     borderRadius: "20px",
-    // marginTop: "40px",
-    // position: "absolute",
-    // top: "50%",
-    // left: "50%",
     bgcolor: "background.paper",
-    // boxShadow: 24,
     overflow: "auto",
-    // transform: "translate(-50%, -50%)",
-    // maxWidth: 400,
-    // minWidth: 300,
-    // p: 4,
   };
 
   const paymentSummaryStyle = {
-    // width: "30%",
-    // height: "auto",
     padding: "25px",
-    // border: "none",
     borderRadius: "20px",
-    // margin: "40px 0 0 30px",
-    // position: "absolute",
-    // top: "50%",
-    // left: "50%",
     bgcolor: "background.paper",
-    // boxShadow: 24,
     overflow: "auto",
-    // transform: "translate(-50%, -50%)",
-    // maxWidth: 400,
-    // minWidth: 300,
-    // p: 4,
   };
 
   return (
@@ -250,9 +108,6 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
         handleChange,
         handleBlur,
         setFieldValue,
-        isSubmitting,
-        isValid,
-        dirty,
       }) => (
         <Form onSubmit={handleSubmit}>
           <Box sx={boxContainerStyle} className="guest_details_container">
@@ -365,31 +220,20 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                     : " "}
                 </FormHelperText>
               </FormControl>
-              {/* <div className="terms_and_conditions">
-                <input type="checkbox" name="terms_and_conditions" id="" />
-                <span>
-                  I have read the{" "}
-                  <span className="terms">terms & conditions</span>
-                </span>
-              </div> */}
             </Box>
             <Box className="payment_summary" sx={paymentSummaryStyle}>
               <h3>stay information</h3>
               <div className="payment_summary__container">
                 <h4>
                   <CalendarMonthIcon />
-                  {/* <span>{new Date(checkInDate?.$d)}</span>
-              <span>{new Date(checkOutDate?.$d)}</span> */}
                   <span>
                     {dayjs(checkInDate).format("DD")}{" "}
                     {dayjs(checkInDate).format("MMMM")}{" "}
-                    {/* {dayjs(checkInDate).format("YY")} */}
                   </span>
                   <span>to</span>
                   <span>
                     {dayjs(checkOutDate).format("DD")}{" "}
                     {dayjs(checkOutDate).format("MMMM")}{" "}
-                    {/* {dayjs(checkOutDate).format("YY")} */}
                   </span>
                 </h4>
                 <h4 className="payment_summary__room_details">
@@ -445,16 +289,9 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 textAlign: "center",
               }}
             >
-              <Button
-                // className={isDisabled ? "disabled-payment-btn" : ""}
-                type="submit"
-                // disabled={isDisabled}
-                // disabled={isSubmitting}
-                sx={ButtonStyle}
-              >
+              <Button type="submit" sx={ButtonStyle}>
                 Proceed For Payment
               </Button>
-              {/* <button type="submit" >Proceed For Payment</button> */}
             </div>
           </Box>
         </Form>

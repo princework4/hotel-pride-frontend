@@ -1,26 +1,17 @@
 import * as React from "react";
 
 // MUI imports
-import {
-  Button,
-  Box,
-  FormControl,
-  FormHelperText,
-  Modal,
-  TextField,
-} from "@mui/material";
+import { Button, Box, FormControl, Modal, TextField } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import ChatIcon from "../../assets/comment-solid.svg";
 import { TOP } from "../../Constants";
-import * as Validation from "../../validation/Validation";
 import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import "./RequestCallback.css";
 import { requestCallback } from "../../services/Booking";
 import { toast } from "react-toastify";
+import "./RequestCallback.css";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()
@@ -56,14 +47,9 @@ const RequestCallback = () => {
     boxShadow: 24,
     overflow: "auto",
     transform: "translate(-50%, -50%)",
-    // maxWidth: 400,
-    // minWidth: 300,
-    // p: 4,
   };
 
   const [changePosition, setChangePosition] = React.useState(false);
-  const [enableSubmitButton, setEnableSubmitButton] = React.useState(false);
-  const { state, dispatch } = React.useContext(AppContext);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -79,9 +65,7 @@ const RequestCallback = () => {
   }, [TOP]);
 
   async function handleFormSubmit(values, { resetForm }) {
-    console.log(values);
     const response = await requestCallback(values);
-    console.log("response --> ", response);
     if (response?.status === 200) {
       toast.success(
         "Your query has been send successfully. We will shortly get back to you."

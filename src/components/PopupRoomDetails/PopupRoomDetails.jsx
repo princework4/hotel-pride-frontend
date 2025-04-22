@@ -1,21 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  Box,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  FormLabel,
-  InputLabel,
-  MenuItem,
-  Modal,
-  Radio,
-  RadioGroup,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
-import { allRoomTypes } from "../../Constants";
 import { AppContext } from "../../context/AppContext";
 import "./PopupRoomDetails.css";
 
@@ -26,7 +11,6 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
   useEffect(() => {
     const filteredRoom = rooms.filter((item) => item.id === id);
     setRooms(filteredRoom);
-    console.log("rooms :- ", rooms);
   }, []);
 
   const style = {
@@ -51,11 +35,7 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
     left: "50%",
     bgcolor: "background.paper",
     boxShadow: 24,
-    // overflow: "auto",
     transform: "translate(-50%, -50%)",
-    // maxWidth: 400,
-    // minWidth: 300,
-    // p: 4,
   };
 
   return (
@@ -84,36 +64,6 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
                   </li>
                 );
               })}
-              {/* <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                <span>Minibar</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                <span>Electronic safe​</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                <span>Flat-screen TV​</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                <span>Bathtub</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                <span>Wi-fi</span>
-              </li>
-              <li>
-                {" "}
-                <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                <span>24-hour in-room dining</span>
-              </li> */}
             </ul>
             {rooms[0].amenities?.length > 6 && (
               <ul>
@@ -128,36 +78,6 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
                       </li>
                     );
                   })}
-                {/* <li>
-                  {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                  <span>Iron & board</span>​
-                </li>
-                <li>
-                  {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                  <span>Yoga kit</span>
-                </li>
-                <li>
-                  {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                  <span>Newspapers</span>
-                </li>
-                <li>
-                  {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                  <span>24-hour laundry service</span>
-                </li>
-                <li>
-                  {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                  <span>Rollaway beds</span>​
-                </li>
-                <li>
-                  {" "}
-                  <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
-                  <span>Separate shower cubicle</span>​
-                </li> */}
               </ul>
             )}
           </div>
