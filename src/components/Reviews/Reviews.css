@@ -50,6 +50,7 @@
   font-weight: 600;
   color: var(--terra-cotta);
   margin-bottom: 15px;
+  word-wrap: break-word;
 }
 
 .review-rating {
