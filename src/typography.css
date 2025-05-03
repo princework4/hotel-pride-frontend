@@ -3,8 +3,8 @@
   --clr-dark: 230 35% 7%;
   --clr-light: 231 77% 90%;
   --clr-white: 0 0% 100%;
-  --clr-text: #d9736d;
-  --clr-background: #ffe5d4;
+  --clr-text: #b85042;
+  --clr-background: #e7e8d1;
   /* font-sizes */
   --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
   --fs-800: 3.5rem;
@@ -16,7 +16,7 @@
   --fs-200: 0.875rem;
   /* font-families */
   --pp-serif: "Poppins", sans-serif;
-  --lato-serif:"Lato", sans-serif ;
+  --lato-serif: "Lato", sans-serif;
 }
 
 /* tablet screen sizes (35em=560px) */

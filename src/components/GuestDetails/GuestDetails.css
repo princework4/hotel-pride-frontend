@@ -1,0 +1,198 @@
+.guest_details h3 {
+  margin-left: 8px;
+}
+
+.guest_details h3,
+.payment_summary h3 {
+  margin-bottom: 10px;
+  color: var(--terra-cotta);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.guest_details .terms_and_conditions {
+  margin: 10px 8px 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.guest_details .terms_and_conditions input {
+  margin: 0;
+}
+
+.guest_details .terms_and_conditions span {
+  font-size: 13px !important;
+}
+
+.guest_details .terms_and_conditions .terms {
+  margin: 0;
+  color: var(--terra-cotta);
+  text-transform: capitalize;
+}
+
+.payment_summary .payment_summary__container,
+.payment_summary ul {
+  display: flex;
+  flex-flow: column;
+}
+
+.payment_summary .payment_summary__container h4 {
+  margin: 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.payment_summary .payment_summary__container .payment_summary__room_details {
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
+}
+
+.payment_summary
+  .payment_summary__container
+  .payment_summary__selected_rooms_details {
+  min-height: 95px;
+  max-height: 95px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.payment_summary
+  .payment_summary__container
+  .payment_summary__selected_rooms_details
+  h4 {
+  margin-bottom: 5px;
+}
+
+.payment_summary .payment_summary__selected_rooms_details,
+.payment_summary .payment_summary__total_price {
+  margin-top: 10px;
+}
+
+.payment_summary .payment_summary__total_price {
+  padding: 10px 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.payment_summary .payment_summary__selected_rooms_details li {
+  display: flex;
+  flex-flow: column;
+}
+
+.payment_summary .payment_summary__selected_rooms_details li:not(:first-child),
+.payment_summary .payment_summary__total_price li:last-child {
+  margin-top: 10px;
+}
+
+.payment_summary .payment_summary__selected_rooms_details li h4 {
+  font-weight: 600;
+}
+
+.payment_summary .payment_summary__selected_rooms_details li span {
+  font-size: 13px;
+}
+
+.payment_summary .payment_summary__selected_rooms_details li > span {
+  margin-top: 5px;
+}
+
+.payment_summary .payment_summary__price,
+.payment_summary .payment_summary__total_price li {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.payment_summary .payment_summary__total_price span,
+.payment_summary .payment_summary__summed_total_price span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.payment_summary .payment_summary__summed_total_price {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment_button .disabled-payment-btn {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+  border: 1px solid transparent;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .guest_details_container {
+    grid-template-columns: 65% 30% !important;
+  }
+
+  .guest_details {
+    padding: 25px 20px !important;
+  }
+
+  .guest_details .form_field {
+    width: 45%;
+  }
+
+  .guest_details .special_form_field {
+    width: 93%;
+  }
+}
+
+@media (max-width: 900px) {
+  .guest_details_container {
+    grid-template-columns: 60% 35% !important;
+  }
+
+  .guest_details .special_form_field {
+    width: 94%;
+  }
+
+  .guest_details h3,
+  .payment_summary h3 {
+    font-size: 20px;
+  }
+
+  .payment_summary .payment_summary__container h4 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .guest_details .form_field,
+  .guest_details .special_form_field {
+    width: 95%;
+  }
+
+  .payment_button {
+    margin-top: 20px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .guest_details_container {
+    grid-template-columns: 90% !important;
+    justify-content: center !important;
+  }
+
+  .guest_details_container .payment_summary {
+    order: 1;
+  }
+
+  .guest_details_container .guest_details {
+    padding: 25px 10px !important;
+    margin-top: 20px;
+    order: 2;
+  }
+
+  .payment_button {
+    margin-top: 20px !important;
+    grid-row-start: unset !important;
+    order: 3;
+  }
+}

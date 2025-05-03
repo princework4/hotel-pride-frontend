@@ -1,78 +1,71 @@
-.showcase,
-.left_right_showcase,
-.drinks_and_dining {
-  background-color: var(--pale_apricot);
+.room_types .heading_container + p {
+  margin: 15px 0 30px 0;
 }
 
-/* Left Right Showcase Section Styling */
-
-.left_right_showcase__second {
-  margin-top: 20px;
-}
-
-.left_right_showcase__first,
-.left_right_showcase__second {
+.room_types__container {
+  margin-top: 15px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
 }
 
-.left_right_showcase__first h3,
-.left_right_showcase__second h3 {
-  font-size: 30px;
-  font-weight: bolder;
-  text-align: right;
+.gallery__container {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.left_right_showcase__second h3 {
-  text-align: left;
+.gallery__container figure {
+  width: calc(100% / 3 - 30px);
+  margin: 0px 15px 30px 15px;
 }
 
-.left_right_showcase__first p,
-.left_right_showcase__second p {
-  font-size: 15px;
-  text-align: justify;
+.gallery__container figure img {
+  border-radius: 15px;
 }
 
-.left_right_showcase__first div,
-.left_right_showcase__second div {
-  width: 60%;
+.gallery .see_more__container {
+  margin-top: 10px;
+  text-align: center;
 }
 
-.left_right_showcase__first div {
-  padding-left: 30px;
+@media (max-width: 997px) {
+  .room_types .heading_container + p {
+    font-size: 12px;
+  }
 }
 
-.left_right_showcase__second div {
-  padding-right: 30px;
+@media (max-width: 768px) {
+  .room_types__container {
+    flex-flow: column;
+    gap: 20px;
+  }
+
+  .gallery__container {
+    /* justify-content: center; */
+  }
+
+  .gallery__container figure {
+    width: calc(100% / 2 - 40px);
+  }
+
+  .room_types__container .slick-slide img,
+  .room_types__container .imgslider {
+    height: 100%;
+  }
 }
 
-.left_right_showcase figure {
-  height: 450px;
-}
+@media (max-width: 451px) {
+  .room_types__container .slick-slide img,
+  .room_types__container .imgslider {
+    height: 30vh;
+  }
 
-.left_right_showcase figure img {
-  width: 100%;
-  height: 100%;
-  border-radius: 100px;
-}
+  .gallery__container {
+    gap: 20px;
+  }
 
-.left_right_showcase__first img {
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-}
-
-.left_right_showcase__second img {
-  -webkit-box-shadow: -10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: -10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-}
-
-/* Drinks And Dining Section Styling */
-
-.drinks_and_dining h2 {
-  margin-bottom: 20px;
-  font-size: 35px;
-  letter-spacing: 2px;
+  .gallery__container figure {
+    width: 95%;
+    margin: 0 auto;
+  }
 }

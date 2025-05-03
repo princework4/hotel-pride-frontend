@@ -1,0 +1,9 @@
+.signup > div {
+  margin: 8px 0;
+}
+
+.new_account {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  margin-left: 5px !important;
+}
