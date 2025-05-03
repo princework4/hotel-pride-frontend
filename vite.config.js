@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
       "process.env.SECRET_ENCRYPTION_KEY": JSON.stringify(
         env.SECRET_ENCRYPTION_KEY
       ),
+      "process.env.PAYMENT_KEY": JSON.stringify(env.PAYMENT_KEY),
     },
     plugins: [react(), tailwindcss()],
   };

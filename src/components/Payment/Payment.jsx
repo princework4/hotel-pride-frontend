@@ -1,109 +1,133 @@
-import React, { useContext, useEffect, useState } from "react";
-import { verifyPayment } from "../../services/Payment";
-import { AppContext } from "../../context/AppContext";
+import React, { useEffect, useRef, useState } from "react";
+import { createPayment, verifyPayment } from "../../services/Payment";
 import { useNavigate } from "react-router-dom";
 import {
   bookingConfirmation,
   guestBookingConfirmation,
 } from "../../services/Booking";
 import { generateRoomBookingListData } from "../../utils";
-import { reducerMethods } from "../../context/reducerMethods";
 import Loader from "../Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { updateGuestDetails } from "../../features/guest/guestSlice";
+import { resetGuestOptions } from "../../features/search/searchSlice";
+import {
+  updateAvailableRoomTypes,
+  updateSelectedRooms,
+} from "../../features/room/roomSlice";
+import { toast } from "react-toastify";
+import Logo from "../../assets/Logo-Pride.jpg";
 
 const Payment = ({ totalPrice }) => {
-  const { state, dispatch } = useContext(AppContext);
-  const {
-    checkInDate,
-    checkOutDate,
-    guestDetails,
-    guestOptions,
-    isUserLoggedIn,
-    loggedInUser,
-    selectedRooms,
-    tax,
-  } = state;
+  const guestDetailsRedux = useSelector((state) => state.searchReducer);
+  const roomRedux = useSelector((state) => state.roomReducer);
+  const authRedux = useSelector((state) => state.authReducer);
+  const guestRedux = useSelector((state) => state.guestReducer);
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const paymentId = useRef(null);
+  const paymentMethod = useRef(null);
+
+  function resetAllData() {
+    dispatch(
+      updateGuestDetails({
+        adults: 1,
+        children: 0,
+        rooms: 1,
+      })
+    );
+    dispatch(resetGuestOptions());
+    dispatch(updateSelectedRooms([]));
+    dispatch(updateAvailableRoomTypes([]));
+  }
 
   async function proceedWithBookingConfirmation() {
     setIsLoading(true);
-    if (isUserLoggedIn) {
+    if (authRedux.isUserLoggedIn) {
       const finalLoggedInBookingDetailsObj = {
-        userId: loggedInUser.id,
+        userId: authRedux.loggedInUser.id,
         hotelId: 1,
         couponCode: "",
-        noOfAdults: guestOptions.adults,
-        noOfChildrens: guestOptions.children,
-        checkInDate,
-        checkOutDate,
+        noOfAdults: guestDetailsRedux.guestOptions.adults,
+        noOfChildrens: guestDetailsRedux.guestOptions.children,
+        checkInDate: guestDetailsRedux.checkInDate,
+        checkOutDate: guestDetailsRedux.checkOutDate,
         paymentType: "PREPAID",
-        totalAmount: totalPrice + tax,
-        payableAmount: totalPrice + tax,
-        roomBookingList: generateRoomBookingListData(selectedRooms),
+        totalAmount: totalPrice + roomRedux.tax,
+        payableAmount: totalPrice + roomRedux.tax,
+        roomBookingList: generateRoomBookingListData(roomRedux.selectedRooms),
       };
 
       const response = await bookingConfirmation(
         finalLoggedInBookingDetailsObj
       );
       if (response.status === 201) {
-        createPaymentHandler(response);
+        createPaymentForLoggedInUser(response.data.bookingNumber);
+        // setIsLoading(false);
       }
     } else {
-      const finalLoggedInBookingDetailsObj = {
-        email: guestDetails.email,
-        phone: `${guestDetails.mobile}`,
-        fullName: guestDetails.fname + " " + guestDetails.lname,
+      const finalGuestBookingDetailsObj = {
+        email: guestRedux.guestDetails.email,
+        phone: `${guestRedux.guestDetails.mobile}`,
+        fullName:
+          guestRedux.guestDetails.fname + " " + guestRedux.guestDetails.lname,
         hotelId: 1,
         couponCode: "",
-        noOfAdults: guestOptions.adults,
-        noOfChildrens: guestOptions.children,
-        checkInDate,
-        checkOutDate,
+        noOfAdults: guestDetailsRedux.guestOptions.adults,
+        noOfChildrens: guestDetailsRedux.guestOptions.children,
+        checkInDate: guestDetailsRedux.checkInDate,
+        checkOutDate: guestDetailsRedux.checkOutDate,
         paymentType: "PREPAID",
-        totalAmount: totalPrice + tax,
-        payableAmount: totalPrice + tax,
-        roomBookingList: generateRoomBookingListData(selectedRooms),
+        totalAmount: totalPrice + roomRedux.tax,
+        payableAmount: totalPrice + roomRedux.tax,
+        roomBookingList: generateRoomBookingListData(roomRedux.selectedRooms),
       };
 
       const response = await guestBookingConfirmation(
-        finalLoggedInBookingDetailsObj
+        finalGuestBookingDetailsObj
       );
       if (response.status === 201) {
         createPaymentHandler(response);
+        // setIsLoading(false);
+      } else {
         setIsLoading(false);
+        toast.error(response?.message || response?.error);
+        navigate("/");
       }
     }
   }
 
   async function proceedWithPaymentVerification(paymentDetails) {
     const response = await verifyPayment(paymentDetails);
-
-    dispatch({
-      type: reducerMethods.setGuestOptions,
-      payload: {
-        adults: 1,
-        children: 0,
-        rooms: 1,
-      },
-    });
-    dispatch({ type: reducerMethods.setCheckInDate, payload: null });
-    dispatch({ type: reducerMethods.setCheckOutDate, payload: null });
-    dispatch({ type: reducerMethods.setSelectedRooms, payload: [] });
+    if (response.status !== 200) {
+      toast.error(response?.message || response?.error);
+    }
+    resetAllData();
     navigate("/");
+  }
+
+  async function createPaymentForLoggedInUser(bookingNumber) {
+    const response = await createPayment(bookingNumber);
+    if (response.status === 200) {
+      createPaymentHandler(response);
+    } else {
+      toast.error(response?.message || response?.error);
+      resetAllData();
+      navigate("/");
+    }
   }
 
   async function createPaymentHandler(response) {
     const options = {
-      // key: process.env.PAYMENT_KEY,
-      key: "rzp_test_B9mzPUuuN7s5Ng",
-      amount: totalPrice + tax,
+      key: process.env.PAYMENT_KEY,
+      // key: "rzp_test_B9mzPUuuN7s5Ng",
+      amount: totalPrice + roomRedux.tax,
       currency: "INR",
       name: "Hotel Pride",
       description: "Hotel Pride Room Booking Transaction",
-      image: "https://dummyimage.com/100x100/000/fff",
+      image: Logo,
       order_id: response.data.id,
       handler: function (response) {
-        console.log("payment success response :- ", response);
         const paymentDetails = {
           paymentId: response.razorpay_payment_id,
           orderId: response.razorpay_order_id,
@@ -117,17 +141,15 @@ const Payment = ({ totalPrice }) => {
         ondismiss: (reasons) => {
           const { reason } = reasons && reasons.error ? reasons.error : {};
 
-          dispatch({
-            type: reducerMethods.setGuestOptions,
-            payload: {
+          dispatch(
+            updateGuestDetails({
               adults: 1,
               children: 0,
               rooms: 1,
-            },
-          });
-          dispatch({ type: reducerMethods.setCheckInDate, payload: null });
-          dispatch({ type: reducerMethods.setCheckOutDate, payload: null });
-          dispatch({ type: reducerMethods.setSelectedRooms, payload: [] });
+            })
+          );
+          dispatch(resetGuestOptions());
+          dispatch(updateSelectedRooms([]));
 
           if (reason === undefined) {
             console.log("payment cancelled");
@@ -142,11 +164,17 @@ const Payment = ({ totalPrice }) => {
         },
       },
       prefill: {
-        name: isUserLoggedIn
-          ? loggedInUser?.name
-          : guestDetails?.fname + " " + guestDetails?.lname,
-        email: isUserLoggedIn ? loggedInUser?.email : guestDetails?.email,
-        contact: isUserLoggedIn ? loggedInUser?.mobile : guestDetails?.mobile,
+        name: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.name
+          : guestRedux.guestDetails?.fname +
+            " " +
+            guestRedux.guestDetails?.lname,
+        email: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.email
+          : guestRedux.guestDetails?.email,
+        contact: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.mobile
+          : guestRedux.guestDetails?.mobile,
       },
       theme: {
         color: "#b85042",
@@ -154,6 +182,18 @@ const Payment = ({ totalPrice }) => {
     };
 
     const razor = new window.Razorpay(options);
+    setIsLoading(false);
+    razor.on("payment.submit", (response) => {
+      paymentMethod.current = response.method;
+    });
+    razor.on("payment.failed", (response) => {
+      paymentId.current = response.error.metadata.payment_id;
+      console.log("Payment Failure Response :- ", response);
+      console.log("Payment Failure ID :- ", paymentId.current);
+      toast.error(response.error.reason);
+      resetAllData();
+      navigate("/");
+    });
     razor.open();
   }
 

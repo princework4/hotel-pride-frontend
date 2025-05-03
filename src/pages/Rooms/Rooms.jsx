@@ -1,27 +1,26 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import CustomStepper from "../../components/Stepper/Stepper";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
+import { useDispatch } from "react-redux";
+import {
+  updateIsUserLoggedIn,
+  updateLoggedInUser,
+} from "../../features/auth/authSlice";
 
 const Rooms = () => {
-  const { state, dispatch } = useContext(AppContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem("userObj")) {
-      const obj = JSON.parse(localStorage.getItem("userObj"));
-      dispatch({
-        type: reducerMethods.setLoggedInUser,
-        payload: {
+    if (sessionStorage.getItem("userObj")) {
+      const obj = JSON.parse(sessionStorage.getItem("userObj"));
+      dispatch(updateIsUserLoggedIn(obj.isLoggedIn));
+      dispatch(
+        updateLoggedInUser({
           id: obj.id,
           name: obj.name,
           email: obj.email,
           contactNumber: obj.contactNumber,
-        },
-      });
-      dispatch({
-        type: reducerMethods.setIsUserLoggedIn,
-        payload: obj.isLoggedIn,
-      });
+        })
+      );
     }
   }, []);
 

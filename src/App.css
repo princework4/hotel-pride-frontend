@@ -292,19 +292,30 @@ html {
   scroll-behavior: smooth;
 }
 
+/* --pp-serif: "Poppins", sans-serif; */
+/* --lato-serif: "Lato", sans-serif; */
+
+body {
+  background-color: #e7e8d1;
+  overflow: hidden;
+}
+
+a,
+button,
+p,
+span,
+strong {
+  font-family: "Poppins", sans-serif;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  font-family: "Poppins", sans-serif;
   text-transform: capitalize;
-}
-
-body {
-  background-color: #e7e8d1;
-  font-family: sans-serif;
-  overflow: hidden;
 }
 
 body p {

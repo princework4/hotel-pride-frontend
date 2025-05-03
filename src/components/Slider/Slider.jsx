@@ -10,10 +10,12 @@ const ImageSlider = ({
   isCarousel,
   autoplay = false,
   isBanner = false,
+  showDots = false,
 }) => {
   const settings = {
     infinite: true,
-    dots: false,
+    dots: showDots,
+    // fade: true,
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll,
     lazyLoad: true,
@@ -21,6 +23,8 @@ const ImageSlider = ({
     autoplaySpeed: 2000,
     arrows: true,
     pauseOnHover: false,
+    // adaptiveHeight: true,
+    // waitForAnimate: true,
   };
 
   return (
@@ -41,6 +45,8 @@ const ImageSlider = ({
                 <img
                   src={`${process.env.BASE_URL}${item.assetUrl}`}
                   alt={`room_type_${item.id}`}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
@@ -49,7 +55,12 @@ const ImageSlider = ({
           <Slider {...settings}>
             {images.map((item, index) => (
               <div className="slider_div" key={index}>
-                <img src={item} alt={`banner_img_${index}`} />
+                <img
+                  src={item}
+                  alt={`banner_img_${index}`}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             ))}
           </Slider>

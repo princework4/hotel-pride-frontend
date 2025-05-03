@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -11,12 +11,13 @@ import {
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import HotelIcon from "@mui/icons-material/Hotel";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
-import { AppContext } from "../../context/AppContext";
 import dayjs from "dayjs";
-import { reducerMethods } from "../../context/reducerMethods";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { ButtonStyle } from "../../MUIStyle/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { updateGuestDetails } from "../../features/guest/guestSlice";
+import { updateSteppersActiveStep } from "../../features/nonFunctional/nonFunctionalSlice";
 import "./GuestDetails.css";
 
 const validationSchema = Yup.object().shape({
@@ -38,32 +39,16 @@ const validationSchema = Yup.object().shape({
 });
 
 const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
-  const { state, dispatch } = useContext(AppContext);
-  const {
-    checkInDate,
-    checkOutDate,
-    guestOptions,
-    isUserLoggedIn,
-    loggedInUser,
-    selectedRooms,
-    tax,
-  } = state;
+  const guestDetailsRedux = useSelector((state) => state.searchReducer);
+  const roomRedux = useSelector((state) => state.roomReducer);
+  const authRedux = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
 
   function handleFormSubmit(values, { resetForm }) {
-    dispatch({
-      type: reducerMethods.setGuestDetails,
-      payload: values,
-    });
-    dispatch({
-      type: reducerMethods.setUserDetailsForPayment,
-      payload: values,
-    });
+    dispatch(updateGuestDetails(values));
+    dispatch(updateSteppersActiveStep(3));
     resetForm();
     setActiveStep(activeStep + 1);
-    dispatch({
-      type: reducerMethods.setSteppersActiveStep,
-      payload: 3,
-    });
   }
 
   const boxContainerStyle = {
@@ -91,10 +76,16 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   return (
     <Formik
       initialValues={{
-        fname: isUserLoggedIn ? loggedInUser?.name?.split(" ")[0] : "",
-        lname: isUserLoggedIn ? loggedInUser?.name?.split(" ")[1] : "",
-        email: isUserLoggedIn ? loggedInUser?.email : "",
-        mobile: isUserLoggedIn ? loggedInUser?.contactNumber : "",
+        fname: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.name?.split(" ")[0]
+          : "",
+        lname: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.name?.split(" ")[1]
+          : "",
+        email: authRedux.isUserLoggedIn ? authRedux.loggedInUser?.email : "",
+        mobile: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.contactNumber
+          : "",
       }}
       onSubmit={handleFormSubmit}
       validationSchema={validationSchema}
@@ -227,29 +218,34 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 <h4>
                   <CalendarMonthIcon />
                   <span>
-                    {dayjs(checkInDate).format("DD")}{" "}
-                    {dayjs(checkInDate).format("MMMM")}{" "}
+                    {dayjs(guestDetailsRedux.checkInDate).format("DD")}{" "}
+                    {dayjs(guestDetailsRedux.checkInDate).format("MMMM")}{" "}
                   </span>
                   <span>to</span>
                   <span>
-                    {dayjs(checkOutDate).format("DD")}{" "}
-                    {dayjs(checkOutDate).format("MMMM")}{" "}
+                    {dayjs(guestDetailsRedux.checkOutDate).format("DD")}{" "}
+                    {dayjs(guestDetailsRedux.checkOutDate).format("MMMM")}{" "}
                   </span>
                 </h4>
                 <h4 className="payment_summary__room_details">
                   <HotelIcon />
                   <span>
-                    {selectedRooms?.length}{" "}
-                    {selectedRooms?.length > 1 ? "rooms" : "room"},{" "}
-                    {guestOptions.adults}{" "}
-                    {guestOptions.adults == 1 ? "adult" : "adults"}
-                    {guestOptions.children > 0 && guestOptions.children}
-                    {guestOptions.children > 0 &&
-                      (guestOptions.children == 1 ? "child" : "children")}
+                    {roomRedux.selectedRooms?.length}{" "}
+                    {roomRedux.selectedRooms?.length > 1 ? "rooms" : "room"},{" "}
+                    {guestDetailsRedux.guestOptions.adults}{" "}
+                    {guestDetailsRedux.guestOptions.adults == 1
+                      ? "adult"
+                      : "adults"}
+                    {guestDetailsRedux.guestOptions.children > 0 &&
+                      guestDetailsRedux.guestOptions.children}
+                    {guestDetailsRedux.guestOptions.children > 0 &&
+                      (guestDetailsRedux.guestOptions.children == 1
+                        ? "child"
+                        : "children")}
                   </span>
                 </h4>
                 <ul className="payment_summary__selected_rooms_details">
-                  {selectedRooms?.map((room, index) => (
+                  {roomRedux.selectedRooms?.map((room, index) => (
                     <li key={index}>
                       <h4>{`Room ${index + 1}`}</h4>
                       <span>{room?.roomType}</span>
@@ -272,12 +268,12 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                   </li>
                   <li>
                     <span>Taxes</span>
-                    <span>&#8377; {tax}</span>
+                    <span>&#8377; {roomRedux.tax}</span>
                   </li>
                 </ul>
                 <div className="payment_summary__summed_total_price">
                   <span>Total Price</span>
-                  <span>&#8377; {totalPrice + tax}</span>
+                  <span>&#8377; {totalPrice + roomRedux.tax}</span>
                 </div>
               </div>
             </Box>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageSlider from "../Slider/Slider";
 import Chip from "../Chip";
 import SquareIcon from "@mui/icons-material/Square";
@@ -9,8 +9,6 @@ import WaterBottle from "../../assets/bottle-water-solid.svg";
 import Wifi from "../../assets/wifi-solid.svg";
 import PopupRoomDetails from "../PopupRoomDetails";
 import PopupRateDetails from "../PopupRateDetails/PopupRateDetails";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import { useNavigate, useParams } from "react-router-dom";
 import "./RoomListing.css";
 
@@ -26,26 +24,20 @@ import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
 import executiveImage3 from "../../assets//Executive/executive_room_3.jpeg";
 import executiveImage4 from "../../assets//Executive/executive_room_4.jpeg";
 import { fetchSingleRoomTypes } from "../../services/Rooms";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSelectedRooms } from "../../features/room/roomSlice";
 
 const RoomListing = ({ roomNumber }) => {
-  const { state, dispatch } = useContext(AppContext);
-  const {
-    allRoomTypes,
-    allRoomTypes1,
-    breakfastPrice,
-    checkInDate,
-    checkOutDate,
-    isOfferAvailable,
-    offers,
-    selectedRooms,
-  } = state;
-  const [roomTypes, setRoomTypes] = useState(allRoomTypes);
+  const guestDetailsRedux = useSelector((state) => state.searchReducer);
+  const roomRedux = useSelector((state) => state.roomReducer);
+  const dispatch = useDispatch();
+  const [roomTypes, setRoomTypes] = useState(roomRedux.availableRoomTypes);
   const [openRoomDetails, setOpenRoomDetails] = React.useState({});
   const [openRateDetails, setOpenRateDetails] = React.useState({
     withBreakfast: {},
     withoutBreakfast: {},
   });
-  const { id } = useParams();
+  // const { id } = useParams();
   let navigate = useNavigate();
 
   function initializePopupState(isRoomDetails) {
@@ -69,22 +61,22 @@ const RoomListing = ({ roomNumber }) => {
     }
   }
 
-  async function getSingleRoomType() {
-    const data = await fetchSingleRoomTypes(id);
-    setRoomTypes([data]);
-  }
+  // async function getSingleRoomType() {
+  //   const data = await fetchSingleRoomTypes(id);
+  //   setRoomTypes([data]);
+  // }
 
   useEffect(() => {
+    if (!guestDetailsRedux.checkInDate || !guestDetailsRedux.checkOutDate) {
+      navigate("/");
+    }
+
     setOpenRoomDetails(initializePopupState(true));
     setOpenRateDetails(initializePopupState(false));
 
-    if (id != "all") {
-      getSingleRoomType();
-    }
-
-    if (!checkInDate || !checkOutDate) {
-      navigate("/");
-    }
+    // if (id != "all") {
+    //   getSingleRoomType();
+    // }
   }, []);
 
   const handleRoomDetailsOpen = (idx) => {
@@ -116,8 +108,8 @@ const RoomListing = ({ roomNumber }) => {
     price,
     selectedRoomId
   ) {
-    const temp = selectedRooms;
-    if (temp?.[roomNumber]) {
+    const temp = structuredClone(roomRedux.selectedRooms);
+    if (temp && temp?.[roomNumber]) {
       temp[roomNumber].roomType = roomType;
       temp[roomNumber].isBreakfastIncluded = isBreakfastIncluded;
       temp[roomNumber].price = price;
@@ -130,11 +122,11 @@ const RoomListing = ({ roomNumber }) => {
         selectedRoomId: selectedRoomId,
       });
     }
-    dispatch({ type: reducerMethods.setSelectedRooms, payload: temp });
+    dispatch(updateSelectedRooms(temp));
   }
 
   function calculateOfferedPrice(price, id) {
-    return Math.round(Number(price * ((100 - offers[id]) / 100)));
+    return Math.round(Number(price * ((100 - roomRedux.offers[id]) / 100)));
   }
 
   return (
@@ -142,7 +134,7 @@ const RoomListing = ({ roomNumber }) => {
       {roomTypes?.map((roomType, index) => (
         <div
           className={
-            selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+            roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
               ? "selected_room room"
               : "room"
           }
@@ -158,7 +150,10 @@ const RoomListing = ({ roomNumber }) => {
             <ul className="room_details__chips">
               <li key={Math.random()}>
                 <Chip
-                  content={[allRoomTypes1[index].roomSizeInSquareFeet + " ft²"]}
+                  content={[
+                    roomRedux.allRoomTypes1[index].roomSizeInSquareFeet +
+                      " ft²",
+                  ]}
                 />
               </li>
             </ul>
@@ -228,49 +223,56 @@ const RoomListing = ({ roomNumber }) => {
                 <div className="room_price__with_breakfast-right">
                   <div>
                     <span
-                      className={isOfferAvailable ? "cancelled_price" : "price"}
+                      className={
+                        roomRedux.isOfferAvailable ? "cancelled_price" : "price"
+                      }
                     >
-                      &#8377;{roomType.pricePerNight + breakfastPrice}
+                      &#8377;{roomType.pricePerNight + roomRedux.breakfastPrice}
                     </span>
-                    {isOfferAvailable && (
+                    {roomRedux.isOfferAvailable && (
                       <span className="offer_percent">
-                        ({offers[roomType.id]}% off)
+                        ({roomRedux.offers[roomType.id]}% off)
                       </span>
                     )}
                   </div>
-                  {isOfferAvailable && (
+                  {roomRedux.isOfferAvailable && (
                     <span className="offered_price">
                       &#8377;
                       {calculateOfferedPrice(
-                        roomType.pricePerNight + breakfastPrice,
+                        roomType.pricePerNight + roomRedux.breakfastPrice,
                         roomType.id
                       )}
                     </span>
                   )}
                   <button
                     className={
-                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
+                      roomType.id
                         ? "selected_room_button"
                         : ""
                     }
                     disabled={
-                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
+                      roomType.id
                     }
                     onClick={() =>
                       handleButtonClick(
                         roomType.typeName,
                         true,
-                        isOfferAvailable
+                        roomRedux.isOfferAvailable
                           ? calculateOfferedPrice(
-                              roomType.pricePerNight + breakfastPrice,
+                              roomType.pricePerNight + roomRedux.breakfastPrice,
                               roomType.id
                             )
-                          : Number(roomType.pricePerNight + breakfastPrice),
+                          : Number(
+                              roomType.pricePerNight + roomRedux.breakfastPrice
+                            ),
                         roomType.id
                       )
                     }
                   >
-                    {selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                    {roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
+                    roomType.id
                       ? "selected"
                       : "select"}
                   </button>
@@ -309,17 +311,19 @@ const RoomListing = ({ roomNumber }) => {
                 <div className="room_price__with_breakfast-right">
                   <div>
                     <span
-                      className={isOfferAvailable ? "cancelled_price" : "price"}
+                      className={
+                        roomRedux.isOfferAvailable ? "cancelled_price" : "price"
+                      }
                     >
                       &#8377;{roomType.pricePerNight}
                     </span>
-                    {isOfferAvailable && (
+                    {roomRedux.isOfferAvailable && (
                       <span className="offer_percent">
-                        ({offers[roomType.id]}% off)
+                        ({roomRedux.offers[roomType.id]}% off)
                       </span>
                     )}
                   </div>
-                  {isOfferAvailable && (
+                  {roomRedux.isOfferAvailable && (
                     <span className="offered_price">
                       &#8377;
                       {calculateOfferedPrice(
@@ -330,18 +334,20 @@ const RoomListing = ({ roomNumber }) => {
                   )}
                   <button
                     className={
-                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
+                      roomType.id
                         ? "selected_room_button"
                         : ""
                     }
                     disabled={
-                      selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
+                      roomType.id
                     }
                     onClick={() =>
                       handleButtonClick(
                         roomType.typeName,
                         false,
-                        isOfferAvailable
+                        roomRedux.isOfferAvailable
                           ? calculateOfferedPrice(
                               roomType.pricePerNight,
                               roomType.id
@@ -351,7 +357,8 @@ const RoomListing = ({ roomNumber }) => {
                       )
                     }
                   >
-                    {selectedRooms?.[roomNumber]?.selectedRoomId == roomType.id
+                    {roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
+                    roomType.id
                       ? "selected"
                       : "select"}
                   </button>

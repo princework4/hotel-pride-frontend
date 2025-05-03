@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import HotelBuilding from "../../assets/Gallery/building.jpeg";
+import HotelBuilding2 from "../../assets/Gallery/building_backside.jpeg";
 import "./About.css";
 
 const About = () => {
@@ -15,7 +16,7 @@ const About = () => {
               <p className="about__subheading">
                 comfort and convenience in mumbai's thriving business hub
               </p>
-              <p>
+              <p style={{ lineHeight: "24px" }}>
                 <strong>At Hotel Pride,</strong> we offer a seamless stay with{" "}
                 <strong>33 well-appointed rooms,</strong> modern amenities, and
                 warm hospitality. Designed for business and leisure travelers
@@ -34,7 +35,7 @@ const About = () => {
           {readMore && (
             <div className="left_right_showcase__second">
               <figure>
-                <img src={HotelBuilding} alt="Reception" />
+                <img src={HotelBuilding2} alt="Reception" />
               </figure>
               <div>
                 <h2>why stay with us ?</h2>
@@ -43,29 +44,29 @@ const About = () => {
                   for your next stay:
                 </p>
                 <br />
-                <p>
+                <p style={{ lineHeight: "24px" }}>
                   <strong>Budget-Friendly Comfort - </strong> Enjoy a
                   comfortable and well-equipped stay without the high price tag
                   - perfect for business and leisure travelers alike.
                 </p>
-                <p>
+                <p style={{ lineHeight: "24px" }}>
                   <strong>Centrally Located - </strong> Just{" "}
                   <strong>10 minutes</strong> from Powai's business district, a{" "}
                   <strong>20-minute drive</strong> from the airports, and within{" "}
                   <strong>walking distance</strong> of Bhandup Railway Station,
                   ensuring easy access to Mumbai's key hubs.
                 </p>
-                <p>
+                <p style={{ lineHeight: "24px" }}>
                   <strong>Friendly, Attentive Service - </strong> Our staff is
                   dedicated to making your stay smooth and enjoyable - from
                   quick check-ins to helpful local recommendations.
                 </p>
-                <p>
+                <p style={{ lineHeight: "24px" }}>
                   <strong>Perfect for Business and Family Stays - </strong>
                   Whether you're traveling solo or with family, our versatile
                   room options and thoughtful amenities cater to every need.{" "}
                 </p>
-                <p>
+                <p style={{ lineHeight: "24px" }}>
                   <strong>Unbeatable Value - </strong> Clean, secure, and
                   well-maintained - experience comfort and convenience without
                   stretching your budget.
