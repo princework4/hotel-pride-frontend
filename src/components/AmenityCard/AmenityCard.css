@@ -1,7 +1,7 @@
 .amenity_card .grid {
   max-width: 1200px;
   padding: 0;
-  margin: 40px auto;
+  margin: 15px auto 40px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -52,7 +52,7 @@
 
 @media (max-width: 550px) {
   .amenity_card .grid > li {
-    width: calc(100% / 3 - 10px);
+    width: calc(100% / 2 - 52px);
   }
 }
 

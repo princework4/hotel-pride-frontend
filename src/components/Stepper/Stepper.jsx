@@ -10,9 +10,9 @@ import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import GuestDetails from "../GuestDetails";
 import { TabsStyle } from "../../MUIStyle/Tabs";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import Payment from "../Payment/Payment";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSteppersActiveStep } from "../../features/nonFunctional/nonFunctionalSlice";
 
 const steps = ["Select Room", "Personal Details", "Payment"];
 
@@ -46,8 +46,9 @@ function a11yProps(index) {
 }
 
 export default function CustomStepper() {
-  const { state, dispatch } = React.useContext(AppContext);
-  const { guestOptions, selectedRooms } = state;
+  const guestDetailsRedux = useSelector((state) => state.searchReducer);
+  const roomRedux = useSelector((state) => state.roomReducer);
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
   const [value, setValue] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
@@ -59,26 +60,26 @@ export default function CustomStepper() {
   };
 
   React.useEffect(() => {
-    for (let i = 0; i < guestOptions.rooms; i++) {
-      if (selectedRooms?.length == i) setValue(i);
+    for (let i = 0; i < guestDetailsRedux.guestOptions.rooms; i++) {
+      if (roomRedux.selectedRooms?.length == i) setValue(i);
     }
-    if (selectedRooms?.length == guestOptions.rooms) {
-      const total = selectedRooms?.reduce(
+
+    if (
+      roomRedux.selectedRooms?.length == guestDetailsRedux.guestOptions.rooms
+    ) {
+      const total = roomRedux.selectedRooms?.reduce(
         (acc, item) => (acc += item.price),
         0
       );
       setTotalPrice(total);
       if (activeStep == 0) {
         setActiveStep(activeStep + 1);
-        dispatch({
-          type: reducerMethods.setSteppersActiveStep,
-          payload: 2,
-        });
+        dispatch(updateSteppersActiveStep(activeStep + 1));
       }
     }
 
     window.scrollTo(0, 0);
-  }, [selectedRooms.length]);
+  }, [roomRedux]);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -126,11 +127,22 @@ export default function CustomStepper() {
             className="rooms_tab"
             sx={TabsStyle}
           >
-            {[...Array(guestOptions.rooms)]?.map((_, index) => {
-              if (index == 0) {
+            {[...Array(guestDetailsRedux.guestOptions.rooms)]?.map(
+              (_, index) => {
+                if (index == 0) {
+                  return (
+                    <Tab
+                      value={0}
+                      label={`Room ${index + 1}`}
+                      {...a11yProps(index)}
+                      className={value > index ? "already_selected" : ""}
+                      key={index}
+                    />
+                  );
+                }
                 return (
                   <Tab
-                    value={0}
+                    value={index}
                     label={`Room ${index + 1}`}
                     {...a11yProps(index)}
                     className={value > index ? "already_selected" : ""}
@@ -138,18 +150,9 @@ export default function CustomStepper() {
                   />
                 );
               }
-              return (
-                <Tab
-                  value={index}
-                  label={`Room ${index + 1}`}
-                  {...a11yProps(index)}
-                  className={value > index ? "already_selected" : ""}
-                  key={index}
-                />
-              );
-            })}
+            )}
           </Tabs>
-          {[...Array(guestOptions.rooms)]?.map((_, index) => (
+          {[...Array(guestDetailsRedux.guestOptions.rooms)]?.map((_, index) => (
             <TabPanel
               value={value}
               index={index}

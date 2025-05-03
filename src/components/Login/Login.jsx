@@ -1,15 +1,18 @@
 import * as React from "react";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import { toast } from "react-toastify";
 import { loginUser } from "../../services/Auth";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateIsUserLoggedIn,
+  updateLoggedInUser,
+} from "../../features/auth/authSlice";
 import "./Login.css";
 
 const LogInForm = ({ handleClose }) => {
-  const { state, dispatch } = React.useContext(AppContext);
+  const dispatch = useDispatch();
   const [loginDetails, setLoginDetails] = React.useState({
     email: "",
     password: "",
@@ -30,13 +33,10 @@ const LogInForm = ({ handleClose }) => {
     const response = await loginUser(loginDetails);
     if (response?.status === 200) {
       setError("");
-      dispatch({
-        type: reducerMethods.setLoggedInUser,
-        payload: response?.data,
-      });
-      dispatch({ type: reducerMethods.setIsUserLoggedIn, payload: true });
+      dispatch(updateLoggedInUser(response.data));
+      dispatch(updateIsUserLoggedIn(true));
       toast.success("Logged In Successfully");
-      localStorage.setItem(
+      sessionStorage.setItem(
         "userObj",
         JSON.stringify({
           id: response.data.id,
@@ -84,7 +84,10 @@ const LogInForm = ({ handleClose }) => {
         />
       </FormControl>
       {error && (
-        <Typography color="error" sx={{ fontSize: "12px" }}>
+        <Typography
+          color="error"
+          sx={{ fontSize: "12px", fontFamily: '"Poppins", sans-serif' }}
+        >
           {error}
         </Typography>
       )}

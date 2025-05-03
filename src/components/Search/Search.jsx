@@ -1,25 +1,34 @@
-import { useState } from "react";
 import * as React from "react";
 import { Button, OutlinedInput, Popover } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import { getRoomsAvailability } from "../../services/Booking";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./Search.css";
+import {
+  increaseAdults,
+  decreaseAdults,
+  increaseChildrens,
+  decreaseChildrens,
+  increaseRooms,
+  decreaseRooms,
+  updateCheckInDate,
+  updateCheckOutDate,
+} from "../../features/search/searchSlice";
+import {
+  updateAvailableRoomTypes,
+  updateSelectedRoomTypeId,
+} from "../../features/room/roomSlice";
+import { updateIsHomePage } from "../../features/nonFunctional/nonFunctionalSlice";
 
 const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
-  const { state, dispatch } = React.useContext(AppContext);
-  const {
-    guestOptions,
-    checkInDate,
-    checkOutDate,
-    isHomePage,
-    filteredAllRoomTypes,
-  } = state;
+  const guestOptionsRedux = useSelector((state) => state.searchReducer);
+  const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const navigate = useNavigate();
@@ -35,54 +44,68 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
   const open = Boolean(anchorEl);
   const popOverId = open ? "simple-popover" : undefined;
 
-  const handleOption = (name, operation) => {
-    dispatch({
-      type: reducerMethods.setGuestOptions,
-      payload: {
-        [name]:
-          operation === "i" ? guestOptions[name] + 1 : guestOptions[name] - 1,
-      },
-    });
-  };
-
   React.useEffect(() => {
     if (window.location.pathname === "/") {
-      dispatch({ type: reducerMethods.setIsHomePage, payload: true });
+      dispatch(updateIsHomePage(true));
     } else {
-      dispatch({ type: reducerMethods.setIsHomePage, payload: false });
+      dispatch(updateIsHomePage(false));
     }
   }, []);
 
+  function checkRoomsQuantityForSingleCard(response) {
+    const roomsWithQuantity = [];
+    if (callFromRoomCard) {
+      for (let i = 0; i < response.data?.length; i++) {
+        if (
+          response.data[i].id == selectedRoomTypeId &&
+          response.data[i].availableRoomsQty >=
+            guestOptionsRedux.guestOptions.rooms
+        ) {
+          roomsWithQuantity.push(response.data[i]);
+          break;
+        }
+      }
+    }
+    return roomsWithQuantity;
+  }
+
+  function checkRoomsQuantityForAll(response) {
+    let roomsWithQuantity = [];
+    let totalRoomQuantity = 0;
+    for (let i = 0; i < response.data?.length; i++) {
+      totalRoomQuantity += response.data[i].availableRoomsQty;
+    }
+    if (totalRoomQuantity >= guestOptionsRedux.guestOptions.rooms) {
+      roomsWithQuantity = response.data;
+    }
+    return roomsWithQuantity;
+  }
+
   const handleSearch = async () => {
-    const response = await getRoomsAvailability(checkInDate, checkOutDate);
+    const response = await getRoomsAvailability(
+      guestOptionsRedux.checkInDate,
+      guestOptionsRedux.checkOutDate
+    );
+
     if (response.status == 200) {
-      setSearchedAvailableRoomTypes(response.data);
-
-      if (callFromRoomCard && response.data.length > 0) {
-        let roomTypeFound = false;
-        for (let i = 0; i < response.data?.length; i++) {
-          if (response.data[i].id == selectedRoomTypeId) {
-            roomTypeFound = true;
-            break;
-          }
-        }
-
-        if (!roomTypeFound) {
-          toast.error("No Rooms found for the selected configurations 1.");
+      if (callFromRoomCard) {
+        const roomsWithQuantity = checkRoomsQuantityForSingleCard(response);
+        if (roomsWithQuantity.length === 0) {
+          toast.error("No Rooms found for the selected configurations.");
           return;
-        } else {
-          dispatch({
-            type: reducerMethods.setSelectedRoomTypeId,
-            payload: selectedRoomTypeId,
-          });
-          navigate(`/rooms/${selectedRoomTypeId}`);
         }
+
+        dispatch(updateAvailableRoomTypes(roomsWithQuantity));
+        dispatch(updateSelectedRoomTypeId(selectedRoomTypeId));
+        navigate("/rooms");
       } else {
-        if (response.data.length > 0) {
-          navigate("/rooms/all");
-        } else {
-          toast.error("No Rooms found for the selected configurations 2.");
+        const roomsWithQuantity = checkRoomsQuantityForAll(response);
+        if (roomsWithQuantity.length === 0) {
+          toast.error("No Rooms found for the selected configurations.");
+          return;
         }
+        dispatch(updateAvailableRoomTypes(roomsWithQuantity));
+        navigate("/rooms");
       }
     } else {
       toast.error(response?.message || response?.error);
@@ -90,19 +113,18 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
   };
 
   return (
-    <div className={`search-container ${isHomePage ? "homePageSearch" : ""}`}>
+    <div
+      className={`search-container ${
+        nonFunctionalRedux.isHomePage ? "homePageSearch" : ""
+      }`}
+    >
       <form id="checkAvailability-form">
         <div className="form-group">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               label="Check-In Date"
-              value={checkInDate}
-              onChange={(newValue) =>
-                dispatch({
-                  type: reducerMethods.setCheckInDate,
-                  payload: newValue,
-                })
-              }
+              value={guestOptionsRedux.checkInDate}
+              onChange={(newValue) => dispatch(updateCheckInDate(newValue))}
               disablePast={true}
               format="DD-MM-YYYY"
               sx={{
@@ -125,13 +147,8 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               label="Check-Out Date"
-              value={checkOutDate}
-              onChange={(newValue) =>
-                dispatch({
-                  type: reducerMethods.setCheckOutDate,
-                  payload: newValue,
-                })
-              }
+              value={guestOptionsRedux.checkOutDate}
+              onChange={(newValue) => dispatch(updateCheckOutDate(newValue))}
               disablePast={true}
               format="DD-MM-YYYY"
               sx={{
@@ -160,7 +177,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
             variant="contained"
             fullWidth
             onClick={handleClick}
-            value={`${guestOptions.adults} adult(s)  -  ${guestOptions.children} Child(ren)  -  ${guestOptions.rooms} Room(s)`}
+            value={`${guestOptionsRedux.guestOptions.adults} adult(s)  -  ${guestOptionsRedux.guestOptions.children} Child(ren)  -  ${guestOptionsRedux.guestOptions.rooms} Room(s)`}
             sx={{
               "& fieldset": {
                 borderColor: "#b85042 !important",
@@ -185,17 +202,20 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 </span>
                 <div className="counter-buttons">
                   <button
-                    disabled={guestOptions.adults <= 1}
+                    disabled={guestOptionsRedux.guestOptions.adults <= 1}
                     className="counter__minus"
-                    onClick={() => handleOption("adults", "d")}
+                    onClick={() => dispatch(decreaseAdults())}
                   >
                     -
                   </button>
-                  <input value={guestOptions.adults} />
+                  <input value={guestOptionsRedux.guestOptions.adults} />
                   <button
-                    disabled={guestOptions.adults >= 9 - guestOptions.children}
+                    disabled={
+                      guestOptionsRedux.guestOptions.adults >=
+                      9 - guestOptionsRedux.guestOptions.children
+                    }
                     className="counter__plus"
-                    onClick={() => handleOption("adults", "i")}
+                    onClick={() => dispatch(increaseAdults())}
                   >
                     +
                   </button>
@@ -208,17 +228,20 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 </span>
                 <div className="counter-buttons">
                   <button
-                    disabled={guestOptions.children <= 0}
+                    disabled={guestOptionsRedux.guestOptions.children <= 0}
                     className="counter__minus"
-                    onClick={() => handleOption("children", "d")}
+                    onClick={() => dispatch(decreaseChildrens())}
                   >
                     -
                   </button>
-                  <input value={guestOptions.children} />
+                  <input value={guestOptionsRedux.guestOptions.children} />
                   <button
                     className="counter__plus"
-                    disabled={guestOptions.children >= 9 - guestOptions.adults}
-                    onClick={() => handleOption("children", "i")}
+                    disabled={
+                      guestOptionsRedux.guestOptions.children >=
+                      9 - guestOptionsRedux.guestOptions.adults
+                    }
+                    onClick={() => dispatch(increaseChildrens())}
                   >
                     +
                   </button>
@@ -232,16 +255,16 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 <div className="counter-buttons">
                   <button
                     className="counter__minus"
-                    disabled={guestOptions.rooms <= 1}
-                    onClick={() => handleOption("rooms", "d")}
+                    disabled={guestOptionsRedux.guestOptions.rooms <= 1}
+                    onClick={() => dispatch(decreaseRooms())}
                   >
                     -
                   </button>
-                  <input value={guestOptions.rooms} />
+                  <input value={guestOptionsRedux.guestOptions.rooms} />
                   <button
                     className="counter__plus"
-                    disabled={guestOptions.rooms >= 7}
-                    onClick={() => handleOption("rooms", "i")}
+                    disabled={guestOptionsRedux.guestOptions.rooms >= 7}
+                    onClick={() => dispatch(increaseRooms())}
                   >
                     +
                   </button>
@@ -253,16 +276,18 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
 
         <Button
           className={
-            !checkInDate ||
-            !checkOutDate ||
-            (guestOptions.adults == 0 && guestOptions.rooms == 0)
+            !guestOptionsRedux.checkInDate ||
+            !guestOptionsRedux.checkOutDate ||
+            (guestOptionsRedux.guestOptions.adults == 0 &&
+              guestOptionsRedux.guestOptions.rooms == 0)
               ? "disabled-search-btn"
               : "search-btn"
           }
           disabled={
-            !checkInDate ||
-            !checkOutDate ||
-            (guestOptions.adults == 0 && guestOptions.rooms == 0)
+            !guestOptionsRedux.checkInDate ||
+            !guestOptionsRedux.checkOutDate ||
+            (guestOptionsRedux.guestOptions.adults == 0 &&
+              guestOptionsRedux.guestOptions.rooms == 0)
           }
           onClick={handleSearch}
         >

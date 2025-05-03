@@ -1,32 +1,35 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
+import { useDispatch } from "react-redux";
+import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
+import {
+  updateIsUserLoggedIn,
+  updateLoggedInUser,
+} from "../../features/auth/authSlice";
+import { Link } from "react-router-dom";
 import "./Location.css";
 
+import Logo from "../../assets/Logo-Pride.jpg";
+
 const Location = () => {
-  const { state, dispatch } = useContext(AppContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
+    dispatch(updateShouldShowCallback(true));
 
-    if (localStorage.getItem("userObj")) {
-      const obj = JSON.parse(localStorage.getItem("userObj"));
-      dispatch({
-        type: reducerMethods.setLoggedInUser,
-        payload: {
+    if (sessionStorage.getItem("userObj")) {
+      const obj = JSON.parse(sessionStorage.getItem("userObj"));
+      dispatch(updateIsUserLoggedIn(obj.isLoggedIn));
+      dispatch(
+        updateLoggedInUser({
           id: obj.id,
           name: obj.name,
           email: obj.email,
           contactNumber: obj.contactNumber,
-        },
-      });
-      dispatch({
-        type: reducerMethods.setIsUserLoggedIn,
-        payload: obj.isLoggedIn,
-      });
+        })
+      );
     }
   }, []);
 
@@ -67,7 +70,11 @@ const Location = () => {
               ></iframe>
             </div>
             <div>
-              <h1>Logo</h1>
+              <h1>
+                <Link to="/">
+                  <img src={Logo} alt="logo" />
+                </Link>
+              </h1>
               <h2>hotel pride</h2>
               <ul>
                 <li>

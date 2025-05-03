@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import {
+  updateIsUserLoggedIn,
+  updateLoggedInUser,
+} from "../../features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 
+import Logo from "../../assets/Logo-Pride.jpg";
+
 const Navbar = () => {
+  const authRedux = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
   const location = useLocation();
-  const { state, dispatch } = React.useContext(AppContext);
   const [showHam, setShowHam] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -26,31 +33,25 @@ const Navbar = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    if (localStorage.getItem("userObj")) {
-      const obj = JSON.parse(localStorage.getItem("userObj"));
-      dispatch({
-        type: reducerMethods.setLoggedInUser,
-        payload: {
+    if (sessionStorage.getItem("userObj")) {
+      const obj = JSON.parse(sessionStorage.getItem("userObj"));
+      dispatch(
+        updateLoggedInUser({
           id: obj.id,
           name: obj.name,
           email: obj.email,
           contactNumber: obj.contactNumber,
-        },
-      });
-      dispatch({
-        type: reducerMethods.setIsUserLoggedIn,
-        payload: obj.isLoggedIn,
-      });
+        })
+      );
+      dispatch(updateIsUserLoggedIn(obj.isLoggedIn));
     }
   }, []);
 
   function handleLogout() {
-    dispatch({
-      type: reducerMethods.setIsUserLoggedIn,
-      payload: false,
-    });
+    dispatch(updateLoggedInUser({}));
+    dispatch(updateIsUserLoggedIn(false));
     toast.success("Logged Out Successfully");
-    localStorage.removeItem("userObj");
+    sessionStorage.removeItem("userObj");
   }
 
   const style = {
@@ -107,7 +108,7 @@ const Navbar = () => {
   };
 
   React.useEffect(() => {
-    if (location.pathname === "/" || location.pathname === "/about") {
+    if (location.pathname === "/") {
       window.addEventListener("scroll", changeNavbarColor);
       setRevertHeader(false);
     } else {
@@ -130,7 +131,9 @@ const Navbar = () => {
       <div className="wrapper">
         <div className="navbar">
           <h1 className="logo">
-            <Link to="/">MyLogo</Link>
+            <Link to="/">
+              <img src={Logo} alt="logo" />
+            </Link>
           </h1>
 
           {showHam && (
@@ -161,7 +164,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                {state.isUserLoggedIn ? (
+                {authRedux.isUserLoggedIn ? (
                   <button className="login-btn" onClick={handleLogout}>
                     Logout
                   </button>

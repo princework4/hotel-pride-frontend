@@ -3,12 +3,10 @@ import * as CryptoJS from "crypto-js";
 const secretKey = process.env.SECRET_ENCRYPTION_KEY;
 
 export const encryptPassword = (password) => {
-  console.log("encryptPassword --> ", password, secretKey);
   const encryptedPassword = CryptoJS.AES.encrypt(
     password,
     secretKey
   ).toString();
-  console.log("encryptedPassword :- ", encryptedPassword);
   return encryptedPassword;
 };
 
@@ -29,10 +27,19 @@ export const generateRoomBookingListData = (selectedRooms) => {
   const finalArr = [];
   for (const key in obj) {
     finalArr.push({
-      roomTypeId: key,
+      roomTypeId: Number(key),
       noOfRooms: obj[key],
     });
   }
 
   return finalArr;
+};
+
+export const checkOfferAvailability = (offerStartDate, offerEndDate) => {
+  const today = new Date();
+  const day = String(today.getDate());
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const year = today.getFullYear();
+  const formattedDate = `${day}-${month}-${year}`;
+  return offerStartDate <= formattedDate && offerEndDate >= formattedDate;
 };

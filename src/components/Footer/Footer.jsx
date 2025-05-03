@@ -10,14 +10,21 @@ const Footer = () => {
         <div className="wrapper">
           <div className="footer-container">
             <div>
-              <h3 className="section-title">Company Name</h3>
-              <Typography variant="body1" sx={{ marginTop: 2 }}>
+              <h3 className="section-title">Hotel Pride</h3>
+              <Typography
+                variant="body1"
+                sx={{ marginTop: 2, fontFamily: '"Poppins", sans-serif' }}
+              >
                 © 2025 All Rights Reserved
               </Typography>
             </div>
 
             <div>
-              <Typography variant="h5" className="section-title">
+              <Typography
+                variant="h5"
+                className="section-title"
+                sx={{ fontFamily: '"Lato", sans-serif' }}
+              >
                 Quick Links
               </Typography>
               <div>

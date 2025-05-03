@@ -77,12 +77,12 @@
   display: none !important;
 }
 
-.slick-prev,
+/* .slick-prev,
 .slick-next {
   display: none !important;
-}
+} */
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .slick-slide img,
   .imgslider {
     height: 100vh;

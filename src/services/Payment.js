@@ -3,10 +3,7 @@ import axios from "axios";
 export async function createPayment(bookingNumber) {
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/payments/create`,
-      {
-        bookingNumber,
-      }
+      `${process.env.BASE_URL}/${process.env.API_VERSION}/payments/create?bookingNumber=${bookingNumber}`
     );
     // console.log(data);
     return response;

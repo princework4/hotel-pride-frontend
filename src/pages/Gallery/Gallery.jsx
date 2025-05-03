@@ -1,23 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { allTabDetail } from "../../Constants";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
 import { fetchAllRoomTypes } from "../../services/Rooms";
 
 import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
-import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2.jpeg";
-import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3.jpeg";
+import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2_1.jpg";
+import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3_1.jpg";
 import deluxeImage1 from "../../assets//Deluxe/deluxe_room_1.jpeg";
 import deluxeImage2 from "../../assets//Deluxe/deluxe_room_2.jpeg";
-import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3.jpeg";
-import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4.jpeg";
+import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3_1.jpg";
+import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4_1.jpg";
 import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
 import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
-import executiveImage3 from "../../assets//Executive/executive_room_3.jpeg";
-import executiveImage4 from "../../assets//Executive/executive_room_4.jpeg";
+import executiveImage3 from "../../assets//Executive/executive_room_3_1.jpg";
+import executiveImage4 from "../../assets//Executive/executive_room_4_1.jpg";
 
+import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
+import {
+  updateIsUserLoggedIn,
+  updateLoggedInUser,
+} from "../../features/auth/authSlice";
+import { updateAllRoomTypesName } from "../../features/room/roomSlice";
+import { useDispatch, useSelector } from "react-redux";
 import "./Gallery.css";
 
 const allAssetsImages = [
@@ -35,9 +40,8 @@ const allAssetsImages = [
 ];
 
 const Gallery = () => {
-  const { state, dispatch } = useContext(AppContext);
-  const { allRoomTypesName } = state;
-  // const [galleryImages, setGalleryImages] = useState(state.allAssetsImages);
+  const roomRedux = useSelector((state) => state.roomReducer);
+  const dispatch = useDispatch();
   const [galleryImages, setGalleryImages] = useState(allAssetsImages);
   const [trackActiveButton, setTrackActiveButton] = useState("cat-1");
 
@@ -48,35 +52,28 @@ const Gallery = () => {
       roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
     }
 
-    dispatch({
-      type: reducerMethods.setAllRoomTypesName,
-      payload: roomTypeNames,
-    });
+    dispatch(updateAllRoomTypesName(roomTypeNames));
   }
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch({ type: reducerMethods.setShouldShowCallback, payload: true });
+    dispatch(updateShouldShowCallback(true));
 
-    if (allRoomTypesName?.length === 0) {
+    if (roomRedux.allRoomTypesName?.length === 0) {
       getAllRoomTypes();
     }
 
-    if (localStorage.getItem("userObj")) {
-      const obj = JSON.parse(localStorage.getItem("userObj"));
-      dispatch({
-        type: reducerMethods.setLoggedInUser,
-        payload: {
+    if (sessionStorage.getItem("userObj")) {
+      const obj = JSON.parse(sessionStorage.getItem("userObj"));
+      dispatch(updateIsUserLoggedIn(obj.isLoggedIn));
+      dispatch(
+        updateLoggedInUser({
           id: obj.id,
           name: obj.name,
           email: obj.email,
           contactNumber: obj.contactNumber,
-        },
-      });
-      dispatch({
-        type: reducerMethods.setIsUserLoggedIn,
-        payload: obj.isLoggedIn,
-      });
+        })
+      );
     }
   }, []);
 
@@ -101,8 +98,7 @@ const Gallery = () => {
             <h2>gallery</h2>
           </div>
           <div className="filter_buttons">
-            {/* {filterTabButtons?.map((buttonText, i) => ( */}
-            {state.allRoomTypesName?.map((buttonText, i) => (
+            {roomRedux.allRoomTypesName?.map((buttonText, i) => (
               <button
                 className={`${
                   buttonText[1] == trackActiveButton

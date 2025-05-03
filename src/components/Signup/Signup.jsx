@@ -4,7 +4,6 @@ import * as React from "react";
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
-import { AppContext } from "../../context/AppContext";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { registerUser } from "../../services/Auth";
@@ -121,7 +120,10 @@ const SignUpForm = ({ handleClose }) => {
               />
             </FormControl>
             {error && (
-              <Typography color="error" sx={{ fontSize: "12px" }}>
+              <Typography
+                color="error"
+                sx={{ fontSize: "12px", fontFamily: '"Poppins", sans-serif' }}
+              >
                 {error}
               </Typography>
             )}

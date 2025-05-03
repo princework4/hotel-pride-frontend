@@ -1,21 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-// import About from "./pages/About";
 import Gallery from "./pages/Gallery";
 import Location from "./pages/Location";
 import NotFound from "./pages/NotFound/NotFound";
-// import Header from "./components/Header";
-// import Footer from "./components/Footer";
 import BottomToTop from "./components/BottomToTop";
 import RequestCallback from "./components/RequestCallback";
 import Rooms from "./pages/Rooms/Rooms";
-import { AppContext } from "./context/AppContext";
 import PaymentSuccessful from "./components/Payment/PaymentSuccessful";
 import PaymentFailed from "./components/Payment/PaymentFailed";
+import { useSelector } from "react-redux";
 
 const Routing = () => {
-  const { state, dispatch } = useContext(AppContext);
+  const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
 
   return (
     <>
@@ -24,12 +21,12 @@ const Routing = () => {
         {/* <Route path="about" element={<About />} /> */}
         <Route path="gallery" element={<Gallery />} />
         <Route path="location" element={<Location />} />
-        <Route path="rooms/:id" element={<Rooms />} />
+        <Route path="rooms" element={<Rooms />} />
         <Route path="payment-successful" element={<PaymentSuccessful />} />
         <Route path="payment-failed" element={<PaymentFailed />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {state.shouldShowCallback && <RequestCallback />}
+      {nonFunctionalRedux.shouldShowCallback && <RequestCallback />}
       <BottomToTop />
     </>
   );

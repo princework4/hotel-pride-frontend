@@ -1,6 +1,7 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./Toast.css";
 
 const Toast = () => {
   return (
@@ -14,7 +15,7 @@ const Toast = () => {
       rtl={false}
       pauseOnFocusLoss={false}
       draggable={false}
-      pauseOnHover={false}
+      pauseOnHover={true}
       theme="colored"
     />
   );

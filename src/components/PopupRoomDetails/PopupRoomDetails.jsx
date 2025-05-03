@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Box, Modal } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
 import { AppContext } from "../../context/AppContext";
+import { useSelector } from "react-redux";
 import "./PopupRoomDetails.css";
 
 const PopupRoomDetails = ({ open, handleClose, id }) => {
-  const { state, dispatch } = useContext(AppContext);
-  const [rooms, setRooms] = useState(state.allRoomTypes);
+  const roomRedux = useSelector((state) => state.roomReducer);
+  const [rooms, setRooms] = useState(roomRedux.allRoomTypes);
 
   useEffect(() => {
     const filteredRoom = rooms.filter((item) => item.id === id);

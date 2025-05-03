@@ -1,13 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { AppContext } from "../../context/AppContext";
-import { reducerMethods } from "../../context/reducerMethods";
+import { useDispatch } from "react-redux";
+import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
 import "./NotFound.css";
 
 const NotFound = () => {
-  const { state, dispatch } = useContext(AppContext);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch({ type: reducerMethods.setShouldShowCallback, payload: false });
+    dispatch(updateShouldShowCallback(false));
   }, []);
 
   return (
