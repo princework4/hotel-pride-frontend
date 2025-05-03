@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import RoomCard from "../../components/RoomCard";
-import { galleryImgs, guestsReviews, allTabDetail } from "../../Constants";
+import { guestsReviews, allTabDetail } from "../../Constants";
 import { useLocation, useNavigate, useNavigationType } from "react-router-dom";
-import Reviews from "../../components/Reviews/Reviews";
-import Banner from "../../components/Banner";
-import Search from "../../components/Search";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import About from "../../components/About";
-import AmenityCard from "../../components/AmenityCard";
+const About = lazy(() => import("../../components/About"));
+const AmenityCard = lazy(() => import("../../components/AmenityCard"));
+const Banner = lazy(() => import("../../components/Banner"));
+const Footer = lazy(() => import("../../components/Footer"));
+const Header = lazy(() => import("../../components/Header"));
+const Reviews = lazy(() => import("../../components/Reviews/Reviews"));
+const Search = lazy(() => import("../../components/Search"));
+import Loader from "../../components/Loader";
 import { fetchAllRoomTypes } from "../../services/Rooms";
 import { useDispatch, useSelector } from "react-redux";
 import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
@@ -122,92 +123,111 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<Loader />}>
+        <Header />
+      </Suspense>
       <main>
-        <Banner />
-        <section className="search">
-          <div className="wrapper">
-            <Search />
-          </div>
-        </section>
-        <About />
-        <section className="room_types">
-          <div className="wrapper">
-            <div className="heading_container">
-              {/* <hr /> */}
-              <h2>room types</h2>
+        <Suspense fallback={<Loader />}>
+          <Banner />
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <section className="search">
+            <div className="wrapper">
+              <Search />
             </div>
-            <p style={{ lineHeight: "24px" }}>
-              Experience comfort and functionality with our well-appointed
-              rooms, thoughtfully designed to make your stay productive and
-              relaxing. Whether you're traveling for business or leisure, our
-              range of room options ensures a comfortable and hassle free stay.
-            </p>
-            <div className="room_types__container">
-              {roomRedux.allRoomTypes?.map((type, index) => (
-                <>
-                  <RoomCard
-                    key={type.id}
-                    roomType={type.typeName}
-                    roomDetails={[
-                      roomRedux.allRoomTypes1[index].roomSizeInSquareFeet +
-                        " ft²",
-                    ]}
-                    roomId={type.id}
-                    assets={type.assets}
-                    amenities={roomRedux.allRoomTypes1[index].amenities}
-                  />
-                </>
-              ))}
+          </section>
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <section className="room_types">
+            <div className="wrapper">
+              <div className="heading_container">
+                {/* <hr /> */}
+                <h2>room types</h2>
+              </div>
+              <p style={{ lineHeight: "24px" }}>
+                Experience comfort and functionality with our well-appointed
+                rooms, thoughtfully designed to make your stay productive and
+                relaxing. Whether you're traveling for business or leisure, our
+                range of room options ensures a comfortable and hassle free
+                stay.
+              </p>
+              <div className="room_types__container">
+                {roomRedux.allRoomTypes?.map((type, index) => (
+                  <>
+                    <RoomCard
+                      key={type.id}
+                      roomType={type.typeName}
+                      roomDetails={[
+                        roomRedux.allRoomTypes1[index].roomSizeInSquareFeet +
+                          " ft²",
+                      ]}
+                      roomId={type.id}
+                      assets={type.assets}
+                      amenities={roomRedux.allRoomTypes1[index].amenities}
+                    />
+                  </>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-        <section className="services">
-          <div className="wrapper">
-            <div className="heading_container">
-              {/* <hr /> */}
-              <h2>amenities</h2>
+          </section>
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <section className="services">
+            <div className="wrapper">
+              <div className="heading_container">
+                {/* <hr /> */}
+                <h2>amenities</h2>
+              </div>
+              <AmenityCard />
             </div>
-            <AmenityCard />
-          </div>
-        </section>
-        <section className="gallery">
-          <div className="wrapper">
-            <div className="heading_container">
-              {/* <hr /> */}
-              <h2>gallery</h2>
+          </section>
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <section className="gallery">
+            <div className="wrapper">
+              <div className="heading_container">
+                {/* <hr /> */}
+                <h2>gallery</h2>
+              </div>
+              <div className="gallery__container">
+                {width <= 768
+                  ? allGalleryImages.slice(0, 3).map((item, i) => (
+                      <figure key={i}>
+                        <img src={item} alt={i} />
+                      </figure>
+                    ))
+                  : allGalleryImages.slice(0, 6).map((item, i) => (
+                      <figure key={i}>
+                        <img src={item} alt={i} />
+                      </figure>
+                    ))}
+              </div>
+              <div className="see_more__container">
+                <button onClick={() => routeChange("gallery")}>see more</button>
+              </div>
             </div>
-            <div className="gallery__container">
-              {width <= 768
-                ? allGalleryImages.slice(0, 3).map((item, i) => (
-                    <figure key={i}>
-                      <img src={item} alt={i} />
-                    </figure>
-                  ))
-                : allGalleryImages.slice(0, 6).map((item, i) => (
-                    <figure key={i}>
-                      <img src={item} alt={i} />
-                    </figure>
-                  ))}
+          </section>
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <section className="reviews">
+            <div className="wrapper">
+              <div className="heading_container">
+                {/* <hr /> */}
+                <h2 data-text="reviews">What our Guests Say</h2>
+              </div>
+              <div className="reviews__container">
+                <Reviews guestsReviews={guestsReviews} />
+              </div>
             </div>
-            <div className="see_more__container">
-              <button onClick={() => routeChange("gallery")}>see more</button>
-            </div>
-          </div>
-        </section>
-        <section className="reviews">
-          <div className="wrapper">
-            <div className="heading_container">
-              {/* <hr /> */}
-              <h2 data-text="reviews">What our Guests Say</h2>
-            </div>
-            <div className="reviews__container">
-              <Reviews guestsReviews={guestsReviews} />
-            </div>
-          </div>
-        </section>
+          </section>
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={<Loader />}>
+        <Footer />
+      </Suspense>
     </>
   );
 };

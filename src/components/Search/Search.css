@@ -91,7 +91,7 @@ form .disabled-search-btn {
   overflow-x: auto;
 }
 
-.guest-group:last-child() {
+.guest-group:last-child {
   margin-bottom: 0;
 }
 
