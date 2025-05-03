@@ -1,0 +1,96 @@
+.room_card {
+  width: calc(100% / 3 - 30px);
+  margin: 0px 15px 30px 15px;
+}
+
+.room_card_media {
+  width: 100%;
+}
+
+.room_card_media img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.room_card_description {
+  padding: 20px;
+  border: 1px solid var(--light-beige);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-top: -5px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.room_card_description h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.room_details_chips {
+  margin: 10px 0 20px;
+}
+
+.room_details_chips li:not(:first-child) {
+  margin-left: 20px;
+}
+
+.room_card_description p {
+  font-size: 14px;
+}
+
+.basic_amenities {
+  margin: 5px 0 20px;
+}
+
+.basic_amenities li {
+  width: 15px;
+  display: inline-block;
+}
+
+.basic_amenities li:not(:first-child) {
+  margin-left: 20px;
+}
+
+.basic_amenities {
+  margin-top: 10px;
+  display: flex;
+}
+
+.basic_amenities li {
+  width: 18px;
+  height: 18px;
+}
+
+.basic_amenities li:not(:first-child) {
+  margin-left: 20px;
+}
+
+/* Media queries */
+@media (max-width: 997px) {
+  .room_card {
+    width: calc(100% / 2 - 40px);
+  }
+}
+
+@media (max-width: 768px) {
+  .room_card {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+/* Room Search Modal Styling............................................ */
+.roomSearch .search-container {
+  margin: 10px;
+}
+
+.roomSearch .search-container form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.roomSearch .search-container .form-group {
+  flex-direction: column;
+}

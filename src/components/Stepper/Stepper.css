@@ -1,0 +1,7 @@
+.rooms_tabs {
+  margin: 20px 0 !important;
+}
+
+.rooms_tab_panel > div {
+  padding: 0 !important;
+}

@@ -1,0 +1,49 @@
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 20px;
+  text-decoration: none;
+  font-weight: 300;
+  color: #fff;
+  padding: 4rem 0;
+}
+
+.footer {
+  background: #303131;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+.footer .section-title {
+  font-size: 0.875rem;
+  line-height: 2.125rem;
+  opacity: 0.6;
+}
+
+.footer .footer-link {
+  color: #fff;
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  text-decoration: none;
+}
+
+.footer .social-links a {
+  display: flex;
+  margin-right: 3rem;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+.corporate-footer {
+  width: 100%;
+  color: #fff;
+  margin: 0 20px;
+}

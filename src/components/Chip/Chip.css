@@ -1,0 +1,9 @@
+.chip {
+  padding: 4px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: rgb(238 238 239);
+  cursor: default;
+  font-size: 12px;
+  line-height: 14px;
+}

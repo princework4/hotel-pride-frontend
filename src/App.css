@@ -1,0 +1,539 @@
+@charset "utf-8";
+
+/*------------------------------------------------------------------
+  [Table of contents]
+  * To keep an overview of structure of your code, we make use of table of 
+  * content. Table of content is use display the overall tree structure of your
+  * Layout. 
+  * (NOTE: Remove this commented code once you start developing the code.
+  * Remove the following table of content and add your own as this is just and 
+  * example to let you know)
+
+  1. CSS Reset Code
+    1.1. Eric Meyers Reset/HTML5 display-role reset for older browsers
+    1.2. Clear Fix
+    1.3. Font class declaration
+  2. Body
+  3. Header / .header
+    2.1. Navigation / .navbar
+  4. Content / .content
+    4.1. Left column / .leftcolumn
+    4.2. Right column / .rightcolumn
+    4.3. Sidebar / .sidebar
+      4.3.1. RSS / .rss
+      4.3.2. Search / .search
+      4.3.3. Boxes / .box
+      4.3.4. Sideblog / .sideblog
+      4.3.5. Advertisements / .ads
+  5. Footer / .footer
+  ------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+  [Color codes]
+  * Mention the color code you have used in your html document for the respective
+  * elements given as follow. 
+  * (NOTE: Remove this commented code once you start developing the code. 
+  * Remove the following color code and add your own as this is just and 
+  * example to let you know)
+
+  Header nav: #e5e5df (Cararra)
+  Header nav a (hover): #fff (white)
+  Header nav a (active): #fff (white)
+  -------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+  [Typography]
+  * Mention the Typography you have used in your html document for the respective
+  * elements given as follow.
+  * (NOTE: Remove this commented code once you start developing the code. 
+  * Remove the following typography and add your own as this is just and 
+  * example to let you know)
+
+  Header nav a: 16px 'Futura Bold', 'Gill Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  View-register li a : 12px 'Futura Bold', 'Gill Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  -------------------------------------------------------------------*/
+
+/* ==========================================================================
+   1. CSS Reset Code
+   ========================================================================== */
+
+/* 1.1. Eric Meyers Reset
+   http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+   ========================================================================== */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* Force scrollbar */
+html {
+  overflow-y: scroll;
+}
+
+/* Align radios and text inputs with their label */
+
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+/* Hand cursor on clickable input elements */
+label,
+input[type="button"],
+input[type="submit"],
+button {
+  cursor: pointer;
+}
+
+strong {
+  font-weight: bold;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+em {
+  font-style: italic;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+sub,
+sup {
+  vertical-align: baseline;
+  position: relative;
+  font-size: 55%;
+  line-height: 0;
+}
+
+sup {
+  top: -0.7em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* 1.2. Clear Fix
+========================================================================== */
+
+.cf:before,
+.cf:after {
+  display: table;
+  content: " ";
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  zoom: 1;
+}
+
+/* 1.3. Font class declaration
+========================================================================== */
+/*
+ * Mention the font property (eg: font-family, font-size, font-weight, font-style
+ * etc) that have been commonly used in the html document. Make a class of it and
+ * apply to the element wherever it is needed. If any single property in changed,
+ * then override only that property in the particular class which is used for the
+ * element.
+ * (NOTE: Remove this commented code once you start 
+ * developing the code. Remove the following font class and add your own
+ * as this is just and example to let you know. If there is only one font family
+ * followed throughout the site, then menstion the font property in body. No need
+ * of creating an extra class for it) */
+
+.futura-bold-font {
+  font-family: "Futura Bold", "Gill Sans", Arial, "Helvetica Neue", Helvetica,
+    sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* ======= Your styling goes below ======= */
+
+/*============================
+    Common Styling    
+============================*/
+/* Hiding Arrows from Input Number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+li {
+  display: inline-block;
+  list-style-type: none;
+}
+
+a {
+  display: inline-block;
+  outline: none;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --pp-serif: "Poppins", sans-serif; */
+/* --lato-serif: "Lato", sans-serif; */
+
+body {
+  background-color: #e7e8d1;
+  overflow: hidden;
+}
+
+a,
+button,
+p,
+span,
+strong {
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+}
+
+body p {
+  line-height: 20px;
+}
+
+/* common color variables */
+:root {
+  --terra-cotta: #b85042;
+  --light-beige: #e7e8d1;
+}
+
+/* wrapper styling */
+.wrapper {
+  max-width: 1120px;
+  width: 100%;
+  padding: 30px 0;
+  margin: 0 auto;
+}
+
+/* common styling */
+strong {
+  color: var(--terra-cotta);
+}
+
+.heading_container {
+  display: flex;
+  align-items: center;
+  column-gap: 2vw;
+}
+
+hr {
+  width: 4vw;
+  height: 2px;
+  border-color: var(--terra-cotta);
+  margin: 0;
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+  /* background: linear-gradient(var(--terra-cotta), var(--terra-cotta)) left
+      no-repeat,
+    #fff;
+  background-size: 0% 100%;
+  background-clip: text; */
+  color: var(--terra-cotta);
+  font-size: 40px;
+  font-weight: bolder;
+  /* transition: 1s ease-in-out; */
+  text-transform: uppercase;
+  /* -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--terra-cotta);
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  -ms-transition: 1s ease-in-out; */
+}
+
+/* h2::before {
+  content: attr(data-text);
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: 1s;
+  -webkit-text-fill-color: var(--terra-cotta);
+} */
+
+/* h2:hover {
+  background-size: 100% 100%;
+  width: 100%;
+  -webkit-text-fill-color: var(--terra-cotta);
+} */
+
+button {
+  padding: 10px 20px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color: var(--terra-cotta);
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  text-transform: capitalize;
+}
+
+button:hover {
+  background-color: #fff;
+  color: var(--terra-cotta);
+  border: 1px solid var(--terra-cotta);
+}
+
+.css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 7px 14px !important;
+}
+
+.css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root {
+  transform: translate(14px, 9px) scale(0.8) !important;
+}
+
+/* .css-1dym4qp-MuiButtonBase-root-MuiTab-root {
+  min-height: 40px !important;
+  padding: 5px !important;
+} */
+
+.css-19kzrtu {
+  padding-bottom: 0 !important;
+}
+
+@media (max-width: 2560px) {
+  .wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1920px) {
+  .wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1536px) {
+  .wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1440px) {
+  .wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1366px) {
+  .wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1280px) {
+  .wrapper {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1194px) {
+  .wrapper {
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    max-width: 95%;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 997px) {
+  .wrapper {
+    max-width: 95%;
+    width: 100%;
+    padding: 25px 0;
+  }
+  h2 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 834px) {
+  .wrapper {
+    max-width: 95%;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    max-width: 95%;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 451px) {
+  .wrapper {
+    max-width: 95%;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .wrapper {
+    max-width: 95%;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

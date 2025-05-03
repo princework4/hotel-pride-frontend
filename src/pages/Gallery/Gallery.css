@@ -1,0 +1,114 @@
+.gallery .filter_buttons {
+  margin-top: 40px;
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery .filter_buttons .button {
+  padding: 10px 25px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  margin: 0px 5px;
+  position: relative;
+  background-color: var(--terra-cotta);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 25px;
+  outline: none;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.gallery .grid {
+  max-width: 1200px;
+  padding: 0;
+  margin: 40px auto;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery .grid > li {
+  width: calc(100% / 3 - 30px);
+  margin: 0px 15px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.gallery .grid > li img {
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.gallery .filter_buttons .is_active {
+  border-color: var(--terra-cotta);
+  background-color: #fff;
+  color: var(--terra-cotta);
+}
+
+/* .grid .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+} */
+
+/* Hover Effects */
+.gallery .filter_buttons .button:hover {
+  border-color: var(--terra-cotta);
+  background-color: #fff;
+  color: var(--terra-cotta);
+}
+
+.gallery .grid > li img:hover {
+  transform: scale(1.15);
+}
+
+/* .grid > li:hover .overlay {
+  opacity: 1;
+  visibility: visible;
+} */
+
+/* Media Queries */
+@media (max-width: 845px) {
+  .gallery .filter_buttons {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery .filter_buttons {
+    gap: 0;
+  }
+
+  .gallery .filter_buttons .button {
+    padding: 5px 10px;
+    margin: 5px;
+  }
+
+  .gallery .grid > li {
+    width: calc(100% - 30px);
+  }
+}

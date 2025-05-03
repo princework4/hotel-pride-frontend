@@ -1,0 +1,207 @@
+import React, { useEffect, useRef, useState } from "react";
+import { createPayment, verifyPayment } from "../../services/Payment";
+import { useNavigate } from "react-router-dom";
+import {
+  bookingConfirmation,
+  guestBookingConfirmation,
+} from "../../services/Booking";
+import { generateRoomBookingListData } from "../../utils";
+import Loader from "../Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { updateGuestDetails } from "../../features/guest/guestSlice";
+import { resetGuestOptions } from "../../features/search/searchSlice";
+import {
+  updateAvailableRoomTypes,
+  updateSelectedRooms,
+} from "../../features/room/roomSlice";
+import { toast } from "react-toastify";
+import Logo from "../../assets/Logo-Pride.jpg";
+
+const Payment = ({ totalPrice }) => {
+  const guestDetailsRedux = useSelector((state) => state.searchReducer);
+  const roomRedux = useSelector((state) => state.roomReducer);
+  const authRedux = useSelector((state) => state.authReducer);
+  const guestRedux = useSelector((state) => state.guestReducer);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const paymentId = useRef(null);
+  const paymentMethod = useRef(null);
+
+  function resetAllData() {
+    dispatch(
+      updateGuestDetails({
+        adults: 1,
+        children: 0,
+        rooms: 1,
+      })
+    );
+    dispatch(resetGuestOptions());
+    dispatch(updateSelectedRooms([]));
+    dispatch(updateAvailableRoomTypes([]));
+  }
+
+  async function proceedWithBookingConfirmation() {
+    setIsLoading(true);
+    if (authRedux.isUserLoggedIn) {
+      const finalLoggedInBookingDetailsObj = {
+        userId: authRedux.loggedInUser.id,
+        hotelId: 1,
+        couponCode: "",
+        noOfAdults: guestDetailsRedux.guestOptions.adults,
+        noOfChildrens: guestDetailsRedux.guestOptions.children,
+        checkInDate: guestDetailsRedux.checkInDate,
+        checkOutDate: guestDetailsRedux.checkOutDate,
+        paymentType: "PREPAID",
+        totalAmount: totalPrice + roomRedux.tax,
+        payableAmount: totalPrice + roomRedux.tax,
+        roomBookingList: generateRoomBookingListData(roomRedux.selectedRooms),
+      };
+
+      const response = await bookingConfirmation(
+        finalLoggedInBookingDetailsObj
+      );
+      if (response.status === 201) {
+        createPaymentForLoggedInUser(response.data.bookingNumber);
+        // setIsLoading(false);
+      }
+    } else {
+      const finalGuestBookingDetailsObj = {
+        email: guestRedux.guestDetails.email,
+        phone: `${guestRedux.guestDetails.mobile}`,
+        fullName:
+          guestRedux.guestDetails.fname + " " + guestRedux.guestDetails.lname,
+        hotelId: 1,
+        couponCode: "",
+        noOfAdults: guestDetailsRedux.guestOptions.adults,
+        noOfChildrens: guestDetailsRedux.guestOptions.children,
+        checkInDate: guestDetailsRedux.checkInDate,
+        checkOutDate: guestDetailsRedux.checkOutDate,
+        paymentType: "PREPAID",
+        totalAmount: totalPrice + roomRedux.tax,
+        payableAmount: totalPrice + roomRedux.tax,
+        roomBookingList: generateRoomBookingListData(roomRedux.selectedRooms),
+      };
+
+      const response = await guestBookingConfirmation(
+        finalGuestBookingDetailsObj
+      );
+      if (response.status === 201) {
+        createPaymentHandler(response);
+        // setIsLoading(false);
+      } else {
+        setIsLoading(false);
+        toast.error(response?.message || response?.error);
+        navigate("/");
+      }
+    }
+  }
+
+  async function proceedWithPaymentVerification(paymentDetails) {
+    const response = await verifyPayment(paymentDetails);
+    if (response.status !== 200) {
+      toast.error(response?.message || response?.error);
+    }
+    resetAllData();
+    navigate("/");
+  }
+
+  async function createPaymentForLoggedInUser(bookingNumber) {
+    const response = await createPayment(bookingNumber);
+    if (response.status === 200) {
+      createPaymentHandler(response);
+    } else {
+      toast.error(response?.message || response?.error);
+      resetAllData();
+      navigate("/");
+    }
+  }
+
+  async function createPaymentHandler(response) {
+    const options = {
+      key: process.env.PAYMENT_KEY,
+      // key: "rzp_test_B9mzPUuuN7s5Ng",
+      amount: totalPrice + roomRedux.tax,
+      currency: "INR",
+      name: "Hotel Pride",
+      description: "Hotel Pride Room Booking Transaction",
+      image: Logo,
+      order_id: response.data.id,
+      handler: function (response) {
+        const paymentDetails = {
+          paymentId: response.razorpay_payment_id,
+          orderId: response.razorpay_order_id,
+          signature: response.razorpay_signature,
+        };
+
+        proceedWithPaymentVerification(paymentDetails);
+      },
+      modal: {
+        confirm_close: true,
+        ondismiss: (reasons) => {
+          const { reason } = reasons && reasons.error ? reasons.error : {};
+
+          dispatch(
+            updateGuestDetails({
+              adults: 1,
+              children: 0,
+              rooms: 1,
+            })
+          );
+          dispatch(resetGuestOptions());
+          dispatch(updateSelectedRooms([]));
+
+          if (reason === undefined) {
+            console.log("payment cancelled");
+            navigate("/");
+          } else if (reason === "timeout") {
+            console.log("payment timedout");
+            navigate("/");
+          } else {
+            console.log("payment failed");
+            navigate("/");
+          }
+        },
+      },
+      prefill: {
+        name: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.name
+          : guestRedux.guestDetails?.fname +
+            " " +
+            guestRedux.guestDetails?.lname,
+        email: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.email
+          : guestRedux.guestDetails?.email,
+        contact: authRedux.isUserLoggedIn
+          ? authRedux.loggedInUser?.mobile
+          : guestRedux.guestDetails?.mobile,
+      },
+      theme: {
+        color: "#b85042",
+      },
+    };
+
+    const razor = new window.Razorpay(options);
+    setIsLoading(false);
+    razor.on("payment.submit", (response) => {
+      paymentMethod.current = response.method;
+    });
+    razor.on("payment.failed", (response) => {
+      paymentId.current = response.error.metadata.payment_id;
+      console.log("Payment Failure Response :- ", response);
+      console.log("Payment Failure ID :- ", paymentId.current);
+      toast.error(response.error.reason);
+      resetAllData();
+      navigate("/");
+    });
+    razor.open();
+  }
+
+  useEffect(() => {
+    proceedWithBookingConfirmation();
+  }, []);
+
+  return <>{isLoading && <Loader />}</>;
+};
+
+export default Payment;
