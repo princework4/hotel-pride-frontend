@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import React, { useEffect, lazy, Suspense } from "react";
+const Footer = lazy(() => import("../../components/Footer"));
+const Header = lazy(() => import("../../components/Header"));
+import Loader from "../../components/Loader";
 import { useDispatch } from "react-redux";
 import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
 import {
@@ -35,7 +36,9 @@ const Location = () => {
 
   return (
     <>
-      <Header />
+      <Suspense fallback={<Loader />}>
+        <Header />
+      </Suspense>
       <section className="location">
         <div className="wrapper">
           <div className="heading_container">
@@ -173,7 +176,9 @@ const Location = () => {
           </ul>
         </div>
       </section>
-      <Footer />
+      <Suspense fallback={<Loader />}>
+        <Footer />
+      </Suspense>
     </>
   );
 };
