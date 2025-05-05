@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AppContext } from "../../context/AppContext";
 import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
 import { Link, NavLink, useLocation } from "react-router-dom";
