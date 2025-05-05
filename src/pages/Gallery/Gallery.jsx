@@ -24,6 +24,7 @@ import {
 import { updateAllRoomTypesName } from "../../features/room/roomSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./Gallery.css";
+import { toast } from "react-toastify";
 
 const allAssetsImages = [
   [nonAcImage1, "cat1"],
@@ -47,12 +48,16 @@ const Gallery = () => {
 
   async function getAllRoomTypes() {
     const data = await fetchAllRoomTypes();
-    const roomTypeNames = [allTabDetail];
-    for (let i = 0; i < data.length; i++) {
-      roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
-    }
+    if (data) {
+      const roomTypeNames = [allTabDetail];
+      for (let i = 0; i < data.length; i++) {
+        roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
+      }
 
-    dispatch(updateAllRoomTypesName(roomTypeNames));
+      dispatch(updateAllRoomTypesName(roomTypeNames));
+    } else {
+      toast.error("Something went wrong while fetching room types.");
+    }
   }
 
   useEffect(() => {
