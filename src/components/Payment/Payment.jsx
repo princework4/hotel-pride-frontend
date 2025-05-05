@@ -29,13 +29,13 @@ const Payment = ({ totalPrice }) => {
   const paymentMethod = useRef(null);
 
   function resetAllData() {
-    dispatch(
-      updateGuestDetails({
-        adults: 1,
-        children: 0,
-        rooms: 1,
-      })
-    );
+    // dispatch(
+    //   updateGuestDetails({
+    //     adults: 1,
+    //     children: 0,
+    //     rooms: 1,
+    //   })
+    // );
     dispatch(resetGuestOptions());
     dispatch(updateSelectedRooms([]));
     dispatch(updateAvailableRoomTypes([]));
@@ -142,13 +142,13 @@ const Payment = ({ totalPrice }) => {
         ondismiss: (reasons) => {
           const { reason } = reasons && reasons.error ? reasons.error : {};
 
-          dispatch(
-            updateGuestDetails({
-              adults: 1,
-              children: 0,
-              rooms: 1,
-            })
-          );
+          // dispatch(
+          //   updateGuestDetails({
+          //     adults: 1,
+          //     children: 0,
+          //     rooms: 1,
+          //   })
+          // );
           dispatch(resetGuestOptions());
           dispatch(updateSelectedRooms([]));
 
