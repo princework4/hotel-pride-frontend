@@ -102,6 +102,7 @@ const Payment = ({ totalPrice }) => {
     if (response.status !== 200) {
       toast.error(response?.message || response?.error);
     }
+    toast.success("Payment Success. Booking Details will be mailed to you.");
     resetAllData();
     navigate("/");
   }
