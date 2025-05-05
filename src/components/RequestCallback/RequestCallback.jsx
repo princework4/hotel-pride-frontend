@@ -6,7 +6,6 @@ import { TextFieldStyle } from "../../MUIStyle/TextField";
 import { ButtonStyle } from "../../MUIStyle/Button";
 import ChatIcon from "../../assets/comment-solid.svg";
 import { TOP } from "../../Constants";
-import { AppContext } from "../../context/AppContext";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { requestCallback } from "../../services/Booking";

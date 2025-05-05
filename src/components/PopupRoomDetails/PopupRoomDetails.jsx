@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Modal } from "@mui/material";
 import SquareIcon from "@mui/icons-material/Square";
-import { AppContext } from "../../context/AppContext";
 import { useSelector } from "react-redux";
 import "./PopupRoomDetails.css";
 
