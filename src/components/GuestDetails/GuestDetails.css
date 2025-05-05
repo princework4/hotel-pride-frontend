@@ -53,8 +53,8 @@
 .payment_summary
   .payment_summary__container
   .payment_summary__selected_rooms_details {
-  min-height: 95px;
-  max-height: 95px;
+  min-height: 110px;
+  max-height: 110px;
   height: 100%;
   overflow-y: auto;
 }
