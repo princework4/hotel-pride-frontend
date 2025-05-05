@@ -8,12 +8,10 @@ import "./App.css";
 function App() {
   return (
     <Provider store={store}>
-      <AppStore>
-        <BrowserRouter>
-          <Routing />
-        </BrowserRouter>
-        <Toast />
-      </AppStore>
+      <BrowserRouter>
+        <Routing />
+      </BrowserRouter>
+      <Toast />
     </Provider>
   );
 }
