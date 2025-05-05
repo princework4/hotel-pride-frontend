@@ -40,6 +40,7 @@ import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
 import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
 import executiveImage3 from "../../assets//Executive/executive_room_3_1.jpg";
 import executiveImage4 from "../../assets//Executive/executive_room_4_1.jpg";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [allGalleryImages, setAllGalleryImages] = useState([
@@ -82,22 +83,28 @@ const Home = () => {
 
   async function getAllRoomTypes() {
     const data = await fetchAllRoomTypes();
-    dispatch(updateAllRoomTypes(data));
+    if (data) {
+      dispatch(updateAllRoomTypes(data));
 
-    const roomTypeNames = [allTabDetail];
-    const offersObj = {};
-    for (let i = 0; i < data.length; i++) {
-      roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
-      offersObj[data[i].id] = data[i].offerDiscountPercentage;
-    }
+      const roomTypeNames = [allTabDetail];
+      const offersObj = {};
+      for (let i = 0; i < data.length; i++) {
+        roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
+        offersObj[data[i].id] = data[i].offerDiscountPercentage;
+      }
 
-    dispatch(updateOffers(offersObj));
-    if (checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)) {
-      dispatch(updateIsOfferAvailable(true));
+      dispatch(updateOffers(offersObj));
+      if (
+        checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)
+      ) {
+        dispatch(updateIsOfferAvailable(true));
+      } else {
+        dispatch(updateIsOfferAvailable(false));
+      }
+      dispatch(updateAllRoomTypesName(roomTypeNames));
     } else {
-      dispatch(updateIsOfferAvailable(false));
+      toast.error("Something went wrong while fetching room types.");
     }
-    dispatch(updateAllRoomTypesName(roomTypeNames));
   }
 
   useEffect(() => {
