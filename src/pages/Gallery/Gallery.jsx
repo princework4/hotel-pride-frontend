@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { allTabDetail } from "../../Constants";
+import { allTabDetail, filterTabButtons } from "../../Constants";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { fetchAllRoomTypes } from "../../services/Rooms";
@@ -48,23 +48,23 @@ const Gallery = () => {
 
   async function getAllRoomTypes() {
     const data = await fetchAllRoomTypes();
+    const roomTypeNames = [allTabDetail];
     if (data) {
-      const roomTypeNames = [allTabDetail];
       for (let i = 0; i < data.length; i++) {
         roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
       }
-
-      dispatch(updateAllRoomTypesName(roomTypeNames));
     } else {
+      roomTypeNames.push(...filterTabButtons);
       toast.error("Something went wrong while fetching room types.");
     }
+    dispatch(updateAllRoomTypesName(roomTypeNames));
   }
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(updateShouldShowCallback(true));
 
-    if (roomRedux.allRoomTypesName?.length === 0) {
+    if (roomRedux?.allRoomTypesName?.length === 0) {
       getAllRoomTypes();
     }
 
