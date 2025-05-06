@@ -121,12 +121,9 @@ export const galleryImgs = [
 ];
 
 export const filterTabButtons = [
-  "All",
-  "Category 1",
-  "Category 2",
-  "Category 3",
-  "Category 4",
-  "Category 5",
+  ["Non-AC Room", "cat1"],
+  ["Deluxe Room", "cat2"],
+  ["Executive Room", "cat3"],
 ];
 
 export const TOP = 1000;
