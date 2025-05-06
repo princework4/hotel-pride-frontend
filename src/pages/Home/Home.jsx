@@ -108,7 +108,9 @@ const Home = () => {
   }
 
   useEffect(() => {
-    getAllRoomTypes();
+    if (roomRedux.allRoomTypes?.length === 0) {
+      getAllRoomTypes();
+    }
 
     if (sessionStorage.getItem("userObj")) {
       const obj = JSON.parse(sessionStorage.getItem("userObj"));

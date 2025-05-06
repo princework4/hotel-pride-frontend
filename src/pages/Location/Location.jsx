@@ -78,7 +78,7 @@ const Location = () => {
                   <img src={Logo} alt="logo" />
                 </Link>
               </h1>
-              <h2>hotel pride</h2>
+              {/* <h2>hotel pride</h2> */}
               <ul>
                 <li>
                   <span className="location__map_contact-container__heading">

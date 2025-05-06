@@ -85,6 +85,6 @@
 @media (max-width: 768px) {
   .slick-slide img,
   .imgslider {
-    height: 100vh;
+    height: 100dvh;
   }
 }

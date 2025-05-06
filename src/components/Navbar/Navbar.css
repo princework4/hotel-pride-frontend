@@ -168,13 +168,10 @@
   width: 100%;
 }
 
-@media (max-width: 997px) {
+@media (max-width: 768px) {
   .nav-items ul li a:hover {
     color: #fff;
   }
-}
-
-@media (max-width: 768px) {
   .navbar {
     flex-direction: row;
     align-items: center;
