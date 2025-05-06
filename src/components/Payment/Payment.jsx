@@ -16,6 +16,8 @@ import {
 } from "../../features/room/roomSlice";
 import { toast } from "react-toastify";
 import Logo from "../../assets/Logo-Pride.jpg";
+import PaymentSuccessful from "./PaymentSuccessful";
+import PaymentFailed from "./PaymentFailed";
 
 const Payment = ({ totalPrice }) => {
   const guestDetailsRedux = useSelector((state) => state.searchReducer);
@@ -23,7 +25,8 @@ const Payment = ({ totalPrice }) => {
   const authRedux = useSelector((state) => state.authReducer);
   const guestRedux = useSelector((state) => state.guestReducer);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [paymentSuccessStatus, setPaymentSuccessStatus] = useState(null);
   const navigate = useNavigate();
   const paymentId = useRef(null);
   const paymentMethod = useRef(null);
@@ -42,7 +45,6 @@ const Payment = ({ totalPrice }) => {
   }
 
   async function proceedWithBookingConfirmation() {
-    setIsLoading(true);
     if (authRedux.isUserLoggedIn) {
       const finalLoggedInBookingDetailsObj = {
         userId: authRedux.loggedInUser.id,
@@ -64,6 +66,11 @@ const Payment = ({ totalPrice }) => {
       if (response.status === 201) {
         createPaymentForLoggedInUser(response.data.bookingNumber);
         // setIsLoading(false);
+      } else {
+        setIsLoading(false);
+        toast.error("Something went wrong. Please try again later!");
+        console.error(response?.message || response?.error);
+        navigate("/");
       }
     } else {
       const finalGuestBookingDetailsObj = {
@@ -91,7 +98,8 @@ const Payment = ({ totalPrice }) => {
         // setIsLoading(false);
       } else {
         setIsLoading(false);
-        toast.error(response?.message || response?.error);
+        toast.error("Something went wrong. Please try again later!");
+        console.error(response?.message || response?.error);
         navigate("/");
       }
     }
@@ -100,11 +108,15 @@ const Payment = ({ totalPrice }) => {
   async function proceedWithPaymentVerification(paymentDetails) {
     const response = await verifyPayment(paymentDetails);
     if (response.status !== 200) {
-      toast.error(response?.message || response?.error);
+      setPaymentSuccessStatus(false);
+      toast.error("Something went wrong. Please try again later!");
+      console.error(response?.message || response?.error);
+    } else {
+      setPaymentSuccessStatus(true);
+      toast.success("Payment Success. Booking Details will be mailed to you.");
+      resetAllData();
+      // navigate("/");
     }
-    toast.success("Payment Success. Booking Details will be mailed to you.");
-    resetAllData();
-    navigate("/");
   }
 
   async function createPaymentForLoggedInUser(bookingNumber) {
@@ -112,7 +124,8 @@ const Payment = ({ totalPrice }) => {
     if (response.status === 200) {
       createPaymentHandler(response);
     } else {
-      toast.error(response?.message || response?.error);
+      toast.error("Something went wrong. Please try again later!");
+      console.error(response?.message || response?.error);
       resetAllData();
       navigate("/");
     }
@@ -188,12 +201,14 @@ const Payment = ({ totalPrice }) => {
       paymentMethod.current = response.method;
     });
     razor.on("payment.failed", (response) => {
+      setPaymentSuccessStatus(false);
       paymentId.current = response.error.metadata.payment_id;
       console.log("Payment Failure Response :- ", response);
       console.log("Payment Failure ID :- ", paymentId.current);
-      toast.error(response.error.reason);
+      toast.error("Something went wrong. Please try again later!");
+      console.error(response.error.reason);
       resetAllData();
-      navigate("/");
+      // navigate("/");
     });
     razor.open();
   }
@@ -202,7 +217,18 @@ const Payment = ({ totalPrice }) => {
     proceedWithBookingConfirmation();
   }, []);
 
-  return <>{isLoading && <Loader />}</>;
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : paymentSuccessStatus && paymentSuccessStatus === true ? (
+        <PaymentSuccessful />
+      ) : (
+        paymentSuccessStatus &&
+        paymentSuccessStatus === false && <PaymentFailed />
+      )}
+    </>
+  );
 };
 
 export default Payment;

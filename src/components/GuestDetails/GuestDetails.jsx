@@ -86,6 +86,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
         mobile: authRedux.isUserLoggedIn
           ? authRedux.loggedInUser?.contactNumber
           : "",
+        termsAndConditions: false,
       }}
       onSubmit={handleFormSubmit}
       validationSchema={validationSchema}

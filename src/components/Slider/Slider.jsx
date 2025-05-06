@@ -60,6 +60,7 @@ const ImageSlider = ({
                   alt={`banner_img_${index}`}
                   loading="lazy"
                   decoding="async"
+                  style={{ height: "95dvh" }}
                 />
               </div>
             ))}
