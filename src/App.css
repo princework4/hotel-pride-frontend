@@ -416,19 +416,6 @@ button:hover {
   border: 1px solid var(--terra-cotta);
 }
 
-.css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
-  padding: 7px 14px !important;
-}
-
-.css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root {
-  transform: translate(14px, 9px) scale(0.8) !important;
-}
-
-/* .css-1dym4qp-MuiButtonBase-root-MuiTab-root {
-  min-height: 40px !important;
-  padding: 5px !important;
-} */
-
 .css-19kzrtu {
   padding-bottom: 0 !important;
 }
