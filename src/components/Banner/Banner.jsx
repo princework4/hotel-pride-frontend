@@ -18,7 +18,7 @@ const Banner = () => {
   ]);
   return (
     <div className="video-background">
-      {/* <video
+      <video
         id="background-video"
         autoPlay
         playsInline
@@ -27,18 +27,19 @@ const Banner = () => {
         preload="auto"
       >
         <source
-          src="https://assets-cug1-825v2.tajhotels.com/video/TAJ%20WEBSITE%20FILM_1920%20X%20930_148mb.mp4?Impolicy=Medium_High"
+          // src="https://assets-cug1-825v2.tajhotels.com/video/TAJ%20WEBSITE%20FILM_1920%20X%20930_148mb.mp4?Impolicy=Medium_High"
+          src="https://priyhotel-storage.s3.us-east-1.amazonaws.com/Hotel+Pride.mp4"
           type="video/mp4"
         />
-      </video> */}
-      <Slider
+      </video>
+      {/* <Slider
         slidesToShow={1}
         slidesToScroll={1}
         images={allBannerImages}
         isCarousel={false}
         autoplay={true}
         isBanner={true}
-      />
+      /> */}
     </div>
   );
 };

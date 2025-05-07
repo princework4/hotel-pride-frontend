@@ -9,6 +9,7 @@ import RequestCallback from "./components/RequestCallback";
 import Rooms from "./pages/Rooms/Rooms";
 import PaymentSuccessful from "./components/Payment/PaymentSuccessful";
 import PaymentFailed from "./components/Payment/PaymentFailed";
+import Whatsapp from "./components/Whatsapp";
 import { useSelector } from "react-redux";
 
 const Routing = () => {
@@ -27,6 +28,7 @@ const Routing = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {nonFunctionalRedux.shouldShowCallback && <RequestCallback />}
+      {nonFunctionalRedux.shouldShowCallback && <Whatsapp />}
       <BottomToTop />
     </>
   );
