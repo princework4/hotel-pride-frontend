@@ -41,11 +41,11 @@
   color: var(--terra-cotta);
 }
 
-.location__map_contact-container h2 {
+/* .location__map_contact-container h2 {
   margin: 20px 0 50px;
   display: block;
   text-align: center;
-}
+} */
 
 .location__map_contact-container ul {
   display: flex;
@@ -213,7 +213,7 @@
 @media (max-width: 768px) {
   .location__first_para,
   .location__second_para {
-    width: 95%;
+    width: 100%;
   }
 
   .location__map_contact-container ul {
@@ -240,8 +240,9 @@
 
 @media (max-width: 500px) {
   .location__map_contact-container h1 {
-    margin-top: 30px;
+    margin: 30px auto;
   }
+
   .location__map_contact-container .location__map_contact-container__heading {
     width: 20%;
   }
@@ -254,6 +255,10 @@
 
 @media (max-width: 450px) {
   .location .heading_container h1 {
+    font-size: 20px;
+  }
+
+  .location .heading_container h2 {
     font-size: 20px;
   }
 }
