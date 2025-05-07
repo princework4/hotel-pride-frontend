@@ -10,7 +10,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 
-import Logo from "../../assets/Logo-Pride.jpg";
+// import Logo from "../../assets/Logo-Pride.jpg";
+import Logo from "../../assets/Logo-Pride-removebg.png";
 
 const Navbar = () => {
   const authRedux = useSelector((state) => state.authReducer);
