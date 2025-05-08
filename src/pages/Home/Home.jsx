@@ -156,7 +156,7 @@ const Home = () => {
                 {/* <hr /> */}
                 <h2>room types</h2>
               </div>
-              <p style={{ lineHeight: "24px" }}>
+              <p>
                 Experience comfort and functionality with our well-appointed
                 rooms, thoughtfully designed to make your stay productive and
                 relaxing. Whether you're traveling for business or leisure, our
@@ -201,6 +201,13 @@ const Home = () => {
                 {/* <hr /> */}
                 <h2>gallery</h2>
               </div>
+              <p style={{ margin: "15px 0 30px 0" }}>
+                Take a look around <strong>Hotel Pride - </strong> clean rooms,
+                practical amenities, and everything you need for a comfortable
+                and affordable stay in Mumbai. Browse Photos of our rooms,
+                common areas, and the conveniences that make us a guest
+                favourite.
+              </p>
               <div className="gallery__container">
                 {width <= 768
                   ? allGalleryImages.slice(0, 3).map((item, i) => (

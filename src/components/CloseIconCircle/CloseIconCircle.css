@@ -1,10 +1,16 @@
+.close_icon_wrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .close_icon {
   min-width: unset !important;
   width: 50px;
   height: 45px;
   margin-bottom: 10px !important;
   border-radius: 100% !important;
-  background: #1976d2 !important;
+  background: var(--terra-cotta) !important;
   cursor: pointer;
   text-align: center;
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { allTabDetail, filterTabButtons } from "../../Constants";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import CloseIconCircle from "../../components/CloseIconCircle";
+import { Box, Modal } from "@mui/material";
 import { fetchAllRoomTypes } from "../../services/Rooms";
 
 import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
@@ -23,28 +25,120 @@ import {
 } from "../../features/auth/authSlice";
 import { updateAllRoomTypesName } from "../../features/room/roomSlice";
 import { useDispatch, useSelector } from "react-redux";
-import "./Gallery.css";
 import { toast } from "react-toastify";
+import "./Gallery.css";
+
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 const allAssetsImages = [
-  [nonAcImage1, "cat1"],
-  [nonAcImage2, "cat1"],
-  [nonAcImage3, "cat1"],
-  [deluxeImage1, "cat2"],
-  [deluxeImage2, "cat2"],
-  [deluxeImage3, "cat2"],
-  [deluxeImage4, "cat2"],
-  [executiveImage1, "cat3"],
-  [executiveImage2, "cat3"],
-  [executiveImage3, "cat3"],
-  [executiveImage4, "cat3"],
+  {
+    original: nonAcImage1,
+    thumbnail: nonAcImage1,
+    caption: "Non AC Image 1",
+    category: "cat1",
+  },
+  {
+    original: nonAcImage2,
+    thumbnail: nonAcImage2,
+    caption: "Non AC Image 2",
+    category: "cat1",
+  },
+  {
+    original: nonAcImage3,
+    thumbnail: nonAcImage3,
+    caption: "Non AC Image 3",
+    category: "cat1",
+  },
+  {
+    original: deluxeImage1,
+    thumbnail: deluxeImage1,
+    caption: "Deluxe Image 1",
+    category: "cat2",
+  },
+  {
+    original: deluxeImage2,
+    thumbnail: deluxeImage2,
+    caption: "Deluxe Image 2",
+    category: "cat2",
+  },
+  {
+    original: deluxeImage3,
+    thumbnail: deluxeImage3,
+    caption: "Deluxe Image 3",
+    category: "cat2",
+  },
+  {
+    original: deluxeImage4,
+    thumbnail: deluxeImage4,
+    caption: "Deluxe Image 4",
+    category: "cat2",
+  },
+  {
+    original: executiveImage1,
+    thumbnail: executiveImage1,
+    caption: "Executive Image 1",
+    category: "cat3",
+  },
+  {
+    original: executiveImage2,
+    thumbnail: executiveImage2,
+    caption: "Executive Image 2",
+    category: "cat3",
+  },
+  {
+    original: executiveImage3,
+    thumbnail: executiveImage3,
+    caption: "Executive Image 3",
+    category: "cat3",
+  },
+  {
+    original: executiveImage4,
+    thumbnail: executiveImage4,
+    caption: "Executive Image 4",
+    category: "cat3",
+  },
 ];
+
+const GallerySlider = ({ images, active }) => {
+  return (
+    <ImageGallery items={images} startIndex={active} slideInterval={1000} />
+  );
+};
+
+const style = {
+  width: {
+    xs: "330px",
+    sm: "500px",
+    md: "550px",
+  },
+  height: "auto",
+  padding: "0",
+  border: "none",
+  borderRadius: "20px",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  overflow: "hidden",
+  transform: "translate(-50%, -50%)",
+};
 
 const Gallery = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
   const [galleryImages, setGalleryImages] = useState(allAssetsImages);
   const [trackActiveButton, setTrackActiveButton] = useState("cat-1");
+  const [active, setActive] = useState(0);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleImageClick = (index) => {
+    setActive(index);
+    handleOpen();
+  };
 
   async function getAllRoomTypes() {
     const data = await fetchAllRoomTypes();
@@ -88,7 +182,9 @@ const Gallery = () => {
       setGalleryImages(allAssetsImages);
     } else {
       const allImages = JSON.parse(JSON.stringify(allAssetsImages));
-      const temp = allImages.filter((items) => items[1] === selectedCategory);
+      const temp = allImages.filter(
+        (items) => items.category === selectedCategory
+      );
       setGalleryImages(temp);
     }
   };
@@ -96,10 +192,21 @@ const Gallery = () => {
   return (
     <>
       <Header />
-      <section className="gallery">
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="gallery-modal"
+        aria-describedby="gallery-modal"
+      >
+        <Box sx={style}>
+          <GallerySlider images={galleryImages} active={active} />
+          <CloseIconCircle handleClose={handleClose} />
+        </Box>
+      </Modal>
+      <section className="gallery_page">
         <div className="wrapper">
           <div className="heading_container">
-            <hr />
+            {/* <hr /> */}
             <h2>gallery</h2>
           </div>
           <div className="filter_buttons">
@@ -119,8 +226,8 @@ const Gallery = () => {
           </div>
           <ul className="grid">
             {galleryImages?.map((item, i) => (
-              <li key={i}>
-                <img src={item[0]} alt={i} />
+              <li key={i} onClick={() => handleImageClick(i)}>
+                <img src={item.original} alt={i} />
               </li>
             ))}
           </ul>
