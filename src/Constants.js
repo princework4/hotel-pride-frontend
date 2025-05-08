@@ -197,7 +197,7 @@ export const amenities = [
   [CCTV, "CCTV Surveillance"],
   [HouseKeeping, "Daily Housekeeping"],
   [Wifi, "High Speed Wifi"],
-  [KitchenFacilities, "Kitchen Facilities"],
+  [KitchenFacilities, "In House Dinning"],
   [LaundryService, "Laundry Service"],
   [LuggageStorage, "Luggage Storage"],
   // [NoSmoking, "Non - Smoking Rooms"],
