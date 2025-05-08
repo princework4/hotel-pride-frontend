@@ -67,10 +67,6 @@
   height: 450px;
 }
 
-.left_right_showcase figure img {
-  border-radius: 100px;
-}
-
 .left_right_showcase__first img {
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -307,12 +303,12 @@
   }
 
   .left_right_showcase figure {
-    max-width: 95%;
-    height: 400px;
+    max-width: 105%;
+    height: 450px;
   }
 
   .left_right_showcase figure img {
-    border-radius: 70px;
+    /* border-radius: 70px; */
   }
 
   .left_right_showcase__first img,
