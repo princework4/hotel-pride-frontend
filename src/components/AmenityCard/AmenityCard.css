@@ -6,12 +6,13 @@
   display: flex;
   /* align-items: flex-start; */
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .amenity_card .grid > li {
-  width: calc(100% / 6 - 25px);
+  /* width: calc(100% / 6 - 25px); */
   margin-top: 25px;
+  flex: 0 0 calc(100% / 6);
   /* padding: 20px 10px;
   border: 1px solid var(--terra-cotta);
   border-radius: 15px; */
@@ -32,7 +33,7 @@
 .amenity_card .grid > li p {
   margin-top: 5px;
   color: var(--terra-cotta);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* Hover Effects */
@@ -51,7 +52,8 @@
 @media (max-width: 1024px) {
   .amenity_card .grid > li {
     /* width: calc(100% / 4 - 10px); */
-    width: calc(100% / 4 - 25px);
+    /* width: calc(100% / 4 - 25px); */
+    flex: 0 0 calc(100% / 4);
   }
 }
 
@@ -62,7 +64,8 @@
 
   .amenity_card .grid > li {
     /* width: calc(100% / 2 - 52px); */
-    width: calc(100% / 2 - 25px);
+    /* width: calc(100% / 2 - 25px); */
+    flex: 0 0 calc(100% / 2);
   }
 }
 
