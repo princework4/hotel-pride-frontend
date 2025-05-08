@@ -64,7 +64,6 @@ form .disabled-search-btn {
   overflow: hidden;
   text-transform: uppercase;
   text-overflow: ellipsis;
-  transform: translate(14px, 9px) scale(0.8) !important;
   white-space: nowrap;
 }
 

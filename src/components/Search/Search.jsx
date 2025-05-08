@@ -133,6 +133,11 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 },
                 "& label": {
                   color: "#b85042 !important",
+                  transform: "translate(14px, 8px) scale(1)",
+                },
+                "& label.MuiFormLabel-filled": {
+                  color: "#b85042 !important",
+                  transform: "translate(14px, -9px) scale(0.75)",
                 },
                 "& .MuiButtonBase-root": {
                   "&:hover": {
@@ -157,6 +162,11 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                 },
                 "& label": {
                   color: "#b85042 !important",
+                  transform: "translate(14px, 8px) scale(1)",
+                },
+                "& label.MuiFormLabel-filled": {
+                  color: "#b85042 !important",
+                  transform: "translate(14px, -9px) scale(0.75)",
                 },
                 "& .MuiButtonBase-root": {
                   "&:hover": {
