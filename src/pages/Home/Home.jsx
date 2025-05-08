@@ -201,13 +201,15 @@ const Home = () => {
                 {/* <hr /> */}
                 <h2>gallery</h2>
               </div>
-              <p style={{ margin: "15px 0 30px 0" }}>
-                Take a look around <strong>Hotel Pride - </strong> clean rooms,
-                practical amenities, and everything you need for a comfortable
-                and affordable stay in Mumbai. Browse Photos of our rooms,
-                common areas, and the conveniences that make us a guest
-                favourite.
-              </p>
+              {width > 768 && (
+                <p style={{ margin: "15px 0 30px 0" }}>
+                  Take a look around <strong>Hotel Pride - </strong> clean
+                  rooms, practical amenities, and everything you need for a
+                  comfortable and affordable stay in Mumbai. Browse Photos of
+                  our rooms, common areas, and the conveniences that make us a
+                  guest favourite.
+                </p>
+              )}
               <div className="gallery__container">
                 {width <= 768
                   ? allGalleryImages.slice(0, 3).map((item, i) => (
