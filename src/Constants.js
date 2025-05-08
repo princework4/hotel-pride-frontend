@@ -193,7 +193,7 @@ export const guestsReviews = [
 
 export const amenities = [
   [AirConditioner, "Air Conditioning"],
-  [AttachedWashroom, "Attached Washroom"],
+  // [AttachedWashroom, "Attached Washroom"],
   [CCTV, "CCTV Surveillance"],
   [HouseKeeping, "Daily Housekeeping"],
   [Wifi, "High Speed Wifi"],
