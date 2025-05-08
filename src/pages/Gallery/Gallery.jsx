@@ -132,6 +132,9 @@ const Gallery = () => {
   const [trackActiveButton, setTrackActiveButton] = useState("cat-1");
   const [active, setActive] = useState(0);
   const [open, setOpen] = React.useState(false);
+  const [width, setWidth] = useState(
+    window.innerWidth > 0 ? window.innerWidth : screen.width
+  );
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -209,6 +212,14 @@ const Gallery = () => {
             {/* <hr /> */}
             <h2>gallery</h2>
           </div>
+          {width <= 768 && (
+            <p>
+              Take a look around <strong>Hotel Pride - </strong> clean rooms,
+              practical amenities, and everything you need for a comfortable and
+              affordable stay in Mumbai. Browse Photos of our rooms, common
+              areas, and the conveniences that make us a guest favourite.
+            </p>
+          )}
           <div className="filter_buttons">
             {roomRedux.allRoomTypesName?.map((buttonText, i) => (
               <button
