@@ -160,7 +160,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink to="/location" activeclassname="active">
-                  Location
+                  Location & Hotel Policies
                 </NavLink>
               </li>
               <li>
