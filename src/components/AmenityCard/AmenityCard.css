@@ -1,43 +1,47 @@
 .amenity_card .grid {
   max-width: 1200px;
   padding: 0;
-  margin: 15px auto 40px;
-  position: relative;
+  /* margin: 15px auto 40px; */
+  /* position: relative; */
   display: flex;
+  /* align-items: flex-start; */
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .amenity_card .grid > li {
-  width: calc(100% / 5 - 10px);
-  padding: 20px 10px;
+  width: calc(100% / 6 - 25px);
+  margin-top: 25px;
+  /* padding: 20px 10px;
   border: 1px solid var(--terra-cotta);
-  border-radius: 15px;
-  margin: 0px 15px;
-  margin-bottom: 30px;
-  position: relative;
-  background-color: #fff;
-  cursor: pointer;
-  overflow: hidden;
-  transition: 0.3s ease-in-out;
+  border-radius: 15px; */
+  /* margin: 0px 15px 30px; */
+  /* margin-bottom: 30px; */
+  /* position: relative; */
+  /* background-color: #fff; */
+  /* cursor: pointer; */
+  /* overflow: hidden; */
+  /* transition: 0.3s ease-in-out; */
   text-align: center;
-  -webkit-transition: 0.3s ease-in-out;
+  /* -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
   -o-transition: 0.3s ease-in-out;
-  -ms-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out; */
 }
 
 .amenity_card .grid > li p {
   margin-top: 5px;
   color: var(--terra-cotta);
+  font-size: 14px;
 }
 
 /* Hover Effects */
-.amenity_card .grid > li:hover {
+/* .amenity_card .grid > li:hover {
   transform: scale(1.1);
   -webkit-box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
   -moz-box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
   box-shadow: 7px 10px 6px -4px rgba(217, 115, 109, 1);
-}
+} */
 
 .amenity_card .grid > li img {
   width: 35px;
@@ -46,22 +50,24 @@
 
 @media (max-width: 1024px) {
   .amenity_card .grid > li {
-    width: calc(100% / 4 - 10px);
+    /* width: calc(100% / 4 - 10px); */
+    width: calc(100% / 4 - 25px);
   }
 }
 
 @media (max-width: 550px) {
   .amenity_card .grid {
-    justify-content: space-between;
+    /* justify-content: space-between; */
   }
 
   .amenity_card .grid > li {
-    width: calc(100% / 2 - 52px);
+    /* width: calc(100% / 2 - 52px); */
+    width: calc(100% / 2 - 25px);
   }
 }
 
 @media (max-width: 450px) {
   .amenity_card .grid > li {
-    width: calc(100% / 2 - 55px);
+    /* width: calc(100% / 2 - 55px); */
   }
 }
