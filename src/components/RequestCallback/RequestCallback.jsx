@@ -36,7 +36,7 @@ const RequestCallback = () => {
       sm: "400px",
     },
     height: "auto",
-    padding: "20px 20px 10px 20px",
+    padding: "20px 20px 10px",
     border: "none",
     borderRadius: "20px",
     position: "absolute",

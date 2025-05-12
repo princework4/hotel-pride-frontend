@@ -207,4 +207,4 @@ export const amenities = [
   [Security, "24/7 On-Site Security"],
 ];
 
-export const allTabDetail = ["All", "cat-1"];
+export const allTabDetail = ["All", "cat0"];

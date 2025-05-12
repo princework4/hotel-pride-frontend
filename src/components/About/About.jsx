@@ -1,6 +1,6 @@
 import React from "react";
-import HotelBuilding from "../../assets/Gallery/building.jpeg";
-import HotelBuilding2 from "../../assets/Gallery/building_backside.jpeg";
+import HotelBuilding from "../../assets/Location/location_1.jpeg";
+import HotelBuilding2 from "../../assets/Location/location_2.jpeg";
 import "./About.css";
 
 const About = () => {

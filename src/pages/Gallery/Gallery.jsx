@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { allTabDetail, filterTabButtons } from "../../Constants";
+import { allAssetsImages } from "./GalleryImports";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import CloseIconCircle from "../../components/CloseIconCircle";
 import { Box, Modal } from "@mui/material";
 import { fetchAllRoomTypes } from "../../services/Rooms";
-
-import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
-import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2_1.jpg";
-import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3_1.jpg";
-import deluxeImage1 from "../../assets//Deluxe/deluxe_room_1.jpeg";
-import deluxeImage2 from "../../assets//Deluxe/deluxe_room_2.jpeg";
-import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3_1.jpg";
-import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4_1.jpg";
-import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
-import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
-import executiveImage3 from "../../assets//Executive/executive_room_3_1.jpg";
-import executiveImage4 from "../../assets//Executive/executive_room_4_1.jpg";
 
 import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
 import {
@@ -31,78 +20,11 @@ import "./Gallery.css";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
-const allAssetsImages = [
-  {
-    original: nonAcImage1,
-    thumbnail: nonAcImage1,
-    caption: "Non AC Image 1",
-    category: "cat1",
-  },
-  {
-    original: nonAcImage2,
-    thumbnail: nonAcImage2,
-    caption: "Non AC Image 2",
-    category: "cat1",
-  },
-  {
-    original: nonAcImage3,
-    thumbnail: nonAcImage3,
-    caption: "Non AC Image 3",
-    category: "cat1",
-  },
-  {
-    original: deluxeImage1,
-    thumbnail: deluxeImage1,
-    caption: "Deluxe Image 1",
-    category: "cat2",
-  },
-  {
-    original: deluxeImage2,
-    thumbnail: deluxeImage2,
-    caption: "Deluxe Image 2",
-    category: "cat2",
-  },
-  {
-    original: deluxeImage3,
-    thumbnail: deluxeImage3,
-    caption: "Deluxe Image 3",
-    category: "cat2",
-  },
-  {
-    original: deluxeImage4,
-    thumbnail: deluxeImage4,
-    caption: "Deluxe Image 4",
-    category: "cat2",
-  },
-  {
-    original: executiveImage1,
-    thumbnail: executiveImage1,
-    caption: "Executive Image 1",
-    category: "cat3",
-  },
-  {
-    original: executiveImage2,
-    thumbnail: executiveImage2,
-    caption: "Executive Image 2",
-    category: "cat3",
-  },
-  {
-    original: executiveImage3,
-    thumbnail: executiveImage3,
-    caption: "Executive Image 3",
-    category: "cat3",
-  },
-  {
-    original: executiveImage4,
-    thumbnail: executiveImage4,
-    caption: "Executive Image 4",
-    category: "cat3",
-  },
-];
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 const GallerySlider = ({ images, active }) => {
   return (
-    <ImageGallery items={images} startIndex={active} slideInterval={1000} />
+    <ImageGallery items={images} startIndex={active} slideInterval={2000} />
   );
 };
 
@@ -129,7 +51,7 @@ const Gallery = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
   const [galleryImages, setGalleryImages] = useState(allAssetsImages);
-  const [trackActiveButton, setTrackActiveButton] = useState("cat-1");
+  const [trackActiveButton, setTrackActiveButton] = useState("cat0");
   const [active, setActive] = useState(0);
   const [open, setOpen] = React.useState(false);
   const [width, setWidth] = useState(
@@ -177,19 +99,25 @@ const Gallery = () => {
         })
       );
     }
+
+    const allImages = JSON.parse(JSON.stringify(allAssetsImages));
+    const temp = allImages.filter(
+      (items) => items.category === trackActiveButton
+    );
+    setGalleryImages(temp);
   }, []);
 
   const handleClick = (selectedCategory) => {
     setTrackActiveButton(selectedCategory);
-    if (selectedCategory == "cat-1") {
-      setGalleryImages(allAssetsImages);
-    } else {
-      const allImages = JSON.parse(JSON.stringify(allAssetsImages));
-      const temp = allImages.filter(
-        (items) => items.category === selectedCategory
-      );
-      setGalleryImages(temp);
-    }
+    // if (selectedCategory == "cat-1") {
+    //   setGalleryImages(allAssetsImages);
+    // } else {
+    const allImages = JSON.parse(JSON.stringify(allAssetsImages));
+    const temp = allImages.filter(
+      (items) => items.category === selectedCategory
+    );
+    setGalleryImages(temp);
+    // }
   };
 
   return (
@@ -236,11 +164,23 @@ const Gallery = () => {
             ))}
           </div>
           <ul className="grid">
-            {galleryImages?.map((item, i) => (
+            {/* {galleryImages?.map((item, i) => (
               <li key={i} onClick={() => handleImageClick(i)}>
                 <img src={item.original} alt={i} />
               </li>
-            ))}
+            ))} */}
+            <ResponsiveMasonry
+              style={{ width: "100%" }}
+              columnsCountBreakPoints={{ 350: 2, 750: 2, 900: 3 }}
+            >
+              <Masonry gutter="10px">
+                {galleryImages?.map((item, i) => (
+                  <li key={i} onClick={() => handleImageClick(i)}>
+                    <img src={item.original} alt={item.caption} />
+                  </li>
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
           </ul>
         </div>
       </section>
