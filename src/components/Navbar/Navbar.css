@@ -187,6 +187,10 @@
     color: #fff;
   }
 
+  .login-btn:hover {
+    border: 1px solid transparent;
+  }
+
   .navbar {
     flex-direction: row;
     align-items: center;
@@ -245,8 +249,10 @@
   }
 
   .login-btn {
-    text-align: center;
     width: auto;
+    background-color: #fff;
+    color: var(--sage);
+    text-align: center;
   }
 
   .updated_header .hamburger span {
