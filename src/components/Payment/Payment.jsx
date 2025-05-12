@@ -191,7 +191,7 @@ const Payment = ({ totalPrice }) => {
           : guestRedux.guestDetails?.mobile,
       },
       theme: {
-        color: "#b85042",
+        color: "#c4b991",
       },
     };
 

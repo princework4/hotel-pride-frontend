@@ -1,6 +1,6 @@
 .popup_room_details h3 {
   margin-bottom: 10px;
-  color: var(--terra-cotta);
+  color: var(--sage);
   font-size: 25px;
   font-weight: 600;
   text-align: center;
@@ -12,7 +12,7 @@
 
 .popup_room_details h4 {
   margin: 15px 0;
-  color: var(--terra-cotta);
+  color: var(--sage);
   font-size: 20px;
   font-weight: 600;
 }

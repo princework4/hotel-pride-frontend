@@ -49,7 +49,7 @@ body {
   height: 120%;
   top: 25px;
   right: -340px;
-  background-color: var(--terra-cotta);
+  background-color: var(--sage);
   box-shadow: 0px 0px 60px 20px rgba(217, 115, 109, 0.5);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -61,7 +61,7 @@ body {
   height: 300px;
   right: -10%;
   bottom: -301px;
-  background-color: var(--terra-cotta);
+  background-color: var(--sage);
   box-shadow: 0px 0px 60px 10px rgba(217, 115, 109, 0.5),
     0px 0px 20px 0px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -97,7 +97,7 @@ body {
 }
 
 .not_found_container .goback_home a {
-  color: var(--terra-cotta);
+  color: var(--sage);
 }
 
 .not_found_container .goback_home a::after {
@@ -105,7 +105,7 @@ body {
   display: block;
   width: 0;
   height: 2px;
-  background: var(--terra-cotta);
+  background: var(--sage);
   transition: width 0.3s ease-in-out;
   -webkit-transition: width 0.3s ease-in-out;
   -moz-transition: width 0.3s ease-in-out;

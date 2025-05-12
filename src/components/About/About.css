@@ -8,7 +8,7 @@
 
 .left_right_showcase .about__subheading {
   margin: 10px 0 25px;
-  color: var(--terra-cotta);
+  color: var(--sage);
   font-size: 20px;
   font-weight: bolder;
   line-height: 30px;
@@ -102,7 +102,7 @@
 .address_container {
   padding: 0 30px;
   background-color: #fff;
-  color: var(--terra-cotta);
+  color: var(--sage);
 }
 
 .address_container h2 {
@@ -144,7 +144,7 @@
 
 .address_container ul li a {
   margin-left: 20px;
-  color: var(--terra-cotta);
+  color: var(--sage);
 }
 
 .address_container ul li a::after {
@@ -152,7 +152,7 @@
   display: block;
   width: 0;
   height: 2px;
-  background: var(--terra-cotta);
+  background: var(--sage);
   transition: width 0.3s ease-in-out;
   -webkit-transition: width 0.3s ease-in-out;
   -moz-transition: width 0.3s ease-in-out;
@@ -183,11 +183,11 @@
 .address__nearby .address__nearby-walk-container {
   width: 35px;
   height: 35px;
-  border: 1px solid var(--terra-cotta);
+  border: 1px solid var(--sage);
   border-radius: 50%;
   position: relative;
   display: inline-block;
-  background-color: var(--terra-cotta);
+  background-color: var(--sage);
 }
 
 .address__nearby .address__nearby-walk {

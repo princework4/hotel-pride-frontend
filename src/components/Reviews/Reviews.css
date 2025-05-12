@@ -1,5 +1,5 @@
 :root {
-  --terra-cotta: #b85042;
+  --sage: #c4b991;
   --light-beige: #e7e8d1;
 }
 
@@ -12,7 +12,7 @@
 .reviews-title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: var(--terra-cotta);
+  color: var(--sage);
   margin-bottom: 40px;
   text-transform: uppercase;
 }
@@ -38,7 +38,7 @@
 
 .review-avatar {
   margin: 10px auto 20px;
-  border: 3px solid var(--terra-cotta);
+  border: 3px solid var(--sage);
 }
 
 .review-avatar * {
@@ -48,13 +48,13 @@
 .review-name {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--terra-cotta);
+  color: var(--sage);
   margin-bottom: 15px;
   word-wrap: break-word;
 }
 
 .review-rating {
-  color: var(--terra-cotta);
+  color: var(--sage);
   margin-bottom: 15px;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .reviews .slick-dots li button:before {
-  color: var(--terra-cotta);
+  color: var(--sage);
   font-size: 10px;
 }
 

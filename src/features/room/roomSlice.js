@@ -232,7 +232,7 @@ export const roomSlice = createSlice({
     ],
     allRoomTypesName: [],
     availableRoomTypes: [],
-    breakfastPrice: 500,
+    breakfastPrice: 150,
     isOfferAvailable: false,
     offers: {},
     selectedRooms: [],

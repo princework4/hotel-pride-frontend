@@ -30,16 +30,17 @@ import { checkOfferAvailability } from "../../utils";
 import "./Home.css";
 
 import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
-import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2_1.jpg";
-import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3_1.jpg";
-import deluxeImage1 from "../../assets//Deluxe/deluxe_room_1.jpeg";
-import deluxeImage2 from "../../assets//Deluxe/deluxe_room_2.jpeg";
-import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3_1.jpg";
-import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4_1.jpg";
-import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
-import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
-import executiveImage3 from "../../assets//Executive/executive_room_3_1.jpg";
-import executiveImage4 from "../../assets//Executive/executive_room_4_1.jpg";
+import nonAcImage2 from "../../assets/Non_Ac/non_ac_img_2_1.jpg";
+import nonAcImage3 from "../../assets/Non_Ac/non_ac_img_3_1.jpg";
+import deluxeImage1 from "../../assets/Deluxe/deluxe_room_1.jpeg";
+import deluxeImage2 from "../../assets/Deluxe/deluxe_room_2.jpeg";
+import deluxeImage3 from "../../assets/Deluxe/deluxe_room_3_1.jpg";
+import deluxeImage4 from "../../assets/Deluxe/deluxe_room_4_1.jpg";
+import executiveImage1 from "../../assets/Executive/executive_room_1.jpeg";
+import executiveImage2 from "../../assets/Executive/executive_room_2.jpeg";
+import executiveImage3 from "../../assets/Executive/executive_room_3_1.jpg";
+import executiveImage4 from "../../assets/Executive/executive_room_4_1.jpg";
+import mobileIcon from "../../assets/mobile.png";
 import { toast } from "react-toastify";
 
 const Home = () => {
@@ -143,6 +144,36 @@ const Home = () => {
           <section className="search">
             <div className="wrapper">
               <Search />
+            </div>
+          </section>
+        </Suspense>
+        <Suspense fallback={<Loader />}>
+          <section className="hotel_description">
+            <div className="wrapper">
+              <ul>
+                <li>
+                  <span>Read Reviews</span>
+                </li>
+                <li>
+                  <a href="tel:9876543210">
+                    <img src={mobileIcon} alt="mobile icon" /> 9876543210
+                  </a>
+                </li>
+                <li>
+                  <h2>Hotel Pride</h2>
+                  <a
+                    href="https://maps.app.goo.gl/FzN5Mz9sAc6a33Q66"
+                    target="_blank"
+                  >
+                    Lbs Marg, Rs, Dreams Mall Rd, next to Icici Bank, Bhandup
+                    West, Mumbai
+                  </a>
+                </li>
+                <li>
+                  <p>Check-in 10:00 AM</p>
+                  <p>Check-out 12:00 PM</p>
+                </li>
+              </ul>
             </div>
           </section>
         </Suspense>
