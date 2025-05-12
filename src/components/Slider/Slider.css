@@ -14,7 +14,7 @@
 }
 
 .slick-dots li.slick-active button:before {
-  color: var(--terra-cotta);
+  color: var(--sage);
 }
 
 .slick-prev,

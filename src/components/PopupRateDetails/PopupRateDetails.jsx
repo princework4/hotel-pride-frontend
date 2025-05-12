@@ -57,7 +57,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
                 sx={{
                   width: "10px",
                   height: { xs: "13px", md: "1em" },
-                  color: "#b85042",
+                  color: "#c4b991",
                 }}
               />
               <span>
@@ -70,7 +70,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
                 sx={{
                   width: "10px",
                   height: { xs: "13px", md: "1em" },
-                  color: "#b85042",
+                  color: "#c4b991",
                 }}
               />
               <span>Inclusive of standard Wi-Fi</span>
@@ -81,7 +81,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
                 sx={{
                   width: "10px",
                   height: { xs: "13px", md: "1em" },
-                  color: "#b85042",
+                  color: "#c4b991",
                 }}
               />
               <span>Applicable taxes extra</span>

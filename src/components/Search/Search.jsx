@@ -129,14 +129,14 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
               format="DD-MM-YYYY"
               sx={{
                 "& fieldset": {
-                  borderColor: "#b85042 !important",
+                  borderColor: "#c4b991 !important",
                 },
                 "& label": {
-                  color: "#b85042 !important",
+                  color: "#c4b991 !important",
                   transform: "translate(14px, 8px) scale(1)",
                 },
                 "& label.MuiFormLabel-filled": {
-                  color: "#b85042 !important",
+                  color: "#c4b991 !important",
                   transform: "translate(14px, -9px) scale(0.75)",
                 },
                 "& .MuiButtonBase-root": {
@@ -158,14 +158,14 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
               format="DD-MM-YYYY"
               sx={{
                 "& fieldset": {
-                  borderColor: "#b85042 !important",
+                  borderColor: "#c4b991 !important",
                 },
                 "& label": {
-                  color: "#b85042 !important",
+                  color: "#c4b991 !important",
                   transform: "translate(14px, 8px) scale(1)",
                 },
                 "& label.MuiFormLabel-filled": {
-                  color: "#b85042 !important",
+                  color: "#c4b991 !important",
                   transform: "translate(14px, -9px) scale(0.75)",
                 },
                 "& .MuiButtonBase-root": {
@@ -190,7 +190,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
             value={`${guestOptionsRedux.guestOptions.adults} adult(s)  -  ${guestOptionsRedux.guestOptions.children} Child(ren)  -  ${guestOptionsRedux.guestOptions.rooms} Room(s)`}
             sx={{
               "& fieldset": {
-                borderColor: "#b85042 !important",
+                borderColor: "#c4b991 !important",
               },
             }}
           />

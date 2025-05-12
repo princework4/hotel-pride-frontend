@@ -195,7 +195,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                       name="termsAndConditions"
                       checked={values.termsAndConditions}
                       style={{
-                        color: "#b85042",
+                        color: "#c4b991",
                       }}
                     />
                   }

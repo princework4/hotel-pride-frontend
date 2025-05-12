@@ -58,7 +58,7 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
                   <li key={amenity.id}>
                     {" "}
                     <SquareIcon
-                      sx={{ width: "10px", height: "13px", color: "#b85042" }}
+                      sx={{ width: "10px", height: "13px", color: "#c4b991" }}
                     />
                     <span>{amenity.amenityName}</span>
                   </li>
@@ -73,7 +73,7 @@ const PopupRoomDetails = ({ open, handleClose, id }) => {
                     return (
                       <li key={amenity.id}>
                         {" "}
-                        <SquareIcon sx={{ width: "10px", color: "#b85042" }} />
+                        <SquareIcon sx={{ width: "10px", color: "#c4b991" }} />
                         <span>{amenity.amenityName}</span>​
                       </li>
                     );

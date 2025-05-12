@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Modal } from "@mui/material";
 import AuthForms from "../AuthForms";
+import Search from "../Search";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
@@ -17,7 +18,7 @@ const Navbar = () => {
   const authRedux = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const location = useLocation();
-  const [showHam, setShowHam] = useState(false);
+  const [showHam, setShowHam] = useState(window.innerWidth <= 768);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [size, setSize] = useState({
@@ -28,6 +29,13 @@ const Navbar = () => {
   const [open, setOpen] = React.useState(false);
   const [colorChange, setColorchange] = React.useState(false);
   const [revertHeader, setRevertHeader] = React.useState(false);
+  const [searchOpen, setSearchOpen] = React.useState(false);
+  const handleSearchOpen = () => {
+    setSearchOpen(true);
+  };
+  const handleSearchClose = () => {
+    setSearchOpen(false);
+  };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -137,14 +145,22 @@ const Navbar = () => {
           </h1>
 
           {showHam && (
-            <div
-              className={`hamburger ${menuOpen ? "open" : ""}`}
-              onClick={toggleMenu}
-            >
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            <>
+              <button
+                className="mobile__book-button"
+                onClick={handleSearchOpen}
+              >
+                Book Now
+              </button>
+              <div
+                className={`hamburger ${menuOpen ? "open" : ""}`}
+                onClick={toggleMenu}
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </>
           )}
           <nav className={`nav-items ${menuOpen ? "show" : ""}`}>
             <ul>
@@ -174,6 +190,9 @@ const Navbar = () => {
                   </button>
                 )}
               </li>
+              <li className="desktop__book-button">
+                <button onClick={handleSearchOpen}>Book Now</button>
+              </li>
             </ul>
           </nav>
         </div>
@@ -187,6 +206,17 @@ const Navbar = () => {
         >
           <Box sx={style}>
             <AuthForms handleClose={handleClose} />
+          </Box>
+        </Modal>
+        <Modal
+          open={searchOpen}
+          onClose={handleSearchClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          className="roomSearch"
+        >
+          <Box sx={style}>
+            <Search handleClose={handleSearchClose} />
           </Box>
         </Modal>
       </div>

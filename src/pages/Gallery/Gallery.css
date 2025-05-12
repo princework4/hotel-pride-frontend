@@ -8,17 +8,17 @@
   border: none !important;
   border-radius: 0;
   background-color: transparent;
-  color: var(--terra-cotta) !important;
+  color: var(--sage) !important;
 }
 
 .image-gallery-thumbnail.active,
 .image-gallery-thumbnail:focus {
-  border-color: var(--terra-cotta) !important;
+  border-color: var(--sage) !important;
   border-radius: 0;
 }
 
 .image-gallery-thumbnail:hover {
-  border-color: var(--terra-cotta) !important;
+  border-color: var(--sage) !important;
   border-radius: 0;
 }
 
@@ -41,7 +41,7 @@
   border-radius: 15px;
   margin: 0px 5px;
   position: relative;
-  background-color: var(--terra-cotta);
+  background-color: var(--sage);
   color: #fff;
   cursor: pointer;
   font-size: 16px;
@@ -83,9 +83,9 @@
 }
 
 .gallery_page .filter_buttons .is_active {
-  border-color: var(--terra-cotta);
+  border-color: var(--sage);
   background-color: #fff;
-  color: var(--terra-cotta);
+  color: var(--sage);
 }
 
 /* .grid .overlay {
@@ -106,9 +106,9 @@
 
 /* Hover Effects */
 .gallery_page .filter_buttons .button:hover {
-  border-color: var(--terra-cotta);
+  border-color: var(--sage);
   background-color: #fff;
-  color: var(--terra-cotta);
+  color: var(--sage);
 }
 
 .gallery_page .grid > li img:hover {
