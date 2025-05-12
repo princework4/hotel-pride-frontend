@@ -42,6 +42,7 @@ import executiveImage3 from "../../assets/Executive/executive_room_3_1.jpg";
 import executiveImage4 from "../../assets/Executive/executive_room_4_1.jpg";
 import mobileIcon from "../../assets/mobile.png";
 import { toast } from "react-toastify";
+import { useRef } from "react";
 
 const Home = () => {
   const [allGalleryImages, setAllGalleryImages] = useState([
@@ -68,6 +69,7 @@ const Home = () => {
   const routeChange = (path) => {
     navigate(path);
   };
+  const reviewsSection = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -131,6 +133,13 @@ const Home = () => {
     dispatch(updateAvailableRoomTypes([]));
   }, []);
 
+  const scrollTo = () => {
+    window.scrollTo({
+      top: reviewsSection.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <Suspense fallback={<Loader />}>
@@ -152,11 +161,18 @@ const Home = () => {
             <div className="wrapper">
               <ul>
                 <li>
-                  <span>Read Reviews</span>
+                  <p
+                    class="stars"
+                    aria-label="Rating of this website is 4.5 out of 5."
+                  >
+                    4.5
+                  </p>
+                  <span onClick={scrollTo}>Read recent reviews</span>
                 </li>
                 <li>
-                  <a href="tel:9876543210">
-                    <img src={mobileIcon} alt="mobile icon" /> 9876543210
+                  <a href="tel:+919876543210">
+                    <img src={mobileIcon} alt="mobile icon" />
+                    +919876543210
                   </a>
                 </li>
                 <li>
@@ -261,7 +277,7 @@ const Home = () => {
           </section>
         </Suspense>
         <Suspense fallback={<Loader />}>
-          <section className="reviews">
+          <section className="reviews" ref={reviewsSection}>
             <div className="wrapper">
               <div className="heading_container">
                 {/* <hr /> */}
