@@ -186,8 +186,8 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <p>Check-in 10:00 AM</p>
-                  <p>Check-out 12:00 PM</p>
+                  <p>Check-in 12:00 PM</p>
+                  <p>Check-out 10:00 AM</p>
                 </li>
               </ul>
             </div>

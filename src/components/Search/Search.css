@@ -34,7 +34,9 @@
 
 .form-group input {
   padding: 8px 16px !important;
+  color: var(--sage);
   font-size: 14px;
+  font-weight: bold;
 }
 
 form .search-btn {

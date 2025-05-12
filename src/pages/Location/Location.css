@@ -208,6 +208,11 @@
   .location .location__details > li {
     width: calc(100% / 2 - 50px);
   }
+
+  .location__details .location__subdetails li:not(:last-child) {
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--sage);
+  }
 }
 
 @media (max-width: 768px) {

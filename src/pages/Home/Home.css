@@ -140,10 +140,10 @@
     width: 100%;
     height: unset;
     padding: 0;
-    padding-bottom: 20px;
   }
 
   .hotel_description li:not(:last-child) {
+    padding-bottom: 20px;
     border-right: 1px solid transparent;
     border-bottom: 1px solid #fff;
     flex: none;
