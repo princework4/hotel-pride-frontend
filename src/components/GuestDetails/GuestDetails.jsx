@@ -281,7 +281,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
             <div
               className="payment_button"
               style={{
-                marginTop: "-20px",
+                // marginTop: "-20px",
                 gridRowStart: 2,
                 textAlign: "center",
               }}

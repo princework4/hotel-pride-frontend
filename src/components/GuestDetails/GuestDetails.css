@@ -53,8 +53,8 @@
 .payment_summary
   .payment_summary__container
   .payment_summary__selected_rooms_details {
-  min-height: 110px;
-  max-height: 110px;
+  min-height: 90px;
+  max-height: 90px;
   height: 100%;
   overflow-y: auto;
 }
@@ -142,6 +142,10 @@
   .guest_details .special_form_field {
     width: 93%;
   }
+
+  .payment_button {
+    margin-top: 0px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -163,23 +167,40 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+  .guest_details .form_field,
+  .guest_details .special_form_field {
+    width: 95%;
+  }
+
+  .guest_details_container {
+    grid-template-columns: 90% !important;
+    justify-content: center !important;
+  }
+
+  .guest_details_container .payment_summary {
+    margin-top: 20px;
+  }
+
+  .payment_button {
+    margin-top: 20px;
+    grid-row-start: unset !important;
+    order: 3;
+  }
+}
+
+/* @media (max-width: 700px) {
   .guest_details .form_field,
   .guest_details .special_form_field {
     width: 95%;
   }
 
   .payment_button {
-    margin-top: 20px !important;
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 650px) {
-  .guest_details_container {
-    grid-template-columns: 90% !important;
-    justify-content: center !important;
-  }
-
   .guest_details_container .payment_summary {
     order: 1;
   }
@@ -189,10 +210,4 @@
     margin-top: 20px;
     order: 2;
   }
-
-  .payment_button {
-    margin-top: 20px !important;
-    grid-row-start: unset !important;
-    order: 3;
-  }
-}
+} */
