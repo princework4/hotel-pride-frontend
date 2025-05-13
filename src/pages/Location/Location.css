@@ -162,6 +162,44 @@
   margin: 0 10px;
 }
 
+.location .hotel_policies {
+  margin-top: 90px;
+}
+
+.location h2 {
+  margin-bottom: 20px;
+}
+
+#panel1-header,
+#panel2-header,
+#panel3-header,
+#panel4-header,
+#panel5-header,
+#panel6-header {
+  border: 1px solid transparent;
+}
+
+#panel1-header span span,
+#panel2-header span span,
+#panel3-header span span,
+#panel4-header span span,
+#panel5-header span span,
+#panel6-header span span {
+  color: var(--sage);
+  font-weight: bold;
+}
+
+.location .check_in_out {
+  display: flex;
+  gap: 20px;
+}
+
+.location .check_in_out ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* Media Queries */
 @media (max-width: 1024px) {
   .location__map_contact-container div:first-child,

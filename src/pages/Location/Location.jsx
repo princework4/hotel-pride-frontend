@@ -2,6 +2,13 @@ import React, { useEffect, lazy, Suspense } from "react";
 const Footer = lazy(() => import("../../components/Footer"));
 const Header = lazy(() => import("../../components/Header"));
 import Loader from "../../components/Loader";
+import Accordion from "@mui/material/Accordion";
+import AccordionActions from "@mui/material/AccordionActions";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
 import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
 import {
@@ -174,6 +181,152 @@ const Location = () => {
               </ul>
             </li>
           </ul>
+          <div className="hotel_policies">
+            <h2>hotel policies</h2>
+            <Accordion
+              disabled
+              className="accordion"
+              sx={{
+                "&.Mui-expanded": {
+                  margin: "0",
+                },
+              }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Typography component="span">Parking</Typography>
+              </AccordionSummary>
+            </Accordion>
+            <Accordion
+              className="accordion"
+              sx={{
+                "&.Mui-expanded": {
+                  margin: "0",
+                  "& button#panel2-header": {
+                    borderBottom: "1px solid var(--sage)",
+                  },
+                },
+              }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2-content"
+                id="panel2-header"
+              >
+                <Typography component="span">Pets</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                {" "}
+                <p>Pets Allowed : No</p>{" "}
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              className="accordion"
+              sx={{
+                "&.Mui-expanded": {
+                  margin: "0",
+                  "& button#panel3-header": {
+                    borderBottom: "1px solid var(--sage)",
+                  },
+                },
+              }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel3-content"
+                id="panel3-header"
+              >
+                <Typography component="span">WiFi</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <p>Free standard in-room and lobby WiFi.</p>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              className="accordion"
+              sx={{
+                "&.Mui-expanded": {
+                  margin: "0",
+                  "& button#panel4-header": {
+                    borderBottom: "1px solid var(--sage)",
+                  },
+                },
+              }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel4-content"
+                id="panel4-header"
+              >
+                <Typography component="span">Cancellation</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <p>
+                  Cancellation policies may vary depending on the rate or dates
+                  of your reservation. If you need further assistance, call the
+                  hotel directly.
+                </p>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              className="accordion"
+              sx={{
+                "&.Mui-expanded": {
+                  margin: "0",
+                  "& button#panel5-header": {
+                    borderBottom: "1px solid var(--sage)",
+                  },
+                },
+              }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel5-content"
+                id="panel5-header"
+              >
+                <Typography component="span">Check-in / Checkout</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="check_in_out">
+                  <ul>
+                    <li>Check-in</li>
+                    <li>Check-out</li>
+                    <li>Minimum age to Register</li>
+                  </ul>
+                  <ul>
+                    <li>12:00 PM</li>
+                    <li>11:00 AM</li>
+                    <li>18</li>
+                  </ul>
+                </div>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion
+              className="accordion"
+              sx={{
+                "&.Mui-expanded": {
+                  margin: "0",
+                  "& button#panel6-header": {
+                    borderBottom: "1px solid var(--sage)",
+                  },
+                },
+              }}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel6-content"
+                id="panel6-header"
+              >
+                <Typography component="span">Payment</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <p>Cash, UPI, all major cards accepted.</p>
+              </AccordionDetails>
+            </Accordion>
+          </div>
         </div>
       </section>
       <Suspense fallback={<Loader />}>
