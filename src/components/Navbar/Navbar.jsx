@@ -93,7 +93,7 @@ const Navbar = () => {
   }, [size.width]);
 
   useEffect(() => {
-    if (size.width > 768) {
+    if (size.width > 997) {
       setShowHam(false);
       setMenuOpen(false);
     } else {

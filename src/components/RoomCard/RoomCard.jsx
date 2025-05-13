@@ -10,7 +10,7 @@ import WaterBottle from "../../assets/bottle-water-solid.svg";
 import Wifi from "../../assets/wifi-solid.svg";
 import "./RoomCard.css";
 
-const RoomCard = ({ roomType, roomDetails, roomId, assets }) => {
+const RoomCard = ({ roomType, roomDetails, roomId, assets, sliderEnabled }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -45,6 +45,7 @@ const RoomCard = ({ roomType, roomDetails, roomId, assets }) => {
           images={assets}
           isCarousel={false}
           showDots={true}
+          sliderEnabled={sliderEnabled}
         />
       </div>
       <div className="room_card_description">
