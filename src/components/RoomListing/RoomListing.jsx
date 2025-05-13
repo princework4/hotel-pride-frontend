@@ -146,6 +146,7 @@ const RoomListing = ({ roomNumber }) => {
               slidesToScroll={1}
               images={roomType.assets}
               isCarousel={false}
+              sliderEnabled={false}
             />
             <ul className="room_details__chips">
               <li key={Math.random()}>
