@@ -172,7 +172,7 @@ const Home = () => {
                 <li>
                   <a href="tel:+919876543210">
                     <img src={mobileIcon} alt="mobile icon" />
-                    +919876543210
+                    <span>+919876543210</span>
                   </a>
                 </li>
                 <li>
@@ -187,7 +187,7 @@ const Home = () => {
                 </li>
                 <li>
                   <p>Check-in 12:00 PM</p>
-                  <p>Check-out 10:00 AM</p>
+                  <p>Check-out 11:00 AM</p>
                 </li>
               </ul>
             </div>
