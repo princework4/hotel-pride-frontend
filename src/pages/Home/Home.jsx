@@ -223,6 +223,7 @@ const Home = () => {
                       roomId={type.id}
                       assets={type.assets}
                       amenities={roomRedux.allRoomTypes1[index].amenities}
+                      sliderEnabled={false}
                     />
                   </>
                 ))}

@@ -176,13 +176,7 @@
   width: 100%;
 }
 
-@media (max-width: 820px) {
-  .nav-items li {
-    margin-right: 5px;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 997px) {
   .nav-items ul li a:hover {
     color: #fff;
   }
@@ -260,3 +254,12 @@
     background-color: var(--sage);
   }
 }
+
+/* @media (max-width: 820px) {
+  .nav-items li {
+    margin-right: 5px;
+  }
+} */
+
+/* @media (max-width: 768px) {
+} */

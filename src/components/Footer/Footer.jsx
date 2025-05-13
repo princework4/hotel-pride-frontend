@@ -35,7 +35,7 @@ const Footer = () => {
                   Gallery
                 </Link>
                 <Link to="/location" className="footer-link">
-                  Location
+                  Location & Hotel Policies
                 </Link>
               </div>
             </div>
