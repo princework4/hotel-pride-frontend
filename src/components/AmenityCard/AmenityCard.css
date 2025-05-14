@@ -36,6 +36,13 @@
   font-size: 15px;
 }
 
+.amenity_card .grid > li figure {
+  padding: 1rem 1.25rem;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #fff;
+}
+
 /* Hover Effects */
 /* .amenity_card .grid > li:hover {
   transform: scale(1.1);
