@@ -1,7 +1,9 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Footer.css";
+
+import Logo from "../../assets/Logo-Pride.jpg";
 
 const Footer = () => {
   return (
@@ -9,21 +11,72 @@ const Footer = () => {
       <footer className="footer">
         <div className="wrapper">
           <div className="footer-container">
-            <div>
-              <h3 className="section-title">Hotel Pride</h3>
-              <Typography
-                variant="body1"
-                sx={{ marginTop: 2, fontFamily: '"Poppins", sans-serif' }}
-              >
-                © 2025 All Rights Reserved
-              </Typography>
+            <div className="footer_hotel_description">
+              {/* <h3 className="section-title">Hotel Pride</h3> */}
+              {/* <h1 className="section-title">Hotel Pride</h1> */}
+              <h1 className="logo">
+                <Link to="/">
+                  <img src={Logo} alt="logo" />
+                </Link>
+              </h1>
+              <hr />
+              <div>
+                <Typography
+                  variant="h2"
+                  sx={{
+                    marginBottom: {
+                      xs: 1,
+                      sm: 1,
+                      md: 2,
+                    },
+                    fontSize: {
+                      xs: "25px",
+                      sm: "25px",
+                      md: "40px",
+                    },
+                    fontFamily: '"Helvetica Neue", sans-serif',
+                  }}
+                >
+                  contact us
+                  {/* <a href="tel:+919876543210">+919876543210</a> */}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    marginBottom: 1,
+                    fontFamily: '"Helvetica Neue", sans-serif',
+                  }}
+                >
+                  <a href="tel:+919876543210">+919876543210</a>
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    // marginTop: 2,
+                    fontFamily: '"Helvetica Neue", sans-serif',
+                    lineHeight: {
+                      xs: "1rem",
+                      sm: "1rem",
+                      md: "1.5rem",
+                    },
+                  }}
+                >
+                  <a
+                    href="https://maps.app.goo.gl/FzN5Mz9sAc6a33Q66"
+                    target="_blank"
+                  >
+                    Lbs Marg, Rs, Dreams Mall Rd, next to Icici Bank, Bhandup
+                    West, Mumbai
+                  </a>
+                </Typography>
+              </div>
             </div>
 
             <div>
               <Typography
                 variant="h5"
                 className="section-title"
-                sx={{ fontFamily: '"Lato", sans-serif' }}
+                sx={{ fontFamily: '"Helvetica Neue", sans-serif' }}
               >
                 Quick Links
               </Typography>
@@ -40,7 +93,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* <div>
+            <div>
               <Typography variant="h5" className="section-title">
                 Follow Us
               </Typography>
@@ -55,12 +108,14 @@ const Footer = () => {
                   Instagram
                 </Link>
               </Box>
-            </div> */}
+            </div>
           </div>
-          {/* <Box className="corporate-footer">
-            <h1></h1>
-            <p>© ABC 2025</p>
-          </Box> */}
+          <hr />
+          <Box className="corporate-footer">
+            {/* <h1></h1> */}
+            <p>© 2025 Hotel Pride. All Rights Reserved.</p>
+            <p>Developed By HCS Technologies</p>
+          </Box>
         </div>
       </footer>
     </>
