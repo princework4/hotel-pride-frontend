@@ -30,3 +30,9 @@
   transform: translate(-50%, -75%);
   padding-bottom: 5px !important;
 }
+
+@media (max-width: 768px) {
+  #bottom_to_top {
+    right: 20px;
+  }
+}
