@@ -498,6 +498,9 @@ button:hover {
   h2 {
     font-size: 25px;
   }
+  p {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 834px) {

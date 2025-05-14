@@ -101,8 +101,20 @@
   }
 }
 
+@media (max-width: 600px) {
+  .footer_hotel_description hr {
+    height: 100px;
+  }
+}
+
 @media (max-width: 450px) {
   .corporate-footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .footer_hotel_description hr {
+    height: 110px;
   }
 }
