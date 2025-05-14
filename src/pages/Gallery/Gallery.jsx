@@ -21,6 +21,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const GallerySlider = ({ images, active }) => {
   return (
@@ -176,7 +177,15 @@ const Gallery = () => {
               <Masonry gutter="10px">
                 {galleryImages?.map((item, i) => (
                   <li key={i} onClick={() => handleImageClick(i)}>
-                    <img src={item.original} alt={item.caption} />
+                    <LazyLoadImage
+                      alt={item.caption}
+                      src={item.original}
+                      effect="opacity"
+                      wrapperProps={{
+                        style: { transitionDelay: "1s" },
+                      }}
+                    />
+                    {/* <img src={item.original} alt={item.caption} /> */}
                   </li>
                 ))}
               </Masonry>
