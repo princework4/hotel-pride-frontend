@@ -32,7 +32,8 @@
 
 .amenity_card .grid > li p {
   margin-top: 5px;
-  color: var(--sage);
+  /* color: var(--sage); */
+  color: #000;
   font-size: 15px;
 }
 
@@ -74,6 +75,8 @@
 @media (max-width: 550px) {
   .amenity_card .grid {
     /* justify-content: space-between; */
+    align-items: center;
+    justify-content: center;
   }
 
   .amenity_card .grid > li {
