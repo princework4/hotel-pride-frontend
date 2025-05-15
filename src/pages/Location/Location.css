@@ -133,12 +133,17 @@
 }
 
 .location .location__subdetails li {
+  padding-bottom: 10px;
   display: flex;
   align-items: flex-start;
 }
 
+.location .location__subdetails li:not(:last-child) {
+  border-bottom: 1px solid var(--sage);
+}
+
 .location .location__subdetails li:not(:first-child) {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .location .location__subdetails li span {

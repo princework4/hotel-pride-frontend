@@ -183,7 +183,7 @@ const Location = () => {
           </ul>
           <div className="hotel_policies">
             <h2>hotel policies</h2>
-            <Accordion
+            {/* <Accordion
               disabled
               className="accordion"
               sx={{
@@ -199,7 +199,7 @@ const Location = () => {
               >
                 <Typography component="span">Parking</Typography>
               </AccordionSummary>
-            </Accordion>
+            </Accordion> */}
             <Accordion
               className="accordion"
               sx={{
@@ -292,14 +292,26 @@ const Location = () => {
               <AccordionDetails>
                 <div className="check_in_out">
                   <ul>
-                    <li>Check-in</li>
-                    <li>Check-out</li>
-                    <li>Minimum age to Register</li>
+                    <li>
+                      <p>Check-in</p>
+                    </li>
+                    <li>
+                      <p>Check-out</p>
+                    </li>
+                    <li>
+                      <p>Minimum age to Register</p>
+                    </li>
                   </ul>
                   <ul>
-                    <li>12:00 PM</li>
-                    <li>11:00 AM</li>
-                    <li>18</li>
+                    <li>
+                      <p>12:00 PM</p>
+                    </li>
+                    <li>
+                      <p>11:00 AM</p>
+                    </li>
+                    <li>
+                      <p>18</p>
+                    </li>
                   </ul>
                 </div>
               </AccordionDetails>
