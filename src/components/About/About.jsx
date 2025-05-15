@@ -16,7 +16,7 @@ const About = () => {
               <p className="about__subheading">
                 comfort and convenience in mumbai's thriving business hub
               </p>
-              <p style={{ lineHeight: "24px" }}>
+              <p>
                 <strong>At Hotel Pride,</strong> we offer a seamless stay with{" "}
                 <strong>33 well-appointed rooms,</strong> modern amenities, and
                 warm hospitality. Designed for business and leisure travelers
@@ -44,29 +44,29 @@ const About = () => {
                   for your next stay:
                 </p>
                 <br />
-                <p style={{ lineHeight: "24px" }}>
+                <p>
                   <strong>Budget-Friendly Comfort - </strong> Enjoy a
                   comfortable and well-equipped stay without the high price tag
                   - perfect for business and leisure travelers alike.
                 </p>
-                <p style={{ lineHeight: "24px" }}>
+                <p>
                   <strong>Centrally Located - </strong> Just{" "}
                   <strong>10 minutes</strong> from Powai's business district, a{" "}
                   <strong>20-minute drive</strong> from the airports, and within{" "}
                   <strong>walking distance</strong> of Bhandup Railway Station,
                   ensuring easy access to Mumbai's key hubs.
                 </p>
-                <p style={{ lineHeight: "24px" }}>
+                <p>
                   <strong>Friendly, Attentive Service - </strong> Our staff is
                   dedicated to making your stay smooth and enjoyable - from
                   quick check-ins to helpful local recommendations.
                 </p>
-                <p style={{ lineHeight: "24px" }}>
+                <p>
                   <strong>Perfect for Business and Family Stays - </strong>
                   Whether you're traveling solo or with family, our versatile
                   room options and thoughtful amenities cater to every need.{" "}
                 </p>
-                <p style={{ lineHeight: "24px" }}>
+                <p>
                   <strong>Unbeatable Value - </strong> Clean, secure, and
                   well-maintained - experience comfort and convenience without
                   stretching your budget.
