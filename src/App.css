@@ -324,7 +324,7 @@ h6 {
 }
 
 body p {
-  line-height: 24px;
+  /* line-height: 24px; */
 }
 
 /* common color variables */
@@ -336,7 +336,7 @@ body p {
 
 /* wrapper styling */
 .wrapper {
-  max-width: 1120px;
+  max-width: 1536px;
   width: 100%;
   padding: 30px 0;
   margin: 0 auto;
@@ -369,7 +369,7 @@ h2 {
   background-size: 0% 100%;
   background-clip: text; */
   color: var(--sage);
-  font-size: 40px;
+  /* font-size: 40px; */
   font-weight: bolder;
   /* transition: 1s ease-in-out; */
   text-transform: uppercase;
@@ -407,7 +407,7 @@ button {
   /* background-color: var(--sage); */
   background-color: #c4b991;
   color: #fff;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 20px;
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
@@ -429,42 +429,76 @@ button:hover {
 
 @media (max-width: 2560px) {
   .wrapper {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 60px;
+  }
+
+  button {
+    font-size: 20px;
   }
 }
 
 @media (max-width: 1920px) {
   .wrapper {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 30px;
   }
 }
 
 @media (max-width: 1536px) {
   .wrapper {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+
+  button {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 18px;
   }
 }
 
 @media (max-width: 1440px) {
   .wrapper {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
+  }
+
+  button {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 24px;
   }
 }
 
 @media (max-width: 1366px) {
   .wrapper {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
   }
 }
 
 @media (max-width: 1280px) {
   .wrapper {
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
   }
 }
@@ -472,7 +506,7 @@ button:hover {
 @media (max-width: 1194px) {
   .wrapper {
     max-width: 90%;
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
   }
 
@@ -484,7 +518,7 @@ button:hover {
 @media (max-width: 1024px) {
   .wrapper {
     max-width: 95%;
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
   }
 }

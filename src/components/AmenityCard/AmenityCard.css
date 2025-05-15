@@ -1,5 +1,5 @@
 .amenity_card .grid {
-  max-width: 1200px;
+  max-width: 100%;
   padding: 0;
   /* margin: 15px auto 40px; */
   /* position: relative; */
@@ -54,6 +54,13 @@
 .amenity_card .grid > li img {
   width: 35px;
   height: 40px;
+}
+
+/* Media Queries */
+@media (max-width: 1920px) {
+  .amenity_card .grid > li {
+    /* flex: 0 0 calc(100% / 10); */
+  }
 }
 
 @media (max-width: 1024px) {

@@ -1,5 +1,5 @@
 .location .heading_container {
-  margin-top: 70px;
+  margin-top: 6rem;
 }
 
 .location__first_para,
@@ -201,6 +201,67 @@
 }
 
 /* Media Queries */
+@media (max-width: 1920px) {
+  .location__first_para,
+  .location__second_para {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .location .location__details li h3 {
+    font-size: 30px;
+  }
+
+  .location .location__subdetails .location__subdetails-heading,
+  .location .location__subdetails .location__subdetails-description {
+    font-size: 20px;
+  }
+
+  .location__map_contact-container div:first-child,
+  .location__map_contact-container div:last-child {
+    height: 500px;
+  }
+}
+
+@media (max-width: 1536px) {
+  .location__first_para,
+  .location__second_para {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .location .location__details li h3 {
+    font-size: 28px;
+  }
+
+  .location .location__subdetails .location__subdetails-heading,
+  .location .location__subdetails .location__subdetails-description {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .location__first_para,
+  .location__second_para {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .location .location__details li h3 {
+    font-size: 24px;
+  }
+
+  .location .location__subdetails .location__subdetails-heading,
+  .location .location__subdetails .location__subdetails-description {
+    font-size: 14px;
+  }
+
+  .location__map_contact-container div:first-child,
+  .location__map_contact-container div:last-child {
+    height: 450px;
+  }
+}
+
 @media (max-width: 1024px) {
   .location__map_contact-container div:first-child,
   .location__map_contact-container div:last-child {
