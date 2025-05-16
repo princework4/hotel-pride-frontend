@@ -177,7 +177,7 @@ const Gallery = () => {
             ))} */}
             <ResponsiveMasonry
               style={{ width: "100%" }}
-              columnsCountBreakPoints={{ 350: 2, 750: 2, 900: 3 }}
+              columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
             >
               <Masonry gutter="10px">
                 {galleryImages?.map((item, i) => (
