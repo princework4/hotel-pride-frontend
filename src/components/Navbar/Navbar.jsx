@@ -13,6 +13,8 @@ import "./Navbar.css";
 
 // import Logo from "../../assets/Logo-Pride.jpg";
 import Logo from "../../assets/Logo-Pride-removebg.png";
+import LoginImg from "../../assets/login.png";
+import WhiteLoginImg from "../../assets/login_white.png";
 
 const Navbar = () => {
   const authRedux = useSelector((state) => state.authReducer);
@@ -185,8 +187,16 @@ const Navbar = () => {
                     Logout
                   </button>
                 ) : (
-                  <button className="login-btn" onClick={handleOpen}>
-                    Login / Register
+                  <button
+                    className="login-btn login-btn-image"
+                    onClick={handleOpen}
+                  >
+                    {colorChange ? (
+                      <img src={LoginImg} alt="login icon" />
+                    ) : (
+                      <img src={WhiteLoginImg} alt="login icon" />
+                    )}{" "}
+                    Sign In
                   </button>
                 )}
               </li>

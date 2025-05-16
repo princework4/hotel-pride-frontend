@@ -78,6 +78,23 @@
   border-radius: 5px;
 }
 
+.updated_header .login-btn-image {
+  border: 1px solid var(--sage) !important;
+  background-color: transparent !important;
+  color: var(--sage) !important;
+}
+
+.nav-container .login-btn-image {
+  border: 1px solid #f2f2f2;
+  background-color: transparent;
+  color: #f2f2f2;
+}
+
+.login-btn-image img {
+  width: 20px;
+  height: 20px;
+}
+
 .hamburger {
   height: 18px;
   display: none;
@@ -174,6 +191,10 @@
 
 .nav-items ul li a:hover::after {
   width: 100%;
+}
+
+.nav-container .login-btn-image:hover {
+  background-color: var(--sage);
 }
 
 @media (max-width: 997px) {
