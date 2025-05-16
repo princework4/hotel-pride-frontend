@@ -19,6 +19,7 @@ import {
   updateAllRoomTypesName,
   updateAvailableRoomTypes,
   updateIsOfferAvailable,
+  updateOfferEndDate,
   updateOffers,
   updateSelectedRooms,
 } from "../../features/room/roomSlice";
@@ -39,6 +40,7 @@ import galleryImage20 from "../../assets/Gallery/gallery_20.jpeg";
 import mobileIcon from "../../assets/mobile.png";
 import { toast } from "react-toastify";
 import { useRef } from "react";
+import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
 const Home = () => {
   const [allGalleryImages, setAllGalleryImages] = useState([
@@ -87,13 +89,16 @@ const Home = () => {
         offersObj[data[i].id] = data[i].offerDiscountPercentage;
       }
 
-      dispatch(updateOffers(offersObj));
       if (
         checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)
       ) {
         dispatch(updateIsOfferAvailable(true));
+        dispatch(updateOffers(offersObj));
+        dispatch(updateOfferEndDate(data[0].offerEndDate));
       } else {
-        dispatch(updateIsOfferAvailable(false));
+        // dispatch(updateIsOfferAvailable(false));
+        dispatch(updateOffers({}));
+        dispatch(updateOfferEndDate(""));
       }
       dispatch(updateAllRoomTypesName(roomTypeNames));
     } else {
@@ -134,6 +139,7 @@ const Home = () => {
   return (
     <>
       {/* <Suspense fallback={<Loader />}> */}
+      {roomRedux.isOfferAvailable && <OfferHeader />}
       <Header />
       {/* </Suspense> */}
       <main>

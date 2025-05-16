@@ -20,8 +20,8 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
       md: "550px",
     },
     height: {
-      xs: "315px",
-      sm: "300px",
+      xs: "280px",
+      sm: "260px",
     },
     padding: {
       xs: "20px 15px",
@@ -48,7 +48,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
         <h3>
           {isBreakfastIncluded ? "Breakfast Included" : "Without Breakfast"}
         </h3>
-        <div>
+        {/* <div>
           <h4>rate description</h4>
           <ul>
             <li>
@@ -87,20 +87,62 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
               <span>Applicable taxes extra</span>
             </li>
           </ul>
-        </div>
+        </div> */}
         <h4>cancellation policy</h4>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, itaque.
-        </p>
-        <h4>guarantee policy</h4>
-        <p
-          style={{
-            paddingBottom: "20px",
-          }}
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,
-          inventore?
-        </p>
+        <ul>
+          <li style={{ height: "30px" }}>
+            {/* <SquareIcon
+              sx={{
+                width: "10px",
+                height: { xs: "13px", md: "1em" },
+                color: "#c4b991",
+              }}
+            /> */}
+            <span>
+              For any type of cancellation, please contact the hotel directly.
+              We will assist you based on your specific request.
+            </span>
+          </li>
+        </ul>
+        <h4>extra guest charges</h4>
+        <ul>
+          <li>
+            {/* <SquareIcon
+              sx={{
+                width: "10px",
+                height: { xs: "13px", md: "1em" },
+                color: "#c4b991",
+              }}
+            /> */}
+            <span>&#8377;700 per additional guest per night.</span>
+          </li>
+        </ul>
+        <h4>child policy</h4>
+        <ul>
+          <li>
+            <SquareIcon
+              sx={{
+                width: "10px",
+                height: { xs: "13px", md: "1em" },
+                color: "#c4b991",
+              }}
+            />
+            <span>Children below 6 years stay free with existing bedding.</span>
+          </li>
+          <li>
+            <SquareIcon
+              sx={{
+                width: "10px",
+                height: { xs: "13px", md: "1em" },
+                color: "#c4b991",
+              }}
+            />
+            <span>
+              Children above 6 years will require an extra bed, which is
+              chargable.
+            </span>
+          </li>
+        </ul>
       </Box>
     </Modal>
   );

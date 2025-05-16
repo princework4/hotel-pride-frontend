@@ -9,7 +9,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
 import {
   updateIsUserLoggedIn,
@@ -19,8 +19,10 @@ import { Link } from "react-router-dom";
 import "./Location.css";
 
 import Logo from "../../assets/Logo-Pride.jpg";
+import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
 const Location = () => {
+  const roomRedux = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,6 +45,7 @@ const Location = () => {
 
   return (
     <>
+      {roomRedux.isOfferAvailable && <OfferHeader />}
       <Suspense fallback={<Loader />}>
         <Header />
       </Suspense>

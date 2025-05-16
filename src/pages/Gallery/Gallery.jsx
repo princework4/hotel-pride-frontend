@@ -22,6 +22,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
 const GallerySlider = ({ images, active }) => {
   return (
@@ -128,6 +129,7 @@ const Gallery = () => {
 
   return (
     <>
+      {roomRedux.isOfferAvailable && <OfferHeader />}
       <Header />
       <Modal
         open={open}

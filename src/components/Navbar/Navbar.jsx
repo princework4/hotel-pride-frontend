@@ -18,6 +18,7 @@ import WhiteLoginImg from "../../assets/login_white.png";
 
 const Navbar = () => {
   const authRedux = useSelector((state) => state.authReducer);
+  const roomRedux = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
   const location = useLocation();
   const [showHam, setShowHam] = useState(window.innerWidth <= 768);
@@ -137,6 +138,7 @@ const Navbar = () => {
           ? "updated_header nav-container"
           : "nav-container"
       }
+      style={roomRedux.isOfferAvailable ? { top: "60px" } : { top: 0 }}
     >
       <div className="wrapper">
         <div className="navbar">
@@ -157,6 +159,11 @@ const Navbar = () => {
               <div
                 className={`hamburger ${menuOpen ? "open" : ""}`}
                 onClick={toggleMenu}
+                style={
+                  roomRedux.isOfferAvailable && menuOpen
+                    ? { top: "-70px" }
+                    : { top: 0 }
+                }
               >
                 <span></span>
                 <span></span>

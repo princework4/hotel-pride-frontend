@@ -1,0 +1,52 @@
+.offer_header {
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  background-color: var(--sage);
+  z-index: 2;
+}
+
+.offer_header h3 {
+  margin-top: 5px;
+  color: #f2f2f2;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.flip-clock {
+  margin-right: 3%;
+  --fcc-flip-duration: 0.5s; /* transition duration when flip card */
+  --fcc-spacing: 8px; /* space between unit times and separators */
+  --fcc-digit-block-width: 20px; /* width of digit card */
+  --fcc-digit-block-height: 30px; /* height of digit card, highly recommend in even number */
+  --fcc-digit-block-radius: 5px; /* border radius of digit card */
+  --fcc-digit-block-spacing: 5px; /* space between blocks in each unit of time */
+  --fcc-digit-font-size: 20px; /* font size of digit */
+  --fcc-digit-color: white; /* color of digit */
+  --fcc-label-font-size: 10px; /* font size of label */
+  --fcc-label-color: black; /* color of label */
+  --fcc-background: black; /* background of digit card */
+  --fcc-divider-color: transparent; /* color of divider */
+  --fcc-divider-height: 1px; /* height of divider */
+  --fcc-separator-size: 6px; /* size of colon */
+  --fcc-separator-color: #ffffff; /* color of colon */
+}
+
+@media (max-width: 400px) {
+  .offer_header h3 {
+    font-size: 18px;
+  }
+
+  .flip-clock {
+    --fcc-digit-block-width: 15px; /* width of digit card */
+    --fcc-digit-block-height: 20px; /* height of digit card, highly recommend in even number */
+    --fcc-digit-font-size: 18px; /* font size of digit */
+    --fcc-label-font-size: 10px; /* font size of label */
+    --fcc-separator-size: 4px; /* size of colon */
+  }
+}
