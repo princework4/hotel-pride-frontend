@@ -142,13 +142,13 @@ const Home = () => {
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <Header />
-      </Suspense>
+      {/* <Suspense fallback={<Loader />}> */}
+      <Header />
+      {/* </Suspense> */}
       <main>
-        <Suspense fallback={<Loader />}>
-          <Banner />
-        </Suspense>
+        {/* <Suspense fallback={<Loader />}> */}
+        <Banner />
+        {/* </Suspense> */}
         <Suspense fallback={<Loader />}>
           <section className="search">
             <div className="wrapper">

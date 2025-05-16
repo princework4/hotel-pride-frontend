@@ -24,18 +24,6 @@ import Smoking from "./assets/smoking.png";
 import NoSmoking from "./assets/no-smoking.png";
 import Wifi from "./assets/wifi.png";
 
-import nonAcImage1 from "./assets/Non_Ac/non_ac_img_1.jpeg";
-import nonAcImage2 from "./assets/Non_Ac/non_ac_img_2.jpeg";
-import nonAcImage3 from "./assets/Non_Ac/non_ac_img_3.jpeg";
-import deluxeImage1 from "./assets/Deluxe/deluxe_room_1.jpeg";
-import deluxeImage2 from "./assets/Deluxe/deluxe_room_2.jpeg";
-import deluxeImage3 from "./assets/Deluxe/deluxe_room_3.jpeg";
-import deluxeImage4 from "./assets/Deluxe/deluxe_room_4.jpeg";
-import executiveImage1 from "./assets/Executive/executive_room_1.jpeg";
-import executiveImage2 from "./assets/Executive/executive_room_2.jpeg";
-import executiveImage3 from "./assets/Executive/executive_room_3.jpeg";
-import executiveImage4 from "./assets/Executive/executive_room_4.jpeg";
-
 export const allRoomTypes = [
   ["Superior Room", "6,000", "6,500"],
   ["Delux Room", "8,000", "8,500"],

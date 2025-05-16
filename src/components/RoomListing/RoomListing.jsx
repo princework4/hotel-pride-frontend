@@ -12,17 +12,6 @@ import PopupRateDetails from "../PopupRateDetails/PopupRateDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import "./RoomListing.css";
 
-import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
-import nonAcImage2 from "../../assets//Non_Ac/non_ac_img_2.jpeg";
-import nonAcImage3 from "../../assets//Non_Ac/non_ac_img_3.jpeg";
-import deluxeImage1 from "../../assets//Deluxe/deluxe_room_1.jpeg";
-import deluxeImage2 from "../../assets//Deluxe/deluxe_room_2.jpeg";
-import deluxeImage3 from "../../assets//Deluxe/deluxe_room_3.jpeg";
-import deluxeImage4 from "../../assets//Deluxe/deluxe_room_4.jpeg";
-import executiveImage1 from "../../assets//Executive/executive_room_1.jpeg";
-import executiveImage2 from "../../assets//Executive/executive_room_2.jpeg";
-import executiveImage3 from "../../assets//Executive/executive_room_3.jpeg";
-import executiveImage4 from "../../assets//Executive/executive_room_4.jpeg";
 import { fetchSingleRoomTypes } from "../../services/Rooms";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSelectedRooms } from "../../features/room/roomSlice";

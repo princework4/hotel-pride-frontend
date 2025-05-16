@@ -1,16 +1,20 @@
 import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
-import nonAcImage2 from "../../assets/Non_Ac/non_ac_img_2.jpeg";
+import nonAcImage2 from "../../assets/Non_Ac/non_ac_img_2.jpg";
 import nonAcImage3 from "../../assets/Non_Ac/non_ac_img_3.jpeg";
 import nonAcImage4 from "../../assets/Non_Ac/non_ac_img_4.jpeg";
 import nonAcImage5 from "../../assets/Non_Ac/non_ac_img_5.jpeg";
+import nonAcImage6 from "../../assets/Non_Ac/non_ac_img_6.jpg";
+import nonAcImage7 from "../../assets/Non_Ac/non_ac_img_7.jpg";
 import deluxeImage1 from "../../assets/Deluxe/deluxe_room_1.jpeg";
 import deluxeImage2 from "../../assets/Deluxe/deluxe_room_2.jpeg";
-import deluxeImage3 from "../../assets/Deluxe/deluxe_room_3.jpeg";
-import deluxeImage4 from "../../assets/Deluxe/deluxe_room_4.jpeg";
+import deluxeImage3 from "../../assets/Deluxe/deluxe_room_3.jpg";
+import deluxeImage4 from "../../assets/Deluxe/deluxe_room_4.jpg";
+import deluxeImage5 from "../../assets/Deluxe/deluxe_room_5.jpg";
 import executiveImage1 from "../../assets/Executive/executive_room_1.jpeg";
 import executiveImage2 from "../../assets/Executive/executive_room_2.jpeg";
-import executiveImage3 from "../../assets/Executive/executive_room_3.jpeg";
-import executiveImage4 from "../../assets/Executive/executive_room_4.jpeg";
+import executiveImage3 from "../../assets/Executive/executive_room_3.jpg";
+import executiveImage4 from "../../assets/Executive/executive_room_4.jpg";
+import executiveImage5 from "../../assets/Executive/executive_room_5.jpg";
 import galleryImage1 from "../../assets/Gallery/gallery_1.jpeg";
 import galleryImage2 from "../../assets/Gallery/gallery_2.jpeg";
 import galleryImage3 from "../../assets/Gallery/gallery_3.jpeg";
@@ -64,6 +68,18 @@ export const allAssetsImages = [
     category: "cat1",
   },
   {
+    original: nonAcImage6,
+    thumbnail: nonAcImage6,
+    caption: "Non AC Image 6",
+    category: "cat1",
+  },
+  {
+    original: nonAcImage7,
+    thumbnail: nonAcImage7,
+    caption: "Non AC Image 7",
+    category: "cat1",
+  },
+  {
     original: deluxeImage1,
     thumbnail: deluxeImage1,
     caption: "Deluxe Image 1",
@@ -88,6 +104,12 @@ export const allAssetsImages = [
     category: "cat2",
   },
   {
+    original: deluxeImage5,
+    thumbnail: deluxeImage5,
+    caption: "Deluxe Image 5",
+    category: "cat2",
+  },
+  {
     original: executiveImage1,
     thumbnail: executiveImage1,
     caption: "Executive Image 1",
@@ -109,6 +131,12 @@ export const allAssetsImages = [
     original: executiveImage4,
     thumbnail: executiveImage4,
     caption: "Executive Image 4",
+    category: "cat3",
+  },
+  {
+    original: executiveImage5,
+    thumbnail: executiveImage5,
+    caption: "Executive Image 5",
     category: "cat3",
   },
   {

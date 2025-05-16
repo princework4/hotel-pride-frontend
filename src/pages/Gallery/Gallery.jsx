@@ -52,6 +52,10 @@ const Gallery = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
   const [galleryImages, setGalleryImages] = useState(allAssetsImages);
+  const [allRoomTypeNames, setAllRoomTypeNames] = useState([
+    allTabDetail,
+    ...filterTabButtons,
+  ]);
   const [trackActiveButton, setTrackActiveButton] = useState("cat0");
   const [active, setActive] = useState(0);
   const [open, setOpen] = React.useState(false);
@@ -78,6 +82,7 @@ const Gallery = () => {
       toast.error("Something went wrong while fetching room types.");
     }
     dispatch(updateAllRoomTypesName(roomTypeNames));
+    setAllRoomTypeNames(roomTypeNames);
   }
 
   useEffect(() => {
@@ -150,7 +155,7 @@ const Gallery = () => {
             </p>
           )}
           <div className="filter_buttons">
-            {roomRedux.allRoomTypesName?.map((buttonText, i) => (
+            {allRoomTypeNames?.map((buttonText, i) => (
               <button
                 className={`${
                   buttonText[1] == trackActiveButton
