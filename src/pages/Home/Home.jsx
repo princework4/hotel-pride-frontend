@@ -29,34 +29,25 @@ import {
 import { checkOfferAvailability } from "../../utils";
 import "./Home.css";
 
-import nonAcImage1 from "../../assets/Non_Ac/non_ac_img_1.jpeg";
-// import nonAcImage2 from "../../assets/Non_Ac/non_ac_img_2_1.jpg";
-// import nonAcImage3 from "../../assets/Non_Ac/non_ac_img_3_1.jpg";
-import deluxeImage1 from "../../assets/Deluxe/deluxe_room_1.jpeg";
-// import deluxeImage2 from "../../assets/Deluxe/deluxe_room_2.jpeg";
-// import deluxeImage3 from "../../assets/Deluxe/deluxe_room_3_1.jpg";
-// import deluxeImage4 from "../../assets/Deluxe/deluxe_room_4_1.jpg";
-import executiveImage1 from "../../assets/Executive/executive_room_1.jpeg";
-// import executiveImage2 from "../../assets/Executive/executive_room_2.jpeg";
-// import executiveImage3 from "../../assets/Executive/executive_room_3_1.jpg";
-// import executiveImage4 from "../../assets/Executive/executive_room_4_1.jpg";
+import galleryImage3 from "../../assets/Gallery/gallery_3.jpeg";
+import galleryImage4 from "../../assets/Gallery/gallery_4.jpeg";
+import galleryImage6 from "../../assets/Gallery/gallery_6.jpeg";
+import galleryImage17 from "../../assets/Gallery/gallery_17.jpeg";
+import galleryImage18 from "../../assets/Gallery/gallery_18.jpeg";
+import galleryImage20 from "../../assets/Gallery/gallery_20.jpeg";
+
 import mobileIcon from "../../assets/mobile.png";
 import { toast } from "react-toastify";
 import { useRef } from "react";
 
 const Home = () => {
   const [allGalleryImages, setAllGalleryImages] = useState([
-    nonAcImage1,
-    deluxeImage1,
-    executiveImage1,
-    // nonAcImage2,
-    // deluxeImage2,
-    // executiveImage2,
-    // nonAcImage3,
-    // deluxeImage3,
-    // executiveImage3,
-    // deluxeImage4,
-    // executiveImage4,
+    galleryImage18,
+    galleryImage3,
+    galleryImage4,
+    galleryImage6,
+    galleryImage20,
+    galleryImage17,
   ]);
   const [width, setWidth] = useState(
     window.innerWidth > 0 ? window.innerWidth : screen.width
@@ -259,22 +250,22 @@ const Home = () => {
                 </p>
               )}
               <div className="gallery__container">
-                {/* {width <= 768
+                {width <= 768
                   ? allGalleryImages.slice(0, 3).map((item, i) => (
                       <figure key={i}>
-                        <img src={item} alt={i} />
+                        <img src={item} alt={`gallery image ` + i + 1} />
                       </figure>
                     ))
-                  : allGalleryImages.slice(0, 6).map((item, i) => (
+                  : allGalleryImages.map((item, i) => (
                       <figure key={i}>
-                        <img src={item} alt={i} />
+                        <img src={item} alt={`gallery image ` + i + 1} />
                       </figure>
-                    ))} */}
-                {allGalleryImages.map((item, i) => (
+                    ))}
+                {/* {allGalleryImages.map((item, i) => (
                   <figure key={i}>
                     <img src={item} alt={i} />
                   </figure>
-                ))}
+                ))} */}
               </div>
               <div className="see_more__container">
                 <button onClick={() => routeChange("gallery")}>see more</button>
