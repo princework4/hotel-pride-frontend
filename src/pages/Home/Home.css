@@ -5,88 +5,6 @@
   --star-background: #00aa6c;
 }
 
-.hotel_description {
-  background-color: var(--sage);
-}
-
-.hotel_description ul {
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hotel_description .stars {
-  --percent: calc(4.5 / 5 * 100%);
-  display: inline-block;
-  font-size: var(--star-size);
-  font-family: Times;
-  line-height: 1;
-}
-
-.hotel_description .stars::before {
-  content: "★★★★★";
-  letter-spacing: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--star-background) var(--percent),
-    var(--star-color) var(--percent)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hotel_description li {
-  height: 6rem;
-  padding: 0 1.5rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hotel_description li:first-child span {
-  margin-top: 4px;
-  cursor: pointer;
-}
-
-.hotel_description li:not(:last-child) {
-  border-right: 1px solid #fff;
-  flex: 0 0 calc(100% / 5);
-}
-
-.hotel_description li span,
-.hotel_description li a,
-.hotel_description li p {
-  color: #fff;
-}
-
-.hotel_description li img {
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
-}
-
-.hotel_description h2 {
-  margin: 0 auto 7px;
-  color: #fff;
-  font-size: 20px;
-}
-
-.hotel_description a {
-  color: #000;
-  font-size: 14px;
-}
-
-.hotel_description h2 + a {
-  text-decoration: underline;
-}
-
-.hotel_description li:last-child p:first-child {
-  margin-left: -7px;
-}
-
 .room_types .heading_container + p {
   margin: 15px 0 30px 0;
 }
@@ -127,42 +45,9 @@
   .room_types .heading_container + p {
     font-size: 12px;
   }
-
-  .hotel_description ul {
-    width: 100%;
-  }
-
-  .hotel_description li {
-    padding: 0 1rem;
-  }
 }
 
 @media (max-width: 768px) {
-  .hotel_description ul {
-    flex-direction: column;
-  }
-
-  .hotel_description li {
-    width: 100%;
-    height: unset;
-    padding: 0;
-  }
-
-  .hotel_description li:not(:last-child) {
-    padding-bottom: 20px;
-    border-right: 1px solid transparent;
-    border-bottom: 1px solid #fff;
-    flex: none;
-  }
-
-  .hotel_description li:not(:first-child) {
-    margin-top: 20px;
-  }
-
-  .hotel_description h2 + a {
-    text-align: center;
-  }
-
   .room_types__container {
     flex-flow: column;
     gap: 20px;

@@ -41,7 +41,7 @@ import galleryImage17 from "../../assets/Gallery/gallery_17.jpeg";
 import galleryImage18 from "../../assets/Gallery/gallery_18.jpeg";
 import galleryImage20 from "../../assets/Gallery/gallery_20.jpeg";
 
-import mobileIcon from "../../assets/mobile.png";
+import HotelDescription from "../../components/HotelDescription/HotelDescription";
 
 const Home = () => {
   const [allGalleryImages, setAllGalleryImages] = useState([
@@ -155,41 +155,7 @@ const Home = () => {
           </section>
         </Suspense>
         <Suspense fallback={<Loader />}>
-          <section className="hotel_description">
-            <div className="wrapper">
-              <ul>
-                <li>
-                  <p
-                    class="stars"
-                    aria-label="Rating of this website is 4.5 out of 5."
-                  >
-                    4.5
-                  </p>
-                  <span onClick={scrollTo}>Read recent reviews</span>
-                </li>
-                <li>
-                  <a href="tel:+919876543210">
-                    <img src={mobileIcon} alt="mobile icon" />
-                    <span>+919876543210</span>
-                  </a>
-                </li>
-                <li>
-                  <h2>Hotel Pride</h2>
-                  <a
-                    href="https://maps.app.goo.gl/FzN5Mz9sAc6a33Q66"
-                    target="_blank"
-                  >
-                    Lbs Marg, Rs, Dreams Mall Rd, next to Icici Bank, Bhandup
-                    West, Mumbai
-                  </a>
-                </li>
-                <li>
-                  <p>Check-in 12:00 PM</p>
-                  <p>Check-out 11:00 AM</p>
-                </li>
-              </ul>
-            </div>
-          </section>
+          <HotelDescription scrollTo={scrollTo} />
         </Suspense>
         <Suspense fallback={<Loader />}>
           <About />
