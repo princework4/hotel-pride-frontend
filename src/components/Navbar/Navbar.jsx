@@ -21,12 +21,11 @@ const Navbar = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
   const location = useLocation();
-  const [showHam, setShowHam] = useState(window.innerWidth <= 768);
+  const [showHam, setShowHam] = useState(window.innerWidth <= 997);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const [size, setSize] = useState({
-    width: undefined,
-    height: undefined,
+    width: window.innerWidth,
+    height: window.innerHeight,
   });
 
   const [open, setOpen] = React.useState(false);
@@ -200,10 +199,26 @@ const Navbar = () => {
                     className="login-btn login-btn-image"
                     onClick={handleOpen}
                   >
-                    {!showHam && (colorChange || location.pathname !== "/") ? (
-                      <img src={LoginImg} alt="login icon" />
+                    {showHam == true ? (
+                      <img
+                        src={WhiteLoginImg}
+                        alt="login icon"
+                        className={`${showHam}`}
+                      />
+                    ) : colorChange || location.pathname !== "/" ? (
+                      <img
+                        src={LoginImg}
+                        alt="login icon"
+                        className={`${colorChange} ${location.pathname}`}
+                      />
                     ) : (
-                      <img src={WhiteLoginImg} alt="login icon" />
+                      location.pathname === "/" && (
+                        <img
+                          src={WhiteLoginImg}
+                          alt="login icon"
+                          className={location.pathname}
+                        />
+                      )
                     )}{" "}
                     Sign In
                   </button>
