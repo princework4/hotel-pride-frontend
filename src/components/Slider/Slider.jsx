@@ -11,7 +11,7 @@ const ImageSlider = ({
   autoplay = false,
   isBanner = false,
   showDots = false,
-  sliderEnabled = true,
+  sliderEnabled = false,
 }) => {
   const settings = {
     infinite: true,

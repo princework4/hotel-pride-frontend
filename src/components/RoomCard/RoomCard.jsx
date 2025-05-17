@@ -44,7 +44,7 @@ const RoomCard = ({ roomType, roomDetails, roomId, assets, sliderEnabled }) => {
           slidesToScroll={1}
           images={assets}
           isCarousel={false}
-          showDots={true}
+          showDots={false}
           sliderEnabled={sliderEnabled}
         />
       </div>

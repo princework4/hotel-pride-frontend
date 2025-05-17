@@ -135,6 +135,7 @@ const RoomListing = ({ roomNumber }) => {
               slidesToScroll={1}
               images={roomType.assets}
               isCarousel={false}
+              showDots={false}
               sliderEnabled={false}
             />
             <ul className="room_details__chips">
