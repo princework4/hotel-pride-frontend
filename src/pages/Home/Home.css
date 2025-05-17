@@ -101,11 +101,13 @@
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .gallery__container figure {
   width: calc(100% / 3 - 30px);
-  margin: 0px 15px 30px 15px;
+  /* margin: 0px 15px 30px 15px; */
+  margin: 0px 5px 10px 5px;
 }
 
 .gallery__container figure img {

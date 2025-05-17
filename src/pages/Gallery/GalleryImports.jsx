@@ -43,18 +43,13 @@ export const allAssetsImages = [
     caption: "Non AC Image 1",
     category: "cat1",
   },
-  {
-    original: nonAcImage2,
-    thumbnail: nonAcImage2,
-    caption: "Non AC Image 2",
-    category: "cat1",
-  },
-  {
-    original: nonAcImage3,
-    thumbnail: nonAcImage3,
-    caption: "Non AC Image 3",
-    category: "cat1",
-  },
+
+  //   {
+  //     original: nonAcImage3,
+  //     thumbnail: nonAcImage3,
+  //     caption: "Non AC Image 3",
+  //     category: "cat1",
+  //   },
   {
     original: nonAcImage4,
     thumbnail: nonAcImage4,
@@ -62,15 +57,22 @@ export const allAssetsImages = [
     category: "cat1",
   },
   {
-    original: nonAcImage5,
-    thumbnail: nonAcImage5,
-    caption: "Non AC Image 5",
-    category: "cat1",
-  },
-  {
     original: nonAcImage6,
     thumbnail: nonAcImage6,
     caption: "Non AC Image 6",
+    category: "cat1",
+  },
+
+  {
+    original: nonAcImage2,
+    thumbnail: nonAcImage2,
+    caption: "Non AC Image 2",
+    category: "cat1",
+  },
+  {
+    original: nonAcImage5,
+    thumbnail: nonAcImage5,
+    caption: "Non AC Image 5",
     category: "cat1",
   },
   {
@@ -139,10 +141,16 @@ export const allAssetsImages = [
     caption: "Executive Image 5",
     category: "cat3",
   },
+  //   {
+  //     original: galleryImage1,
+  //     thumbnail: galleryImage1,
+  //     caption: "Gallery Image 1",
+  //     category: "cat0",
+  //   },
   {
-    original: galleryImage1,
-    thumbnail: galleryImage1,
-    caption: "Gallery Image 1",
+    original: galleryImage18,
+    thumbnail: galleryImage18,
+    caption: "Gallery Image 18",
     category: "cat0",
   },
   {
@@ -158,15 +166,41 @@ export const allAssetsImages = [
     category: "cat0",
   },
   {
-    original: galleryImage4,
-    thumbnail: galleryImage4,
-    caption: "Gallery Image 4",
+    original: galleryImage19,
+    thumbnail: galleryImage19,
+    caption: "Gallery Image 19",
     category: "cat0",
   },
   {
-    original: galleryImage5,
-    thumbnail: galleryImage5,
-    caption: "Gallery Image 5",
+    original: galleryImage20,
+    thumbnail: galleryImage20,
+    caption: "Gallery Image 20",
+    category: "cat0",
+  },
+  {
+    original: galleryImage10,
+    thumbnail: galleryImage10,
+    caption: "Gallery Image 10",
+    category: "cat0",
+  },
+
+  {
+    original: galleryImage16,
+    thumbnail: galleryImage16,
+    caption: "Gallery Image 16",
+    category: "cat0",
+  },
+
+  {
+    original: galleryImage15,
+    thumbnail: galleryImage15,
+    caption: "Gallery Image 15",
+    category: "cat0",
+  },
+  {
+    original: galleryImage17,
+    thumbnail: galleryImage17,
+    caption: "Gallery Image 17",
     category: "cat0",
   },
   {
@@ -182,11 +216,12 @@ export const allAssetsImages = [
     category: "cat0",
   },
   {
-    original: galleryImage8,
-    thumbnail: galleryImage8,
-    caption: "Gallery Image 8",
+    original: galleryImage11,
+    thumbnail: galleryImage11,
+    caption: "Gallery Image 11",
     category: "cat0",
   },
+
   {
     original: galleryImage9,
     thumbnail: galleryImage9,
@@ -194,17 +229,25 @@ export const allAssetsImages = [
     category: "cat0",
   },
   {
-    original: galleryImage10,
-    thumbnail: galleryImage10,
-    caption: "Gallery Image 10",
+    original: galleryImage4,
+    thumbnail: galleryImage4,
+    caption: "Gallery Image 4",
+    category: "cat0",
+  },
+
+  {
+    original: galleryImage5,
+    thumbnail: galleryImage5,
+    caption: "Gallery Image 5",
     category: "cat0",
   },
   {
-    original: galleryImage11,
-    thumbnail: galleryImage11,
-    caption: "Gallery Image 11",
+    original: galleryImage14,
+    thumbnail: galleryImage14,
+    caption: "Gallery Image 14",
     category: "cat0",
   },
+
   {
     original: galleryImage12,
     thumbnail: galleryImage12,
@@ -218,46 +261,9 @@ export const allAssetsImages = [
     category: "cat0",
   },
   {
-    original: galleryImage14,
-    thumbnail: galleryImage14,
-    caption: "Gallery Image 14",
-    category: "cat0",
-  },
-  {
-    original: galleryImage15,
-    thumbnail: galleryImage15,
-    caption: "Gallery Image 15",
-    category: "cat0",
-  },
-  {
-    original: galleryImage16,
-    thumbnail: galleryImage16,
-    caption: "Gallery Image 16",
-    category: "cat0",
-  },
-
-  {
-    original: galleryImage17,
-    thumbnail: galleryImage17,
-    caption: "Gallery Image 17",
-    category: "cat0",
-  },
-  {
-    original: galleryImage18,
-    thumbnail: galleryImage18,
-    caption: "Gallery Image 18",
-    category: "cat0",
-  },
-  {
-    original: galleryImage19,
-    thumbnail: galleryImage19,
-    caption: "Gallery Image 19",
-    category: "cat0",
-  },
-  {
-    original: galleryImage20,
-    thumbnail: galleryImage20,
-    caption: "Gallery Image 20",
+    original: galleryImage8,
+    thumbnail: galleryImage8,
+    caption: "Gallery Image 8",
     category: "cat0",
   },
 ];
