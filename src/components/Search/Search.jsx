@@ -132,7 +132,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                   borderColor: "#c4b991 !important",
                 },
                 "& label": {
-                  color: "#c4b991 !important",
+                  // color: "#c4b991 !important",
                   transform: "translate(14px, 8px) scale(1)",
                 },
                 "& label.MuiFormLabel-filled": {
@@ -161,7 +161,7 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
                   borderColor: "#c4b991 !important",
                 },
                 "& label": {
-                  color: "#c4b991 !important",
+                  // color: "#c4b991 !important",
                   transform: "translate(14px, 8px) scale(1)",
                 },
                 "& label.MuiFormLabel-filled": {
