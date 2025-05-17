@@ -191,6 +191,7 @@ const Location = () => {
               className="accordion"
               sx={{
                 "&.Mui-expanded": {
+                  color: "var(--sage)",
                   margin: "0",
                 },
               }}
@@ -207,6 +208,7 @@ const Location = () => {
               className="accordion"
               sx={{
                 "&.Mui-expanded": {
+                  color: "var(--sage)",
                   margin: "0",
                   "& button#panel2-header": {
                     borderBottom: "1px solid var(--sage)",
@@ -223,13 +225,14 @@ const Location = () => {
               </AccordionSummary>
               <AccordionDetails>
                 {" "}
-                <p>Pets Allowed : No</p>{" "}
+                <p style={{ color: "#000" }}>Pets Allowed : No</p>{" "}
               </AccordionDetails>
             </Accordion>
             <Accordion
               className="accordion"
               sx={{
                 "&.Mui-expanded": {
+                  color: "var(--sage)",
                   margin: "0",
                   "& button#panel3-header": {
                     borderBottom: "1px solid var(--sage)",
@@ -245,13 +248,16 @@ const Location = () => {
                 <Typography component="span">WiFi</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <p>Free standard in-room and lobby WiFi.</p>
+                <p style={{ color: "#000" }}>
+                  Free standard in-room and lobby WiFi.
+                </p>
               </AccordionDetails>
             </Accordion>
             <Accordion
               className="accordion"
               sx={{
                 "&.Mui-expanded": {
+                  color: "var(--sage)",
                   margin: "0",
                   "& button#panel4-header": {
                     borderBottom: "1px solid var(--sage)",
@@ -267,7 +273,7 @@ const Location = () => {
                 <Typography component="span">Cancellation</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <p>
+                <p style={{ color: "#000" }}>
                   Cancellation policies may vary depending on the rate or dates
                   of your reservation. If you need further assistance, call the
                   hotel directly.
@@ -278,6 +284,7 @@ const Location = () => {
               className="accordion"
               sx={{
                 "&.Mui-expanded": {
+                  color: "var(--sage)",
                   margin: "0",
                   "& button#panel5-header": {
                     borderBottom: "1px solid var(--sage)",
@@ -294,7 +301,7 @@ const Location = () => {
               </AccordionSummary>
               <AccordionDetails>
                 <div className="check_in_out">
-                  <ul>
+                  <ul style={{ color: "#000" }}>
                     <li>
                       <p>Check-in</p>
                     </li>
@@ -305,7 +312,7 @@ const Location = () => {
                       <p>Minimum age to Register</p>
                     </li>
                   </ul>
-                  <ul>
+                  <ul style={{ color: "#000" }}>
                     <li>
                       <p>12:00 PM</p>
                     </li>
@@ -323,6 +330,7 @@ const Location = () => {
               className="accordion"
               sx={{
                 "&.Mui-expanded": {
+                  color: "var(--sage)",
                   margin: "0",
                   "& button#panel6-header": {
                     borderBottom: "1px solid var(--sage)",
@@ -338,7 +346,9 @@ const Location = () => {
                 <Typography component="span">Payment</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <p>Cash, UPI, all major cards accepted.</p>
+                <p style={{ color: "#000" }}>
+                  Cash, UPI, all major cards accepted.
+                </p>
               </AccordionDetails>
             </Accordion>
           </div>

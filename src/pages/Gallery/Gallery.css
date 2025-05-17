@@ -27,6 +27,10 @@
   margin: 6rem 0 10px;
 }
 
+.gallery_page .heading_container + p {
+  text-align: center;
+}
+
 .gallery_page .filter_buttons {
   margin-top: 20px;
   display: flex;
@@ -152,5 +156,9 @@
 
   .gallery_page .grid > li {
     width: calc(100% - 30px);
+  }
+
+  .gallery_page .heading_container + p {
+    text-align: justify;
   }
 }

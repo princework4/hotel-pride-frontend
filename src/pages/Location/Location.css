@@ -2,6 +2,11 @@
   margin-top: 6rem;
 }
 
+.location .heading_container + p,
+.location .heading_container + p + p {
+  text-align: center;
+}
+
 .location__first_para,
 .location__second_para {
   margin: 0;
@@ -38,7 +43,7 @@
   height: 450px;
   padding: 0 30px;
   background-color: #fff;
-  color: var(--sage);
+  /* color: var(--sage); */
 }
 
 /* .location__map_contact-container h2 {
@@ -81,7 +86,7 @@
 
 .location__map_contact-container ul li a {
   margin-left: 20px;
-  color: var(--sage);
+  /* color: var(--sage); */
 }
 
 .location__map_contact-container ul li a::after {
@@ -89,7 +94,7 @@
   display: block;
   width: 0;
   height: 2px;
-  background: var(--sage);
+  background: #000;
   transition: width 0.3s ease-in-out;
   -webkit-transition: width 0.3s ease-in-out;
   -moz-transition: width 0.3s ease-in-out;
@@ -112,10 +117,10 @@
   padding: 20px;
   border-radius: 20px;
   background-color: #fff;
-  color: var(--sage);
 }
 
 .location .location__details li h3 {
+  color: var(--sage);
   font-size: 24px;
   font-weight: bold;
   text-align: center;
@@ -139,7 +144,7 @@
 }
 
 .location .location__subdetails li:not(:last-child) {
-  border-bottom: 1px solid var(--sage);
+  border-bottom: 1px solid #000;
 }
 
 .location .location__subdetails li:not(:first-child) {
@@ -190,7 +195,7 @@
 #panel4-header span span,
 #panel5-header span span,
 #panel6-header span span {
-  color: var(--sage);
+  /* color: var(--sage); */
   font-weight: bold;
 }
 
@@ -320,6 +325,11 @@
 }
 
 @media (max-width: 768px) {
+  .location .heading_container + p,
+  .location .heading_container + p + p {
+    text-align: justify;
+  }
+
   .location__first_para,
   .location__second_para {
     width: 100%;
