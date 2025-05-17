@@ -15,6 +15,7 @@ const settings = {
   autoplaySpeed: 2000,
   arrows: false,
   adaptiveHeight: true,
+  pauseOnHover: false,
   responsive: [
     {
       breakpoint: 997,

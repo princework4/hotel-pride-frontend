@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, lazy, Suspense, useRef } from "react";
 import RoomCard from "../../components/RoomCard";
 import { guestsReviews, allTabDetail } from "../../Constants";
 import { useLocation, useNavigate, useNavigationType } from "react-router-dom";
@@ -10,6 +10,7 @@ const Header = lazy(() => import("../../components/Header"));
 const Reviews = lazy(() => import("../../components/Reviews/Reviews"));
 const Search = lazy(() => import("../../components/Search"));
 import Loader from "../../components/Loader";
+import OfferHeader from "../../components/OfferHeader/OfferHeader";
 import { fetchAllRoomTypes } from "../../services/Rooms";
 import { useDispatch, useSelector } from "react-redux";
 import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
@@ -28,6 +29,9 @@ import {
   updateLoggedInUser,
 } from "../../features/auth/authSlice";
 import { checkOfferAvailability } from "../../utils";
+
+import { toast } from "react-toastify";
+
 import "./Home.css";
 
 import galleryImage3 from "../../assets/Gallery/gallery_3.jpeg";
@@ -38,9 +42,6 @@ import galleryImage18 from "../../assets/Gallery/gallery_18.jpeg";
 import galleryImage20 from "../../assets/Gallery/gallery_20.jpeg";
 
 import mobileIcon from "../../assets/mobile.png";
-import { toast } from "react-toastify";
-import { useRef } from "react";
-import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
 const Home = () => {
   const [allGalleryImages, setAllGalleryImages] = useState([

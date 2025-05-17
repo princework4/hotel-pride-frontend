@@ -161,8 +161,10 @@ const Navbar = () => {
                 onClick={toggleMenu}
                 style={
                   roomRedux.isOfferAvailable && menuOpen
-                    ? { top: "-70px" }
-                    : { top: 0 }
+                    ? { position: "relative", top: "-70px" }
+                    : !roomRedux.isOfferAvailable && menuOpen
+                    ? { position: "relative", top: "-5px" }
+                    : {}
                 }
               >
                 <span></span>
@@ -198,7 +200,7 @@ const Navbar = () => {
                     className="login-btn login-btn-image"
                     onClick={handleOpen}
                   >
-                    {colorChange ? (
+                    {!showHam && (colorChange || location.pathname !== "/") ? (
                       <img src={LoginImg} alt="login icon" />
                     ) : (
                       <img src={WhiteLoginImg} alt="login icon" />
