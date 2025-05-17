@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from "../Slider";
 import "./Banner.css";
 
-import MobileVideo from "../../assets/Hotel+Pride_Mobile.mp4";
+// import MobileVideo from "../../assets/Hotel+Pride_Mobile.mp4";
 
 // import BannerImg1 from "../../assets/Gallery/building_backside.jpeg";
 // import BannerImg2 from "../../assets/Gallery/hotel_img_1.jpeg";
@@ -33,7 +33,7 @@ const Banner = () => {
         src={
           width > 768
             ? "https://priyhotel-storage.s3.us-east-1.amazonaws.com/Hotel+Pride.mp4"
-            : MobileVideo
+            : "https://priyhotel-storage.s3.us-east-1.amazonaws.com/hotel+pride+mobile+video.mp4"
         }
         typeof="video/mp4"
       />

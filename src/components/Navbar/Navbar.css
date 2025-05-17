@@ -166,6 +166,7 @@
   padding: 0 0 1px 0;
   color: #fff;
   /* font-size: 18px; */
+  font-family: "Avenir Next", "Arial", "Helvetica", sans-serif;
 }
 
 .nav-items.show ul li a.active {
