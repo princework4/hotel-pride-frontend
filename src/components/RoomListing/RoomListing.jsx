@@ -7,8 +7,7 @@ import TV from "../../assets/tv-solid.svg";
 import Tea from "../../assets/mug-hot-solid.svg";
 import WaterBottle from "../../assets/bottle-water-solid.svg";
 import Wifi from "../../assets/wifi-solid.svg";
-import PopupRoomDetails from "../PopupRoomDetails";
-import PopupRateDetails from "../PopupRateDetails/PopupRateDetails";
+import PopupRateDetails from "../PopupRateDetails";
 import { useNavigate, useParams } from "react-router-dom";
 import "./RoomListing.css";
 
@@ -22,74 +21,33 @@ const RoomListing = ({ roomNumber }) => {
   const dispatch = useDispatch();
   const [roomTypes, setRoomTypes] = useState(roomRedux.availableRoomTypes);
   const [openRoomDetails, setOpenRoomDetails] = React.useState({});
-  const [openRateDetails, setOpenRateDetails] = React.useState({
-    withBreakfast: {},
-    withoutBreakfast: {},
-  });
-  // const { id } = useParams();
+  const [discountedPrice, setDiscountedPrice] = useState(0);
   let navigate = useNavigate();
 
-  function initializePopupState(isRoomDetails) {
-    if (isRoomDetails) {
-      const obj = {};
-      for (let i = 0; i < roomTypes?.length; i++) {
-        obj[roomTypes[i]["id"]] = false;
-      }
-      return obj;
-    } else {
-      const withBreakfast = {};
-      const withoutBreakfast = {};
-      for (let i = 0; i < roomTypes?.length; i++) {
-        withBreakfast[roomTypes[i]["id"]] = false;
-        withoutBreakfast[roomTypes[i]["id"]] = false;
-      }
-      return {
-        withBreakfast: withBreakfast,
-        withoutBreakfast: withoutBreakfast,
-      };
+  function initializePopupState() {
+    const obj = {};
+    for (let i = 0; i < roomTypes?.length; i++) {
+      obj[roomTypes[i]["id"]] = false;
     }
+    return obj;
   }
-
-  // async function getSingleRoomType() {
-  //   const data = await fetchSingleRoomTypes(id);
-  //   setRoomTypes([data]);
-  // }
 
   useEffect(() => {
     if (!guestDetailsRedux.checkInDate || !guestDetailsRedux.checkOutDate) {
       navigate("/");
     }
 
-    setOpenRoomDetails(initializePopupState(true));
-    setOpenRateDetails(initializePopupState(false));
-
-    // if (id != "all") {
-    //   getSingleRoomType();
-    // }
+    setOpenRoomDetails(initializePopupState());
   }, []);
 
-  const handleRoomDetailsOpen = (idx) => {
+  const handleRateDetailsOpen = (idx) => {
     const temp = { ...openRoomDetails };
     temp[idx] = true;
     setOpenRoomDetails(temp);
   };
 
-  const handleRoomDetailsClose = () =>
+  const handleRateDetailsClose = () =>
     setOpenRoomDetails(initializePopupState(true));
-
-  const handleRateDetailsOpen = (idx, isBreakfastIncluded) => {
-    const temp = { ...openRateDetails };
-    if (isBreakfastIncluded) {
-      temp["withBreakfast"][idx] = true;
-    } else {
-      temp["withoutBreakfast"][idx] = true;
-    }
-    setOpenRateDetails(temp);
-  };
-
-  const handleRateDetailsClose = () => {
-    setOpenRateDetails(initializePopupState(false));
-  };
 
   function handleButtonClick(
     roomType,
@@ -115,7 +73,11 @@ const RoomListing = ({ roomNumber }) => {
   }
 
   function calculateOfferedPrice(price, id) {
-    return Math.round(Number(price * ((100 - roomRedux.offers[id]) / 100)));
+    const newPrice = Math.round(
+      Number(price * ((100 - roomRedux.offers[id]) / 100))
+    );
+    setDiscountedPrice(newPrice);
+    return newPrice;
   }
 
   return (
@@ -167,194 +129,126 @@ const RoomListing = ({ roomNumber }) => {
             </ul>
             <button
               className="room_details__popup-button"
-              onClick={() => handleRoomDetailsOpen(roomType.id)}
+              onClick={() => handleRateDetailsOpen(roomType.id)}
             >
-              room details
+              rate details
             </button>
-            <PopupRoomDetails
+            <PopupRateDetails
               open={openRoomDetails[roomType.id]}
-              handleClose={handleRoomDetailsClose}
+              handleClose={handleRateDetailsClose}
               id={roomType.id}
-              key={roomType.id}
             />
           </div>
           <div className="room_price">
-            <h3>{roomType.typeName}</h3>
+            <h2>{roomType.typeName}</h2>
             <div className="room_price__container">
-              <div className="room_price__with_breakfast">
-                <div className="room_price__with_breakfast-left">
-                  <h4>With Breakfast</h4>
-                  <ul>
-                    <li>
-                      <SquareIcon sx={{ width: "10px", color: "#c4b991" }} />
-                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
+              <p className="roomtype_description">{roomType.description}</p>
+              <div className="roomtype_features_container">
+                <h3>key features</h3>
+                <div className="roomtype_features_wrapper">
+                  <ul className="roomtype_features_description">
+                    <li className="first_child">
+                      <span>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit.
+                      </span>
                     </li>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#c4b991" }} />
-                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
+                      <span>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      </span>
                     </li>
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#c4b991" }} />
-                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
+                      <span>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. ipsum.
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      </span>
+                    </li>
+                    <li>
+                      <span>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit.
+                      </span>
                     </li>
                   </ul>
-                  <button
-                    className="rate_details__popup-button"
-                    onClick={() => handleRateDetailsOpen(roomType.id, true)}
-                  >
-                    rate details
-                  </button>
-                  <PopupRateDetails
-                    isBreakfastIncluded={true}
-                    open={openRateDetails["withBreakfast"][roomType.id]}
-                    handleClose={handleRateDetailsClose}
-                    id={roomType.id}
-                  />
-                </div>
-                <div className="room_price__with_breakfast-right">
-                  <div>
-                    <span
-                      className={
-                        roomRedux.isOfferAvailable ? "cancelled_price" : "price"
-                      }
-                    >
-                      &#8377;{roomType.pricePerNight + roomRedux.breakfastPrice}
-                    </span>
-                    {roomRedux.isOfferAvailable && (
-                      <span className="offer_percent">
-                        ({roomRedux.offers[roomType.id]}% off)
-                      </span>
-                    )}
-                  </div>
-                  {roomRedux.isOfferAvailable && (
-                    <span className="offered_price">
-                      &#8377;
-                      {calculateOfferedPrice(
-                        roomType.pricePerNight + roomRedux.breakfastPrice,
-                        roomType.id
-                      )}
-                    </span>
-                  )}
-                  <button
-                    className={
-                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
-                      roomType.id
-                        ? "selected_room_button"
-                        : ""
-                    }
-                    disabled={
-                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
-                      roomType.id
-                    }
-                    onClick={() =>
-                      handleButtonClick(
-                        roomType.typeName,
-                        true,
-                        roomRedux.isOfferAvailable
-                          ? calculateOfferedPrice(
-                              roomType.pricePerNight + roomRedux.breakfastPrice,
-                              roomType.id
-                            )
-                          : Number(
-                              roomType.pricePerNight + roomRedux.breakfastPrice
-                            ),
-                        roomType.id
-                      )
-                    }
-                  >
-                    {roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
-                    roomType.id
-                      ? "selected"
-                      : "select"}
-                  </button>
-                </div>
-              </div>
-              <div className="room_price__without_breakfast">
-                <div className="room_price__with_breakfast-left">
-                  <h4>Without Breakfast</h4>
-                  <ul>
+                  <hr />
+                  <ul className="roomtype_price_wrapper">
                     <li>
-                      <SquareIcon sx={{ width: "10px", color: "#c4b991" }} />
-                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
-                    </li>
-                    <li>
-                      <SquareIcon sx={{ width: "10px", color: "#c4b991" }} />
-                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
-                    </li>
-                    <li>
-                      <SquareIcon sx={{ width: "10px", color: "#c4b991" }} />
-                      <p>Lorem ipsum, dolor sit amet consectetur elit.</p>
-                    </li>
-                  </ul>
-                  <button
-                    className="rate_details__popup-button"
-                    onClick={() => handleRateDetailsOpen(roomType.id, false)}
-                  >
-                    rate details
-                  </button>
-                  <PopupRateDetails
-                    isBreakfastIncluded={false}
-                    open={openRateDetails["withoutBreakfast"][roomType.id]}
-                    handleClose={handleRateDetailsClose}
-                    id={roomType.id}
-                  />
-                </div>
-                <div className="room_price__with_breakfast-right">
-                  <div>
-                    <span
-                      className={
-                        roomRedux.isOfferAvailable ? "cancelled_price" : "price"
-                      }
-                    >
-                      &#8377;{roomType.pricePerNight}
-                    </span>
-                    {roomRedux.isOfferAvailable && (
-                      <span className="offer_percent">
-                        ({roomRedux.offers[roomType.id]}% off)
-                      </span>
-                    )}
-                  </div>
-                  {roomRedux.isOfferAvailable && (
-                    <span className="offered_price">
-                      &#8377;
-                      {calculateOfferedPrice(
-                        roomType.pricePerNight,
-                        roomType.id
-                      )}
-                    </span>
-                  )}
-                  <button
-                    className={
-                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
-                      roomType.id
-                        ? "selected_room_button"
-                        : ""
-                    }
-                    disabled={
-                      roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
-                      roomType.id
-                    }
-                    onClick={() =>
-                      handleButtonClick(
-                        roomType.typeName,
-                        false,
-                        roomRedux.isOfferAvailable
-                          ? calculateOfferedPrice(
+                      <div className="roomtype__price">
+                        <span
+                          className={
+                            roomRedux.isOfferAvailable
+                              ? "cancelled_price"
+                              : "price"
+                          }
+                        >
+                          &#8377;{roomType.pricePerNight}
+                        </span>
+                        {roomRedux.isOfferAvailable && (
+                          <span className="offer_percent">
+                            ({roomRedux.offers[roomType.id]}% off)
+                          </span>
+                        )}
+                        {roomRedux.isOfferAvailable && (
+                          <span className="offered_price">
+                            &#8377;
+                            {calculateOfferedPrice(
                               roomType.pricePerNight,
                               roomType.id
-                            )
-                          : Number(roomType.pricePerNight),
-                        roomType.id
-                      )
-                    }
-                  >
-                    {roomRedux.selectedRooms?.[roomNumber]?.selectedRoomId ==
-                    roomType.id
-                      ? "selected"
-                      : "select"}
-                  </button>
+                            )}
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        className={
+                          roomRedux.selectedRooms?.[roomNumber]
+                            ?.selectedRoomId == roomType.id
+                            ? "selected_room_button"
+                            : ""
+                        }
+                        disabled={
+                          roomRedux.selectedRooms?.[roomNumber]
+                            ?.selectedRoomId == roomType.id
+                        }
+                        onClick={() =>
+                          handleButtonClick(
+                            roomType.typeName,
+                            false,
+                            roomRedux.isOfferAvailable
+                              ? Number(discountedPrice)
+                              : Number(roomType.pricePerNight),
+                            roomType.id
+                          )
+                        }
+                      >
+                        {roomRedux.selectedRooms?.[roomNumber]
+                          ?.selectedRoomId == roomType.id
+                          ? "selected"
+                          : "select"}
+                      </button>
+                    </li>
+                  </ul>
                 </div>
               </div>
+              {/* <ul className="roomtype_features_description">
+                  {roomType.map((feature) => (
+                    <li>
+                      <SquareIcon
+                        sx={{
+                          width: "10px",
+                          height: { xs: "15px" },
+                          color: "#c4b991",
+                        }}
+                      />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul> */}
             </div>
           </div>
         </div>

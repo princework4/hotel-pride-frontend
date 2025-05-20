@@ -9,8 +9,10 @@ import Tea from "../../assets/mug-hot-solid.svg";
 import WaterBottle from "../../assets/bottle-water-solid.svg";
 import Wifi from "../../assets/wifi-solid.svg";
 import "./RoomCard.css";
+import { useSelector } from "react-redux";
 
 const RoomCard = ({ roomType, roomDetails, roomId, assets, sliderEnabled }) => {
+  const roomRedux = useSelector((state) => state.roomReducer);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -49,7 +51,14 @@ const RoomCard = ({ roomType, roomDetails, roomId, assets, sliderEnabled }) => {
         />
       </div>
       <div className="room_card_description">
-        <h3>{roomType}</h3>
+        <h3>
+          {roomType}
+          {roomRedux.isOfferAvailable && (
+            <span className="offer_percent">
+              ({roomRedux.offers[roomId]}% off)
+            </span>
+          )}
+        </h3>
         <ul className="room_details_chips">
           {roomDetails?.map((item, i) => (
             <li key={i}>

@@ -1,5 +1,6 @@
 .payment_failed_card {
-  padding: 60px;
+  /* padding: 60px; */
+  padding: 30px 20px;
   border-radius: 4px;
   border-bottom: 4px solid red;
   margin: 0 auto;
@@ -42,4 +43,40 @@
 
 .payment_failed_card button {
   margin-top: 10px;
+}
+
+@media (max-width: 1600px) {
+  .payment_successful_card {
+    width: 25%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .payment_successful_card {
+    width: 30%;
+  }
+}
+
+@media (max-width: 997px) {
+  .payment_successful_card {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .payment_successful_card {
+    width: 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  .payment_successful_card {
+    width: 65%;
+  }
+}
+
+@media (max-width: 600px) {
+  .payment_successful_card {
+    width: 80%;
+  }
 }

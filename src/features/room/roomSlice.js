@@ -232,13 +232,14 @@ export const roomSlice = createSlice({
     ],
     allRoomTypesName: [],
     availableRoomTypes: [],
-    breakfastPrice: 150,
     isOfferAvailable: false,
     offers: {},
     offerEndDate: "",
     selectedRooms: [],
     selectedRoomTypeId: null,
-    tax: 2000,
+    taxPercent: 12,
+    totalAmount: 0,
+    totalAmountAfterTax: 0,
   },
   reducers: {
     updateAllRoomTypes: (state, action) => {
@@ -265,6 +266,12 @@ export const roomSlice = createSlice({
     updateSelectedRoomTypeId: (state, action) => {
       state.selectedRoomTypeId = action.payload;
     },
+    updateTotalAmount: (state, action) => {
+      state.totalAmount = action.payload;
+    },
+    updateTotalAmountAfterTax: (state, action) => {
+      state.totalAmountAfterTax = action.payload;
+    },
   },
 });
 
@@ -277,6 +284,8 @@ export const {
   updateOfferEndDate,
   updateSelectedRooms,
   updateSelectedRoomTypeId,
+  updateTotalAmount,
+  updateTotalAmountAfterTax,
 } = roomSlice.actions;
 
 export default roomSlice.reducer;

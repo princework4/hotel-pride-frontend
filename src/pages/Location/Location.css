@@ -16,7 +16,8 @@
 }
 
 .location__first_para {
-  margin: 20px 0;
+  /* margin: 20px 0; */
+  margin-bottom: 20px;
 }
 
 .location__map_contact-container {
@@ -378,6 +379,6 @@
   }
 
   .location .heading_container h2 {
-    font-size: 20px;
+    font-size: 19px;
   }
 }

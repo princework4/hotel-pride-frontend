@@ -1,26 +1,16 @@
 import React, { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./PaymentSuccessful.css";
 
 const PaymentSuccessful = () => {
   const navigate = useNavigate();
-  // const { state } = useLocation();
 
   useEffect(() => {
-    // if (!state) {
-    //   navigate("/", { replace: true });
-    //   return;
-    // }
-
-    console.log("in useeffect success");
     const timer = setTimeout(() => {
       navigate("/");
     }, [5000]);
-
     return () => clearTimeout(timer);
   }, []);
-
-  // if (!state) return null;
 
   return (
     <div className="payment_successful_card">

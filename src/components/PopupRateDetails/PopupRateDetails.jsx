@@ -4,7 +4,7 @@ import SquareIcon from "@mui/icons-material/Square";
 import "./PopupRateDetails.css";
 import { useSelector } from "react-redux";
 
-const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
+const PopupRateDetails = ({ open, handleClose, id }) => {
   const roomRedux = useSelector((state) => state.roomReducer);
   const [rooms, setRooms] = useState(roomRedux.allRoomTypes);
 
@@ -20,8 +20,8 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
       md: "550px",
     },
     height: {
-      xs: "280px",
-      sm: "260px",
+      xs: "300px",
+      sm: "300px",
     },
     padding: {
       xs: "20px 15px",
@@ -45,9 +45,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
       className="popup_rate_details"
     >
       <Box sx={style}>
-        <h3>
-          {isBreakfastIncluded ? "Breakfast Included" : "Without Breakfast"}
-        </h3>
+        <h3>Rate Details</h3>
         {/* <div>
           <h4>rate description</h4>
           <ul>
@@ -56,7 +54,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
               <SquareIcon
                 sx={{
                   width: "10px",
-                  height: { xs: "13px", md: "1em" },
+                  height: { xs: "15px" },
                   color: "#c4b991",
                 }}
               />
@@ -69,7 +67,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
               <SquareIcon
                 sx={{
                   width: "10px",
-                  height: { xs: "13px", md: "1em" },
+                  height: { xs: "15px" },
                   color: "#c4b991",
                 }}
               />
@@ -80,7 +78,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
               <SquareIcon
                 sx={{
                   width: "10px",
-                  height: { xs: "13px", md: "1em" },
+                  height: { xs: "15px" },
                   color: "#c4b991",
                 }}
               />
@@ -90,11 +88,11 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
         </div> */}
         <h4>cancellation policy</h4>
         <ul>
-          <li style={{ height: "30px" }}>
+          <li style={{ height: "30px", lineHeight: "18px" }}>
             {/* <SquareIcon
               sx={{
                 width: "10px",
-                height: { xs: "13px", md: "1em" },
+                height: { xs: "15px" },
                 color: "#c4b991",
               }}
             /> */}
@@ -104,13 +102,13 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
             </span>
           </li>
         </ul>
-        <h4>extra guest charges</h4>
+        <h4 className="second_heading">extra guest charges</h4>
         <ul>
           <li>
             {/* <SquareIcon
               sx={{
                 width: "10px",
-                height: { xs: "13px", md: "1em" },
+                height: { xs: "15px" },
                 color: "#c4b991",
               }}
             /> */}
@@ -123,7 +121,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
             <SquareIcon
               sx={{
                 width: "10px",
-                height: { xs: "13px", md: "1em" },
+                height: { xs: "15px" },
                 color: "#c4b991",
               }}
             />
@@ -133,7 +131,7 @@ const PopupRateDetails = ({ isBreakfastIncluded, open, handleClose, id }) => {
             <SquareIcon
               sx={{
                 width: "10px",
-                height: { xs: "13px", md: "1em" },
+                height: { xs: "15px" },
                 color: "#c4b991",
               }}
             />

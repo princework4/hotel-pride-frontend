@@ -31,9 +31,9 @@
 }
 
 .popup_rate_details ul li {
-  height: 15px;
+  height: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-size: 14px;
 }
 
@@ -60,5 +60,11 @@
   .popup_rate_details ul li span,
   .popup_rate_details p {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .popup_rate_details .second_heading {
+    margin-top: 40px;
   }
 }

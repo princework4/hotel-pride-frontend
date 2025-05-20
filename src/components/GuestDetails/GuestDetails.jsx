@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateGuestDetails } from "../../features/guest/guestSlice";
 import { updateSteppersActiveStep } from "../../features/nonFunctional/nonFunctionalSlice";
 import "./GuestDetails.css";
+import { updateTotalAmountAfterTax } from "../../features/room/roomSlice";
 
 const validationSchema = Yup.object().shape({
   fname: Yup.string()
@@ -72,6 +73,14 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     bgcolor: "background.paper",
     overflow: "auto",
   };
+
+  function calculateTax(totalPrice) {
+    const taxValue = Number(
+      ((totalPrice * roomRedux.taxPercent) / 100).toFixed(2)
+    );
+    dispatch(updateTotalAmountAfterTax(totalPrice + taxValue));
+    return taxValue;
+  }
 
   return (
     <Formik
@@ -269,12 +278,12 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                   </li>
                   <li>
                     <span>Taxes</span>
-                    <span>&#8377; {roomRedux.tax}</span>
+                    <span>&#8377; {calculateTax(totalPrice)}</span>
                   </li>
                 </ul>
                 <div className="payment_summary__summed_total_price">
                   <span>Total Price</span>
-                  <span>&#8377; {totalPrice + roomRedux.tax}</span>
+                  <span>&#8377; {roomRedux.totalAmountAfterTax}</span>
                 </div>
               </div>
             </Box>

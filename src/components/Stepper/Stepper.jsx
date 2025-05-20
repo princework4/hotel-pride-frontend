@@ -170,7 +170,7 @@ export default function CustomStepper() {
           setActiveStep={setActiveStep}
         />
       ) : (
-        <Payment totalPrice={totalPrice} />
+        <Payment />
       )}
     </Box>
   );

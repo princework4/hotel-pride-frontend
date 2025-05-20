@@ -63,6 +63,7 @@
 
   .room_types__container .slick-slide img,
   .room_types__container .imgslider {
+    object-fit: contain;
     height: 100%;
   }
 
@@ -72,11 +73,6 @@
 }
 
 @media (max-width: 451px) {
-  .room_types__container .slick-slide img,
-  .room_types__container .imgslider {
-    height: 30vh;
-  }
-
   .gallery__container {
     gap: 20px;
   }

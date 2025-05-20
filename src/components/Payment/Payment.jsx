@@ -19,7 +19,7 @@ import Logo from "../../assets/Logo-Pride.jpg";
 import PaymentSuccessful from "./PaymentSuccessful";
 import PaymentFailed from "./PaymentFailed";
 
-const Payment = ({ totalPrice }) => {
+const Payment = () => {
   const guestDetailsRedux = useSelector((state) => state.searchReducer);
   const roomRedux = useSelector((state) => state.roomReducer);
   const authRedux = useSelector((state) => state.authReducer);
@@ -45,6 +45,7 @@ const Payment = ({ totalPrice }) => {
   }
 
   async function proceedWithBookingConfirmation() {
+    console.log(roomRedux);
     if (authRedux.isUserLoggedIn) {
       const finalLoggedInBookingDetailsObj = {
         userId: authRedux.loggedInUser.id,
@@ -55,8 +56,8 @@ const Payment = ({ totalPrice }) => {
         checkInDate: guestDetailsRedux.checkInDate,
         checkOutDate: guestDetailsRedux.checkOutDate,
         paymentType: "PREPAID",
-        totalAmount: totalPrice + roomRedux.tax,
-        payableAmount: totalPrice + roomRedux.tax,
+        totalAmount: Number(roomRedux.totalPriceAfterTax),
+        payableAmount: Number(roomRedux.totalPriceAfterTax),
         roomBookingList: generateRoomBookingListData(roomRedux.selectedRooms),
       };
 
@@ -85,8 +86,8 @@ const Payment = ({ totalPrice }) => {
         checkInDate: guestDetailsRedux.checkInDate,
         checkOutDate: guestDetailsRedux.checkOutDate,
         paymentType: "PREPAID",
-        totalAmount: totalPrice + roomRedux.tax,
-        payableAmount: totalPrice + roomRedux.tax,
+        totalAmount: Number(roomRedux.totalAmountAfterTax),
+        payableAmount: Number(roomRedux.totalAmountAfterTax),
         roomBookingList: generateRoomBookingListData(roomRedux.selectedRooms),
       };
 
@@ -135,7 +136,7 @@ const Payment = ({ totalPrice }) => {
     const options = {
       key: process.env.PAYMENT_KEY,
       // key: "rzp_test_B9mzPUuuN7s5Ng",
-      amount: totalPrice + roomRedux.tax,
+      amount: Number(roomRedux.totalPriceAfterTax),
       currency: "INR",
       name: "Hotel Pride",
       description: "Hotel Pride Room Booking Transaction",
