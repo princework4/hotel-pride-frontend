@@ -72,16 +72,6 @@ const RoomListing = ({ roomNumber }) => {
     dispatch(updateSelectedRooms(temp));
   }
 
-  // function calculateOfferedPrice(price, id) {
-  //   const newPrice = Math.round(
-  //     Number(price * ((100 - roomRedux.offers[id]) / 100))
-  //   );
-  //   setDiscountedPrice(newPrice);
-  //   return newPrice;
-  // }
-
-  console.log(roomRedux);
-
   return (
     <div className="room_listing">
       {roomTypes?.map((roomType, index) => (
@@ -205,12 +195,6 @@ const RoomListing = ({ roomNumber }) => {
                               roomRedux.allRoomTypesWithKeyAsId[roomType.id]
                                 .priceAfterOffer
                             }
-                            {/* {console.log(roomType.id)}
-                            {console.log(roomRedux.allRoomTypes["1"])} */}
-                            {/* {calculateOfferedPrice(
-                              roomType.pricePerNight,
-                              roomType.id
-                            )} */}
                           </span>
                         )}
                       </div>

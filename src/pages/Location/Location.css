@@ -16,7 +16,6 @@
 }
 
 .location__first_para {
-  /* margin: 20px 0; */
   margin-bottom: 20px;
 }
 
@@ -44,14 +43,7 @@
   height: 450px;
   padding: 0 30px;
   background-color: #fff;
-  /* color: var(--sage); */
 }
-
-/* .location__map_contact-container h2 {
-  margin: 20px 0 50px;
-  display: block;
-  text-align: center;
-} */
 
 .location__map_contact-container ul {
   display: flex;
@@ -87,7 +79,6 @@
 
 .location__map_contact-container ul li a {
   margin-left: 20px;
-  /* color: var(--sage); */
 }
 
 .location__map_contact-container ul li a::after {
@@ -196,7 +187,6 @@
 #panel4-header span span,
 #panel5-header span span,
 #panel6-header span span {
-  /* color: var(--sage); */
   font-weight: bold;
 }
 

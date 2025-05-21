@@ -68,13 +68,6 @@ const RoomCard = ({ roomType, roomDetails, roomId, assets, sliderEnabled }) => {
         </ul>
         <p>Basic Amenities</p>
         <ul className="basic_amenities">
-          {/* Use below code */}
-          {/* {amenities?.map((amenity) => {
-            <li>
-              <img src={amenity.amenityIconUrl} alt={amenity.amenityName} />
-            </li>;
-          })} */}
-
           {/* Don't use this code */}
           <li>
             <img src={TV} />

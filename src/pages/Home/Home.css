@@ -1,7 +1,6 @@
 :root {
   --star-size: 25px;
   --star-color: #fff;
-  /* --star-background: #fc0; */
   --star-background: #00aa6c;
 }
 
@@ -24,7 +23,6 @@
 
 .gallery__container figure {
   width: calc(100% / 3 - 30px);
-  /* margin: 0px 15px 30px 15px; */
   margin: 0px 5px 10px 5px;
 }
 
@@ -51,10 +49,6 @@
   .room_types__container {
     flex-flow: column;
     gap: 20px;
-  }
-
-  .gallery__container {
-    /* justify-content: center; */
   }
 
   .gallery__container figure {

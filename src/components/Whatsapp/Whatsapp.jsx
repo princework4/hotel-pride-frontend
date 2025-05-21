@@ -28,7 +28,6 @@ const Whatsapp = () => {
         class="float"
         target="_blank"
       >
-        {/* <WhatsAppIcon sx={{ width: "30px", height: "30px", color: "green" }} /> */}
         <img src={WhatsappIcon} alt="whatsapp icon" />
       </a>
     </div>

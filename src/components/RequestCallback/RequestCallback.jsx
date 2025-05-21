@@ -157,7 +157,6 @@ const RequestCallback = () => {
                     sx={TextFieldStyle}
                   />
                 </FormControl>
-                {/* <div className="request_callback__guest_room_container"> */}
                 <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
                   <TextField
                     type="number"
@@ -186,7 +185,6 @@ const RequestCallback = () => {
                     sx={TextFieldStyle}
                   />
                 </FormControl>
-                {/* </div> */}
                 <Button
                   type="submit"
                   className="request_callback_btn"

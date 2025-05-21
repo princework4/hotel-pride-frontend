@@ -43,13 +43,6 @@ export const allAssetsImages = [
     caption: "Non AC Image 1",
     category: "cat1",
   },
-
-  //   {
-  //     original: nonAcImage3,
-  //     thumbnail: nonAcImage3,
-  //     caption: "Non AC Image 3",
-  //     category: "cat1",
-  //   },
   {
     original: nonAcImage4,
     thumbnail: nonAcImage4,
@@ -141,12 +134,6 @@ export const allAssetsImages = [
     caption: "Executive Image 5",
     category: "cat3",
   },
-  //   {
-  //     original: galleryImage1,
-  //     thumbnail: galleryImage1,
-  //     caption: "Gallery Image 1",
-  //     category: "cat0",
-  //   },
   {
     original: galleryImage18,
     thumbnail: galleryImage18,

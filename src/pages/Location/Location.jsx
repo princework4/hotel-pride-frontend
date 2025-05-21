@@ -52,7 +52,6 @@ const Location = () => {
       <section className="location">
         <div className="wrapper">
           <div className="heading_container">
-            {/* <hr /> */}
             <h2>location and transportation</h2>
           </div>
           <p className="location__first_para">
@@ -88,7 +87,6 @@ const Location = () => {
                   <img src={Logo} alt="logo" />
                 </Link>
               </h1>
-              {/* <h2>hotel pride</h2> */}
               <ul>
                 <li>
                   <span className="location__map_contact-container__heading">
@@ -186,24 +184,6 @@ const Location = () => {
           </ul>
           <div className="hotel_policies">
             <h2>hotel policies</h2>
-            {/* <Accordion
-              disabled
-              className="accordion"
-              sx={{
-                "&.Mui-expanded": {
-                  color: "var(--sage)",
-                  margin: "0",
-                },
-              }}
-            >
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <Typography component="span">Parking</Typography>
-              </AccordionSummary>
-            </Accordion> */}
             <Accordion
               className="accordion"
               sx={{

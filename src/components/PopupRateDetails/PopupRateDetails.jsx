@@ -46,56 +46,9 @@ const PopupRateDetails = ({ open, handleClose, id }) => {
     >
       <Box sx={style}>
         <h3>Rate Details</h3>
-        {/* <div>
-          <h4>rate description</h4>
-          <ul>
-            <li>
-              {" "}
-              <SquareIcon
-                sx={{
-                  width: "10px",
-                  height: { xs: "15px" },
-                  color: "#c4b991",
-                }}
-              />
-              <span>
-                Inclusive of buffet breakfast at a designated dining venue
-              </span>
-            </li>
-            <li>
-              {" "}
-              <SquareIcon
-                sx={{
-                  width: "10px",
-                  height: { xs: "15px" },
-                  color: "#c4b991",
-                }}
-              />
-              <span>Inclusive of standard Wi-Fi</span>
-            </li>
-            <li>
-              {" "}
-              <SquareIcon
-                sx={{
-                  width: "10px",
-                  height: { xs: "15px" },
-                  color: "#c4b991",
-                }}
-              />
-              <span>Applicable taxes extra</span>
-            </li>
-          </ul>
-        </div> */}
         <h4>cancellation policy</h4>
         <ul>
           <li style={{ height: "30px", lineHeight: "18px" }}>
-            {/* <SquareIcon
-              sx={{
-                width: "10px",
-                height: { xs: "15px" },
-                color: "#c4b991",
-              }}
-            /> */}
             <span>
               For any type of cancellation, please contact the hotel directly.
               We will assist you based on your specific request.
@@ -105,13 +58,6 @@ const PopupRateDetails = ({ open, handleClose, id }) => {
         <h4 className="second_heading">extra guest charges</h4>
         <ul>
           <li>
-            {/* <SquareIcon
-              sx={{
-                width: "10px",
-                height: { xs: "15px" },
-                color: "#c4b991",
-              }}
-            /> */}
             <span>&#8377;700 per additional guest per night.</span>
           </li>
         </ul>

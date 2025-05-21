@@ -19,7 +19,6 @@ const Routing = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="about" element={<About />} /> */}
         <Route path="gallery" element={<Gallery />} />
         <Route path="location" element={<Location />} />
         <Route path="rooms" element={<Rooms />} />

@@ -106,17 +106,6 @@
   .hotel_description #simple-tabpanel-3 p:first-child {
     margin-left: -5px;
   }
-
-  /* .hotel_description a {
-    color: #f2f2f2;
-  } */
-  /* .hotel_description ul {
-    width: 100%;
-  }
-
-  .hotel_description li {
-    padding: 0 1rem;
-  } */
 }
 
 @media (max-width: 768px) {
@@ -126,26 +115,6 @@
   .hotel_description #simple-tabpanel-3 {
     text-align: center;
   }
-  /* .hotel_description ul {
-    flex-direction: column;
-  }
-
-  .hotel_description li {
-    width: 100%;
-    height: unset;
-    padding: 0;
-  }
-
-  .hotel_description li:not(:last-child) {
-    padding-bottom: 20px;
-    border-right: 1px solid transparent;
-    border-bottom: 1px solid #f2f2f2;
-    flex: none;
-  }
-
-  .hotel_description li:not(:first-child) {
-    margin-top: 20px;
-  } */
 
   .hotel_description h2 + a {
     line-height: 20px;

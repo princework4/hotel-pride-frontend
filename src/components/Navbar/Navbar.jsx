@@ -11,7 +11,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import "./Navbar.css";
 
-// import Logo from "../../assets/Logo-Pride.jpg";
 import Logo from "../../assets/Logo-Pride-removebg.png";
 import LoginImg from "../../assets/login.png";
 import WhiteLoginImg from "../../assets/login_white.png";

@@ -292,11 +292,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* --pp-serif: "Poppins", sans-serif; */
-/* --lato-serif: "Lato", sans-serif; */
-
 body {
-  /* background-color: #e7e8d1; */
   background-color: #f5f5f5;
   color: #2c2c2c;
   font-family: "Helvetica Neue", sans-serif;
@@ -308,7 +304,6 @@ button,
 p,
 span,
 strong {
-  /* font-family: "Poppins", sans-serif; */
   font-family: "Helvetica Neue", sans-serif;
 }
 
@@ -322,19 +317,12 @@ h3,
 h4,
 h5,
 h6 {
-  /* font-family: "Poppins", sans-serif; */
   font-family: Cinzel, Palatino Linotype, sans-serif;
   text-transform: capitalize;
 }
 
-body p {
-  /* line-height: 24px; */
-}
-
 /* common color variables */
 :root {
-  /* --sage: #c4b991;
-  --light-beige: #e7e8d1; */
   --sage: #c4b991;
 }
 
@@ -347,9 +335,6 @@ body p {
 }
 
 /* common styling */
-strong {
-  /* color: var(--sage); */
-}
 
 .heading_container {
   display: flex;
@@ -367,51 +352,17 @@ hr {
 h2 {
   position: relative;
   display: inline-block;
-  /* background: linear-gradient(var(--sage), var(--sage)) left
-      no-repeat,
-    #fff;
-  background-size: 0% 100%;
-  background-clip: text; */
   color: var(--sage);
-  /* font-size: 40px; */
   font-weight: bolder;
-  /* transition: 1s ease-in-out; */
   text-transform: uppercase;
-  /* -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: var(--sage);
-  -webkit-transition: 1s ease-in-out;
-  -moz-transition: 1s ease-in-out;
-  -o-transition: 1s ease-in-out;
-  -ms-transition: 1s ease-in-out; */
 }
-
-/* h2::before {
-  content: attr(data-text);
-  width: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  transition: 1s;
-  -webkit-text-fill-color: var(--sage);
-} */
-
-/* h2:hover {
-  background-size: 100% 100%;
-  width: 100%;
-  -webkit-text-fill-color: var(--sage);
-} */
 
 button {
   padding: 10px 20px;
   border: 1px solid transparent;
   border-radius: 20px;
-  /* background-color: var(--sage); */
   background-color: #c4b991;
   color: #fff;
-  /* font-size: 16px; */
   line-height: 20px;
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;

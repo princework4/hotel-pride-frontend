@@ -1,17 +1,4 @@
-import // Wc,
-// DinnerDining,
-// DryCleaning,
-// FreeBreakfast,
-// LocalLaundryService,
-// LockOpen,
-// LocalParking,
-// SmokingRooms,
-// SmokeFree,
-// RoomService,
-// Wifi,
-"@mui/icons-material";
 import AirConditioner from "./assets/air-conditioner.png";
-import AttachedWashroom from "./assets/bathroom.png";
 import CCTV from "./assets/cctv-camera.png";
 import HouseKeeping from "./assets/cleaner.png";
 import WorkDesk from "./assets/desk.png";
@@ -21,7 +8,6 @@ import LaundryService from "./assets/laundry-machine.png";
 import LuggageStorage from "./assets/luggage.png";
 import Security from "./assets/policeman.png";
 import Smoking from "./assets/smoking.png";
-import NoSmoking from "./assets/no-smoking.png";
 import Wifi from "./assets/wifi.png";
 
 export const allRoomTypes = [
@@ -135,12 +121,6 @@ export const guestsReviews = [
     rating: 5,
     text: "Recently I visited Mumbai and stayed at this hotel.. The ambience was good as well as the hotel staff. During checkout I forgot to take my t-shirt but the hotel staff sent my t-shirt immediately after I requested them.. Very happy by the gesture 👍👍",
   },
-  // {
-  //   name: "Chris Johnson",
-  //   avatar: "https://via.placeholder.com/100",
-  //   rating: 5,
-  //   text: "Clean and nice place such a amazing service. The rooms were clean and spacious. The staff is extremely helpful and treat you like a god and it is near to metro station and easy to reach. The hotel has all the required amenities and will make you feel lavish with there service. The location is good as per Mumbai area.",
-  // },
   {
     name: "Deepu Singh",
     avatar: "https://via.placeholder.com/100",
@@ -181,14 +161,12 @@ export const guestsReviews = [
 
 export const amenities = [
   [AirConditioner, "Air Conditioning"],
-  // [AttachedWashroom, "Attached Washroom"],
   [CCTV, "CCTV Surveillance"],
   [HouseKeeping, "Daily Housekeeping"],
   [Wifi, "High Speed Wifi"],
   [KitchenFacilities, "In House Dinning"],
   [LaundryService, "Laundry Service"],
   [LuggageStorage, "Luggage Storage"],
-  // [NoSmoking, "Non - Smoking Rooms"],
   [PowerBackup, "Power Backup"],
   [Smoking, "Smoking Rooms Available"],
   [WorkDesk, "Work Desk"],

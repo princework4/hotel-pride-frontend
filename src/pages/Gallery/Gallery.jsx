@@ -116,15 +116,11 @@ const Gallery = () => {
 
   const handleClick = (selectedCategory) => {
     setTrackActiveButton(selectedCategory);
-    // if (selectedCategory == "cat-1") {
-    //   setGalleryImages(allAssetsImages);
-    // } else {
     const allImages = JSON.parse(JSON.stringify(allAssetsImages));
     const temp = allImages.filter(
       (items) => items.category === selectedCategory
     );
     setGalleryImages(temp);
-    // }
   };
 
   return (
@@ -145,7 +141,6 @@ const Gallery = () => {
       <section className="gallery_page">
         <div className="wrapper">
           <div className="heading_container">
-            {/* <hr /> */}
             <h2>gallery</h2>
           </div>
           {width <= 768 && (
@@ -172,11 +167,6 @@ const Gallery = () => {
             ))}
           </div>
           <ul className="grid">
-            {/* {galleryImages?.map((item, i) => (
-              <li key={i} onClick={() => handleImageClick(i)}>
-                <img src={item.original} alt={i} />
-              </li>
-            ))} */}
             <ResponsiveMasonry
               style={{ width: "100%" }}
               columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
@@ -192,7 +182,6 @@ const Gallery = () => {
                         style: { transitionDelay: "1s" },
                       }}
                     />
-                    {/* <img src={item.original} alt={item.caption} /> */}
                   </li>
                 ))}
               </Masonry>

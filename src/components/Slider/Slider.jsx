@@ -16,7 +16,6 @@ const ImageSlider = ({
   const settings = {
     infinite: true,
     dots: sliderEnabled ? showDots : !showDots,
-    // fade: true,
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll,
     lazyLoad: true,
@@ -24,8 +23,6 @@ const ImageSlider = ({
     autoplaySpeed: 2000,
     arrows: sliderEnabled ? true : false,
     pauseOnHover: false,
-    // adaptiveHeight: true,
-    // waitForAnimate: true,
   };
 
   return (

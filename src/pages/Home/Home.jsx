@@ -113,7 +113,6 @@ const Home = () => {
         dispatch(updateOffers(offersObj));
         dispatch(updateOfferEndDate(data[0].offerEndDate));
       } else {
-        // dispatch(updateIsOfferAvailable(false));
         dispatch(updateOffers({}));
         dispatch(updateOfferEndDate(""));
       }
@@ -155,14 +154,10 @@ const Home = () => {
 
   return (
     <>
-      {/* <Suspense fallback={<Loader />}> */}
       {roomRedux.isOfferAvailable && <OfferHeader />}
       <Header />
-      {/* </Suspense> */}
       <main>
-        {/* <Suspense fallback={<Loader />}> */}
         <Banner />
-        {/* </Suspense> */}
         <Suspense fallback={<Loader />}>
           <section className="search">
             <div className="wrapper">
@@ -180,7 +175,6 @@ const Home = () => {
           <section className="room_types">
             <div className="wrapper">
               <div className="heading_container">
-                {/* <hr /> */}
                 <h2>room types</h2>
               </div>
               <p>
@@ -215,7 +209,6 @@ const Home = () => {
           <section className="services">
             <div className="wrapper">
               <div className="heading_container">
-                {/* <hr /> */}
                 <h2>amenities</h2>
               </div>
               <AmenityCard />
@@ -226,7 +219,6 @@ const Home = () => {
           <section className="gallery">
             <div className="wrapper">
               <div className="heading_container">
-                {/* <hr /> */}
                 <h2>gallery</h2>
               </div>
               {width > 768 && (
@@ -250,11 +242,6 @@ const Home = () => {
                         <img src={item} alt={`gallery image ` + i + 1} />
                       </figure>
                     ))}
-                {/* {allGalleryImages.map((item, i) => (
-                  <figure key={i}>
-                    <img src={item} alt={i} />
-                  </figure>
-                ))} */}
               </div>
               <div className="see_more__container">
                 <button onClick={() => routeChange("gallery")}>see more</button>
@@ -266,7 +253,6 @@ const Home = () => {
           <section className="reviews" ref={reviewsSection}>
             <div className="wrapper">
               <div className="heading_container">
-                {/* <hr /> */}
                 <h2 data-text="reviews">What our Guests Say</h2>
               </div>
               <div className="reviews__container">

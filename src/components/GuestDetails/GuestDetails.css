@@ -188,26 +188,3 @@
     order: 3;
   }
 }
-
-/* @media (max-width: 700px) {
-  .guest_details .form_field,
-  .guest_details .special_form_field {
-    width: 95%;
-  }
-
-  .payment_button {
-    margin-top: 20px;
-  }
-}
-
-@media (max-width: 650px) {
-  .guest_details_container .payment_summary {
-    order: 1;
-  }
-
-  .guest_details_container .guest_details {
-    padding: 25px 10px !important;
-    margin-top: 20px;
-    order: 2;
-  }
-} */

@@ -12,8 +12,6 @@ const Footer = () => {
         <div className="wrapper">
           <div className="footer-container">
             <div className="footer_hotel_description">
-              {/* <h3 className="section-title">Hotel Pride</h3> */}
-              {/* <h1 className="section-title">Hotel Pride</h1> */}
               <h1 className="logo">
                 <Link to="/">
                   <img src={Logo} alt="logo" />
@@ -38,7 +36,6 @@ const Footer = () => {
                   }}
                 >
                   contact us
-                  {/* <a href="tel:+919876543210">+919876543210</a> */}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -52,7 +49,6 @@ const Footer = () => {
                 <Typography
                   variant="body1"
                   sx={{
-                    // marginTop: 2,
                     fontFamily: '"Helvetica Neue", sans-serif',
                     lineHeight: {
                       xs: "1rem",
@@ -112,7 +108,6 @@ const Footer = () => {
           </div>
           <hr />
           <Box className="corporate-footer">
-            {/* <h1></h1> */}
             <p>© 2025 Hotel Pride. All Rights Reserved.</p>
             <p>Developed By HCS Technologies</p>
           </Box>

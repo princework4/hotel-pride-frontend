@@ -32,20 +32,12 @@ const Payment = () => {
   const paymentMethod = useRef(null);
 
   function resetAllData() {
-    // dispatch(
-    //   updateGuestDetails({
-    //     adults: 1,
-    //     children: 0,
-    //     rooms: 1,
-    //   })
-    // );
     dispatch(resetGuestOptions());
     dispatch(updateSelectedRooms([]));
     dispatch(updateAvailableRoomTypes([]));
   }
 
   async function proceedWithBookingConfirmation() {
-    console.log(roomRedux);
     if (authRedux.isUserLoggedIn) {
       const finalLoggedInBookingDetailsObj = {
         userId: authRedux.loggedInUser.id,
@@ -66,7 +58,6 @@ const Payment = () => {
       );
       if (response.status === 201) {
         createPaymentForLoggedInUser(response.data.bookingNumber);
-        // setIsLoading(false);
       } else {
         setIsLoading(false);
         toast.error("Something went wrong. Please try again later!");
@@ -96,7 +87,6 @@ const Payment = () => {
       );
       if (response.status === 201) {
         createPaymentHandler(response);
-        // setIsLoading(false);
       } else {
         setIsLoading(false);
         toast.error("Something went wrong. Please try again later!");
@@ -116,7 +106,6 @@ const Payment = () => {
       setPaymentSuccessStatus(true);
       toast.success("Payment Success. Booking Details will be mailed to you.");
       resetAllData();
-      // navigate("/");
     }
   }
 
@@ -135,7 +124,6 @@ const Payment = () => {
   async function createPaymentHandler(response) {
     const options = {
       key: process.env.PAYMENT_KEY,
-      // key: "rzp_test_B9mzPUuuN7s5Ng",
       amount: Number(roomRedux.totalPriceAfterTax),
       currency: "INR",
       name: "Hotel Pride",
@@ -155,14 +143,6 @@ const Payment = () => {
         confirm_close: true,
         ondismiss: (reasons) => {
           const { reason } = reasons && reasons.error ? reasons.error : {};
-
-          // dispatch(
-          //   updateGuestDetails({
-          //     adults: 1,
-          //     children: 0,
-          //     rooms: 1,
-          //   })
-          // );
           dispatch(resetGuestOptions());
           dispatch(updateSelectedRooms([]));
 
@@ -209,7 +189,6 @@ const Payment = () => {
       toast.error("Something went wrong. Please try again later!");
       console.error(response.error.reason);
       resetAllData();
-      // navigate("/");
     });
     razor.open();
   }
