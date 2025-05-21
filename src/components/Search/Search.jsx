@@ -126,8 +126,13 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
               value={guestOptionsRedux.checkInDate}
               onChange={(newValue) => dispatch(updateCheckInDate(newValue))}
               disablePast={true}
+              maxDate={guestOptionsRedux.checkOutDate}
               format="DD-MM-YYYY"
               sx={{
+                "& label.Mui-focused": {
+                  color: "#c4b991 !important",
+                  transform: "translate(14px, -9px) scale(0.75)",
+                },
                 "& fieldset": {
                   borderColor: "#c4b991 !important",
                 },
@@ -155,8 +160,13 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
               value={guestOptionsRedux.checkOutDate}
               onChange={(newValue) => dispatch(updateCheckOutDate(newValue))}
               disablePast={true}
+              minDate={guestOptionsRedux.checkInDate}
               format="DD-MM-YYYY"
               sx={{
+                "& label.Mui-focused": {
+                  color: "#c4b991 !important",
+                  transform: "translate(14px, -9px) scale(0.75)",
+                },
                 "& fieldset": {
                   borderColor: "#c4b991 !important",
                 },
