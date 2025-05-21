@@ -43,3 +43,7 @@ export const checkOfferAvailability = (offerStartDate, offerEndDate) => {
   const formattedDate = `${day}-${month}-${year}`;
   return offerStartDate <= formattedDate && offerEndDate >= formattedDate;
 };
+
+export const calculateOfferedPrice = (price, offerPercent) => {
+  return Math.round(Number(price * ((100 - offerPercent) / 100)));
+};

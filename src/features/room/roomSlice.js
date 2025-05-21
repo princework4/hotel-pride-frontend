@@ -231,6 +231,7 @@ export const roomSlice = createSlice({
       },
     ],
     allRoomTypesName: [],
+    allRoomTypesWithKeyAsId: {},
     availableRoomTypes: [],
     isOfferAvailable: false,
     offers: {},
@@ -247,6 +248,9 @@ export const roomSlice = createSlice({
     },
     updateAllRoomTypesName: (state, action) => {
       state.allRoomTypesName = action.payload;
+    },
+    updateAllRoomTypesWithKeyAsId: (state, action) => {
+      state.allRoomTypesWithKeyAsId = action.payload;
     },
     updateAvailableRoomTypes: (state, action) => {
       state.availableRoomTypes = action.payload;
@@ -278,6 +282,7 @@ export const roomSlice = createSlice({
 export const {
   updateAllRoomTypes,
   updateAllRoomTypesName,
+  updateAllRoomTypesWithKeyAsId,
   updateAvailableRoomTypes,
   updateIsOfferAvailable,
   updateOffers,

@@ -72,13 +72,15 @@ const RoomListing = ({ roomNumber }) => {
     dispatch(updateSelectedRooms(temp));
   }
 
-  function calculateOfferedPrice(price, id) {
-    const newPrice = Math.round(
-      Number(price * ((100 - roomRedux.offers[id]) / 100))
-    );
-    setDiscountedPrice(newPrice);
-    return newPrice;
-  }
+  // function calculateOfferedPrice(price, id) {
+  //   const newPrice = Math.round(
+  //     Number(price * ((100 - roomRedux.offers[id]) / 100))
+  //   );
+  //   setDiscountedPrice(newPrice);
+  //   return newPrice;
+  // }
+
+  console.log(roomRedux);
 
   return (
     <div className="room_listing">
@@ -180,27 +182,35 @@ const RoomListing = ({ roomNumber }) => {
                   <ul className="roomtype_price_wrapper">
                     <li>
                       <div className="roomtype__price">
-                        <span
-                          className={
-                            roomRedux.isOfferAvailable
-                              ? "cancelled_price"
-                              : "price"
-                          }
-                        >
-                          &#8377;{roomType.pricePerNight}
-                        </span>
-                        {roomRedux.isOfferAvailable && (
-                          <span className="offer_percent">
-                            ({roomRedux.offers[roomType.id]}% off)
+                        <div>
+                          <span
+                            className={
+                              roomRedux.isOfferAvailable
+                                ? "cancelled_price"
+                                : "price"
+                            }
+                          >
+                            &#8377;{roomType.pricePerNight}
                           </span>
-                        )}
+                          {roomRedux.isOfferAvailable && (
+                            <span className="offer_percent">
+                              ({roomRedux.offers[roomType.id]}% off)
+                            </span>
+                          )}
+                        </div>
                         {roomRedux.isOfferAvailable && (
                           <span className="offered_price">
                             &#8377;
-                            {calculateOfferedPrice(
+                            {
+                              roomRedux.allRoomTypesWithKeyAsId[roomType.id]
+                                .priceAfterOffer
+                            }
+                            {/* {console.log(roomType.id)}
+                            {console.log(roomRedux.allRoomTypes["1"])} */}
+                            {/* {calculateOfferedPrice(
                               roomType.pricePerNight,
                               roomType.id
-                            )}
+                            )} */}
                           </span>
                         )}
                       </div>
@@ -220,7 +230,10 @@ const RoomListing = ({ roomNumber }) => {
                             roomType.typeName,
                             false,
                             roomRedux.isOfferAvailable
-                              ? Number(discountedPrice)
+                              ? Number(
+                                  roomRedux.allRoomTypes[roomType.id]
+                                    .priceAfterOffer
+                                )
                               : Number(roomType.pricePerNight),
                             roomType.id
                           )

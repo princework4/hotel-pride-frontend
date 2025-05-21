@@ -5,7 +5,10 @@ import {
   updateIsUserLoggedIn,
   updateLoggedInUser,
 } from "../../features/auth/authSlice";
-import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
+import {
+  updateShouldShowCallback,
+  updateShouldShowWhatsapp,
+} from "../../features/nonFunctional/nonFunctionalSlice";
 
 const Rooms = () => {
   const dispatch = useDispatch();
@@ -25,6 +28,7 @@ const Rooms = () => {
     }
 
     dispatch(updateShouldShowCallback(false));
+    dispatch(updateShouldShowWhatsapp(false));
   }, []);
 
   return (

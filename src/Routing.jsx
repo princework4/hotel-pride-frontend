@@ -28,7 +28,7 @@ const Routing = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {nonFunctionalRedux.shouldShowCallback && <RequestCallback />}
-      {nonFunctionalRedux.shouldShowCallback && <Whatsapp />}
+      {nonFunctionalRedux.shouldShowWhatsapp && <Whatsapp />}
       <BottomToTop />
     </>
   );

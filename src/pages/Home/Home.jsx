@@ -18,6 +18,7 @@ import { resetGuestOptions } from "../../features/search/searchSlice";
 import {
   updateAllRoomTypes,
   updateAllRoomTypesName,
+  updateAllRoomTypesWithKeyAsId,
   updateAvailableRoomTypes,
   updateIsOfferAvailable,
   updateOfferEndDate,
@@ -28,7 +29,7 @@ import {
   updateIsUserLoggedIn,
   updateLoggedInUser,
 } from "../../features/auth/authSlice";
-import { checkOfferAvailability } from "../../utils";
+import { calculateOfferedPrice, checkOfferAvailability } from "../../utils";
 
 import { toast } from "react-toastify";
 
@@ -81,14 +82,29 @@ const Home = () => {
   async function getAllRoomTypes() {
     const data = await fetchAllRoomTypes();
     if (data) {
-      dispatch(updateAllRoomTypes(data));
-
+      const allRoomTypesDataTemp = structuredClone(data);
       const roomTypeNames = [allTabDetail];
       const offersObj = {};
-      for (let i = 0; i < data.length; i++) {
-        roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
-        offersObj[data[i].id] = data[i].offerDiscountPercentage;
+      for (let i = 0; i < allRoomTypesDataTemp.length; i++) {
+        roomTypeNames.push([
+          allRoomTypesDataTemp[i].typeName,
+          `cat${allRoomTypesDataTemp[i].id}`,
+        ]);
+        offersObj[allRoomTypesDataTemp[i].id] =
+          allRoomTypesDataTemp[i].offerDiscountPercentage;
+        allRoomTypesDataTemp[i].priceAfterOffer = calculateOfferedPrice(
+          allRoomTypesDataTemp[i].pricePerNight,
+          allRoomTypesDataTemp[i].offerDiscountPercentage
+        );
       }
+      dispatch(updateAllRoomTypes(allRoomTypesDataTemp));
+
+      const allRoomTypesDataWithKeyAsIdTemp = {};
+      for (let i = 0; i < allRoomTypesDataTemp.length; i++) {
+        allRoomTypesDataWithKeyAsIdTemp[allRoomTypesDataTemp[i].id] =
+          allRoomTypesDataTemp[i];
+      }
+      dispatch(updateAllRoomTypesWithKeyAsId(allRoomTypesDataWithKeyAsIdTemp));
 
       if (
         checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)

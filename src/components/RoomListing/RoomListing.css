@@ -218,6 +218,11 @@
     object-fit: contain;
   }
 
+  .room_listing .roomtype_price_wrapper .roomtype__price {
+    display: flex;
+    align-items: center;
+  }
+
   /* .room_listing .room_price p,
   .room_listing .room_price .rate_details__popup-button {
     font-size: 12px;
