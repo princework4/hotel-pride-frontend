@@ -4,7 +4,7 @@ export const nonFunctionalSlice = createSlice({
   name: "nonFunctional",
   initialState: {
     isHomePage: false,
-    shouldShowOfferHeader: true,
+    shouldShowOfferHeader: false,
     shouldShowCallback: true,
     shouldShowWhatsapp: true,
     steppersActiveStep: null,

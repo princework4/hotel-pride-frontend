@@ -233,7 +233,7 @@ export const roomSlice = createSlice({
     allRoomTypesName: [],
     allRoomTypesWithKeyAsId: {},
     availableRoomTypes: [],
-    isOfferAvailable: true,
+    isOfferAvailable: false,
     offers: {},
     offerEndDate: "",
     selectedRooms: [],

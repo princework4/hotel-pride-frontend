@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { getRoomsAvailability } from "../../services/Booking";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
 
 import "./Search.css";
 import {
@@ -159,7 +160,8 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
               value={guestOptionsRedux.checkOutDate}
               onChange={(newValue) => dispatch(updateCheckOutDate(newValue))}
               disablePast={true}
-              minDate={guestOptionsRedux.checkInDate}
+              // minDate={guestOptionsRedux.checkInDate}
+              minDate={dayjs(guestOptionsRedux.checkInDate).add(1, "day")}
               format="DD-MM-YYYY"
               sx={{
                 "& label.Mui-focused": {
