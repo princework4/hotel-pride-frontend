@@ -148,7 +148,7 @@ const Gallery = () => {
       <section
         className="gallery_page"
         data-aos="fade-up"
-        data-aos-duration="1500"
+        data-aos-duration="1000"
       >
         <div className="wrapper">
           <div className="heading_container">

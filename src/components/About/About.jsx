@@ -9,13 +9,13 @@ const About = () => {
 
   return (
     <>
-      <section
-        className="left_right_showcase"
-        data-aos="fade-up"
-        data-aos-duration="1500"
-      >
+      <section className="left_right_showcase">
         <div className="wrapper">
-          <div className="left_right_showcase__first">
+          <div
+            className="left_right_showcase__first"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <div>
               <h2>hotel pride</h2>
               <p className="about__subheading">
@@ -38,7 +38,11 @@ const About = () => {
             </figure>
           </div>
           {readMore && (
-            <div className="left_right_showcase__second">
+            <div
+              className="left_right_showcase__second"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
               <figure>
                 <img src={HotelBuilding2} alt="Reception" />
               </figure>

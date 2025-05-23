@@ -114,7 +114,9 @@ const Location = () => {
                     Email
                   </span>
                   <span>:</span>
-                  <a href="mailto:demo@gmail.com">demo@gmail.com</a>
+                  <a href="mailto:reservation@hotelpride.com">
+                    reservation@hotelpride.com
+                  </a>
                 </li>
                 <li>
                   <span className="location__map_contact-container__heading">

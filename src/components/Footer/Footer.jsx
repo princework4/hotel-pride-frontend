@@ -94,15 +94,20 @@ const Footer = () => {
                 Follow Us
               </Typography>
               <Box className="social-links">
-                <Link href="#" className="footer-link">
+                <a
+                  href="https://www.facebook.com/share/19HESgDf3u/
+"
+                  className="footer-link"
+                  target="_blank"
+                >
                   Facebook
-                </Link>
-                <Link href="#" className="footer-link">
+                </a>
+                {/* <a href="#" className="footer-link" target="_blank">
                   Twitter
-                </Link>
-                <Link href="#" className="footer-link">
+                </a>
+                <a href="#" className="footer-link" target="_blank">
                   Instagram
-                </Link>
+                </a> */}
               </Box>
             </div>
           </div>

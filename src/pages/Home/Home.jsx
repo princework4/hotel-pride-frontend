@@ -185,7 +185,7 @@ const Home = () => {
           <section
             className="room_types"
             data-aos="fade-up"
-            data-aos-duration="1500"
+            data-aos-duration="1000"
           >
             <div className="wrapper">
               <div className="heading_container">
@@ -223,7 +223,7 @@ const Home = () => {
           <section
             className="services"
             data-aos="fade-up"
-            data-aos-duration="1500"
+            data-aos-duration="1000"
           >
             <div className="wrapper">
               <div className="heading_container">
@@ -237,7 +237,7 @@ const Home = () => {
           <section
             className="gallery"
             data-aos="fade-up"
-            data-aos-duration="1500"
+            data-aos-duration="1000"
           >
             <div className="wrapper">
               <div className="heading_container">
@@ -276,7 +276,7 @@ const Home = () => {
             className="reviews"
             ref={reviewsSection}
             data-aos="fade-up"
-            data-aos-duration="1500"
+            data-aos-duration="1000"
           >
             <div className="wrapper">
               <div className="heading_container">
