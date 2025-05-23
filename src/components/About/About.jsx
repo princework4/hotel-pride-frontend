@@ -9,7 +9,11 @@ const About = () => {
 
   return (
     <>
-      <section className="left_right_showcase">
+      <section
+        className="left_right_showcase"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
         <div className="wrapper">
           <div className="left_right_showcase__first">
             <div>

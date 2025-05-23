@@ -35,6 +35,8 @@ import {
 import { calculateOfferedPrice, checkOfferAvailability } from "../../utils";
 
 import { toast } from "react-toastify";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import "./Home.css";
 
@@ -71,6 +73,8 @@ const Home = () => {
   const reviewsSection = useRef(null);
 
   useEffect(() => {
+    AOS.init();
+    AOS.refresh();
     window.scrollTo(0, 0);
     dispatch(updateShouldShowCallback(true));
   }, []);
@@ -178,7 +182,11 @@ const Home = () => {
           <About />
         </Suspense>
         <Suspense fallback={<Loader />}>
-          <section className="room_types">
+          <section
+            className="room_types"
+            data-aos="fade-up"
+            data-aos-duration="1500"
+          >
             <div className="wrapper">
               <div className="heading_container">
                 <h2>room types</h2>
@@ -212,7 +220,11 @@ const Home = () => {
           </section>
         </Suspense>
         <Suspense fallback={<Loader />}>
-          <section className="services">
+          <section
+            className="services"
+            data-aos="fade-up"
+            data-aos-duration="1500"
+          >
             <div className="wrapper">
               <div className="heading_container">
                 <h2>amenities</h2>
@@ -222,7 +234,11 @@ const Home = () => {
           </section>
         </Suspense>
         <Suspense fallback={<Loader />}>
-          <section className="gallery">
+          <section
+            className="gallery"
+            data-aos="fade-up"
+            data-aos-duration="1500"
+          >
             <div className="wrapper">
               <div className="heading_container">
                 <h2>gallery</h2>
@@ -256,7 +272,12 @@ const Home = () => {
           </section>
         </Suspense>
         <Suspense fallback={<Loader />}>
-          <section className="reviews" ref={reviewsSection}>
+          <section
+            className="reviews"
+            ref={reviewsSection}
+            data-aos="fade-up"
+            data-aos-duration="1500"
+          >
             <div className="wrapper">
               <div className="heading_container">
                 <h2 data-text="reviews">What our Guests Say</h2>

@@ -24,6 +24,9 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const GallerySlider = ({ images, active }) => {
   return (
     <ImageGallery items={images} startIndex={active} slideInterval={2000} />
@@ -88,6 +91,8 @@ const Gallery = () => {
   }
 
   useEffect(() => {
+    AOS.init();
+    AOS.refresh();
     window.scrollTo(0, 0);
     dispatch(updateShouldShowCallback(true));
 
@@ -140,7 +145,11 @@ const Gallery = () => {
           <CloseIconCircle handleClose={handleClose} />
         </Box>
       </Modal>
-      <section className="gallery_page">
+      <section
+        className="gallery_page"
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
         <div className="wrapper">
           <div className="heading_container">
             <h2>gallery</h2>

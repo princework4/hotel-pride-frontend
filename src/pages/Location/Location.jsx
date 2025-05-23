@@ -21,12 +21,17 @@ import "./Location.css";
 import Logo from "../../assets/Logo-Pride.jpg";
 import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const Location = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
   const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    AOS.init();
+    AOS.refresh();
     window.scrollTo(0, 0);
     dispatch(updateShouldShowCallback(true));
 
@@ -51,7 +56,7 @@ const Location = () => {
       <Suspense fallback={<Loader />}>
         <Header />
       </Suspense>
-      <section className="location">
+      <section className="location" data-aos="fade-up" data-aos-duration="1000">
         <div className="wrapper">
           <div className="heading_container">
             <h2>location and transportation</h2>
@@ -72,7 +77,11 @@ const Location = () => {
             <strong>Hiranandani Gardens.</strong> Whether you're travelling for
             business or pleasure, you'll find everything you need close by.
           </p>
-          <div className="location__map_contact-container">
+          <div
+            className="location__map_contact-container"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <div>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.0768406872535!2d72.93531957337089!3d19.14811344970818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b86e528cb077%3A0x1f221447c0a2ee0a!2sHotel%20Pride!5e0!3m2!1sen!2sin!4v1741511073152!5m2!1sen!2sin"
@@ -117,7 +126,11 @@ const Location = () => {
               </ul>
             </div>
           </div>
-          <ul className="location__details">
+          <ul
+            className="location__details"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <li>
               <h3>parking</h3>
               <ul className="location__subdetails">
@@ -184,7 +197,11 @@ const Location = () => {
               </ul>
             </li>
           </ul>
-          <div className="hotel_policies">
+          <div
+            className="hotel_policies"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <h2>hotel policies</h2>
             <Accordion
               className="accordion"
