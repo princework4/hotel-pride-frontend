@@ -4,6 +4,7 @@ export const nonFunctionalSlice = createSlice({
   name: "nonFunctional",
   initialState: {
     isHomePage: false,
+    shouldShowOfferHeader: true,
     shouldShowCallback: true,
     shouldShowWhatsapp: true,
     steppersActiveStep: null,
@@ -11,6 +12,9 @@ export const nonFunctionalSlice = createSlice({
   reducers: {
     updateIsHomePage: (state, action) => {
       state.isHomePage = action.payload;
+    },
+    updateShouldShowOfferHeader: (state, action) => {
+      state.shouldShowOfferHeader = action.payload;
     },
     updateShouldShowCallback: (state, action) => {
       state.shouldShowCallback = action.payload;
@@ -26,6 +30,7 @@ export const nonFunctionalSlice = createSlice({
 
 export const {
   updateIsHomePage,
+  updateShouldShowOfferHeader,
   updateShouldShowCallback,
   updateShouldShowWhatsapp,
   updateSteppersActiveStep,

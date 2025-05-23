@@ -13,7 +13,10 @@ import Loader from "../../components/Loader";
 import OfferHeader from "../../components/OfferHeader/OfferHeader";
 import { fetchAllRoomTypes } from "../../services/Rooms";
 import { useDispatch, useSelector } from "react-redux";
-import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
+import {
+  updateShouldShowCallback,
+  updateShouldShowOfferHeader,
+} from "../../features/nonFunctional/nonFunctionalSlice";
 import { resetGuestOptions } from "../../features/search/searchSlice";
 import {
   updateAllRoomTypes,
@@ -57,6 +60,7 @@ const Home = () => {
     window.innerWidth > 0 ? window.innerWidth : screen.width
   );
   const roomRedux = useSelector((state) => state.roomReducer);
+  const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const location = useLocation();
@@ -109,6 +113,7 @@ const Home = () => {
       if (
         checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)
       ) {
+        dispatch(updateShouldShowOfferHeader(true));
         dispatch(updateIsOfferAvailable(true));
         dispatch(updateOffers(offersObj));
         dispatch(updateOfferEndDate(data[0].offerEndDate));
@@ -154,7 +159,8 @@ const Home = () => {
 
   return (
     <>
-      {roomRedux.isOfferAvailable && <OfferHeader />}
+      {roomRedux.isOfferAvailable &&
+        nonFunctionalRedux.shouldShowOfferHeader && <OfferHeader />}
       <Header />
       <main>
         <Banner />

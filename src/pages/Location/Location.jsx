@@ -23,6 +23,7 @@ import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
 const Location = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
+  const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,7 +46,8 @@ const Location = () => {
 
   return (
     <>
-      {roomRedux.isOfferAvailable && <OfferHeader />}
+      {roomRedux.isOfferAvailable &&
+        nonFunctionalRedux.shouldShowOfferHeader && <OfferHeader />}
       <Suspense fallback={<Loader />}>
         <Header />
       </Suspense>

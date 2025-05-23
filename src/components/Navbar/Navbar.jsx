@@ -18,6 +18,7 @@ import WhiteLoginImg from "../../assets/login_white.png";
 const Navbar = () => {
   const authRedux = useSelector((state) => state.authReducer);
   const roomRedux = useSelector((state) => state.roomReducer);
+  const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
   const dispatch = useDispatch();
   const location = useLocation();
   const [showHam, setShowHam] = useState(window.innerWidth <= 997);
@@ -27,10 +28,10 @@ const Navbar = () => {
     height: window.innerHeight,
   });
 
-  const [open, setOpen] = React.useState(false);
-  const [colorChange, setColorchange] = React.useState(false);
-  const [revertHeader, setRevertHeader] = React.useState(false);
-  const [searchOpen, setSearchOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [colorChange, setColorchange] = useState(false);
+  const [revertHeader, setRevertHeader] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const handleSearchOpen = () => {
     setSearchOpen(true);
   };
@@ -136,7 +137,11 @@ const Navbar = () => {
           ? "updated_header nav-container"
           : "nav-container"
       }
-      style={roomRedux.isOfferAvailable ? { top: "60px" } : { top: 0 }}
+      style={
+        roomRedux.isOfferAvailable && nonFunctionalRedux.shouldShowOfferHeader
+          ? { top: "60px" }
+          : { top: 0 }
+      }
     >
       <div className="wrapper">
         <div className="navbar">

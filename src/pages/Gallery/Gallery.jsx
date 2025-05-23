@@ -51,6 +51,7 @@ const style = {
 
 const Gallery = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
+  const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
   const dispatch = useDispatch();
   const [galleryImages, setGalleryImages] = useState(allAssetsImages);
   const [allRoomTypeNames, setAllRoomTypeNames] = useState([
@@ -125,7 +126,8 @@ const Gallery = () => {
 
   return (
     <>
-      {roomRedux.isOfferAvailable && <OfferHeader />}
+      {roomRedux.isOfferAvailable &&
+        nonFunctionalRedux.shouldShowOfferHeader && <OfferHeader />}
       <Header />
       <Modal
         open={open}

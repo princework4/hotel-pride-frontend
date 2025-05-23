@@ -1,6 +1,7 @@
 import React from "react";
-import HotelBuilding from "../../assets/Location/location_1.jpeg";
-import HotelBuilding2 from "../../assets/Location/location_2.jpeg";
+// import HotelBuilding from "../../assets/Location/location_1.jpeg";
+import HotelBuilding from "../../assets/Location/location_2.jpeg";
+import HotelBuilding2 from "../../assets/Location/location_3.jpg";
 import "./About.css";
 
 const About = () => {
