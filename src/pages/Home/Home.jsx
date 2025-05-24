@@ -207,12 +207,12 @@ const Home = () => {
                       key={type.id}
                       roomType={type.typeName}
                       roomDetails={[
-                        roomRedux.allRoomTypes1[index].roomSizeInSquareFeet +
+                        roomRedux.allRoomTypes[index].roomSizeInSquareFeet +
                           " ft²",
                       ]}
                       roomId={type.id}
                       assets={type.assets}
-                      amenities={roomRedux.allRoomTypes1[index].amenities}
+                      amenities={roomRedux.allRoomTypes[index].amenities}
                       sliderEnabled={false}
                     />
                   </>
