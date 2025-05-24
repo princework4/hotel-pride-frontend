@@ -36,6 +36,7 @@ const PopupRateDetails = ({ open, handleClose, id }) => {
     boxShadow: 24,
     transform: "translate(-50%, -50%)",
   };
+
   return (
     <Modal
       open={open}

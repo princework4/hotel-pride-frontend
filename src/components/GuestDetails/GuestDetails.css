@@ -20,13 +20,11 @@
   margin: 0;
 }
 
-.guest_details .terms_and_conditions span {
-  font-size: 13px !important;
-}
-
 .guest_details .terms_and_conditions .terms {
   margin: 0;
   color: var(--sage);
+  cursor: pointer;
+  font-size: 13px !important;
   text-transform: capitalize;
 }
 

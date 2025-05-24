@@ -1,0 +1,81 @@
+.terms_and_conditions .terms_header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--sage);
+  text-align: center;
+}
+
+.terms_and_conditions .terms_header h1 img {
+  max-width: 8em;
+  width: 100%;
+}
+
+.terms_and_conditions .terms_header ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terms_and_conditions .terms_header ul li:not(:last-child) {
+  padding-right: 10px;
+}
+
+.terms_and_conditions .terms_header ul li:not(:first-child) {
+  padding-left: 10px;
+  border-left: 1px solid var(--sage);
+}
+
+.terms_and_conditions ul li {
+  display: block;
+}
+
+.terms_and_conditions h3 {
+  color: var(--sage);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.terms_and_conditions .terms_heading {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.terms_and_conditions .terms_subheading {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.terms_and_conditions ul li h3 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.terms_and_conditions .terms_sublist li {
+  display: flex;
+  align-items: flex-start;
+}
+
+.terms_and_conditions .terms_sublist li span {
+  display: inline-block;
+  margin-right: 5px;
+  color: var(--sage);
+}
+
+.terms_and_conditions ul li p {
+  font-size: 14px;
+}
+
+.terms_and_conditions .terms_thankyou {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* Media Queries */
+@media (max-width: 775px) {
+  .terms_and_conditions .terms_header ul {
+    flex-direction: column;
+  }
+
+  .terms_and_conditions .terms_header ul li:not(:first-child) {
+    border: none;
+  }
+}
