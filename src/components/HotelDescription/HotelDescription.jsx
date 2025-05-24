@@ -58,9 +58,9 @@ const HotelDescription = ({ scrollTo }) => {
               <span onClick={scrollTo}>Read recent reviews</span>
             </li>
             <li>
-              <a href="tel:+919876543210">
+              <a href="tel:+919819914047">
                 <img src={mobileIcon} alt="mobile icon" />
-                <span>+919876543210</span>
+                <span>+919819914047</span>
               </a>
             </li>
             <li>

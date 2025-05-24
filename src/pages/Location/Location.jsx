@@ -114,7 +114,7 @@ const Location = () => {
                     Email
                   </span>
                   <span>:</span>
-                  <a href="mailto:reservation@hotelpride.com">
+                  <a href="mailto: reservation@hotelpride.com">
                     reservation@hotelpride.com
                   </a>
                 </li>
@@ -123,7 +123,7 @@ const Location = () => {
                     Telephone
                   </span>
                   <span>:</span>
-                  <a href="tel:9876543210">9876543210</a>
+                  <a href="tel:+919819914047">+919819914047</a>
                 </li>
               </ul>
             </div>
