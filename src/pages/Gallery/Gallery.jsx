@@ -7,7 +7,10 @@ import CloseIconCircle from "../../components/CloseIconCircle";
 import { Box, Modal } from "@mui/material";
 import { fetchAllRoomTypes } from "../../services/Rooms";
 
-import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
+import {
+  updateShouldShowCallback,
+  updateShouldShowWhatsapp,
+} from "../../features/nonFunctional/nonFunctionalSlice";
 import {
   updateIsUserLoggedIn,
   updateLoggedInUser,
@@ -95,6 +98,7 @@ const Gallery = () => {
     AOS.refresh();
     window.scrollTo(0, 0);
     dispatch(updateShouldShowCallback(true));
+    dispatch(updateShouldShowWhatsapp(true));
 
     if (roomRedux?.allRoomTypesName?.length === 0) {
       getAllRoomTypes();

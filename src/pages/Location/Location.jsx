@@ -10,7 +10,10 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { updateShouldShowCallback } from "../../features/nonFunctional/nonFunctionalSlice";
+import {
+  updateShouldShowCallback,
+  updateShouldShowWhatsapp,
+} from "../../features/nonFunctional/nonFunctionalSlice";
 import {
   updateIsUserLoggedIn,
   updateLoggedInUser,
@@ -34,6 +37,7 @@ const Location = () => {
     AOS.refresh();
     window.scrollTo(0, 0);
     dispatch(updateShouldShowCallback(true));
+    dispatch(updateShouldShowWhatsapp(true));
 
     if (sessionStorage.getItem("userObj")) {
       const obj = JSON.parse(sessionStorage.getItem("userObj"));

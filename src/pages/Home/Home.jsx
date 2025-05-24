@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateShouldShowCallback,
   updateShouldShowOfferHeader,
+  updateShouldShowWhatsapp,
 } from "../../features/nonFunctional/nonFunctionalSlice";
 import { resetGuestOptions } from "../../features/search/searchSlice";
 import {
@@ -77,6 +78,7 @@ const Home = () => {
     AOS.refresh();
     window.scrollTo(0, 0);
     dispatch(updateShouldShowCallback(true));
+    dispatch(updateShouldShowWhatsapp(true));
   }, []);
 
   React.useEffect(() => {

@@ -24,7 +24,7 @@ const Whatsapp = () => {
       style={{ bottom: changePosition ? "175px" : "100px" }}
     >
       <a
-        href="https://api.whatsapp.com/send?phone=919769305114"
+        href="https://api.whatsapp.com/send?phone=919819914047"
         class="float"
         target="_blank"
       >
