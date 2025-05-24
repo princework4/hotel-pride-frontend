@@ -20,7 +20,7 @@ import { updateGuestDetails } from "../../features/guest/guestSlice";
 import { updateSteppersActiveStep } from "../../features/nonFunctional/nonFunctionalSlice";
 import "./GuestDetails.css";
 import { updateTotalAmountAfterTax } from "../../features/room/roomSlice";
-import TermsAndConditionsPDF from "../../assets/Hotel_Pride_Terms_&_Conditions.pdf";
+// import TermsAndConditionsPDF from "../../assets/Hotel_Pride_Terms_&_Conditions.pdf";
 import TermsAndConditions from "../TermsAndConditions/TermsAndConditions";
 
 const validationSchema = Yup.object().shape({
