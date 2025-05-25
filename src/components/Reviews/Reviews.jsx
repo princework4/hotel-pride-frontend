@@ -14,7 +14,7 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 2000,
   arrows: false,
-  adaptiveHeight: true,
+  adaptiveHeight: false,
   pauseOnHover: false,
   responsive: [
     {
@@ -46,7 +46,7 @@ const Reviews = ({ guestsReviews }) => {
             />
             <h3 className="review-name">{review.name}</h3>
             <Rating value={review.rating} readOnly className="review-rating" />
-            <p className="review-text">"{review.text}"</p>
+            <p className="review-text">{review.text}</p>
           </div>
         </div>
       ))}
