@@ -22,6 +22,9 @@ const RoomListing = ({ roomNumber }) => {
   const [roomTypes, setRoomTypes] = useState(roomRedux.availableRoomTypes);
   const [openRoomDetails, setOpenRoomDetails] = React.useState({});
   const [discountedPrice, setDiscountedPrice] = useState(0);
+  const [width, setWidth] = useState(
+    window.innerWidth > 0 ? window.innerWidth : screen.width
+  );
   let navigate = useNavigate();
 
   function initializePopupState() {
@@ -96,8 +99,7 @@ const RoomListing = ({ roomNumber }) => {
               <li key={Math.random()}>
                 <Chip
                   content={[
-                    roomRedux.allRoomTypes1[index].roomSizeInSquareFeet +
-                      " ft²",
+                    roomRedux.allRoomTypes[index].roomSizeInSquareFeet + " ft²",
                   ]}
                 />
               </li>
@@ -139,36 +141,31 @@ const RoomListing = ({ roomNumber }) => {
                 <h3>key features</h3>
                 <div className="roomtype_features_wrapper">
                   <ul className="roomtype_features_description">
-                    <li className="first_child">
-                      <span>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. ipsum.
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      </span>
-                    </li>
-                    <li>
-                      <span>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                      </span>
-                    </li>
+                    {roomType.amenities.map((amenity) => (
+                      <li>
+                        <SquareIcon
+                          sx={{
+                            width: "10px",
+                            height: { xs: "15px" },
+                            marginRight: "5px",
+                            color: "#c4b991",
+                          }}
+                        />
+                        <span>{amenity.amenityDescription}</span>
+                      </li>
+                    ))}
                   </ul>
-                  <hr />
+                  <hr
+                    style={
+                      width > 768
+                        ? index == 0
+                          ? { height: "10em" }
+                          : index == 1
+                          ? { height: "21em" }
+                          : { height: "27em" }
+                        : { height: "1px" }
+                    }
+                  />
                   <ul className="roomtype_price_wrapper">
                     <li>
                       <div className="roomtype__price">
@@ -232,20 +229,6 @@ const RoomListing = ({ roomNumber }) => {
                   </ul>
                 </div>
               </div>
-              {/* <ul className="roomtype_features_description">
-                  {roomType.map((feature) => (
-                    <li>
-                      <SquareIcon
-                        sx={{
-                          width: "10px",
-                          height: { xs: "15px" },
-                          color: "#c4b991",
-                        }}
-                      />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul> */}
             </div>
           </div>
         </div>

@@ -105,6 +105,7 @@
 
 .room_listing .room_price ul {
   margin-top: 20px;
+  flex: 2 1 auto;
 }
 
 .room_listing .roomtype_features_wrapper hr {
@@ -138,6 +139,7 @@
   flex-flow: column;
 }
 
+.room_listing .roomtype_price_wrapper,
 .room_listing .roomtype_price_wrapper li {
   text-align: center;
 }
