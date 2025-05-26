@@ -44,7 +44,7 @@ const Footer = () => {
                     fontFamily: '"Helvetica Neue", sans-serif',
                   }}
                 >
-                  <span>+91 9819914047 / 022 79660926 / 022 67550868</span>
+                  <span>022 79660926 / 022 67550868</span>
                 </Typography>
                 <Typography
                   variant="body1"
