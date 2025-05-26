@@ -50,7 +50,7 @@ const HotelDescription = ({ scrollTo }) => {
           <ul>
             <li>
               <p
-                class="stars"
+                className="stars"
                 aria-label="Rating of this website is 4.5 out of 5."
               >
                 4.5
@@ -104,7 +104,7 @@ const HotelDescription = ({ scrollTo }) => {
                 </Tabs>
                 <CustomTabPanel value={value} index={0}>
                   <p
-                    class="stars"
+                    className="stars"
                     aria-label="Rating of this website is 4.5 out of 5."
                   >
                     4.5

@@ -25,7 +25,7 @@ const Whatsapp = () => {
     >
       <a
         href="https://api.whatsapp.com/send?phone=919819914047"
-        class="float"
+        className="float"
         target="_blank"
       >
         <img src={WhatsappIcon} alt="whatsapp icon" />
