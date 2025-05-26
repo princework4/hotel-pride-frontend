@@ -25,6 +25,7 @@
   text-align: center;
   width: 90% !important;
   padding: 0 15px 0 0;
+  cursor: pointer;
 }
 
 .review-content {
