@@ -9,13 +9,21 @@ import { fetchAllRoomTypes } from "../../services/Rooms";
 
 import {
   updateShouldShowCallback,
+  updateShouldShowOfferHeader,
   updateShouldShowWhatsapp,
 } from "../../features/nonFunctional/nonFunctionalSlice";
 import {
   updateIsUserLoggedIn,
   updateLoggedInUser,
 } from "../../features/auth/authSlice";
-import { updateAllRoomTypesName } from "../../features/room/roomSlice";
+import {
+  updateAllRoomTypes,
+  updateAllRoomTypesName,
+  updateAllRoomTypesWithKeyAsId,
+  updateIsOfferAvailable,
+  updateOfferEndDate,
+  updateOffers,
+} from "../../features/room/roomSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "./Gallery.css";
@@ -29,6 +37,7 @@ import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { calculateOfferedPrice, checkOfferAvailability } from "../../utils";
 
 const GallerySlider = ({ images, active }) => {
   return (
@@ -85,12 +94,46 @@ const Gallery = () => {
       for (let i = 0; i < data.length; i++) {
         roomTypeNames.push([data[i].typeName, `cat${data[i].id}`]);
       }
+
+      const allRoomTypesDataTemp = structuredClone(data);
+      const offersObj = {};
+      for (let i = 0; i < allRoomTypesDataTemp.length; i++) {
+        offersObj[allRoomTypesDataTemp[i].id] =
+          allRoomTypesDataTemp[i].offerDiscountPercentage;
+        allRoomTypesDataTemp[i].priceAfterOffer = calculateOfferedPrice(
+          allRoomTypesDataTemp[i].pricePerNight,
+          allRoomTypesDataTemp[i].offerDiscountPercentage
+        );
+      }
+      dispatch(updateAllRoomTypes(allRoomTypesDataTemp));
+
+      const allRoomTypesDataWithKeyAsIdTemp = {};
+      for (let i = 0; i < allRoomTypesDataTemp.length; i++) {
+        allRoomTypesDataWithKeyAsIdTemp[allRoomTypesDataTemp[i].id] =
+          allRoomTypesDataTemp[i];
+      }
+      dispatch(updateAllRoomTypesWithKeyAsId(allRoomTypesDataWithKeyAsIdTemp));
+
+      if (
+        checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)
+      ) {
+        dispatch(updateShouldShowOfferHeader(true));
+        dispatch(updateIsOfferAvailable(true));
+        dispatch(updateOffers(offersObj));
+        dispatch(updateOfferEndDate(data[0].offerEndDate));
+      } else {
+        dispatch(updateShouldShowOfferHeader(false));
+        dispatch(updateIsOfferAvailable(false));
+        dispatch(updateOffers({}));
+        dispatch(updateOfferEndDate(""));
+      }
+
+      dispatch(updateAllRoomTypesName(roomTypeNames));
+      setAllRoomTypeNames(roomTypeNames);
     } else {
       roomTypeNames.push(...filterTabButtons);
       toast.error("Something went wrong while fetching room types.");
     }
-    dispatch(updateAllRoomTypesName(roomTypeNames));
-    setAllRoomTypeNames(roomTypeNames);
   }
 
   useEffect(() => {

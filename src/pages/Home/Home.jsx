@@ -124,6 +124,8 @@ const Home = () => {
         dispatch(updateOffers(offersObj));
         dispatch(updateOfferEndDate(data[0].offerEndDate));
       } else {
+        dispatch(updateShouldShowOfferHeader(false));
+        dispatch(updateIsOfferAvailable(false));
         dispatch(updateOffers({}));
         dispatch(updateOfferEndDate(""));
       }

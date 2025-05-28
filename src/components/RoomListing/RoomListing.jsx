@@ -41,6 +41,7 @@ const RoomListing = ({ roomNumber }) => {
     }
 
     setOpenRoomDetails(initializePopupState());
+    console.log(guestDetailsRedux, roomRedux);
   }, []);
 
   const handleRateDetailsOpen = (idx) => {

@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateShouldShowCallback,
+  updateShouldShowOfferHeader,
   updateShouldShowWhatsapp,
 } from "../../features/nonFunctional/nonFunctionalSlice";
 import {
@@ -26,16 +27,79 @@ import OfferHeader from "../../components/OfferHeader/OfferHeader";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { fetchAllRoomTypes } from "../../services/Rooms";
+import { calculateOfferedPrice, checkOfferAvailability } from "../../utils";
+import {
+  updateAllRoomTypes,
+  updateAllRoomTypesName,
+  updateAllRoomTypesWithKeyAsId,
+  updateIsOfferAvailable,
+  updateOfferEndDate,
+  updateOffers,
+} from "../../features/room/roomSlice";
+import { toast } from "react-toastify";
+import { allTabDetail } from "../../Constants";
 
 const Location = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
   const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
   const dispatch = useDispatch();
 
+  async function getAllRoomTypes() {
+    const data = await fetchAllRoomTypes();
+    if (data) {
+      const allRoomTypesDataTemp = structuredClone(data);
+      const roomTypeNames = [allTabDetail];
+      const offersObj = {};
+      for (let i = 0; i < allRoomTypesDataTemp.length; i++) {
+        roomTypeNames.push([
+          allRoomTypesDataTemp[i].typeName,
+          `cat${allRoomTypesDataTemp[i].id}`,
+        ]);
+        offersObj[allRoomTypesDataTemp[i].id] =
+          allRoomTypesDataTemp[i].offerDiscountPercentage;
+        allRoomTypesDataTemp[i].priceAfterOffer = calculateOfferedPrice(
+          allRoomTypesDataTemp[i].pricePerNight,
+          allRoomTypesDataTemp[i].offerDiscountPercentage
+        );
+      }
+      dispatch(updateAllRoomTypes(allRoomTypesDataTemp));
+
+      const allRoomTypesDataWithKeyAsIdTemp = {};
+      for (let i = 0; i < allRoomTypesDataTemp.length; i++) {
+        allRoomTypesDataWithKeyAsIdTemp[allRoomTypesDataTemp[i].id] =
+          allRoomTypesDataTemp[i];
+      }
+      dispatch(updateAllRoomTypesWithKeyAsId(allRoomTypesDataWithKeyAsIdTemp));
+
+      if (
+        checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)
+      ) {
+        dispatch(updateShouldShowOfferHeader(true));
+        dispatch(updateIsOfferAvailable(true));
+        dispatch(updateOffers(offersObj));
+        dispatch(updateOfferEndDate(data[0].offerEndDate));
+      } else {
+        dispatch(updateShouldShowOfferHeader(false));
+        dispatch(updateIsOfferAvailable(false));
+        dispatch(updateOffers({}));
+        dispatch(updateOfferEndDate(""));
+      }
+      dispatch(updateAllRoomTypesName(roomTypeNames));
+    } else {
+      toast.error("Something went wrong while fetching room types.");
+    }
+  }
+
   useEffect(() => {
     AOS.init();
     AOS.refresh();
     window.scrollTo(0, 0);
+
+    if (roomRedux.allRoomTypes?.length === 0) {
+      getAllRoomTypes();
+    }
+
     dispatch(updateShouldShowCallback(true));
     dispatch(updateShouldShowWhatsapp(true));
 
