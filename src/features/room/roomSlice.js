@@ -235,6 +235,7 @@ export const roomSlice = createSlice({
     availableRoomTypes: [],
     isOfferAvailable: false,
     offers: {},
+    offerStartDate: "",
     offerEndDate: "",
     selectedRooms: [],
     selectedRoomTypeId: null,
@@ -261,6 +262,9 @@ export const roomSlice = createSlice({
     updateOffers: (state, action) => {
       state.offers = action.payload;
     },
+    updateOfferStartDate: (state, action) => {
+      state.offerStartDate = action.payload;
+    },
     updateOfferEndDate: (state, action) => {
       state.offerEndDate = action.payload;
     },
@@ -286,6 +290,7 @@ export const {
   updateAvailableRoomTypes,
   updateIsOfferAvailable,
   updateOffers,
+  updateOfferStartDate,
   updateOfferEndDate,
   updateSelectedRooms,
   updateSelectedRoomTypeId,

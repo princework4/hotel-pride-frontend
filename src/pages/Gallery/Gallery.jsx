@@ -22,6 +22,7 @@ import {
   updateAllRoomTypesWithKeyAsId,
   updateIsOfferAvailable,
   updateOfferEndDate,
+  updateOfferStartDate,
   updateOffers,
 } from "../../features/room/roomSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -120,11 +121,13 @@ const Gallery = () => {
         dispatch(updateShouldShowOfferHeader(true));
         dispatch(updateIsOfferAvailable(true));
         dispatch(updateOffers(offersObj));
+        dispatch(updateOfferStartDate(data[0].offerStartDate));
         dispatch(updateOfferEndDate(data[0].offerEndDate));
       } else {
         dispatch(updateShouldShowOfferHeader(false));
         dispatch(updateIsOfferAvailable(false));
         dispatch(updateOffers({}));
+        dispatch(updateOfferStartDate(""));
         dispatch(updateOfferEndDate(""));
       }
 

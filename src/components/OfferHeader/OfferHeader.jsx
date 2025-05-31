@@ -9,19 +9,22 @@ import { updateShouldShowOfferHeader } from "../../features/nonFunctional/nonFun
 import {
   updateIsOfferAvailable,
   updateOfferEndDate,
+  updateOfferStartDate,
   updateOffers,
 } from "../../features/room/roomSlice";
 
 const OfferHeader = () => {
   const roomRedux = useSelector((state) => state.roomReducer);
+  const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
   const dispatch = useDispatch();
   const modifiedTODate = `${roomRedux.offerEndDate
     ?.split("-")
     .reverse()
-    .join("-")}T00:00:00`;
+    .join("-")}T23:59:59`;
   // const modifiedTODate = "2025-05-24T00:00:00";
 
   function handleOfferEnd() {
+    dispatch(updateOfferStartDate(""));
     dispatch(updateOfferEndDate(""));
     dispatch(updateIsOfferAvailable(false));
     dispatch(updateOffers({}));

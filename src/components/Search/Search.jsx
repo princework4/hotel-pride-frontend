@@ -19,6 +19,9 @@ import {
   decreaseRooms,
   updateCheckInDate,
   updateCheckOutDate,
+  updateNoOfDays,
+  updateNoOfDaysWithoutOffer,
+  updateNoOfDaysWithOffer,
 } from "../../features/search/searchSlice";
 import {
   updateAvailableRoomTypes,
@@ -29,6 +32,7 @@ import { updateIsHomePage } from "../../features/nonFunctional/nonFunctionalSlic
 const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
   const guestOptionsRedux = useSelector((state) => state.searchReducer);
   const nonFunctionalRedux = useSelector((state) => state.nonFunctionalReducer);
+  const roomRedux = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -52,6 +56,30 @@ const Search = ({ callFromRoomCard = false, selectedRoomTypeId }) => {
       dispatch(updateIsHomePage(false));
     }
   }, []);
+
+  React.useEffect(() => {
+    if (guestOptionsRedux.checkInDate && guestOptionsRedux.checkOutDate) {
+      const d1 = dayjs(guestOptionsRedux.checkInDate);
+      const d2 = dayjs(guestOptionsRedux.checkOutDate);
+      dispatch(updateNoOfDays(d2.diff(d1, "day")));
+
+      if (roomRedux.isOfferAvailable) {
+        const d3 = dayjs(
+          roomRedux.offerStartDate.split("-").reverse().join("-")
+        );
+        const d4 = dayjs(roomRedux.offerEndDate.split("-").reverse().join("-"));
+        if (d1.isBetween(d3, d4, null, [])) {
+          const totalNoOfDays = d2.diff(d1, "day");
+          const diffForWithoutOffer =
+            d2.diff(d4, "day") <= 0 ? 0 : d2.diff(d4, "day") - 1;
+          dispatch(updateNoOfDaysWithoutOffer(diffForWithoutOffer));
+          dispatch(
+            updateNoOfDaysWithOffer(totalNoOfDays - diffForWithoutOffer)
+          );
+        }
+      }
+    }
+  }, [guestOptionsRedux.checkInDate, guestOptionsRedux.checkOutDate]);
 
   function checkRoomsQuantityForSingleCard(response) {
     const roomsWithQuantity = [];

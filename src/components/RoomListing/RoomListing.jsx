@@ -212,7 +212,7 @@ const RoomListing = ({ roomNumber }) => {
                             false,
                             roomRedux.isOfferAvailable
                               ? Number(
-                                  roomRedux.allRoomTypes[roomType.id]
+                                  roomRedux.allRoomTypesWithKeyAsId[roomType.id]
                                     .priceAfterOffer
                                 )
                               : Number(roomType.pricePerNight),

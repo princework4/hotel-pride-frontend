@@ -139,7 +139,7 @@ const Navbar = () => {
       }
       style={
         roomRedux.isOfferAvailable && nonFunctionalRedux.shouldShowOfferHeader
-          ? { top: "60px" }
+          ? { top: "70px" }
           : { top: 0 }
       }
     >

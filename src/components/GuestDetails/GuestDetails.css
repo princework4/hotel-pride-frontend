@@ -64,13 +64,16 @@
   margin-bottom: 5px;
 }
 
-.payment_summary .payment_summary__selected_rooms_details,
+.payment_summary .payment_summary__selected_rooms_details {
+  margin-top: 3px;
+}
+
 .payment_summary .payment_summary__total_price {
   margin-top: 10px;
 }
 
 .payment_summary .payment_summary__total_price {
-  padding: 10px 0;
+  padding: 5px 0 10px;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
 }
@@ -103,6 +106,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.payment_summary__days {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
 }
 
 .payment_summary .payment_summary__total_price span,

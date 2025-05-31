@@ -10,6 +10,9 @@ export const searchSlice = createSlice({
     },
     checkInDate: null,
     checkOutDate: null,
+    noOfDays: 0,
+    noOfDaysWithOffer: 0,
+    noOfDaysWithoutOffer: 0,
   },
   reducers: {
     increaseAdults: (state) => {
@@ -36,12 +39,23 @@ export const searchSlice = createSlice({
     updateCheckOutDate: (state, action) => {
       state.checkOutDate = action.payload;
     },
+    updateNoOfDays: (state, action) => {
+      state.noOfDays = action.payload;
+    },
+    updateNoOfDaysWithOffer: (state, action) => {
+      state.noOfDaysWithOffer = action.payload;
+    },
+    updateNoOfDaysWithoutOffer: (state, action) => {
+      state.noOfDaysWithoutOffer = action.payload;
+    },
     resetGuestOptions: (state) => {
       state.guestOptions.adults = 1;
       state.guestOptions.children = 0;
       state.guestOptions.rooms = 1;
       state.checkInDate = null;
       state.checkOutDate = null;
+      state.noOfDays = 0;
+      state.noOfDaysWithOffer, state.noOfDaysWithoutOffer;
     },
   },
 });
@@ -55,6 +69,9 @@ export const {
   decreaseRooms,
   updateCheckInDate,
   updateCheckOutDate,
+  updateNoOfDays,
+  updateNoOfDaysWithOffer,
+  updateNoOfDaysWithoutOffer,
   resetGuestOptions,
 } = searchSlice.actions;
 

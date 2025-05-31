@@ -35,6 +35,7 @@ import {
   updateAllRoomTypesWithKeyAsId,
   updateIsOfferAvailable,
   updateOfferEndDate,
+  updateOfferStartDate,
   updateOffers,
 } from "../../features/room/roomSlice";
 import { toast } from "react-toastify";
@@ -78,11 +79,13 @@ const Location = () => {
         dispatch(updateShouldShowOfferHeader(true));
         dispatch(updateIsOfferAvailable(true));
         dispatch(updateOffers(offersObj));
+        dispatch(updateOfferStartDate(data[0].offerStartDate));
         dispatch(updateOfferEndDate(data[0].offerEndDate));
       } else {
         dispatch(updateShouldShowOfferHeader(false));
         dispatch(updateIsOfferAvailable(false));
         dispatch(updateOffers({}));
+        dispatch(updateOfferStartDate(""));
         dispatch(updateOfferEndDate(""));
       }
       dispatch(updateAllRoomTypesName(roomTypeNames));

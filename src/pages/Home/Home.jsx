@@ -26,6 +26,7 @@ import {
   updateAvailableRoomTypes,
   updateIsOfferAvailable,
   updateOfferEndDate,
+  updateOfferStartDate,
   updateOffers,
   updateSelectedRooms,
 } from "../../features/room/roomSlice";
@@ -102,10 +103,13 @@ const Home = () => {
         ]);
         offersObj[allRoomTypesDataTemp[i].id] =
           allRoomTypesDataTemp[i].offerDiscountPercentage;
-        allRoomTypesDataTemp[i].priceAfterOffer = calculateOfferedPrice(
-          allRoomTypesDataTemp[i].pricePerNight,
-          allRoomTypesDataTemp[i].offerDiscountPercentage
-        );
+        // allRoomTypesDataTemp[i].priceAfterOffer = calculateOfferedPrice(
+        //   allRoomTypesDataTemp[i].pricePerNight,
+        //   allRoomTypesDataTemp[i].offerDiscountPercentage
+        // );
+        allRoomTypesDataTemp[i].priceAfterOffer =
+          allRoomTypesDataTemp[i].pricePerNight -
+          (allRoomTypesDataTemp[i].pricePerNight * 20) / 100;
       }
       dispatch(updateAllRoomTypes(allRoomTypesDataTemp));
 
@@ -122,11 +126,13 @@ const Home = () => {
         dispatch(updateShouldShowOfferHeader(true));
         dispatch(updateIsOfferAvailable(true));
         dispatch(updateOffers(offersObj));
+        dispatch(updateOfferStartDate(data[0].offerStartDate));
         dispatch(updateOfferEndDate(data[0].offerEndDate));
       } else {
         dispatch(updateShouldShowOfferHeader(false));
         dispatch(updateIsOfferAvailable(false));
         dispatch(updateOffers({}));
+        dispatch(updateOfferStartDate(""));
         dispatch(updateOfferEndDate(""));
       }
       dispatch(updateAllRoomTypesName(roomTypeNames));

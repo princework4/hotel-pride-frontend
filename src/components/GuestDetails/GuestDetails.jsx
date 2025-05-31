@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -47,6 +47,8 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
   const authRedux = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [finalPriceWhenOfferAvailable, setFinalPriceWhenOfferAvailable] =
+    useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -79,12 +81,44 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     overflow: "auto",
   };
 
-  function calculateTax(totalPrice) {
+  function calculateTax(totalPriceOfRooms) {
     const taxValue = Number(
-      ((totalPrice * roomRedux.taxPercent) / 100).toFixed(2)
+      ((totalPriceOfRooms * roomRedux.taxPercent) / 100).toFixed(2)
     );
-    dispatch(updateTotalAmountAfterTax(totalPrice + taxValue));
+    dispatch(updateTotalAmountAfterTax(totalPriceOfRooms + taxValue));
     return taxValue;
+  }
+
+  function calculateFinalPrice() {
+    let priceOfDaysWithoutOffer = 0;
+    if (
+      guestDetailsRedux.noOfDaysWithoutOffer == 0 &&
+      guestDetailsRedux.noOfDaysWithOffer == 0
+    ) {
+      let priceOfDaysAfterOffer = 0;
+      for (let i = 0; i < roomRedux.selectedRooms.length; i++) {
+        priceOfDaysAfterOffer +=
+          roomRedux.allRoomTypesWithKeyAsId[
+            roomRedux.selectedRooms[i].selectedRoomId
+          ].pricePerNight * guestDetailsRedux.noOfDays;
+      }
+      setFinalPriceWhenOfferAvailable(priceOfDaysAfterOffer);
+      return priceOfDaysAfterOffer;
+    } else {
+      for (let i = 0; i < roomRedux.selectedRooms.length; i++) {
+        priceOfDaysWithoutOffer +=
+          roomRedux.allRoomTypesWithKeyAsId[
+            roomRedux.selectedRooms[i].selectedRoomId
+          ].pricePerNight * guestDetailsRedux.noOfDaysWithoutOffer;
+      }
+
+      let priceOfDaysWithOffer =
+        totalPrice * guestDetailsRedux.noOfDaysWithOffer;
+      setFinalPriceWhenOfferAvailable(
+        priceOfDaysWithoutOffer + priceOfDaysWithOffer
+      );
+      return priceOfDaysWithoutOffer + priceOfDaysWithOffer;
+    }
   }
 
   return (
@@ -267,26 +301,91 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                       <li key={index}>
                         <h4>{`Room ${index + 1}`}</h4>
                         <span>{room?.roomType}</span>
-                        <span>
+                        {/* <span>
                           {room.isBreakfastIncluded
                             ? "Breakfast Included"
                             : "Breakfast Excluded"}
-                        </span>
-                        <div className="payment_summary__price">
-                          <span>Price</span>
-                          <span>&#8377; {room?.price}</span>
-                        </div>
+                        </span> */}
+                        {roomRedux.isOfferAvailable ? (
+                          guestDetailsRedux.noOfDaysWithOffer > 0 ||
+                          guestDetailsRedux.noOfDaysWithoutOffer > 0 ? (
+                            <>
+                              {guestDetailsRedux.noOfDaysWithOffer > 0 && (
+                                <div className="payment_summary__price">
+                                  <span>Price (Discounted)</span>
+                                  <span>&#8377; {room?.price}</span>
+                                </div>
+                              )}
+                              {guestDetailsRedux.noOfDaysWithoutOffer > 0 && (
+                                <div className="payment_summary__price">
+                                  <span>Price</span>
+                                  <span>
+                                    &#8377;{" "}
+                                    {
+                                      roomRedux.allRoomTypesWithKeyAsId[
+                                        room.selectedRoomId
+                                      ].pricePerNight
+                                    }
+                                  </span>
+                                </div>
+                              )}
+                            </>
+                          ) : (
+                            <div className="payment_summary__price">
+                              <span>Price</span>
+                              <span>
+                                &#8377;
+                                {
+                                  roomRedux.allRoomTypesWithKeyAsId[
+                                    room.selectedRoomId
+                                  ].pricePerNight
+                                }
+                              </span>
+                            </div>
+                          )
+                        ) : (
+                          <div className="payment_summary__price">
+                            <span>Price</span>
+                            <span>&#8377; {room?.price}</span>
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ul>
+                  <div className="payment_summary__days">
+                    <span>No. of Days</span>
+                    <span>{guestDetailsRedux.noOfDays}</span>
+                  </div>
                   <ul className="payment_summary__total_price">
                     <li>
                       <span>Sub Total</span>
-                      <span>&#8377; {totalPrice}</span>
+                      {roomRedux.isOfferAvailable ? (
+                        <span>
+                          &#8377;{" "}
+                          {/* {totalPrice * guestDetailsRedux.noOfDaysWithOffer +
+                            totalPrice * guestDetailsRedux.noOfDaysWithoutOffer} */}
+                          {calculateFinalPrice()}
+                        </span>
+                      ) : (
+                        <span>
+                          &#8377; {totalPrice * guestDetailsRedux.noOfDays}
+                        </span>
+                      )}
                     </li>
                     <li>
                       <span>Taxes</span>
-                      <span>&#8377; {calculateTax(totalPrice)}</span>
+                      {roomRedux.isOfferAvailable ? (
+                        <span>
+                          &#8377; {calculateTax(finalPriceWhenOfferAvailable)}
+                        </span>
+                      ) : (
+                        <span>
+                          &#8377;{" "}
+                          {calculateTax(
+                            totalPrice * guestDetailsRedux.noOfDays
+                          )}
+                        </span>
+                      )}
                     </li>
                   </ul>
                   <div className="payment_summary__summed_total_price">

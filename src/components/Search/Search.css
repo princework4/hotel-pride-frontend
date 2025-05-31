@@ -39,7 +39,7 @@
 
 form .search-btn {
   background-color: var(--sage);
-  color: #e7e8d1;
+  color: #fff;
   padding: 7px 16px;
   transition: background-color 0.3s ease-in-out;
   border: 1px solid transparent;
