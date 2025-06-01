@@ -103,13 +103,10 @@ const Home = () => {
         ]);
         offersObj[allRoomTypesDataTemp[i].id] =
           allRoomTypesDataTemp[i].offerDiscountPercentage;
-        // allRoomTypesDataTemp[i].priceAfterOffer = calculateOfferedPrice(
-        //   allRoomTypesDataTemp[i].pricePerNight,
-        //   allRoomTypesDataTemp[i].offerDiscountPercentage
-        // );
-        allRoomTypesDataTemp[i].priceAfterOffer =
-          allRoomTypesDataTemp[i].pricePerNight -
-          (allRoomTypesDataTemp[i].pricePerNight * 20) / 100;
+        allRoomTypesDataTemp[i].priceAfterOffer = calculateOfferedPrice(
+          allRoomTypesDataTemp[i].pricePerNight,
+          allRoomTypesDataTemp[i].offerDiscountPercentage
+        );
       }
       dispatch(updateAllRoomTypes(allRoomTypesDataTemp));
 

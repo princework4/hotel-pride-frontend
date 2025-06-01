@@ -1,4 +1,5 @@
 import * as CryptoJS from "crypto-js";
+import dayjs from "dayjs";
 
 const secretKey = process.env.SECRET_ENCRYPTION_KEY;
 
@@ -37,11 +38,22 @@ export const generateRoomBookingListData = (selectedRooms) => {
 
 export const checkOfferAvailability = (offerStartDate, offerEndDate) => {
   const today = new Date();
-  const day = String(today.getDate());
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const year = today.getFullYear();
-  const formattedDate = `${day}-${month}-${year}`;
-  return offerStartDate <= formattedDate && offerEndDate >= formattedDate;
+  const d1 = dayjs(offerStartDate.split("-").reverse().join("-"));
+  const d2 = dayjs(offerEndDate.split("-").reverse().join("-"));
+  const d3 = dayjs(today);
+  return d3.isBetween(d1, d2, "day", []);
+  // const day = String(today.getDate());
+  // const month = String(today.getMonth() + 1).padStart(2, "0");
+  // const year = today.getFullYear();
+  // const formattedDate = `${day}-${month}-${year}`;
+  // console.log(
+  //   offerStartDate,
+  //   offerEndDate,
+  //   formattedDate,
+  //   offerStartDate <= formattedDate,
+  //   offerEndDate >= formattedDate
+  // );
+  // return offerStartDate <= formattedDate && offerEndDate >= formattedDate;
 };
 
 export const calculateOfferedPrice = (price, offerPercent) => {
