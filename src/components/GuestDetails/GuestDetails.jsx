@@ -271,12 +271,12 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                     <CalendarMonthIcon />
                     <span>
                       {dayjs(guestDetailsRedux.checkInDate).format("DD")}{" "}
-                      {dayjs(guestDetailsRedux.checkInDate).format("MMMM")}{" "}
+                      {dayjs(guestDetailsRedux.checkInDate).format("MMMM")}
                     </span>
                     <span>to</span>
                     <span>
                       {dayjs(guestDetailsRedux.checkOutDate).format("DD")}{" "}
-                      {dayjs(guestDetailsRedux.checkOutDate).format("MMMM")}{" "}
+                      {dayjs(guestDetailsRedux.checkOutDate).format("MMMM")}
                     </span>
                   </h4>
                   <h4 className="payment_summary__room_details">
@@ -301,11 +301,6 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                       <li key={index}>
                         <h4>{`Room ${index + 1}`}</h4>
                         <span>{room?.roomType}</span>
-                        {/* <span>
-                          {room.isBreakfastIncluded
-                            ? "Breakfast Included"
-                            : "Breakfast Excluded"}
-                        </span> */}
                         {roomRedux.isOfferAvailable ? (
                           guestDetailsRedux.noOfDaysWithOffer > 0 ||
                           guestDetailsRedux.noOfDaysWithoutOffer > 0 ? (
@@ -352,11 +347,13 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                       </li>
                     ))}
                   </ul>
-                  <div className="payment_summary__days">
-                    <span>No. of Days</span>
-                    <span>{guestDetailsRedux.noOfDays}</span>
-                  </div>
                   <ul className="payment_summary__total_price">
+                    <li>
+                      {/* <div className="payment_summary__days"> */}
+                      <span>No. of Days</span>
+                      <span>{guestDetailsRedux.noOfDays}</span>
+                      {/* </div> */}
+                    </li>
                     <li>
                       <span>Sub Total</span>
                       {roomRedux.isOfferAvailable ? (

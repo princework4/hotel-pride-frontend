@@ -51,10 +51,10 @@
 .payment_summary
   .payment_summary__container
   .payment_summary__selected_rooms_details {
-  max-height: 90px;
+  max-height: 75px;
   /* max-height: 90px; */
   height: 100%;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .payment_summary
@@ -84,7 +84,7 @@
 }
 
 .payment_summary .payment_summary__selected_rooms_details li:not(:first-child),
-.payment_summary .payment_summary__total_price li:last-child {
+.payment_summary .payment_summary__total_price li:not(:first-child) {
   margin-top: 10px;
 }
 
