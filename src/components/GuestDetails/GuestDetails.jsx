@@ -121,6 +121,8 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     }
   }
 
+  console.log(roomRedux);
+
   return (
     <>
       <Formik
@@ -307,7 +309,18 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                             <>
                               {guestDetailsRedux.noOfDaysWithOffer > 0 && (
                                 <div className="payment_summary__price">
-                                  <span>Price (Discounted)</span>
+                                  <span>
+                                    Price (
+                                    <span
+                                      style={{
+                                        color: "var(--sage)",
+                                      }}
+                                    >
+                                      {roomRedux.offers[room.selectedRoomId]}%
+                                      Discount
+                                    </span>
+                                    )
+                                  </span>
                                   <span>&#8377; {room?.price}</span>
                                 </div>
                               )}

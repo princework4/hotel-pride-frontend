@@ -38,10 +38,13 @@ export const generateRoomBookingListData = (selectedRooms) => {
 
 export const checkOfferAvailability = (offerStartDate, offerEndDate) => {
   const today = new Date();
-  const d1 = dayjs(offerStartDate.split("-").reverse().join("-"));
-  const d2 = dayjs(offerEndDate.split("-").reverse().join("-"));
+  const d1 = dayjs(`${offerStartDate.split("-").reverse().join("-")}T00:00:00`);
+  const d2 = dayjs(`${offerEndDate.split("-").reverse().join("-")}T23:59:59`);
+  // const d1 = dayjs(`${offerStartDate.split("-").reverse().join("-")}`);
+  // const d2 = dayjs(`${offerEndDate.split("-").reverse().join("-")}`);
   const d3 = dayjs(today);
-  return d3.isBetween(d1, d2, "day", []);
+  console.log(d1, d2, d3, d3.isBetween(d1, d2, null, []));
+  return d3.isBetween(d1, d2, null, []);
   // const day = String(today.getDate());
   // const month = String(today.getMonth() + 1).padStart(2, "0");
   // const year = today.getFullYear();
