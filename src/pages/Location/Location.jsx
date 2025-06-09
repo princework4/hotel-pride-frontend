@@ -159,6 +159,7 @@ const Location = () => {
                 width="100%"
                 height="100%"
                 allowFullScreen=""
+                allow="publickey-credentials-get"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
