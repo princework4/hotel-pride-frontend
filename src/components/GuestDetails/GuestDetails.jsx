@@ -121,8 +121,6 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
     }
   }
 
-  console.log(roomRedux);
-
   return (
     <>
       <Formik

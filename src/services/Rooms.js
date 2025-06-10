@@ -4,7 +4,6 @@ const baseUrl = import.meta.env.VITE_BASE_URL;
 const apiVersion = import.meta.env.VITE_API_VERSION;
 
 export async function fetchAllRoomTypes() {
-  console.log("${baseUrl}/${apiVersion} :- ", `${baseUrl}/${apiVersion}`);
   try {
     const { data } = await axios.get(`${baseUrl}/${apiVersion}/room-types`);
     // console.log(data);
