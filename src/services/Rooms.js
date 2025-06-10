@@ -1,14 +1,12 @@
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+const apiVersion = import.meta.env.VITE_API_VERSION;
+
 export async function fetchAllRoomTypes() {
-  console.log(
-    "${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION} :- ",
-    `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}`
-  );
+  console.log("${baseUrl}/${apiVersion} :- ", `${baseUrl}/${apiVersion}`);
   try {
-    const { data } = await axios.get(
-      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/room-types`
-    );
+    const { data } = await axios.get(`${baseUrl}/${apiVersion}/room-types`);
     // console.log(data);
     return data;
   } catch (error) {
@@ -28,7 +26,7 @@ export async function fetchAllRoomTypes() {
 export async function fetchSingleRoomTypes(id) {
   try {
     const { data } = await axios.get(
-      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/room-types/${id}`
+      `${baseUrl}/${apiVersion}/room-types/${id}`
     );
     // console.log(data);
     return data;

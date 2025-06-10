@@ -119,6 +119,8 @@ const Home = () => {
       dispatch(updateAllRoomTypesWithKeyAsId(allRoomTypesDataWithKeyAsIdTemp));
 
       if (
+        data[0].offerStartDate &&
+        data[0].offerEndDate &&
         checkOfferAvailability(data[0].offerStartDate, data[0].offerEndDate)
       ) {
         dispatch(updateShouldShowOfferHeader(true));

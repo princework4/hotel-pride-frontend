@@ -3,6 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Slider.css";
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+const apiVersion = import.meta.env.VITE_API_VERSION;
+
 const ImageSlider = ({
   slidesToShow,
   slidesToScroll,
@@ -32,7 +35,7 @@ const ImageSlider = ({
           {images.map((item) => (
             <div className="slider_div" key={item.id}>
               <img
-                src={`${process.env.VITE_BASE_URL}/${item.assetUrl}`}
+                src={`${baseUrl}/${item.assetUrl}`}
                 alt={`room_type_${item.id}`}
                 loading="lazy"
                 decoding="async"

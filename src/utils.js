@@ -1,21 +1,21 @@
 import * as CryptoJS from "crypto-js";
 import dayjs from "dayjs";
 
-const secretKey = process.env.SECRET_ENCRYPTION_KEY;
+// const secretKey = process.env.SECRET_ENCRYPTION_KEY;
 
-export const encryptPassword = (password) => {
-  const encryptedPassword = CryptoJS.AES.encrypt(
-    password,
-    secretKey
-  ).toString();
-  return encryptedPassword;
-};
+// export const encryptPassword = (password) => {
+//   const encryptedPassword = CryptoJS.AES.encrypt(
+//     password,
+//     secretKey
+//   ).toString();
+//   return encryptedPassword;
+// };
 
-export const decryptPassword = (encryptedPassword) => {
-  const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
-  const password = bytes.toString(CryptoJS.enc.Utf8);
-  return password;
-};
+// export const decryptPassword = (encryptedPassword) => {
+//   const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
+//   const password = bytes.toString(CryptoJS.enc.Utf8);
+//   return password;
+// };
 
 export const generateRoomBookingListData = (selectedRooms) => {
   const obj = {};
