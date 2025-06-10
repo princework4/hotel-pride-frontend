@@ -1,6 +1,10 @@
 import axios from "axios";
 
 export async function fetchAllRoomTypes() {
+  console.log(
+    "${process.env.BASE_URL}/${process.env.API_VERSION} :- ",
+    `${process.env.BASE_URL}/${process.env.API_VERSION}`
+  );
   try {
     const { data } = await axios.get(
       `${process.env.BASE_URL}/${process.env.API_VERSION}/room-types`

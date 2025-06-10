@@ -75,6 +75,7 @@ const Home = () => {
   const reviewsSection = useRef(null);
 
   useEffect(() => {
+    console.log("Animation useeffect");
     AOS.init();
     AOS.refresh();
     window.scrollTo(0, 0);
@@ -139,6 +140,10 @@ const Home = () => {
   }
 
   useEffect(() => {
+    console.log(
+      "roomRedux.allRoomTypes?.length :- ",
+      roomRedux.allRoomTypes?.length
+    );
     if (roomRedux.allRoomTypes?.length === 0) {
       getAllRoomTypes();
     }
