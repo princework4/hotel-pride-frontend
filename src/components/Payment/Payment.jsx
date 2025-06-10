@@ -123,7 +123,7 @@ const Payment = () => {
 
   async function createPaymentHandler(response) {
     const options = {
-      key: process.env.PAYMENT_KEY,
+      key: process.env.VITE_PAYMENT_KEY,
       amount: Number(roomRedux.totalPriceAfterTax),
       currency: "INR",
       name: "Hotel Pride",

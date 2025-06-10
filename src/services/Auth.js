@@ -3,7 +3,7 @@ import axios from "axios";
 export async function loginUser({ email, password }) {
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/auth/login`,
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/auth/login`,
       {
         email,
         password,
@@ -27,7 +27,7 @@ export async function loginUser({ email, password }) {
 export async function registerUser({ name, email, mobile, password }) {
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/auth/register`,
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/auth/register`,
       {
         name,
         email,

@@ -32,7 +32,7 @@ const ImageSlider = ({
           {images.map((item) => (
             <div className="slider_div" key={item.id}>
               <img
-                src={`${process.env.BASE_URL}/${item.assetUrl}`}
+                src={`${process.env.VITE_BASE_URL}/${item.assetUrl}`}
                 alt={`room_type_${item.id}`}
                 loading="lazy"
                 decoding="async"

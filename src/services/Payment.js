@@ -3,7 +3,7 @@ import axios from "axios";
 export async function createPayment(bookingNumber) {
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/payments/create?bookingNumber=${bookingNumber}`
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/payments/create?bookingNumber=${bookingNumber}`
     );
     // console.log(data);
     return response;
@@ -27,7 +27,7 @@ export async function createPayment(bookingNumber) {
 export async function verifyPayment({ paymentId, orderId, signature }) {
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/payments/verify`,
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/payments/verify`,
       {
         paymentId,
         orderId,

@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 export async function requestCallback({ name, email, mobile, guest, rooms }) {
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/bookings/request`,
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/bookings/request`,
       {
         hotelId: 1,
         fullName: name,
@@ -34,7 +34,7 @@ export async function getRoomsAvailability(checkInDate, checkOutDate) {
   const updatedCheckOutDate = dayjs(checkOutDate).format("DD-MM-YYYY");
   try {
     const response = await axios.get(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/bookings/availability?hotelId=1&checkinDate=${updatedCheckInDate}&checkoutDate=${updatedCheckOutDate}`
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/bookings/availability?hotelId=1&checkinDate=${updatedCheckInDate}&checkoutDate=${updatedCheckOutDate}`
     );
     // console.log(data);
     return response;
@@ -71,7 +71,7 @@ export async function bookingConfirmation({
   const updatedCheckOutDate = dayjs(checkOutDate).format("DD-MM-YYYY");
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/bookings`,
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/bookings`,
       {
         userId,
         hotelId,
@@ -123,7 +123,7 @@ export async function guestBookingConfirmation({
   const updatedCheckOutDate = dayjs(checkOutDate).format("DD-MM-YYYY");
   try {
     const response = await axios.post(
-      `${process.env.BASE_URL}/${process.env.API_VERSION}/bookings/guest`,
+      `${process.env.VITE_BASE_URL}/${process.env.VITE_API_VERSION}/bookings/guest`,
       {
         email,
         phone,
