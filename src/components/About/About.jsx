@@ -14,7 +14,7 @@ const About = () => {
           <div
             className="left_right_showcase__first"
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="500"
           >
             <div>
               <h2>hotel pride</h2>
@@ -41,7 +41,7 @@ const About = () => {
             <div
               className="left_right_showcase__second"
               data-aos="fade-up"
-              data-aos-duration="1000"
+              data-aos-duration="500"
             >
               <figure>
                 <img src={HotelBuilding2} alt="Reception" />

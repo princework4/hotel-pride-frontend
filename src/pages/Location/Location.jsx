@@ -127,7 +127,7 @@ const Location = () => {
       <Suspense fallback={<Loader />}>
         <Header />
       </Suspense>
-      <section className="location" data-aos="fade-up" data-aos-duration="1000">
+      <section className="location" data-aos="fade-up" data-aos-duration="500">
         <div className="wrapper">
           <div className="heading_container">
             <h2>location and transportation</h2>
@@ -151,7 +151,7 @@ const Location = () => {
           <div
             className="location__map_contact-container"
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="500"
           >
             <div>
               <iframe
@@ -203,7 +203,7 @@ const Location = () => {
           <ul
             className="location__details"
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="500"
           >
             <li>
               <h3>parking</h3>
@@ -274,7 +274,7 @@ const Location = () => {
           <div
             className="hotel_policies"
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="500"
           >
             <h2>hotel policies</h2>
             <Accordion
