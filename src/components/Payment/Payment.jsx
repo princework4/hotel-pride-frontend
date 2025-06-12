@@ -30,6 +30,7 @@ const Payment = () => {
   const navigate = useNavigate();
   const paymentId = useRef(null);
   const paymentMethod = useRef(null);
+  const paymentBaseUrl = import.meta.env.VITE_PAYMENT_KEY;
 
   function resetAllData() {
     dispatch(resetGuestOptions());
@@ -123,7 +124,7 @@ const Payment = () => {
 
   async function createPaymentHandler(response) {
     const options = {
-      key: process.env.VITE_PAYMENT_KEY,
+      key: paymentBaseUrl,
       amount: Number(roomRedux.totalPriceAfterTax),
       currency: "INR",
       name: "Hotel Pride",

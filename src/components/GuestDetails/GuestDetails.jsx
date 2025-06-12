@@ -156,7 +156,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 <h3>guest details</h3>
                 <FormControl
                   className="form_field"
-                  sx={{ m: 1, minWidth: 120, width: "47%" }}
+                  sx={{ m: 1, minWidth: 120, width: "46%" }}
                 >
                   <TextField
                     type="text"
@@ -173,7 +173,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 </FormControl>
                 <FormControl
                   className="form_field"
-                  sx={{ m: 1, minWidth: 120, width: "47%" }}
+                  sx={{ m: 1, minWidth: 120, width: "46%" }}
                 >
                   <TextField
                     type="text"
@@ -190,7 +190,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 </FormControl>
                 <FormControl
                   className="form_field"
-                  sx={{ m: 1, minWidth: 120, width: "47%" }}
+                  sx={{ m: 1, minWidth: 120, width: "46%" }}
                 >
                   <TextField
                     type="email"
@@ -207,7 +207,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 </FormControl>
                 <FormControl
                   className="form_field"
-                  sx={{ m: 1, minWidth: 120, width: "47%" }}
+                  sx={{ m: 1, minWidth: 120, width: "46%" }}
                 >
                   <TextField
                     type="number"
@@ -224,7 +224,7 @@ const GuestDetails = ({ totalPrice, activeStep, setActiveStep }) => {
                 </FormControl>
                 <FormControl
                   className="special_form_field"
-                  sx={{ m: 1, minWidth: 120, width: "97%" }}
+                  sx={{ m: 1, minWidth: 120, width: "95%" }}
                 >
                   <TextField
                     type="text"
