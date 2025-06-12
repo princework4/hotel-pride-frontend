@@ -16,8 +16,8 @@ const Banner = () => {
         preload="auto"
         src={
           width > 768
-            ? "https://priyhotel-storage.s3.us-east-1.amazonaws.com/Hotel+Pride.mp4"
-            : "https://priyhotel-storage.s3.us-east-1.amazonaws.com/hotel+pride+mobile+video.mp4"
+            ? "https://hotel-pride-video.s3.ap-south-1.amazonaws.com/Hotel+Pride+Desktop+Video.mp4"
+            : "https://hotel-pride-video.s3.ap-south-1.amazonaws.com/Hotel+Pride+Mobile+Video.mp4"
         }
         typeof="video/mp4"
       />
