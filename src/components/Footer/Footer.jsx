@@ -102,12 +102,20 @@ const Footer = () => {
                 >
                   Facebook
                 </a>
-                {/* <a href="#" className="footer-link" target="_blank">
-                  Twitter
-                </a>
-                <a href="#" className="footer-link" target="_blank">
+                <a
+                  href="https://www.instagram.com/hotel_pride.mumbai?igsh=OWUzdGFieWE1NzBo"
+                  className="footer-link"
+                  target="_blank"
+                >
                   Instagram
-                </a> */}
+                </a>
+                <a
+                  href="https://www.linkedIn.com/company/hotel-pride/"
+                  className="footer-link"
+                  target="_blank"
+                >
+                  LinkedIn
+                </a>
               </Box>
             </div>
           </div>

@@ -39,7 +39,6 @@ const Payment = () => {
   }
 
   async function proceedWithBookingConfirmation() {
-    console.log("roomRedux :- ", roomRedux);
     if (authRedux.isUserLoggedIn) {
       const finalLoggedInBookingDetailsObj = {
         userId: authRedux.loggedInUser.id,
