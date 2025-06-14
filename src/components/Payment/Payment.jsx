@@ -39,6 +39,7 @@ const Payment = () => {
   }
 
   async function proceedWithBookingConfirmation() {
+    console.log("roomRedux :- ", roomRedux);
     if (authRedux.isUserLoggedIn) {
       const finalLoggedInBookingDetailsObj = {
         userId: authRedux.loggedInUser.id,
@@ -49,8 +50,8 @@ const Payment = () => {
         checkInDate: guestDetailsRedux.checkInDate,
         checkOutDate: guestDetailsRedux.checkOutDate,
         paymentType: "PREPAID",
-        totalAmount: Number(roomRedux.totalPriceAfterTax),
-        payableAmount: Number(roomRedux.totalPriceAfterTax),
+        totalAmount: Number(roomRedux.totalAmountAfterTax),
+        payableAmount: Number(roomRedux.totalAmountAfterTax),
         roomBookingList: generateRoomBookingListData(roomRedux.selectedRooms),
       };
 
@@ -125,7 +126,7 @@ const Payment = () => {
   async function createPaymentHandler(response) {
     const options = {
       key: paymentBaseUrl,
-      amount: Number(roomRedux.totalPriceAfterTax),
+      amount: Number(roomRedux.totalAmountAfterTax),
       currency: "INR",
       name: "Hotel Pride",
       description: "Hotel Pride Room Booking Transaction",
