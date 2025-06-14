@@ -240,7 +240,7 @@ const Gallery = () => {
                       src={item.original}
                       effect="opacity"
                       wrapperProps={{
-                        style: { transitionDelay: "1s" },
+                        style: { transitionDelay: "0.25s" },
                       }}
                     />
                   </li>

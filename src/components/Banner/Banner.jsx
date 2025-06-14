@@ -11,7 +11,7 @@ const Banner = () => {
 
   return (
     <div className="video-background">
-      <video
+      {/* <video
         id="background-video"
         autoPlay
         playsInline
@@ -20,7 +20,24 @@ const Banner = () => {
         preload="auto"
         src={width > 768 ? desktopVideo : mobileVideo}
         typeof="video/mp4"
-      />
+      /> */}
+
+      <video
+        id="background-video"
+        autoPlay
+        playsInline
+        muted
+        loop
+        preload="auto"
+        poster=""
+      >
+        <source
+          src={desktopVideo}
+          type="video/mp4"
+          media="(min-width: 769px)"
+        />
+        <source src={mobileVideo} type="video/mp4" media="(max-width: 768px)" />
+      </video>
     </div>
   );
 };

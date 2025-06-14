@@ -42,12 +42,12 @@ import "aos/dist/aos.css";
 
 import "./Home.css";
 
-import galleryImage3 from "../../assets/Gallery/gallery_3.jpeg";
-import galleryImage4 from "../../assets/Gallery/gallery_4.jpeg";
-import galleryImage6 from "../../assets/Gallery/gallery_6.jpeg";
-import galleryImage17 from "../../assets/Gallery/gallery_17.jpeg";
-import galleryImage18 from "../../assets/Gallery/gallery_18.jpeg";
-import galleryImage20 from "../../assets/Gallery/gallery_20.jpeg";
+import galleryImage3 from "../../assets/Gallery/gallery_3.webp";
+import galleryImage4 from "../../assets/Gallery/gallery_4.webp";
+import galleryImage6 from "../../assets/Gallery/gallery_6.webp";
+import galleryImage17 from "../../assets/Gallery/gallery_17.webp";
+import galleryImage18 from "../../assets/Gallery/gallery_18.webp";
+import galleryImage20 from "../../assets/Gallery/gallery_20.webp";
 
 import HotelDescription from "../../components/HotelDescription/HotelDescription";
 
